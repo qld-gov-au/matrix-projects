@@ -1,4 +1,4 @@
-- This page will be used by devs to develop projects hosted on Matrix
+- This repo will be used by devs to develop projects hosted on Matrix
 - Create a folder for each project
 - Work related to each project should happen on a separate branch with PROJECT-NAME as branch name. This branch will be release candidate
 - Create all feature/custom/bugfix branches planned for release from release candidate branch. If there is an associated JIRA ticket, add ticket number to the branch name and commits
