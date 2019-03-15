@@ -1,6 +1,7 @@
 - This page will be used by devs to develop projects hosted on Matrix
 - Create a folder for each project
-- Work related to each project should happen on branch <PROJECT-NAME>. This branch will be release candidate
+- Work related to each project should happen on a separate branch with PROJECT-NAME as branch name. This branch will be release candidate
 - Create all feature/custom/bugfix branches planned for release from release candidate branch. If there is an associated JIRA ticket, add ticket number to the branch name and commits
 - Merge all feature/custom/bugfix branches planned for release into release candidate branch. This must be peer reviewed by QOL team.
 - Pre Go-live merge it to master branch
+- On matrix, each project will have its own Git bridge pulling files from project's folder. This isolates releases on each projects.
