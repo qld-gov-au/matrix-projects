@@ -1,0 +1,55 @@
+/*
+ * Mobile layout
+ */
+
+
+#qg-search-widget {
+    &.qg-search-filter__wrapper {
+        background-color: $light-purple;
+    }
+}
+
+.qg-rest__wrapper {
+    margin-top: 25px;
+}
+
+.qg-search-results__list[data-columns] {
+    margin: 0 -1rem;
+    
+    &::before {
+        content: '2 .column';
+    }
+    
+    .column {
+        float: left;
+        padding: 0 1rem;
+        width: 50%;
+    }
+}
+
+.qg-search-results__item {
+    margin-bottom: 25px;
+}
+
+
+/*
+ * Tablet layout
+ */
+
+@media screen and (min-width: $tablet){
+    .common__wrapper {
+
+    }
+}
+
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+    #qg-primary-content {
+        padding-left: 50px;
+        padding-right: 0;
+    }
+}
