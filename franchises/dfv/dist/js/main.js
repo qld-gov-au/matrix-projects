@@ -326,7 +326,7 @@ __webpack_require__.r(__webpack_exports__);
       /* Production */
       // Fetch results
       $('.qg-rest__wrapper').html(loader);
-      Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* sendXHR */ "c"])(xhr_parameters, 'POST');
+      Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* sendXHR */ "c"])(xhr_parameters, 'GET');
     }
 
     return false;
@@ -609,18 +609,6 @@ process.umask = function() { return 0; };
 
 (function () {
   'use strict';
-  /*
-      Functions
-  */
-
-  /*
-      Ready
-  */
-
-  $(document).ready(function () {
-    var grid = document.querySelector('.qg-search-results__list');
-    salvattore.recreateColumns(grid);
-  });
 })();
 
 /***/ })
