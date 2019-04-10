@@ -1,3 +1,25 @@
+@mixin dfv-button() {
+    padding: 12px 20px;
+}
+
+@mixin dfv-button-primary() {
+    @include dfv-button();
+    border-color: $deep-blue;
+    background-color: $deep-blue;
+    color: #fff;
+    font-weight: 500;
+}
+
+@mixin dfv-button-secondary() {
+    @include dfv-button();
+    border-color: #fff;
+    background-color: #fff;
+    color: $deep-blue;
+    font-weight: 700;
+    padding-left: 0;
+}
+
+
 // REM font sizing with pixel fall back
 // This technique will allow external font sizes to be set for html and respected
 // if REMs are supported (everything but IE8 and older).
