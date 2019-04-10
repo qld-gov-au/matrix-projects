@@ -1,24 +1,17 @@
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
-const webpack = require('webpack');
+
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = merge(common, {
-  'mode': 'development',
-  'devServer': {
-    before(app, server) {
-      devServer = server;
-    },
-    'contentBase': './dist',
-    'hot': true,
-    'host': '0.0.0.0',
-    'port': 8080
-  },
+  'mode': 'production',
   'module': {
     'rules': [
       {
         'test': /\.scss$/,
         'use': [
-          "style-loader",
+          MiniCssExtractPlugin.loader,
           "css-loader",
           "postcss-loader",
           "sass-loader",
@@ -28,8 +21,10 @@ module.exports = merge(common, {
     ]
   },
   'plugins': [
-    new webpack.HotModuleReplacementPlugin()
+    new MiniCssExtractPlugin({
+      'filename': "[name].css",
+      'chunkFilename': "[name].css",
+    }),
+    new CleanWebpackPlugin(['dist'],{})
   ]
 });
-
-console.log(module.exports);
