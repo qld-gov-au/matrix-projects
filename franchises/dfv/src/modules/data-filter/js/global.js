@@ -96,7 +96,7 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
             /* Production */
             // Fetch results
             $('.qg-rest__wrapper').html(loader);
-            sendXHR(xhr_parameters, 'POST');
+            sendXHR(xhr_parameters, 'GET');
         }
         
         return false;
