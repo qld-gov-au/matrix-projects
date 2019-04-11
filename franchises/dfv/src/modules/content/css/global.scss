@@ -2,19 +2,71 @@
  * Mobile layout
  */
 
-.common__wrapper {
+h1, h2 {
+    color: $dark-blue;
+}
 
+h1 {
+    font-size: 30px;
+    padding-left: $small-spacing;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+.qg-page-introduction {
+    p {
+
+    }
 }
 
 
 /*
- * Tablet layout
- */
+    Cards
+*/
 
-@media screen and (min-width: $tablet){
-    .common__wrapper {
+.card {
+    border: 2px solid $deep-blue;
+    border-radius: 0;
+    box-shadow: 0px 0 8px 4px $grey;
+    color: $dark-grey;
+}
 
-    }
+.card-body {
+    font-size: 14px;
+    padding: $small-spacing;
+}
+
+.card-title,
+.card-subtitle {
+    display: block;
+    font-weight: 700;
+    margin-bottom: $small-spacing;
+}
+
+.card-title {
+    color: $deep-blue;
+    font-size: 20px;
+}
+
+.card-subtitle {
+    color: $dark-blue;
+    font-size: 15px;
+}
+
+
+/*
+    Font aweseme icons
+*/
+
+.fa-icon__wrapper {
+  display: inline-block; 
+}
+
+.fa-icon__wrapper .fa {
+    color: $light-green;
+    text-shadow: 1px 1px 0 #000,  -1px -1px 0 #000,  1px -1px 0 #000,  -1px 1px 0 #000,  1px 1px 0 #000; 
 }
 
 
@@ -23,7 +75,12 @@
  */
 
 @media screen and (min-width: $desktop){
-    .common__wrapper {
-        
+    h1 {
+        font-size: 39px;
+        padding-left: $medium-spacing;
+    }
+
+    h2 {
+        font-size: 24px;
     }
 }
