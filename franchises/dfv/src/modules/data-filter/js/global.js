@@ -26,6 +26,7 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
     qg_dfv.fn.handleSearchSubmit = function(event) {
         var page_number = 1;
 
+        // Get results
         qg_dfv.fn.getFilteredResults(page_number);
 
         return false;
@@ -33,7 +34,7 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
 
     // Get a results page based on paginated link
     qg_dfv.fn.handleSearchPaginationClick = function(event) {
-        var target_link = qg_dfv.fn.findLink(event);
+        var target_link = findLink(event);
         var page_number;
 
         // Handle previous / next
@@ -48,6 +49,7 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
             page_number = target_link.getAttribute('data-page');
         }
 
+        // Get results
         qg_dfv.fn.getFilteredResults(page_number);
 
         return false;
@@ -74,6 +76,7 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
             results_url += '&' + filter_name + '=' + filter_value;
         });
         
+        // Prepare XHR request
         var xhr_parameters = {
             'request_url': results_url,
             'request_extras': '',
@@ -81,6 +84,7 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
             'request_failure': qg_dfv.fn.failedRequest
         };
 
+        // Prepare loading visual cue
         var loader = generateLoader();
 
         if(isDevelopment()) {
@@ -88,13 +92,13 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
             var all_content = $('.qg-rest__wrapper').html();
             $('.qg-rest__wrapper').html(loader);
 
-            // Emulate loading results for development
+            // Emulate loading results for local development version
             setTimeout(function(){
                 qg_dfv.fn.loadFilteredResults(all_content);
             }, 5000);
         } else {
             /* Production */
-            // Fetch results
+            // Add loading visual cue and fetch results
             $('.qg-rest__wrapper').html(loader);
             sendXHR(xhr_parameters, 'GET');
         }
@@ -108,9 +112,10 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
         var results_title = 'Support services for ';
         var selected_values = [];
 
+        // Display results
         $('.qg-rest__wrapper').html(response);
 
-        // Update results title
+        // Determine current filters to use in results title
         $('.qg-search-filter__wrapper .filter__item').each(function(item_index, item) {
             var filter_value = $(item).find('select').val();
             
@@ -119,6 +124,7 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
             }
         });
 
+        // Update results title
         if(selected_values.length === 0) {
             results_title = default_title;
         } else {
@@ -126,7 +132,7 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
         }
 
         $('.qg-search-results__wrapper h2').text(results_title);
-
+        
         if(!isDevelopment()) {
             // Invoke Salvattore for masonry layout
             var grid = document.querySelector('.qg-search-results__list');
