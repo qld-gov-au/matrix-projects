@@ -16,7 +16,7 @@ li#qg-breadcrumb__ellipses {
         display: inline-block;
     }
 
-    #qg-breadcrumb .hide-breadcrumb {
+    li#qg-breadcrumb__ellipses ~ li:not(:last-child) {
         display: none;
     }
 
