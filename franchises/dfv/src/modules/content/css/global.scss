@@ -2,9 +2,34 @@
  * Mobile layout
  */
 
-.common__wrapper {
-
+h1, h2 {
+    color: $dark-blue;
 }
+
+h1 {
+    font-size: 30px;
+    padding-left: $small-spacing;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+.qg-page-introduction {
+    p {
+
+    }
+}
+
+.fa-icon__wrapper {
+  display: inline-block; 
+}
+
+.fa-icon__wrapper .fa {
+    color: $light-green;
+    text-shadow: 1px 1px 0 #000,  -1px -1px 0 #000,  1px -1px 0 #000,  -1px 1px 0 #000,  1px 1px 0 #000; 
+}
+
 
 
 /*
@@ -23,7 +48,12 @@
  */
 
 @media screen and (min-width: $desktop){
-    .common__wrapper {
-        
+    h1 {
+        font-size: 39px;
+        padding-left: $medium-spacing;
+    }
+
+    h2 {
+        font-size: 24px;
     }
 }
