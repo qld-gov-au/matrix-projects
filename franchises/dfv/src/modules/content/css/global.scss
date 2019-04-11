@@ -21,6 +21,16 @@ h2 {
     }
 }
 
+.fa-icon__wrapper {
+  display: inline-block; 
+}
+
+.fa-icon__wrapper .fa {
+    color: $light-green;
+    text-shadow: 1px 1px 0 #000,  -1px -1px 0 #000,  1px -1px 0 #000,  -1px 1px 0 #000,  1px 1px 0 #000; 
+}
+
+
 
 /*
  * Tablet layout
