@@ -29,7 +29,7 @@
                 if ($franchise_list_item_next_siblings.length > 1) {
                     
                     // Prepare the breadcrumb ellipses DOM element
-                    $breadcrumb_ellipses = $("<li id='qg-breadcrumb__ellipses'><a href='#' role='button' aria-pressed='false' aria-label='Reveal hidden breadcrumbs'>...</a></li>");
+                    $breadcrumb_ellipses = $("<li class='qg-breadcrumb__ellipses'><a href='#' role='button' aria-pressed='false' aria-label='Reveal hidden breadcrumbs'>...</a></li>");
                     
                     // Insert it after the franchise breacrumb item and attach a click handler
                     $breadcrumb_ellipses.insertAfter($franchise_list_item).click(breadcrumbEllipsesClicked);
