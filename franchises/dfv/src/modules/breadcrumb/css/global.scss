@@ -2,7 +2,7 @@
  * Mobile layout
  */
 
-li#qg-breadcrumb__ellipses {
+ #qg-breadcrumb .qg-breadcrumb__ellipses {
     display: none;
 }
 
@@ -12,11 +12,11 @@ li#qg-breadcrumb__ellipses {
 
 @media screen and (min-width: $desktop){
     
-    li#qg-breadcrumb__ellipses {
+    #qg-breadcrumb .qg-breadcrumb__ellipses {
         display: inline-block;
     }
 
-    li#qg-breadcrumb__ellipses ~ li:not(:last-child) {
+    #qg-breadcrumb .qg-breadcrumb__ellipses ~ li:not(:last-child) {
         display: none;
     }
 
