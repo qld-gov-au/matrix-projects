@@ -2,8 +2,23 @@
  * Mobile layout
  */
 
-.common__wrapper {
+h1, h2 {
+    color: $dark-blue;
+}
 
+h1 {
+    font-size: 30px;
+    padding-left: $small-spacing;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+.qg-page-introduction {
+    p {
+
+    }
 }
 
 
@@ -23,7 +38,12 @@
  */
 
 @media screen and (min-width: $desktop){
-    .common__wrapper {
-        
+    h1 {
+        font-size: 39px;
+        padding-left: $medium-spacing;
+    }
+
+    h2 {
+        font-size: 24px;
     }
 }

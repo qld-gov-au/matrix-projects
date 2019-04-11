@@ -4,7 +4,7 @@
 
 #qg-search-widget {
     &.qg-search-filter__wrapper {
-        padding: 2px 25px 25px 25px;
+        padding: 2px $medium-spacing $medium-spacing $medium-spacing;
     }
     
     select, .select2-selection--single, .select2-selection__arrow {
@@ -17,7 +17,7 @@
 }
 
 .form-row {
-    margin-bottom: 25px;
+    margin-bottom: $medium-spacing;
 }
 
 .qg-search-filter__label {
@@ -27,7 +27,7 @@
 
 .qg-search-results__count {
     display: block;
-    margin-bottom: 25px;
+    margin-bottom: $medium-spacing;
 }
 
 

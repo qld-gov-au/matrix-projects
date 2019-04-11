@@ -158,6 +158,12 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
     $(document).ready(function() {
         qg_dfv.fn.initFilterSelects();
 
+        if(isDevelopment()) {
+            // Refresh grid for viewpoint change, as JS runs before styles are injected
+            var grid = document.querySelector('.qg-search-results__list');
+            salvattore.recreateColumns(grid);
+        }
+
         // Binds
         $('body').on('click', '.qg-search-filter__wrapper button[type="submit"]', qg_dfv.fn.handleSearchSubmit);
         $('body').on('click', '.qg-search-filter__wrapper button[type="reset"]', qg_dfv.fn.clearFilters);
