@@ -1,0 +1,57 @@
+/*
+ * Mobile layout
+ */
+
+.qg-topics__list {
+    @include sq-list-reset();
+}
+
+.qg-topics__item {
+    border-bottom: 1px solid $darkish-grey;
+}
+
+.qg-topics__link {
+    color: $deep-blue;
+    display: flex;
+    font-size: 18px;
+    padding: $small-spacing;
+}
+                
+.qg-topics__title {
+    flex-grow: 1;
+}
+
+.qg-topics__more {
+    display: inline-block;
+    flex-shrink: 0;
+    position: relative;
+    width: $medium-spacing;
+
+    &:after {
+        border-bottom: 2px solid $deep-blue;
+        border-right: 2px solid $deep-blue;
+        content: ' ';
+        height: 8px;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%) rotate(-45deg);
+        width: 8px;
+    }
+}
+
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+    .qg-topics__wrapper {
+        width: 100%;
+    }
+
+    .qg-topics__link {
+        font-size: 21px;
+        padding: $medium-spacing;
+    }
+}
