@@ -340,8 +340,7 @@ h2 {
   display: none;
   width: 1.875rem;
   height: 1.875rem;
-  position: relative;
-  display: block; }
+  position: relative; }
   #qg-primary-content .qg-dfv-cards--type-top-arrow .card-arrow:after, #qg-primary-content .qg-dfv-cards--type-top-arrow .card-arrow:before {
     content: "";
     display: block;
