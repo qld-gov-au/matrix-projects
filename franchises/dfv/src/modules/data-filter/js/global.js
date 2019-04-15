@@ -59,6 +59,7 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
     qg_dfv.fn.getFilteredResults = function(page_number) {
         var rest_config = $('#display-filter-data__config');
         var results_url = rest_config.attr('data-rest');
+        var results_container = $('.qg-rest__wrapper');
         
         // Add onto the request URL
         results_url += '?template_type=results';
@@ -87,10 +88,17 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
         // Prepare loading visual cue
         var loader = generateLoader();
 
+        // Scroll up to top of results
+        var scroll_to = results_container.position();
+        window.scrollTo({
+            'top': scroll_to['top'],
+            'behavior': 'smooth'
+        });
+
         if(isDevelopment()) {
             /* Local */
-            var all_content = $('.qg-rest__wrapper').html();
-            $('.qg-rest__wrapper').html(loader);
+            var all_content = results_container.html();
+            results_container.html(loader);
 
             // Emulate loading results for local development version
             setTimeout(function(){
@@ -99,7 +107,7 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
         } else {
             /* Production */
             // Add loading visual cue and fetch results
-            $('.qg-rest__wrapper').html(loader);
+            results_container.html(loader);
             sendXHR(xhr_parameters, 'GET');
         }
         
@@ -111,9 +119,10 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
         var default_title = 'All support services';
         var results_title = 'Support services for ';
         var selected_values = [];
+        var results_container = $('.qg-rest__wrapper');
 
         // Display results
-        $('.qg-rest__wrapper').html(response);
+        results_container.html(response);
 
         // Determine current filters to use in results title
         $('.qg-search-filter__wrapper .filter__item').each(function(item_index, item) {
@@ -132,7 +141,7 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
         }
 
         $('.qg-search-results__wrapper h2').text(results_title);
-        
+
         if(!isDevelopment()) {
             // Invoke Salvattore for masonry layout
             var grid = document.querySelector('.qg-search-results__list');

@@ -331,7 +331,8 @@ __webpack_require__.r(__webpack_exports__);
 
   qg_dfv.fn.getFilteredResults = function (page_number) {
     var rest_config = $('#display-filter-data__config');
-    var results_url = rest_config.attr('data-rest'); // Add onto the request URL
+    var results_url = rest_config.attr('data-rest');
+    var results_container = $('.qg-rest__wrapper'); // Add onto the request URL
 
     results_url += '?template_type=results';
     results_url += '&data_listing=' + rest_config.attr('data-root');
@@ -353,12 +354,18 @@ __webpack_require__.r(__webpack_exports__);
       'request_failure': qg_dfv.fn.failedRequest
     }; // Prepare loading visual cue
 
-    var loader = Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* generateLoader */ "b"])();
+    var loader = Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* generateLoader */ "b"])(); // Scroll up to top of results
+
+    var scroll_to = results_container.position();
+    window.scrollTo({
+      'top': scroll_to['top'],
+      'behavior': 'smooth'
+    });
 
     if (Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* isDevelopment */ "c"])()) {
       /* Local */
-      var all_content = $('.qg-rest__wrapper').html();
-      $('.qg-rest__wrapper').html(loader); // Emulate loading results for local development version
+      var all_content = results_container.html();
+      results_container.html(loader); // Emulate loading results for local development version
 
       setTimeout(function () {
         qg_dfv.fn.loadFilteredResults(all_content);
@@ -366,7 +373,7 @@ __webpack_require__.r(__webpack_exports__);
     } else {
       /* Production */
       // Add loading visual cue and fetch results
-      $('.qg-rest__wrapper').html(loader);
+      results_container.html(loader);
       Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* sendXHR */ "d"])(xhr_parameters, 'GET');
     }
 
@@ -377,9 +384,10 @@ __webpack_require__.r(__webpack_exports__);
   qg_dfv.fn.loadFilteredResults = function (response) {
     var default_title = 'All support services';
     var results_title = 'Support services for ';
-    var selected_values = []; // Display results
+    var selected_values = [];
+    var results_container = $('.qg-rest__wrapper'); // Display results
 
-    $('.qg-rest__wrapper').html(response); // Determine current filters to use in results title
+    results_container.html(response); // Determine current filters to use in results title
 
     $('.qg-search-filter__wrapper .filter__item').each(function (item_index, item) {
       var filter_value = $(item).find('select').val();
