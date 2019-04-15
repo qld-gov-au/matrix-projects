@@ -1,0 +1,30 @@
+/*
+ * Mobile layout
+ */
+
+.global-footer {
+    margin: 0;
+    width: 100%;
+}
+
+
+/*
+ * Tablet layout
+ */
+
+@media screen and (min-width: $tablet){
+    .global-footer {
+
+    }
+}
+
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+    .global-footer {
+        
+    }
+}

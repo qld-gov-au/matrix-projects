@@ -1,0 +1,72 @@
+/*
+ * Mobile layout
+ */
+
+.global-header,
+.global-header#qg-site-header {
+    
+    background-color: $light-blue;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+
+    &__inner {
+        width: 100%;
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: space-between;
+        flex-flow: row wrap;
+    }
+
+
+    &__logo {
+
+        padding: 0;
+
+        svg {
+            width: 100%;
+            color: white;
+            max-width: pxToRem(200);
+        }
+    }
+
+    &__search,
+    &__search#qg-search-form {
+        padding: 0;
+    }
+
+}
+
+
+/*
+ * Tablet layout
+ */
+
+@media screen and (min-width: $tablet){
+    .global-header,
+    .global-header#qg-site-header {
+
+    }
+}
+
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+    .global-header,
+    .global-header#qg-site-header {
+
+        &__inner {
+            padding: pxToRem(15) pxToRem(20);
+        }
+
+        &__logo {
+            svg {
+                max-width: pxToRem(287);
+            }
+        }
+    }
+}

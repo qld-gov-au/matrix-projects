@@ -1,0 +1,75 @@
+/*
+ * Mobile layout
+ */
+
+.utility-navigation {
+    
+    background-color: $dark-blue;
+    width: 100%;
+    border-bottom: 2px solid $light-blue;
+    padding: pxToRem(13) pxToRem(25);
+
+    ul {
+        @include sq-list-reset;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-content: center;
+        align-items: center;
+
+        li {
+            @include sq-list-reset;
+            margin: 0 pxToRem(15) 0 0;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            a {
+                color: $white;
+                text-decoration: none;
+                font-size: pxToRem(16);
+                line-height: pxToRem(17);
+                @include sq-transition(color 0.4s ease);
+                @include font-smoothing;
+                font-weight: 600;
+
+                &:hover,
+                &:focus {
+                    color: $light-blue;
+                }
+            }
+        }
+    }
+}
+
+
+/*
+ * Tablet layout
+ */
+
+@media screen and (min-width: $tablet){
+    .utility-navigation {
+
+    }
+}
+
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+    
+    .utility-navigation {
+
+        li {
+            margin: 0 pxToRem(55) 0 0;
+
+            &:last-child {
+                margin: 0 pxToRem(55) 0 0;
+            }
+        }
+    }
+
+}
