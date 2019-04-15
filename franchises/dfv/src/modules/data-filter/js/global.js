@@ -62,7 +62,7 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
         
         // Add onto the request URL
         results_url += '?template_type=results';
-        results_url += '&new_root=' + rest_config.attr('data-root');
+        results_url += '&data_listing=' + rest_config.attr('data-root');
         results_url += '&template_source=' + rest_config.attr('data-template');
         results_url += '&results_per_page=' + rest_config.attr('data-per-page');
         results_url += '&result_pages=' + rest_config.attr('data-pages');
