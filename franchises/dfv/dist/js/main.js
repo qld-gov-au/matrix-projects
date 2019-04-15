@@ -3,11 +3,11 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return isDevelopment; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return sendXHR; });
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return isDevelopment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return sendXHR; });
 /* unused harmony export failedRequest */
-/* unused harmony export findLink */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return generateLoader; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return findLink; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return generateLoader; });
 var isDevelopment = function isDevelopment() {
   return process && process.env && "production" === 'development';
 };
@@ -244,7 +244,7 @@ __webpack_require__.r(__webpack_exports__);
 
         if ($franchise_list_item_next_siblings.length > 1) {
           // Prepare the breadcrumb ellipses DOM element
-          $breadcrumb_ellipses = $("<li id='qg-breadcrumb__ellipses'><a href='#' role='button' aria-pressed='false' aria-label='Reveal hidden breadcrumbs'>...</a></li>"); // Insert it after the franchise breacrumb item and attach a click handler
+          $breadcrumb_ellipses = $("<li class='qg-breadcrumb__ellipses'><a href='#' role='button' aria-pressed='false' aria-label='Reveal hidden breadcrumbs'>...</a></li>"); // Insert it after the franchise breacrumb item and attach a click handler
 
           $breadcrumb_ellipses.insertAfter($franchise_list_item).click(breadcrumbEllipsesClicked);
         }
@@ -301,14 +301,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
   qg_dfv.fn.handleSearchSubmit = function (event) {
-    var page_number = 1;
+    var page_number = 1; // Get results
+
     qg_dfv.fn.getFilteredResults(page_number);
     return false;
   }; // Get a results page based on paginated link
 
 
   qg_dfv.fn.handleSearchPaginationClick = function (event) {
-    var target_link = qg_dfv.fn.findLink(event);
+    var target_link = Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* findLink */ "a"])(event);
     var page_number; // Handle previous / next
 
     if ($(target_link).hasClass('qg-previous')) {
@@ -320,7 +321,8 @@ __webpack_require__.r(__webpack_exports__);
     } else {
       // Standard
       page_number = target_link.getAttribute('data-page');
-    }
+    } // Get results
+
 
     qg_dfv.fn.getFilteredResults(page_number);
     return false;
@@ -342,28 +344,30 @@ __webpack_require__.r(__webpack_exports__);
       var filter_name = $(item).attr('data-filter');
       var filter_value = $(item).find('select').val();
       results_url += '&' + filter_name + '=' + filter_value;
-    });
+    }); // Prepare XHR request
+
     var xhr_parameters = {
       'request_url': results_url,
       'request_extras': '',
       'request_success': qg_dfv.fn.loadFilteredResults,
       'request_failure': qg_dfv.fn.failedRequest
-    };
-    var loader = Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* generateLoader */ "a"])();
+    }; // Prepare loading visual cue
 
-    if (Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* isDevelopment */ "b"])()) {
+    var loader = Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* generateLoader */ "b"])();
+
+    if (Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* isDevelopment */ "c"])()) {
       /* Local */
       var all_content = $('.qg-rest__wrapper').html();
-      $('.qg-rest__wrapper').html(loader); // Emulate loading results for development
+      $('.qg-rest__wrapper').html(loader); // Emulate loading results for local development version
 
       setTimeout(function () {
         qg_dfv.fn.loadFilteredResults(all_content);
       }, 5000);
     } else {
       /* Production */
-      // Fetch results
+      // Add loading visual cue and fetch results
       $('.qg-rest__wrapper').html(loader);
-      Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* sendXHR */ "c"])(xhr_parameters, 'GET');
+      Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* sendXHR */ "d"])(xhr_parameters, 'GET');
     }
 
     return false;
@@ -373,8 +377,9 @@ __webpack_require__.r(__webpack_exports__);
   qg_dfv.fn.loadFilteredResults = function (response) {
     var default_title = 'All support services';
     var results_title = 'Support services for ';
-    var selected_values = [];
-    $('.qg-rest__wrapper').html(response); // Update results title
+    var selected_values = []; // Display results
+
+    $('.qg-rest__wrapper').html(response); // Determine current filters to use in results title
 
     $('.qg-search-filter__wrapper .filter__item').each(function (item_index, item) {
       var filter_value = $(item).find('select').val();
@@ -382,7 +387,7 @@ __webpack_require__.r(__webpack_exports__);
       if (filter_value !== '' && filter_value !== 'All') {
         selected_values.push(filter_value);
       }
-    });
+    }); // Update results title
 
     if (selected_values.length === 0) {
       results_title = default_title;
@@ -392,7 +397,7 @@ __webpack_require__.r(__webpack_exports__);
 
     $('.qg-search-results__wrapper h2').text(results_title);
 
-    if (!Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* isDevelopment */ "b"])()) {
+    if (!Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* isDevelopment */ "c"])()) {
       // Invoke Salvattore for masonry layout
       var grid = document.querySelector('.qg-search-results__list');
       salvattore.registerGrid(grid);
@@ -420,7 +425,7 @@ __webpack_require__.r(__webpack_exports__);
   $(document).ready(function () {
     qg_dfv.fn.initFilterSelects();
 
-    if (Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* isDevelopment */ "b"])()) {
+    if (Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* isDevelopment */ "c"])()) {
       // Refresh grid for viewpoint change, as JS runs before styles are injected
       var grid = document.querySelector('.qg-search-results__list');
       salvattore.recreateColumns(grid);
