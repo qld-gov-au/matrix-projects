@@ -215,16 +215,16 @@ body {
 /*
  * Mobile layout
  */
-li#qg-breadcrumb__ellipses {
+#qg-breadcrumb .qg-breadcrumb__ellipses {
   display: none; }
 
 /*
  * Desktop layout
  */
 @media screen and (min-width: 992px) {
-  li#qg-breadcrumb__ellipses {
+  #qg-breadcrumb .qg-breadcrumb__ellipses {
     display: inline-block; }
-  li#qg-breadcrumb__ellipses ~ li:not(:last-child) {
+  #qg-breadcrumb .qg-breadcrumb__ellipses ~ li:not(:last-child) {
     display: none; } }
 
 /*
@@ -240,6 +240,37 @@ h1 {
 h2 {
   font-size: 20px; }
 
+/*
+    Cards
+*/
+.card {
+  border: 2px solid #12578b;
+  border-radius: 0;
+  -webkit-box-shadow: 0px 0 8px 4px #eee;
+          box-shadow: 0px 0 8px 4px #eee;
+  color: #505050; }
+
+.card-body {
+  font-size: 14px;
+  padding: 16px; }
+
+.card-title,
+.card-subtitle {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 16px; }
+
+.card-title {
+  color: #12578b;
+  font-size: 20px; }
+
+.card-subtitle {
+  color: #0c2e4c;
+  font-size: 15px; }
+
+/*
+    Font aweseme icons
+*/
 .fa-icon__wrapper {
   display: inline-block; }
 
@@ -247,9 +278,6 @@ h2 {
   color: #77ba00;
   text-shadow: 1px 1px 0 #000,  -1px -1px 0 #000,  1px -1px 0 #000,  -1px 1px 0 #000,  1px 1px 0 #000; }
 
-/*
- * Tablet layout
- */
 /*
  * Desktop layout
  */
@@ -294,30 +322,74 @@ h2 {
 /*
  * Mobile layout
  */
-/*
- * Tablet layout
- */
+#qg-primary-content .qg-dfv-cards--type-top-arrow .card-container {
+  padding: 0 0.4375rem 0;
+  margin-bottom: 0.9375rem;
+  min-height: 15.3125rem; }
+
+#qg-primary-content .qg-dfv-cards--type-top-arrow a.card {
+  display: block;
+  text-decoration: none;
+  height: 100%;
+  color: inherit; }
+
+#qg-primary-content .qg-dfv-cards--type-top-arrow .card-title {
+  margin-bottom: 0; }
+
+#qg-primary-content .qg-dfv-cards--type-top-arrow .card-arrow {
+  display: none;
+  width: 1.875rem;
+  height: 1.875rem;
+  position: relative;
+  display: block; }
+  #qg-primary-content .qg-dfv-cards--type-top-arrow .card-arrow:after, #qg-primary-content .qg-dfv-cards--type-top-arrow .card-arrow:before {
+    content: "";
+    display: block;
+    position: absolute; }
+  #qg-primary-content .qg-dfv-cards--type-top-arrow .card-arrow:before {
+    top: 50%;
+    right: 0.3125rem;
+    width: 1rem;
+    height: 1rem;
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-transform: translate(0, -0.5rem) rotate(45deg);
+            transform: translate(0, -0.5rem) rotate(45deg);
+    -webkit-box-shadow: inset -0.2rem 0.2rem 0 0 #12578b;
+            box-shadow: inset -0.2rem 0.2rem 0 0 #12578b;
+    border-radius: 0 0.15rem 0 0; }
+  #qg-primary-content .qg-dfv-cards--type-top-arrow .card-arrow:after {
+    top: 50%;
+    right: 0.3125rem;
+    width: 1.3rem;
+    height: 0.2rem;
+    -webkit-transform: translate(0, -0.1rem);
+            transform: translate(0, -0.1rem);
+    background-color: #12578b; }
+
+#qg-primary-content .qg-dfv-cards--type-top-arrow .card-top {
+  margin-bottom: 0.3125rem; }
+
 /*
  * Desktop layout
  */
-/*
- * Mobile layout
- */
-/*
- * Tablet layout
- */
-/*
- * Desktop layout
- */
-/*
- * Mobile layout
- */
-/*
- * Tablet layout
- */
-/*
- * Desktop layout
- */
+@media screen and (min-width: 992px) {
+  #qg-primary-content .qg-dfv-cards--type-top-arrow .card-container {
+    padding: 0 0.9375rem 0;
+    margin-bottom: 1.875rem; }
+  #qg-primary-content .qg-dfv-cards--type-top-arrow .card-top {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
+  #qg-primary-content .qg-dfv-cards--type-top-arrow .card-title {
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1; }
+  #qg-primary-content .qg-dfv-cards--type-top-arrow .card-arrow {
+    display: block;
+    -ms-flex-negative: 0;
+        flex-shrink: 0; } }
+
 /*
  * Mobile layout
  */
@@ -396,28 +468,9 @@ h2 {
 .qg-search-results__item {
   margin-bottom: 25px; }
 
-.card {
-  border: 2px solid #7753a2;
-  border-radius: 0;
-  -webkit-box-shadow: 0px 0 8px 4px #eee;
-          box-shadow: 0px 0 8px 4px #eee;
-  color: #505050; }
+.qg-alternate-card {
+  border-color: #7753a2; }
 
-.card-body {
-  font-size: 14px;
-  padding: 16px; }
-
-.card-title,
-.card-subtitle {
-  display: block;
-  font-weight: 700;
-  margin-bottom: 16px; }
-
-.card-title {
-  color: #12578b;
-  font-size: 20px; }
-
-.card-subtitle,
 .support-categories {
   color: #0c2e4c;
   font-size: 15px; }
