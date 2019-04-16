@@ -54,7 +54,23 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
 
         return false;
     };
+
+
+    /*
+        Functions
+    */
     
+    // Initialise Select2 plugin for filters
+    qg_dfv.fn.initFilterSelects = function() {
+        $('.qg-search-filter__wrapper .filter__item').each(function(item_index, item) {
+            var placeholder = $(item).find('label').text();
+            
+            $(item).find('select').select2({
+                'placeholder': placeholder
+            });
+        });
+    };
+
     // Get results with filters applied
     qg_dfv.fn.getFilteredResults = function(page_number) {
         var rest_config = $('#display-filter-data__config');
@@ -89,11 +105,7 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
         var loader = generateLoader();
 
         // Scroll up to top of results
-        var scroll_to = results_container.position();
-        window.scrollTo({
-            'top': scroll_to['top'],
-            'behavior': 'smooth'
-        });
+        qg_dfv.fn.scrollToResults(results_container);
 
         if(isDevelopment()) {
             /* Local */
@@ -107,8 +119,10 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
         } else {
             /* Production */
             // Add loading visual cue and fetch results
-            results_container.html(loader);
-            sendXHR(xhr_parameters, 'GET');
+            setTimeout(function(){
+                results_container.html(loader);
+                sendXHR(xhr_parameters, 'GET');
+            }, 1000);
         }
         
         return false;
@@ -116,10 +130,10 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
     
     // Load results
     qg_dfv.fn.loadFilteredResults = function(response) {
+        var results_container = $('.qg-rest__wrapper');
         var default_title = 'All support services';
         var results_title = 'Support services for ';
         var selected_values = [];
-        var results_container = $('.qg-rest__wrapper');
 
         // Display results
         results_container.html(response);
@@ -149,19 +163,13 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
         }
     };
 
+    // Scroll to results area
+    qg_dfv.fn.scrollToResults = function(results_container) {
+        var scroll_to = results_container.position();
 
-    /*
-        Functions
-    */
-    
-    // Initialise Select2 plugin for filters
-    qg_dfv.fn.initFilterSelects = function() {
-        $('.qg-search-filter__wrapper .filter__item').each(function(item_index, item) {
-            var placeholder = $(item).find('label').text();
-            
-            $(item).find('select').select2({
-                'placeholder': placeholder
-            });
+        window.scrollTo({
+            'top': scroll_to['top'],
+            'behavior': 'smooth'
         });
     };
     

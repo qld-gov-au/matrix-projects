@@ -326,6 +326,20 @@ __webpack_require__.r(__webpack_exports__);
 
     qg_dfv.fn.getFilteredResults(page_number);
     return false;
+  };
+  /*
+      Functions
+  */
+  // Initialise Select2 plugin for filters
+
+
+  qg_dfv.fn.initFilterSelects = function () {
+    $('.qg-search-filter__wrapper .filter__item').each(function (item_index, item) {
+      var placeholder = $(item).find('label').text();
+      $(item).find('select').select2({
+        'placeholder': placeholder
+      });
+    });
   }; // Get results with filters applied
 
 
@@ -356,11 +370,7 @@ __webpack_require__.r(__webpack_exports__);
 
     var loader = Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* generateLoader */ "b"])(); // Scroll up to top of results
 
-    var scroll_to = results_container.position();
-    window.scrollTo({
-      'top': scroll_to['top'],
-      'behavior': 'smooth'
-    });
+    qg_dfv.fn.scrollToResults(results_container);
 
     if (Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* isDevelopment */ "c"])()) {
       /* Local */
@@ -373,8 +383,10 @@ __webpack_require__.r(__webpack_exports__);
     } else {
       /* Production */
       // Add loading visual cue and fetch results
-      results_container.html(loader);
-      Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* sendXHR */ "d"])(xhr_parameters, 'GET');
+      setTimeout(function () {
+        results_container.html(loader);
+        Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* sendXHR */ "d"])(xhr_parameters, 'GET');
+      }, 1000);
     }
 
     return false;
@@ -382,10 +394,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
   qg_dfv.fn.loadFilteredResults = function (response) {
+    var results_container = $('.qg-rest__wrapper');
     var default_title = 'All support services';
     var results_title = 'Support services for ';
-    var selected_values = [];
-    var results_container = $('.qg-rest__wrapper'); // Display results
+    var selected_values = []; // Display results
 
     results_container.html(response); // Determine current filters to use in results title
 
@@ -410,19 +422,14 @@ __webpack_require__.r(__webpack_exports__);
       var grid = document.querySelector('.qg-search-results__list');
       salvattore.registerGrid(grid);
     }
-  };
-  /*
-      Functions
-  */
-  // Initialise Select2 plugin for filters
+  }; // Scroll to results area
 
 
-  qg_dfv.fn.initFilterSelects = function () {
-    $('.qg-search-filter__wrapper .filter__item').each(function (item_index, item) {
-      var placeholder = $(item).find('label').text();
-      $(item).find('select').select2({
-        'placeholder': placeholder
-      });
+  qg_dfv.fn.scrollToResults = function (results_container) {
+    var scroll_to = results_container.position();
+    window.scrollTo({
+      'top': scroll_to['top'],
+      'behavior': 'smooth'
     });
   };
   /*
