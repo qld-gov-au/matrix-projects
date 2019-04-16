@@ -19,6 +19,7 @@
                 
 .qg-topics__title {
     flex-grow: 1;
+    padding-right: 40px;
 }
 
 .qg-topics__more {
@@ -35,7 +36,7 @@
         left: 50%;
         position: absolute;
         top: 50%;
-        transform: translate(-50%) rotate(-45deg);
+        transform: translate(-50%, -50%) rotate(-45deg);
         width: 8px;
     }
 }
@@ -47,11 +48,22 @@
 
 @media screen and (min-width: $desktop){
     .qg-topics__wrapper {
-        width: 100%;
+        display: inline-block;
     }
 
     .qg-topics__link {
         font-size: 21px;
-        padding: $medium-spacing;
+    }
+
+    .qg-topics__title {
+        flex-grow: 1;
+    }
+
+    .qg-topics__more {
+        &:after {
+            border-width: 3px;
+            height: 12px;
+            width: 12px;
+        }
     }
 }
