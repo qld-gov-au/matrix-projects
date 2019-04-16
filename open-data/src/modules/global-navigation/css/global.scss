@@ -8,7 +8,8 @@
     clear: both;
 
     nav,
-    nav#qg-site-nav {
+    nav#qg-site-nav,
+    nav#qg-site-nav.in.show {
         padding: 0;
         width: 100%;
         background: $dark-grey;
@@ -47,6 +48,7 @@
                     font-weight: 600;
                     width: 100%;
                     float: left;
+                    display: block;
 
                     &:focus,
                     &:hover {
@@ -82,7 +84,8 @@
         margin: 0;
 
         nav,
-        nav#qg-site-nav {
+        nav#qg-site-nav,
+        nav#qg-site-nav.in.show {
             padding: 0;
             background: transparent;
 
@@ -97,9 +100,13 @@
                 align-content: center;
                 align-items: center;
                 flex-flow: row nowrap;
+                @include sq-list-reset;
+                list-style-type: none !important;
 
                 li {
                     width: auto;
+                    @include sq-list-reset;
+                    list-style-type: none !important;
 
                     &:nth-child(2n) a {
                         background-color: transparent;
@@ -108,6 +115,11 @@
                     a {
                         padding: 0;
                         width: auto;
+
+                        &:focus,
+                        &:hover {
+                            color: $white;
+                        }
                     }
                 }
             }
