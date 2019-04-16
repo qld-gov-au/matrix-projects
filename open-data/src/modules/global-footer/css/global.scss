@@ -8,6 +8,10 @@
     background-color: $dark-blue;
     padding: pxToRem(30) pxToRem(25) pxToRem(35) pxToRem(25);
 
+    &__inner {
+        width: 100%; 
+    }
+
     .qg-legal {
         padding: 0;
     }
@@ -90,6 +94,13 @@
     .global-footer {
 
         padding: pxToRem(45) pxToRem(25) pxToRem(40) pxToRem(25);
+
+        display: flex;
+        justify-content: center;
+
+        &__inner {
+            max-width: pxToRem($max-width--lrg); 
+        }
 
         .qg-legal ul li+li a {
             border: none;

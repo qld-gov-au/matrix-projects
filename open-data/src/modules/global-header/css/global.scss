@@ -9,6 +9,8 @@
     padding: 0;
     margin: 0;
     width: 100%;
+    display: flex;
+    justify-content: center;
 
     &__inner {
         width: 100%;
@@ -111,6 +113,7 @@
 
         &__inner {
             padding: pxToRem(15) pxToRem(55) pxToRem(25) pxToRem(55);
+            max-width: pxToRem($max-width--lrg); 
         }
 
         &__mobile-button {

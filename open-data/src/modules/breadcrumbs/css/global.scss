@@ -1,0 +1,133 @@
+/*
+ * Mobile layout
+ */
+
+.breadcrumbs {
+
+    width: 100%;
+    padding: pxToRem(15) pxToRem(25);
+
+    nav.breadcrumbs__inner,
+    &__inner,
+    &__inner#qg-breadcrumb {
+
+        width: 100%;
+        background: transparent;
+
+        ol {
+            
+            padding: 0;
+            margin: 0;
+
+            li {
+
+                padding: 0;
+                margin: 0;
+                color: $dark-blue;
+                font-size: pxToRem(16);
+                line-height: pxToRem(19);
+                font-weight: 600;
+                display: none;
+                width: auto;
+
+                &:first-child{
+                    display: block;
+
+                    &:before {
+                        content: "\f015";
+                        margin-left: 0;
+                        margin-right: 0;
+                        @include font-awesome;
+                        font-size: pxToRem(20);
+                        line-height: pxToRem(21);
+                    }
+                }
+
+                &:before {
+                    color: $dark-blue;
+                    content: "/";
+                    font-size: pxToRem(21);
+                    font-weight: 600;
+                    line-height: pxToRem(20);
+                    vertical-align: bottom;
+                    margin: 0 pxToRem(8) 0 pxToRem(8);
+                }
+
+                a {
+                    color: $dark-blue;
+                    font-size: pxToRem(16);
+                    line-height: pxToRem(19);
+                    font-weight: 600;
+                    text-decoration: none;
+
+                    &:hover,
+                    &:focus {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+    
+
+}
+
+
+/*
+ * Tablet layout
+ */
+
+@media screen and (min-width: $tablet){
+    .breadcrumbs {
+
+        
+
+    }
+}
+
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+    .breadcrumbs {
+
+        display: flex;
+        justify-content: center;
+        padding: pxToRem(20) 0;
+        margin: 0 0 pxToRem(25) 0;
+
+        nav.breadcrumbs__inner,
+        &__inner,
+        &__inner#qg-breadcrumb {
+            max-width: pxToRem($max-width--lrg);
+            padding-left: pxToRem(25);
+            padding-right: pxToRem(25);
+
+            ol {
+
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: flex-start;
+                align-content: center;
+                align-items: center;
+
+                li {
+                    display: block;
+
+                    &:first-child{
+    
+                        &:before {
+                            font-size: pxToRem(16);
+                            line-height: pxToRem(19);
+                        }
+                    }
+    
+                }
+            }
+        }
+        
+        
+    }
+}

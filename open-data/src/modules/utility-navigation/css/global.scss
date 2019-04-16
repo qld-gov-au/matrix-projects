@@ -67,9 +67,20 @@
 @media screen and (min-width: $desktop){
     
     .utility-navigation {
+
+        display: flex;
+        justify-content: center;
+
         ul {
+            max-width: pxToRem($max-width--lrg);
+            width: 100%;
+
             li {
                 margin: 0 pxToRem(55) 0 0;
+
+                &:last-child {
+                    margin-right: pxToRem(30);
+                }
             }
         }
     }
