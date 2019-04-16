@@ -37,6 +37,7 @@
             width: 100%;
             color: white;
             max-width: pxToRem(200);
+            height: pxToRem(40);
         }
     }
 
@@ -123,6 +124,7 @@
             svg {
                 width: pxToRem(287);
                 max-width: 100%;
+                height: pxToRem(55);
             }
         }
 

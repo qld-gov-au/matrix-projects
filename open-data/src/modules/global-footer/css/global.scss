@@ -5,6 +5,69 @@
 .global-footer {
     margin: 0;
     width: 100%;
+    background-color: $dark-blue;
+    padding: pxToRem(30) pxToRem(25) pxToRem(35) pxToRem(25);
+
+    .qg-legal {
+        padding: 0;
+    }
+    
+    .qg-legal ul li+li a {
+        border-color: $white;
+    }
+
+    ul {
+        @include sq-list-reset;
+
+        li {
+            @include sq-list-reset;
+            margin: 0 0 pxToRem(12) 0;
+
+            a {
+                color: $white;
+                @include font-smoothing;
+                font-size: pxToRem(11.2);
+                line-height: pxToRem(11.2);
+                font-weight: 600;
+                font-family: 'Lato', sans-serif;
+                
+                &:focus,
+                &:hover {
+                    text-decoration: underline;
+                    color: $white;
+                }
+            }
+        }
+    }
+
+    &__legal.qg-legal,
+    &__legal,
+    &__signoff {
+
+        p,
+        p a,
+        a {
+            color: $white;
+            font-weight: 600;
+            @include font-smoothing;
+            font-family: 'Lato', sans-serif;
+        }
+
+        p {
+            margin: 0;
+            padding: 0;
+            font-size: pxToRem(11.2);
+            line-height: pxToRem(13);
+        }
+    }
+
+    &__signoff {
+        margin: pxToRem(15) 0 0 0;
+
+        p.qg-copyright {
+            margin: 0 0 pxToRem(10) 0;
+        }
+    }
 }
 
 
@@ -25,6 +88,24 @@
 
 @media screen and (min-width: $desktop){
     .global-footer {
+
+        padding: pxToRem(45) pxToRem(25) pxToRem(40) pxToRem(25);
+
+        .qg-legal ul li+li a {
+            border: none;
+        }
+
+        &__signoff {
+            margin: pxToRem(15) 0 0 0;
+            
+            p {
+                display: none;
+            }
+    
+            p.qg-copyright {
+                display: block;
+            }
+        }
         
     }
 }

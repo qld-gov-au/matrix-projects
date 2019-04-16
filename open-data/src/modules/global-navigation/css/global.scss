@@ -5,28 +5,34 @@
 .global-navigation {
     width: 100%;
     margin: pxToRem(15) 0 0 0;
+    clear: both;
 
     nav,
     nav#qg-site-nav {
         padding: 0;
         width: 100%;
         background: $dark-grey;
+        float: left;
 
         &.collapse:not(.show) {
             display: none;
         }
 
         ul {
+            @include sq-list-reset;
+            list-style-type: none !important;
             padding: 0;
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: space-between;
-            align-content: center;
-            align-items: center;
+            float: left;
+            width: 100%;
 
             li {
+                @include sq-list-reset;
+                list-style-type: none !important;
                 text-align: left;
                 width: 100%;
+                display: block;
+                line-height: pxToRem(18);
+                float: left;
 
                 &:nth-child(2n) a {
                     background-color: $medium-grey;
@@ -40,6 +46,7 @@
                     padding: pxToRem(15) pxToRem(25);
                     font-weight: 600;
                     width: 100%;
+                    float: left;
 
                     &:focus,
                     &:hover {
@@ -84,6 +91,11 @@
             }
 
             ul {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: space-between;
+                align-content: center;
+                align-items: center;
                 flex-flow: row nowrap;
 
                 li {
