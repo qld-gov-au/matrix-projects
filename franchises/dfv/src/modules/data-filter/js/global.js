@@ -54,15 +54,32 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
 
         return false;
     };
+
+
+    /*
+        Functions
+    */
     
+    // Initialise Select2 plugin for filters
+    qg_dfv.fn.initFilterSelects = function() {
+        $('.qg-search-filter__wrapper .filter__item').each(function(item_index, item) {
+            var placeholder = $(item).find('label').text();
+            
+            $(item).find('select').select2({
+                'placeholder': placeholder
+            });
+        });
+    };
+
     // Get results with filters applied
     qg_dfv.fn.getFilteredResults = function(page_number) {
         var rest_config = $('#display-filter-data__config');
         var results_url = rest_config.attr('data-rest');
+        var results_container = $('.qg-rest__wrapper');
         
         // Add onto the request URL
         results_url += '?template_type=results';
-        results_url += '&new_root=' + rest_config.attr('data-root');
+        results_url += '&data_listing=' + rest_config.attr('data-root');
         results_url += '&template_source=' + rest_config.attr('data-template');
         results_url += '&results_per_page=' + rest_config.attr('data-per-page');
         results_url += '&result_pages=' + rest_config.attr('data-pages');
@@ -87,10 +104,13 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
         // Prepare loading visual cue
         var loader = generateLoader();
 
+        // Scroll up to top of results
+        qg_dfv.fn.scrollToResults(results_container);
+
         if(isDevelopment()) {
             /* Local */
-            var all_content = $('.qg-rest__wrapper').html();
-            $('.qg-rest__wrapper').html(loader);
+            var all_content = results_container.html();
+            results_container.html(loader);
 
             // Emulate loading results for local development version
             setTimeout(function(){
@@ -99,8 +119,10 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
         } else {
             /* Production */
             // Add loading visual cue and fetch results
-            $('.qg-rest__wrapper').html(loader);
-            sendXHR(xhr_parameters, 'GET');
+            setTimeout(function(){
+                results_container.html(loader);
+                sendXHR(xhr_parameters, 'GET');
+            }, 1000);
         }
         
         return false;
@@ -108,12 +130,13 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
     
     // Load results
     qg_dfv.fn.loadFilteredResults = function(response) {
+        var results_container = $('.qg-rest__wrapper');
         var default_title = 'All support services';
         var results_title = 'Support services for ';
         var selected_values = [];
 
         // Display results
-        $('.qg-rest__wrapper').html(response);
+        results_container.html(response);
 
         // Determine current filters to use in results title
         $('.qg-search-filter__wrapper .filter__item').each(function(item_index, item) {
@@ -132,7 +155,7 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
         }
 
         $('.qg-search-results__wrapper h2').text(results_title);
-        
+
         if(!isDevelopment()) {
             // Invoke Salvattore for masonry layout
             var grid = document.querySelector('.qg-search-results__list');
@@ -140,19 +163,13 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
         }
     };
 
+    // Scroll to results area
+    qg_dfv.fn.scrollToResults = function(results_container) {
+        var scroll_to = results_container.position();
 
-    /*
-        Functions
-    */
-    
-    // Initialise Select2 plugin for filters
-    qg_dfv.fn.initFilterSelects = function() {
-        $('.qg-search-filter__wrapper .filter__item').each(function(item_index, item) {
-            var placeholder = $(item).find('label').text();
-            
-            $(item).find('select').select2({
-                'placeholder': placeholder
-            });
+        window.scrollTo({
+            'top': scroll_to['top'],
+            'behavior': 'smooth'
         });
     };
     

@@ -327,15 +327,30 @@ __webpack_require__.r(__webpack_exports__);
 
     qg_dfv.fn.getFilteredResults(page_number);
     return false;
+  };
+  /*
+      Functions
+  */
+  // Initialise Select2 plugin for filters
+
+
+  qg_dfv.fn.initFilterSelects = function () {
+    $('.qg-search-filter__wrapper .filter__item').each(function (item_index, item) {
+      var placeholder = $(item).find('label').text();
+      $(item).find('select').select2({
+        'placeholder': placeholder
+      });
+    });
   }; // Get results with filters applied
 
 
   qg_dfv.fn.getFilteredResults = function (page_number) {
     var rest_config = $('#display-filter-data__config');
-    var results_url = rest_config.attr('data-rest'); // Add onto the request URL
+    var results_url = rest_config.attr('data-rest');
+    var results_container = $('.qg-rest__wrapper'); // Add onto the request URL
 
     results_url += '?template_type=results';
-    results_url += '&new_root=' + rest_config.attr('data-root');
+    results_url += '&data_listing=' + rest_config.attr('data-root');
     results_url += '&template_source=' + rest_config.attr('data-template');
     results_url += '&results_per_page=' + rest_config.attr('data-per-page');
     results_url += '&result_pages=' + rest_config.attr('data-pages');
@@ -354,12 +369,14 @@ __webpack_require__.r(__webpack_exports__);
       'request_failure': qg_dfv.fn.failedRequest
     }; // Prepare loading visual cue
 
-    var loader = Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* generateLoader */ "b"])();
+    var loader = Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* generateLoader */ "b"])(); // Scroll up to top of results
+
+    qg_dfv.fn.scrollToResults(results_container);
 
     if (Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* isDevelopment */ "c"])()) {
       /* Local */
-      var all_content = $('.qg-rest__wrapper').html();
-      $('.qg-rest__wrapper').html(loader); // Emulate loading results for local development version
+      var all_content = results_container.html();
+      results_container.html(loader); // Emulate loading results for local development version
 
       setTimeout(function () {
         qg_dfv.fn.loadFilteredResults(all_content);
@@ -367,8 +384,10 @@ __webpack_require__.r(__webpack_exports__);
     } else {
       /* Production */
       // Add loading visual cue and fetch results
-      $('.qg-rest__wrapper').html(loader);
-      Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* sendXHR */ "d"])(xhr_parameters, 'GET');
+      setTimeout(function () {
+        results_container.html(loader);
+        Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* sendXHR */ "d"])(xhr_parameters, 'GET');
+      }, 1000);
     }
 
     return false;
@@ -376,11 +395,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
   qg_dfv.fn.loadFilteredResults = function (response) {
+    var results_container = $('.qg-rest__wrapper');
     var default_title = 'All support services';
     var results_title = 'Support services for ';
     var selected_values = []; // Display results
 
-    $('.qg-rest__wrapper').html(response); // Determine current filters to use in results title
+    results_container.html(response); // Determine current filters to use in results title
 
     $('.qg-search-filter__wrapper .filter__item').each(function (item_index, item) {
       var filter_value = $(item).find('select').val();
@@ -403,19 +423,14 @@ __webpack_require__.r(__webpack_exports__);
       var grid = document.querySelector('.qg-search-results__list');
       salvattore.registerGrid(grid);
     }
-  };
-  /*
-      Functions
-  */
-  // Initialise Select2 plugin for filters
+  }; // Scroll to results area
 
 
-  qg_dfv.fn.initFilterSelects = function () {
-    $('.qg-search-filter__wrapper .filter__item').each(function (item_index, item) {
-      var placeholder = $(item).find('label').text();
-      $(item).find('select').select2({
-        'placeholder': placeholder
-      });
+  qg_dfv.fn.scrollToResults = function (results_container) {
+    var scroll_to = results_container.position();
+    window.scrollTo({
+      'top': scroll_to['top'],
+      'behavior': 'smooth'
     });
   };
   /*
