@@ -1,10 +1,14 @@
 <header class="global-header" id="qg-site-header">
     ${require('../../utility-navigation/html/index.html')}
     <div class="global-header__inner">
-        ${require('../../global-header/html/logo.html')}
-        ${require('../../global-header/html/utilities.html')}
-        ${require('../../global-header/html/search.html')}
-        ${require('../../global-header/html/alert.html')}
-        ${require('../../global-header/html/site-nav.html')}
+        <div class="global-header__top">
+            ${require('../../global-header/html/logo.html')}
+            ${require('../../global-header/html/utilities.html')}
+        </div>
+        <div class="global-header__lower">
+            ${require('../../global-navigation/html/index.html')}
+            ${require('../../global-header/html/search.html')}
+            ${require('../../global-header/html/alert.html')}
+        </div>
     </div>
 </header>

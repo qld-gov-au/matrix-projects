@@ -3,7 +3,52 @@
  */
 
 .global-navigation {
-    
+    width: 100%;
+    margin: pxToRem(15) 0 0 0;
+
+    nav,
+    nav#qg-site-nav {
+        padding: 0;
+        width: 100%;
+        background: $dark-grey;
+
+        &.collapse:not(.show) {
+            display: none;
+        }
+
+        ul {
+            padding: 0;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            align-content: center;
+            align-items: center;
+
+            li {
+                text-align: left;
+                width: 100%;
+
+                &:nth-child(2n) a {
+                    background-color: $medium-grey;
+                }
+
+                a {
+                    @include sq-transition(color 0.4s ease);
+                    @include font-smoothing;
+                    color: $white;
+                    text-decoration: none;
+                    padding: pxToRem(15) pxToRem(25);
+                    font-weight: 600;
+                    width: 100%;
+
+                    &:focus,
+                    &:hover {
+                        color: $light-blue;
+                    }
+                }
+            }
+        }
+    }
 }
 
 
@@ -26,6 +71,34 @@
 @media screen and (min-width: $desktop){
     
     .global-navigation {
-        
+        width: 70%;
+        margin: 0;
+
+        nav,
+        nav#qg-site-nav {
+            padding: 0;
+            background: transparent;
+
+            &.collapse:not(.show) {
+                display: block;
+            }
+
+            ul {
+                flex-flow: row nowrap;
+
+                li {
+                    width: auto;
+
+                    &:nth-child(2n) a {
+                        background-color: transparent;
+                    }
+
+                    a {
+                        padding: 0;
+                        width: auto;
+                    }
+                }
+            }
+        }
     }
 }

@@ -7,7 +7,7 @@
     background-color: $dark-blue;
     width: 100%;
     border-bottom: 2px solid $light-blue;
-    padding: pxToRem(13) pxToRem(25);
+    padding: pxToRem(5) pxToRem(25);
 
     ul {
         @include sq-list-reset;
@@ -33,6 +33,11 @@
                 @include sq-transition(color 0.4s ease);
                 @include font-smoothing;
                 font-weight: 600;
+                height: 44px;
+                min-width: 44px;
+                display: flex;
+                align-items: center;
+                align-content: center;
 
                 &:hover,
                 &:focus {
@@ -50,7 +55,7 @@
 
 @media screen and (min-width: $tablet){
     .utility-navigation {
-
+        
     }
 }
 
@@ -62,11 +67,8 @@
 @media screen and (min-width: $desktop){
     
     .utility-navigation {
-
-        li {
-            margin: 0 pxToRem(55) 0 0;
-
-            &:last-child {
+        ul {
+            li {
                 margin: 0 pxToRem(55) 0 0;
             }
         }
