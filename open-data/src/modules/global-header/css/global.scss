@@ -171,15 +171,15 @@
                     color: $light-grey;
                 }
             
-                &::-moz-placeholder { /* Firefox 19+ */
+                &::-moz-placeholder {
                     color: $light-grey;
                 }
             
-                &:-ms-input-placeholder { /* IE 10+ */
+                &:-ms-input-placeholder {
                     color: $light-grey !important;
                 }
             
-                &:-moz-placeholder { /* Firefox 18- */
+                &:-moz-placeholder {
                     color: $light-grey;
                 }
             }

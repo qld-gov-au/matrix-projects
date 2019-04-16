@@ -1,9 +1,3 @@
-// imports the base theme from the https://data.qld.gov.au/ site
-//@import "imports/base-theme.scss";
-
-// imports bootstrap 2.3.2
-@import "thirdparty/bootstrap.scss";
-
 // These imports have no CSS output, but provide variables, mixins and helpers to aid in construction of
 // a design cutup.
 @import "imports/variables.scss";
@@ -61,6 +55,7 @@ body {
     padding: 0;
     margin: 0;
     background: $white;
+    font-family: 'Lato', sans-serif;
 }
 
 img {

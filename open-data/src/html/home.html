@@ -10,16 +10,26 @@
             ${require('../modules/01 Global/html/global-header.html')}
             <!--endnoindex-->
 
-            <main class="main" role="main">
-                <span>Home page</span>
-            </main><!-- /.main -->
+            ${require('../modules/hero-banner/html/index.html')}
+
+            <main class="main" id="main">
+                <div class="container-fluid qg-site-width">
+                    <div class="row">
+        
+                    </div>
+                </div>
+            </main>
+    
 
             <!--noindex-->
             ${require('../modules/01 Global/html/global-footer.html')}
             <!--endnoindex-->   
+
+            <div class="footer-scripts">
+                ${require('../modules/01 Global/html/scripts.html')}
+            </div>
+
         </div><!-- /.page-wrapper -->
-        <div class="footer-scripts">
-            ${require('../modules/01 Global/html/scripts.html')}
-        </div>
+
     </body>
 </html>

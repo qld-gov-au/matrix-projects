@@ -1,0 +1,206 @@
+/*
+ * Mobile layout
+ */
+
+.hero-banner {
+
+    width: 100%;
+    height: pxToRem(290);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-content: stretch;
+    align-items: stretch;
+    flex-flow: row wrap;
+
+    &__inner {
+        width: 100%;
+        padding: 0 pxToRem(25);
+        position: relative;
+        height: 100%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        align-content: flex-end;
+    }
+
+    &__text-wrap {
+        position: absolute;
+        width: 100%;
+        max-width: pxToRem(270);
+        padding: pxToRem(20);
+        left: pxToRem(20);
+        top: pxToRem(20);
+        margin: 0;
+
+        h1 {
+            position: relative;
+            z-index: 50;
+            color: $white;
+            font-weight: 700;
+            font-size: pxToRem(18);
+            line-height: pxToRem(24);
+            @include font-smoothing;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        &:before {
+            content: "";
+            position: absolute;
+            z-index: 0;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-color: $black;
+            opacity: 0.6;
+        }
+
+    }
+
+    &__search {
+         margin: 0 0 pxToRem(25) 0;
+         background: $white;
+         @include sq-border-radius(5px);
+         overflow: hidden;
+         padding: pxToRem(15) pxToRem(15);
+         width: 100%;
+
+         form {
+             width: 100%;
+             border: 1px solid $light-grey;
+             @include sq-border-radius(3px);
+             height: pxToRem(44);
+             display: flex;
+             justify-content: space-between;
+             flex-flow: row nowrap;
+             align-content: stretch;
+             align-items: stretch;
+             margin: pxToRem(15) 0 0 0;
+             padding: pxToRem(5) pxToRem(10);
+         }
+
+         input[type="text"] {
+             @include clear-default-appearance;
+             color: $light-grey;
+             width: 90%;
+
+             &::-webkit-input-placeholder {
+                color: $light-grey;
+            }
+        
+            &::-moz-placeholder {
+                color: $light-grey;
+            }
+        
+            &:-ms-input-placeholder {
+                color: $light-grey !important;
+            }
+        
+            &:-moz-placeholder {
+                color: $light-grey;
+            }
+         }
+
+         button[type="submit"] {
+            @include clear-default-appearance;
+            width: pxToRem(20);
+
+            &:hover,
+            &:focus {
+                border: none;
+                outline: 0;
+
+                &:before {
+                    color: $black;
+                }
+            }
+
+            &:before {
+                content: "\F002";
+                color: $light-grey;
+                @include font-awesome;
+                vertical-align: middle;
+            }
+         }
+
+    }
+
+    &__search-title {
+        font-weight: 700;
+        font-size: pxToRem(16);
+        line-height: pxToRem(18);
+        color: $light-blue;
+        margin: 0;
+        padding: 0;
+
+        bold {
+            color: $dark-blue;
+        }
+    }
+
+}
+
+
+/*
+ * Tablet layout
+ */
+
+@media screen and (min-width: $tablet){
+    .hero-banner {
+
+        height: pxToRem(330);
+
+        &__text-wrap {
+            top: pxToRem(40);
+            max-width: pxToRem(350);
+        }
+
+        &__search {
+            max-width: pxToRem(490);
+            margin: 0 0 pxToRem(40) 0;
+            padding: pxToRem(15) pxToRem(15);
+        }
+
+    }
+}
+
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+    .hero-banner {
+        height: pxToRem(500);
+
+        &__inner {
+            max-width: pxToRem($max-width--lrg);
+        }
+
+        &__text-wrap {
+    
+            h1 {
+                font-size: pxToRem(28);
+                line-height: pxToRem(32);
+            }
+        }
+
+        &__search {
+            max-width: pxToRem(770);
+            margin: 0 0 pxToRem(50) 0;
+            padding: pxToRem(20) pxToRem(25);
+        }
+
+        &__search-title {
+            font-size: pxToRem(26);
+            line-height: pxToRem(28);
+        }
+
+    }
+}
