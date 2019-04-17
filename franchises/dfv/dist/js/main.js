@@ -700,7 +700,6 @@ process.umask = function() { return 0; };
   */
 
 
-  checkForMouseEvent();
   $(document).ready(function () {
     // IE 11 polyfill
     var sticky_elements = $('.qg-quick-exit__wrapper');

@@ -1,9 +1,6 @@
 (function(){
     'use strict';
 
-    
-
-
     /*
         Events
     */
@@ -33,8 +30,6 @@
     /*
         Ready
     */
-
-    checkForMouseEvent();
     
     $(document).ready(function() {
 
