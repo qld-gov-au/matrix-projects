@@ -97,6 +97,21 @@ textarea {
     padding-right: 25px;
 }
 
+h1 {
+    color: $light-blue;
+    padding: 0;
+    margin: 0 0 pxToRem(20) 0;
+    font-size: pxToRem(28);
+    line-height: pxToRem(32);
+}
+
+h2 {
+    font-size: pxToRem(26);
+    line-height: pxToRem(29);
+    font-weight: 700;
+    color: $light-blue;
+}
+
 /*
 --------------------
 Modules

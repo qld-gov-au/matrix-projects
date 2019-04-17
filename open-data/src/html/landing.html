@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Index | Queensland Government</title>
+        <title>Landing page</title>
         ${require('../modules/01 Global/html/head.html')}
     </head>
-    <body data-qg-accessibility="true">
-        
+    <body class="no-js">
         <div class="page-wrapper" id="page-wrapper">
 
             ${require('../modules/01 Global/html/global-gtm.html')}
             ${require('../modules/01 Global/html/global-skip-links.html')}
             
-            <!--noindex-->
             ${require('../modules/header/html/index.html')}
-            <!--endnoindex-->
+            ${require('../modules/breadcrumbs/html/landing.html')}
     
             <main class="main" id="main">
                 <div class="container-fluid qg-site-width">
                     <div class="row">
-                        <div class="col-xs-12">
-                            <h1>Pages</h1>
-                            <ul>
-                                <li><a href="home.html">Home</a></li>
-                                <li><a href="inside.html">Inside</a></li>
-                                <li><a href="landing.html">Landing Page</a></li>
-                            </ul>
+                        <div class="col-xs-12 col-sm-4 col-md-3">
+                            ${require('../modules/sub-nav/html/index.html')}
+                        </div>
+                        <div class="col-xs-12 col-sm-8 col-md-9">
+                            <h1>News and Events</h1>
+                            <h2>Featured</h2>
+
+                            ${require('../modules/list-block/html/index.html')}
+                            
                         </div>
                     </div>
                 </div>
@@ -38,6 +38,6 @@
                 ${require('../modules/01 Global/html/scripts.html')}
             </div>
         </div>
-        
+
     </body>
 </html>
