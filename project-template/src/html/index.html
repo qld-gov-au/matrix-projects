@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Two Column | Queensland Government</title>
+        <title>Index | Queensland Government</title>
         ${require('../modules/01 Global/html/head.html')}
     </head>
     <body data-qg-accessibility="true">
@@ -9,17 +9,20 @@
         ${require('../modules/01 Global/html/global-skip-links.html')}
         <div class="container-fluid qg-site-width">
             <!--noindex-->
-            ${require('../modules/header/html/index.html')}
+            ${require('../modules/01 Global/html/global-header.html')}
             <!--endnoindex-->
 
-            <div id="qg-content">
-                <div id="qg-two-col-aside" class="row wide">
-                </div>
-
-            </div><!-- /#qg-content -->
+            <main class="main" role="main">
+                <h1>Pages</h1>
+                <ul>
+                    <li>
+                        <a href="two-column.html">Two column</a>
+                    </li>
+                </ul>
+            </main><!-- /.main -->
 
             <!--noindex-->
-            ${require('../modules/footer/html/index.html')}
+            ${require('../modules/01 Global/html/global-footer.html')}
             <!--endnoindex-->   
         </div><!-- /.page-wrapper -->
         <div class="footer-scripts">

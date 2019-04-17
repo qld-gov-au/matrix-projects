@@ -1,0 +1,141 @@
+/*
+ * Mobile layout
+ */
+
+.navigation {
+    width: 100%;
+    margin: pxToRem(15) 0 0 0;
+    clear: both;
+
+    nav {
+        padding: 0;
+        width: 100%;
+        background: $dark-grey;
+        float: left;
+        display: none;
+
+        ul {
+            @include sq-list-reset;
+            list-style-type: none !important;
+            padding: 0;
+            float: left;
+            width: 100%;
+
+            li {
+                @include sq-list-reset;
+                list-style-type: none !important;
+                text-align: left;
+                width: 100%;
+                display: block;
+                line-height: pxToRem(18);
+                float: left;
+
+                &.active,
+                &.current {
+                    a {
+                        color: $light-blue;
+                    }
+                }
+
+                &:nth-child(2n) a {
+                    background-color: $medium-grey;
+                }
+
+                a {
+                    @include sq-transition(color 0.4s ease);
+                    @include font-smoothing;
+                    color: $white;
+                    text-decoration: none;
+                    padding: pxToRem(15) pxToRem(25);
+                    font-weight: 600;
+                    width: 100%;
+                    float: left;
+                    display: block;
+
+                    &:focus,
+                    &:hover {
+                        color: $light-blue;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/*
+ * Tablet layout
+ */
+
+@media screen and (min-width: $tablet){
+    
+    .navigation {
+
+    }
+}
+
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+    
+    .navigation {
+        width: 72%;
+        margin: 0;
+
+        nav {
+            padding: 0;
+            background: transparent;
+            display: block !important;
+
+            ul {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: space-between;
+                align-content: center;
+                align-items: center;
+                flex-flow: row nowrap;
+                @include sq-list-reset;
+
+                li {
+                    width: auto;
+                    @include sq-list-reset;
+
+                    &:nth-child(2n) a {
+                        background-color: transparent;
+                    }
+
+                    &:focus,
+                    &:hover,
+                    &.active,
+                    &.current {
+                        a {
+                            background-color: $white;
+                            color: $light-blue;
+                            @include sq-border-radius(3px);
+
+                            &:focus,
+                            &:hover {
+                                color: $light-blue;
+                            }
+                        }
+
+                    }
+
+                    a {
+                        padding: pxToRem(8) pxToRem(10);
+                        width: auto;
+                        @include sq-transition(background-color 0.4s ease);
+
+                        &:focus,
+                        &:hover {
+                            color: $white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

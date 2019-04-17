@@ -2,7 +2,7 @@
  * Mobile layout
  */
 
-.global-footer {
+.footer {
     margin: 0;
     width: 100%;
     background-color: $dark-blue;
@@ -90,7 +90,7 @@
  */
 
 @media screen and (min-width: $tablet){
-    .global-footer {
+    .footer {
 
     }
 }
@@ -101,7 +101,7 @@
  */
 
 @media screen and (min-width: $desktop){
-    .global-footer {
+    .footer {
 
         padding: pxToRem(45) pxToRem(25) pxToRem(45) pxToRem(25);
 

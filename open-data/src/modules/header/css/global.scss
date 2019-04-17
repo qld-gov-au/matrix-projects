@@ -1,0 +1,237 @@
+/*
+ * Mobile layout
+ */
+
+.header {
+    
+    background-color: $light-blue;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+
+    &__inner {
+        width: 100%;
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: space-between;
+        flex-flow: row wrap;
+    }
+
+    &__top {
+        padding: pxToRem(12) pxToRem(25) 0 pxToRem(25);
+        width: 100%;
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: space-between;
+        flex-flow: row wrap;
+    }
+
+    &__logo {
+
+        padding: 0;
+
+        svg {
+            width: 100%;
+            color: white;
+            max-width: pxToRem(200);
+            height: pxToRem(40);
+        }
+    }
+
+    &__search {
+        padding: 0;
+        display: none;
+        max-width: 25%;
+    }
+
+    &__data-portal {
+        
+        width: 100%;
+        margin: pxToRem(8) 0 0 0;
+
+        a {
+            color: $white;
+            text-decoration: none;
+            text-align: left;
+            font-weight: 600;
+            @include font-smoothing;
+
+            &:hover,
+            &:focus {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &__mobile-button {
+
+        button {
+            @include clear-default-appearance;
+        }
+
+        .fa.fa-bars {
+            color: $white;
+
+            &:before {
+                color: $white;
+            }
+        }
+
+    }
+
+    &__lower {
+        width: 100%;
+    }
+
+}
+
+
+/*
+ * Tablet layout
+ */
+
+@media screen and (min-width: $tablet){
+    .header {
+
+    }
+}
+
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+    .header {
+
+        &__inner {
+            padding: pxToRem(15) pxToRem(25) pxToRem(25) pxToRem(25);
+            max-width: pxToRem($max-width--lrg); 
+        }
+
+        &__mobile-button {
+            display: none;
+        }
+
+        &__logo {
+
+            width: pxToRem(287);
+
+            svg {
+                width: pxToRem(287);
+                max-width: 100%;
+                height: pxToRem(55);
+            }
+        }
+
+        &__top {
+            width: 30%;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        &__lower {
+            width: 65%;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            align-content: center;
+            align-items: center;
+            align-self: flex-end;
+            margin: 0 0 pxToRem(5) 0;
+        }
+
+        &__data-portal {
+            text-align: right;
+        }
+
+        &__search {
+            display: flex;
+            flex-flow: row nowrap;
+            background: $white;
+            @include sq-border-radius(5px);
+            background: $white;
+            align-content: center;
+            align-items: center;
+            border: 1px solid $light-grey;
+            position: relative;
+
+            ul.listbox {
+                position: absolute;
+                top: pxToRem(46);
+                width: 100%;
+                @include sq-border-radius(5px);
+                border: none;
+
+                li {
+                    a {
+                        width: 100%;
+                        display: block;
+                        padding: pxToRem(7);
+
+                        &:hover,
+                        &:focus {
+                            background: none;
+                            color: $black;
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+
+            input[type="text"]{
+                border: none;
+                height: pxToRem(44);
+                font-size: pxToRem(16);
+                line-height: 16px;
+                width: 80%;
+                @include sq-border-radius(5px 0 0 5px);
+
+                &::-webkit-input-placeholder {
+                    color: $light-grey;
+                }
+            
+                &::-moz-placeholder {
+                    color: $light-grey;
+                }
+            
+                &:-ms-input-placeholder {
+                    color: $light-grey !important;
+                }
+            
+                &:-moz-placeholder {
+                    color: $light-grey;
+                }
+            }
+
+
+            button[type="submit"] {
+                border: none;
+                height: pxToRem(44);
+                background-color: $white;
+                padding: 0;
+                width: 20%;
+                @include sq-border-radius(0 5px 5px 0);
+
+                &:hover,
+                &:focus {
+                    outline: 0;
+
+                    .fa {
+                        color: $black;
+                    }
+                }
+
+                .fa {
+                    color: $light-grey;
+                    @include sq-transition(color 0.4s ease);
+                }
+            }
+        }
+    }
+}
