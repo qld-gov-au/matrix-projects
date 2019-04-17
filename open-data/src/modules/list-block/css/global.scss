@@ -4,7 +4,7 @@
 
 .list-block {
 
-    margin: pxToRem(10) 0 pxToRem(50) 0;
+    margin: pxToRem(10) 0 pxToRem(30) 0;
 
     &__item {
         width: 100%;
@@ -101,7 +101,7 @@
 @media screen and (min-width: $desktop){
     .list-block {
 
-        margin: pxToRem(20) 0 pxToRem(60) 0;
+        margin: pxToRem(20) 0 pxToRem(30) 0;
 
         &__item {
             max-width: 90%;
