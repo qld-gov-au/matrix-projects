@@ -90,6 +90,7 @@ textarea {
 .row {
     margin-left: -25px;
     margin-right: -25px;
+    max-width: pxToRem($max-width--lrg);
 }
 
 .container-fluid {
@@ -110,6 +111,22 @@ h2 {
     line-height: pxToRem(29);
     font-weight: 700;
     color: $light-blue;
+}
+
+.section {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+
+    &__inner {
+        max-width: pxToRem($max-width--lrg);
+        width: 100%;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+    }
+
 }
 
 /*
