@@ -177,13 +177,15 @@
 
 @media screen and (min-width: $desktop){
     .hero-banner {
-        height: pxToRem(500);
+        height: pxToRem(370);
 
         &__inner {
             max-width: pxToRem($max-width--lrg);
         }
 
         &__text-wrap {
+
+            max-width: pxToRem(495);
     
             h1 {
                 font-size: pxToRem(28);
@@ -192,14 +194,22 @@
         }
 
         &__search {
-            max-width: pxToRem(770);
-            margin: 0 0 pxToRem(50) 0;
+            max-width: 100%;
+            width: pxToRem(860);
+            margin: 0 0 pxToRem(40) 0;
             padding: pxToRem(20) pxToRem(25);
+
+            form {
+                width: 100%;
+                max-width: pxToRem(783);
+                margin: pxToRem(15) auto 0 auto;
+            }
         }
 
         &__search-title {
             font-size: pxToRem(26);
             line-height: pxToRem(28);
+            margin-left: pxToRem(15);
         }
 
     }
