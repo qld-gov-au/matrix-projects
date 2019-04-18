@@ -363,12 +363,17 @@ h2 {
             align-items: center; }
   #qg-primary-content .qg-dfv-cards--type-helplines a.card-link__anchor {
     text-decoration: none;
-    color: inherit; }
+    color: inherit;
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1; }
   #qg-primary-content .qg-dfv-cards--type-helplines .card-link__arrow {
     display: block;
     width: 1.25rem;
     height: 1.25rem;
-    position: relative; }
+    position: relative;
+    -ms-flex-negative: 0;
+        flex-shrink: 0; }
     #qg-primary-content .qg-dfv-cards--type-helplines .card-link__arrow:after, #qg-primary-content .qg-dfv-cards--type-helplines .card-link__arrow:before {
       content: "";
       display: block;

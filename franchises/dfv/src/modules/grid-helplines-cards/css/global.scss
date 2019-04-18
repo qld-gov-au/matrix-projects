@@ -63,6 +63,7 @@
     a.card-link__anchor {
         text-decoration: none;
         color: inherit;
+        flex-grow: 1;
     }
 
     .card-link__arrow {
@@ -70,6 +71,7 @@
         width: pxToRem(20);
         height: pxToRem(20);
         position: relative;
+        flex-shrink: 0;
 
         &:after,
         &:before {
