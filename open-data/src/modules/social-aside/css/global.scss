@@ -1,0 +1,67 @@
+/*
+ * Mobile layout
+ */
+
+.social-aside {
+
+    margin: pxToRem(20) 0 pxToRem(30) 0;
+
+    ul {
+        @include sq-list-reset;
+
+        li {
+            @include sq-list-reset;
+            width: 100%;
+
+            a {
+                display: block;
+                font-size: pxToRem(16);
+                line-height: pxToRem(18);
+                font-weight: 500;
+                color: $black;
+                text-decoration: none;
+                padding: pxToRem(15) pxToRem(15);
+                @include sq-transition(background-color 0.4s ease);
+                width: 100%;
+
+                &:hover,
+                &:focus {
+                    background-color: $light-grey-blue;
+                    font-weight: 700;
+                    
+                    .fab {
+                        font-weight: 400;
+                    }
+                }
+            }
+
+            .fas,
+            .fab {
+                margin-right: pxToRem(5);
+                width: pxToRem(25);
+            }
+        }
+    }
+}
+
+
+/*
+ * Tablet layout
+ */
+
+@media screen and (min-width: $tablet){
+    .social-aside {
+
+    }
+}
+
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+    .social-aside {
+        margin: 0;
+    }
+}

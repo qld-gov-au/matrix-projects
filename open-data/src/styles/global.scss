@@ -125,6 +125,74 @@ h2 {
         display: flex;
         flex-flow: row wrap;
         justify-content: space-between;
+        padding: 0 0 pxToRem(40) 0;
+
+        @media screen and (min-width: $desktop){
+            padding: 0 0 pxToRem(60) 0;
+        }
+
+        &--reorder-cols-mobile {
+            > div:first-child {
+                order: 2;
+
+                @media screen and (min-width: $tablet){
+                    order: 0;
+                }
+            }
+        }
+    }
+
+}
+
+#asides .button:visited, 
+.button, .button:active, 
+.button:focus, 
+.button:hover, 
+.button:link, 
+.button:visited,
+.button {
+
+    @include clear-default-appearance;
+    @include font-smoothing;
+    @include sq-border-radius(3px);
+    @include sq-transition(background-color 0.4s ease);
+    border: none;
+    background: $medium-grey;
+    color: $white;
+    letter-spacing: 0;
+    font-weight: 600;
+    font-size: pxToRem(15);
+    line-height: pxToRem(17);
+    padding: pxToRem(12) pxToRem(17);
+
+    &[target="_blank"]{
+
+        &:after {
+            content: "\f35d";
+            @include font-awesome;
+            color: $white;
+            font-size: pxToRem(13);
+            line-height: pxToRem(16);
+            vertical-align: middle;
+            display: inline-block;
+            margin-left: pxToRem(10);
+        }
+
+    }
+
+    &:hover,
+    &:focus {
+        background-color: $black;
+    }
+
+
+
+}
+
+.button.button--mobile-only {
+
+    @media screen and (min-width: $tablet){
+        display: none;
     }
 
 }
