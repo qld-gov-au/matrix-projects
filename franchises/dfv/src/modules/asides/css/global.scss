@@ -53,6 +53,8 @@
 
         .qg-aside-button {
             @include dfv-button-primary();
+            text-align: center;
+            width: 100%;
         }
     }
 }

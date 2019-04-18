@@ -1,6 +1,9 @@
 @mixin dfv-button() {
+    border-radius: 4px;
     display: inline-block;
+    font-weight: 500;
     padding: 12px 20px;
+    text-decoration: none;
 }
 
 @mixin dfv-button-primary() {
@@ -8,7 +11,6 @@
     border-color: $deep-blue;
     background-color: $deep-blue;
     color: #fff;
-    font-weight: 500;
 }
 
 @mixin dfv-button-secondary() {
