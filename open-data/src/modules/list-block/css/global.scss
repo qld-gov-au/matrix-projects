@@ -104,8 +104,8 @@
         margin: pxToRem(20) 0 pxToRem(30) 0;
 
         &__item {
-            max-width: 90%;
-            justify-content: space-between;
+            justify-content: flex-start;
+            flex-flow: row nowrap;
         }
 
         &__title {
@@ -113,7 +113,8 @@
         }
         
         &__content {
-            width: 86%;
+            width: 85%;
+            padding: 0 0 0 pxToRem(20);
         }
     }
 }
