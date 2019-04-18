@@ -342,8 +342,10 @@ h2 {
     background-color: #ddecf1;
     -webkit-box-shadow: none;
             box-shadow: none; }
-  #qg-primary-content .qg-dfv-cards--type-helplines .card-title {
-    margin-bottom: 0.75rem; }
+  #qg-primary-content .qg-dfv-cards--type-helplines a.card-title {
+    margin-bottom: 0.75rem;
+    color: inherit;
+    text-decoration: none; }
   #qg-primary-content .qg-dfv-cards--type-helplines .card-phone {
     margin-bottom: 0.9375rem; }
   #qg-primary-content .qg-dfv-cards--type-helplines .card-phone__number a {
@@ -432,15 +434,7 @@ h2 {
             box-shadow: 0px 11px 16px -13px rgba(0, 0, 0, 0.37); }
     #qg-primary-content .qg-dfv-cards--type-helplines .card.desktop-link {
       cursor: pointer; }
-  #qg-primary-content .qg-dfv-cards--type-helplines .card-body {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column; }
-  #qg-primary-content .qg-dfv-cards--type-helplines .card-title {
+  #qg-primary-content .qg-dfv-cards--type-helplines .card .card-title {
     height: 4.6875rem;
     margin-bottom: 0; }
   #qg-primary-content .qg-dfv-cards--type-helplines .card-phone {
