@@ -402,7 +402,8 @@ h2 {
 /* Salvattore plugins need declaration within media query for responsive to work */
 @media screen and (max-width: 991px) {
   [data-columns]::before {
-    content: '2 .column.size-1of2'; } }
+    content: '2 .column.size-1of2';
+    display: none; } }
 
 /*
  * Desktop layout
@@ -411,7 +412,8 @@ h2 {
   #qg-primary-content .qg-dfv-cards--type-helplines {
     margin-right: 0; }
   #qg-primary-content .qg-dfv-cards--type-helplines[data-columns]::before {
-    content: '1 .outer'; }
+    content: '1 .outer';
+    display: none; }
   #qg-primary-content .qg-dfv-cards--type-helplines .outer {
     display: -webkit-box;
     display: -ms-flexbox;

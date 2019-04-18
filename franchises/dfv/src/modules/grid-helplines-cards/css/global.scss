@@ -111,6 +111,7 @@
 
     &[data-columns]::before {
         content: '2 .column.size-1of2';
+        display: none;
     }
     
 }
@@ -129,6 +130,7 @@
 
         &[data-columns]::before {
             content: '1 .outer';
+            display: none;
         }
         
         .outer {
