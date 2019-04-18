@@ -156,14 +156,16 @@
 
         }
         
-        .card
+        .card-body {
+            display: flex;
+            flex-direction: column;
+        }
 
         .card-title {
             height: pxToRem(75);
             margin-bottom: 0;
         }
 
-        
         .card-phone {
             margin-bottom: pxToRem(25);
         }
