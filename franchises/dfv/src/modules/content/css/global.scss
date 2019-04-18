@@ -2,6 +2,12 @@
  * Mobile layout
  */
 
+#qg-two-col-aside.wide {
+    #qg-secondary-content {
+        display: none;
+    }
+}
+
 h1, h2 {
     color: $dark-blue;
 }
@@ -75,6 +81,23 @@ h2 {
  */
 
 @media screen and (min-width: $desktop){
+
+    #qg-two-col-aside.wide {
+        #qg-primary-content {
+            flex: 0;
+            flex-grow: 1;
+            margin-top: $large-spacing;
+            max-width: 100%;
+        }
+
+        #qg-secondary-content {
+            display: block;
+            margin-top: $large-spacing;
+            padding-left: $large-spacing;
+            max-width: 280px;
+        }
+    }
+
     h1 {
         font-size: 39px;
         padding-left: $medium-spacing;
