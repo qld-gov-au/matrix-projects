@@ -735,11 +735,8 @@ process.umask = function() { return 0; };
 
   qg_dfv.fn.exitWindow = function () {
     var new_location = 'https://www.google.com.au';
-    window.location.replace('https://www.google.com.au');
-    console.log('finish exitWindow');
-    /*setTimeout(function(){
-        window.open(new_location, '_blank', '');
-    }, 100);*/
+    window.location.replace(new_location);
+    window.open(new_location, '_blank', '');
   };
   /*
       Ready
