@@ -149,7 +149,7 @@
     }
 
     .qg-tooltip__wrapper {
-        bottom: initial;
+        bottom: auto;
         top: 40px;
         padding: $small-spacing;
 
@@ -158,7 +158,7 @@
             border-left: 8px solid $deep-yellow;
             border-right: 8px solid transparent;
             border-top: 8px solid transparent;
-            bottom: initial;
+            bottom: auto;
             box-shadow: -4px 4px 4px 0 $dark-grey;
             left: $medium-spacing;
             top: -8px;

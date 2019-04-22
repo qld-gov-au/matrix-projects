@@ -453,7 +453,7 @@ h2 {
   .qg-tooltip__parent:hover .qg-tooltip__wrapper {
     display: block; }
   .qg-tooltip__wrapper {
-    bottom: initial;
+    bottom: auto;
     top: 40px;
     padding: 16px; }
     .qg-tooltip__wrapper:after {
@@ -461,7 +461,7 @@ h2 {
       border-left: 8px solid #ffd200;
       border-right: 8px solid transparent;
       border-top: 8px solid transparent;
-      bottom: initial;
+      bottom: auto;
       -webkit-box-shadow: -4px 4px 4px 0 #505050;
               box-shadow: -4px 4px 4px 0 #505050;
       left: 25px;
