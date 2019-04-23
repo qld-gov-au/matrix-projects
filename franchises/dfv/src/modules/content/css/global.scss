@@ -8,7 +8,6 @@ h1, h2 {
 
 h1 {
     font-size: 30px;
-    padding-left: $small-spacing;
 }
 
 h2 {
@@ -16,8 +15,11 @@ h2 {
 }
 
 .qg-page-introduction {
-    p {
+    padding: 0 5px;
 
+    p {
+        font-size: 18px;
+        margin-bottom: $small-spacing;
     }
 }
 
@@ -75,12 +77,27 @@ h2 {
  */
 
 @media screen and (min-width: $desktop){
-    h1 {
-        font-size: 39px;
-        padding-left: $medium-spacing;
+    
+    #qg-primary-content {
+        h1 {
+            font-size: 39px;
+        }
+
+        h1, h1:first-child {
+            margin-bottom: $medium-spacing;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
     }
 
-    h2 {
-        font-size: 24px;
+    .qg-page-introduction {
+        padding-left: $medium-spacing;
+
+        p {
+            font-size: 24px;
+            margin-bottom: 50px;
+        }
     }
 }

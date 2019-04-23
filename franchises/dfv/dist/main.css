@@ -235,11 +235,16 @@ h1, h2 {
   color: #0c2e4c; }
 
 h1 {
-  font-size: 30px;
-  padding-left: 16px; }
+  font-size: 30px; }
 
 h2 {
   font-size: 20px; }
+
+.qg-page-introduction {
+  padding: 0 5px; }
+  .qg-page-introduction p {
+    font-size: 18px;
+    margin-bottom: 16px; }
 
 /*
     Cards
@@ -283,11 +288,17 @@ h2 {
  * Desktop layout
  */
 @media screen and (min-width: 992px) {
-  h1 {
-    font-size: 39px;
+  #qg-primary-content h1 {
+    font-size: 39px; }
+  #qg-primary-content h1, #qg-primary-content h1:first-child {
+    margin-bottom: 25px; }
+  #qg-primary-content h2 {
+    font-size: 24px; }
+  .qg-page-introduction {
     padding-left: 25px; }
-  h2 {
-    font-size: 24px; } }
+    .qg-page-introduction p {
+      font-size: 24px;
+      margin-bottom: 50px; } }
 
 /*
  * Mobile layout
@@ -451,6 +462,10 @@ h2 {
 /*
  * Mobile layout
  */
+#qg-primary-content .qg-dfv-cards--type-top-arrow.row {
+  margin-left: -12px;
+  margin-right: -12px; }
+
 #qg-primary-content .qg-dfv-cards--type-top-arrow .card-container {
   padding: 0 0.4375rem 0;
   margin-bottom: 0.9375rem;

@@ -7,6 +7,11 @@ $card-arrow-border: 0.2rem;
 
 #qg-primary-content .qg-dfv-cards--type-top-arrow {
 
+    &.row {
+        margin-left: -12px;
+        margin-right: -12px;
+    }
+
     .card-container {
         padding: 0 pxToRem(7) 0;
         margin-bottom: pxToRem(15);
