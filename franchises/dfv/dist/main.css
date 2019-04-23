@@ -324,6 +324,7 @@ h2 {
 
 .fa-icon__wrapper .fa {
   color: #77ba00;
+  margin: 0;
   text-shadow: 1px 1px 0 #000,  -1px -1px 0 #000,  1px -1px 0 #000,  -1px 1px 0 #000,  1px 1px 0 #000; }
 
 /*
