@@ -1,0 +1,74 @@
+/*
+ * Mobile layout
+ */
+
+.qg-topics__list {
+    @include sq-list-reset();
+}
+
+.qg-topics__item {
+    border-bottom: 1px solid $darkish-grey;
+}
+
+#qg-content #qg-primary-content .qg-topics__link {
+    text-decoration: none;
+}
+
+.qg-topics__link {
+    color: $deep-blue;
+    display: flex;
+    font-size: 18px;
+    padding: $small-spacing;
+    text-decoration: none;
+}
+                
+.qg-topics__title {
+    flex-grow: 1;
+    padding-right: 40px;
+}
+
+.qg-topics__more {
+    display: inline-block;
+    flex-shrink: 0;
+    position: relative;
+    width: $medium-spacing;
+
+    &:after {
+        border-bottom: 2px solid $deep-blue;
+        border-right: 2px solid $deep-blue;
+        content: ' ';
+        height: 8px;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        width: 8px;
+    }
+}
+
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+    .qg-topics__wrapper {
+        display: inline-block;
+    }
+
+    .qg-topics__link {
+        font-size: 21px;
+    }
+
+    .qg-topics__title {
+        flex-grow: 1;
+    }
+
+    .qg-topics__more {
+        &:after {
+            border-width: 3px;
+            height: 12px;
+            width: 12px;
+        }
+    }
+}
