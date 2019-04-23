@@ -1,0 +1,175 @@
+/*
+ * Mobile layout
+ */
+
+ $helpline-card-arrow-size: 12px;
+ $helpline-card-arrow-border: 2px;
+
+ #qg-primary-content .qg-dfv-cards--type-helplines {
+    margin: 0 -25px;
+    overflow: hidden;
+}
+
+ #qg-primary-content .qg-dfv-cards--type-helplines {
+
+    
+    /* Start of Salvatorre plugin CSS */
+    .column {
+        float: left;
+    }
+
+    .size-1of2 { 
+        width: 50%; 
+    }
+
+    /* End of Salvatorre plugin CSS */
+     
+    .card-container {
+        padding: 0 pxToRem(7) 0;
+        margin-bottom: pxToRem(15);
+    }
+
+    .card {
+        border: 0;
+        background-color: #ddecf1;
+        box-shadow: none;
+    }
+
+    a.card-title {
+        margin-bottom: pxToRem(12);
+        color: $deep-blue;
+        text-decoration: none;
+    }
+
+    .card-phone {
+        margin-bottom: pxToRem(15);
+    }
+
+    .card-phone__number a {
+        text-decoration: none;
+    }
+
+    .card-text {
+        margin-bottom: pxToRem(15);
+    }
+
+    .card-link {
+        margin-top: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    a.card-link__anchor {
+        text-decoration: none;
+        color: inherit;
+        flex-grow: 1;
+    }
+
+    .card-link__arrow {
+        display: block;
+        width: pxToRem(20);
+        height: pxToRem(20);
+        position: relative;
+        flex-shrink: 0;
+
+        &:after,
+        &:before {
+            content: "";
+            display: block;
+            position: absolute;
+        }
+
+        &:before {
+            top: 50%;
+            right: pxToRem(5);
+            width: $helpline-card-arrow-size;
+            height: $helpline-card-arrow-size;
+            transform-origin: 50% 50%;
+            transform: translate(0, -($helpline-card-arrow-size / 2)) rotate(45deg);
+            box-shadow: inset -#{$helpline-card-arrow-border} $helpline-card-arrow-border 0 0 $deep-blue;
+            border-radius: 0 $helpline-card-arrow-size * 0.15 0 0;
+        }
+
+        &:after {
+            top: 50%;
+            right: pxToRem(5);
+            width: $helpline-card-arrow-size * 1.3;
+            height: $helpline-card-arrow-border;
+            transform: translate(0, -($helpline-card-arrow-border / 2));
+            background-color: $deep-blue;
+        }
+    
+        
+
+    }
+
+}
+
+/* Salvattore plugins need declaration within media query for responsive to work */
+@media screen and (max-width: $desktop - 1px){
+
+    &[data-columns]::before {
+        content: '2 .column.size-1of2';
+        display: none;
+    }
+    
+}
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+
+    #qg-primary-content .qg-dfv-cards--type-helplines {
+        margin-right: 0;
+    }
+
+    #qg-primary-content .qg-dfv-cards--type-helplines {
+
+        &[data-columns]::before {
+            content: '1 .outer';
+            display: none;
+        }
+        
+        .outer {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 0.9375rem;
+            margin-right: -0.9375rem;
+        }
+
+        .card-container {
+            min-height: pxToRem(340);
+            padding: 0 pxToRem(15) 0;
+            margin-bottom: pxToRem(30);
+        }
+
+        .card {
+            height: 100%;
+            box-shadow: 0px 11px 16px -13px rgba(0,0,0,0.37);
+
+            &.desktop-link {
+                cursor: pointer;
+            }
+
+        }
+        
+        .card-body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            height: pxToRem(75);
+            margin-bottom: 0;
+        }
+
+        .card-phone {
+            margin-bottom: pxToRem(25);
+        }
+
+    }
+
+}
