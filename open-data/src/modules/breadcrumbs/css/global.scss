@@ -7,9 +7,7 @@
     width: 100%;
     padding: pxToRem(15) pxToRem(25);
 
-    nav.breadcrumbs__inner,
-    &__inner,
-    &__inner#qg-breadcrumb {
+    &__inner {
 
         width: 100%;
         background: transparent;
@@ -29,17 +27,26 @@
                 font-weight: 600;
                 display: none;
                 width: auto;
+                position: relative;
 
                 &:first-child{
                     display: block;
+
+                    a {
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        width: pxToRem(22);
+                        height: pxToRem(22);
+                    }
 
                     &:before {
                         content: "\f015";
                         margin-left: 0;
                         margin-right: 0;
                         @include font-awesome;
-                        font-size: pxToRem(20);
-                        line-height: pxToRem(21);
+                        font-size: pxToRem(23);
+                        line-height: pxToRem(24);
                     }
                 }
 
@@ -98,9 +105,7 @@
         padding: pxToRem(20) 0;
         margin: 0 0 pxToRem(10) 0;
 
-        nav.breadcrumbs__inner,
-        &__inner,
-        &__inner#qg-breadcrumb {
+        &__inner{
             max-width: pxToRem($max-width--lrg);
             padding-left: pxToRem(25);
             padding-right: pxToRem(25);
@@ -117,10 +122,11 @@
                     display: block;
 
                     &:first-child{
+
     
                         &:before {
-                            font-size: pxToRem(16);
-                            line-height: pxToRem(19);
+                            font-size: pxToRem(21);
+                            line-height: pxToRem(23);
                         }
                     }
     

@@ -1,3 +1,4 @@
+
 export const isDevelopment = () => {
     return process && process.env && (process.env.NODE_ENV === 'development');
 };

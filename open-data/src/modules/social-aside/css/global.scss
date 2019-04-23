@@ -29,16 +29,24 @@
                     background-color: $light-grey-blue;
                     font-weight: 700;
                     
-                    .fab {
+                    .fab,
+                    .fa {
                         font-weight: 400;
                     }
                 }
             }
 
-            .fas,
-            .fab {
+            .fa {
+                text-align: center;
                 margin-right: pxToRem(5);
                 width: pxToRem(25);
+                font-size: pxToRem(21);
+                display: inline-block;
+                font-family: FontAwesome;
+                font-style: normal;
+                font-weight: normal;
+                line-height: 1;
+                -webkit-font-smoothing: antialiased;
             }
         }
     }

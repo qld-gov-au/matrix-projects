@@ -4,7 +4,7 @@ const webpack = require('webpack');
 
 module.exports = merge(common, {
   'entry': {
-    'qg-swe': ['./src/qg-swe.js']
+
   },
   'mode': 'development',
   'devServer': {

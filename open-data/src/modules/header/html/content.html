@@ -21,20 +21,15 @@
             
             ${require('../../navigation/html/content.html')}
 
-            <form action="https://find.search.qld.gov.au/s/search.html" role="search" class="header__search">
+            <form role="search" class="header__search">
 
-                <label for="qg-search-query" class="sr-only">Search Queensland Government</label>
-                <input type="text" name="query" id="qg-search-query" class="form-control" placeholder="Search website" tabindex="0" aria-required="true" aria-expanded="false"/>
+                <label for="header-search-query" class="sr-only">Search Queensland Government</label>
+                <input type="text" name="query" id="header-search-query" class="form-control" placeholder="Search website" tabindex="0" aria-required="true" aria-expanded="false"/>
 
                 <button type="submit">
                     <span class="fa fa-search" aria-hidden="true"></span>
-                    <span class="qg-visually-hidden">search</span>
+                    <span class="sr-only">Submit search</span>
                 </button>
-                <!--parameters to display results on search page-->
-                <input type="hidden" name="num_ranks" value="10">
-                <input type="hidden" name="tiers" value="off">
-                <input type="hidden" name="collection" value="qld-gov">
-                <input type="hidden" name="profile" value="qld">
             </form>
             
         </div>

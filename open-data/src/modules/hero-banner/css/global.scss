@@ -89,6 +89,9 @@
              color: $light-grey;
              width: 90%;
              height: pxToRem(44);
+             margin: 0;
+             font-size: pxToRem(16);
+             line-height: pxToRem(18);
 
              &::-webkit-input-placeholder {
                 color: $light-grey;
@@ -104,6 +107,12 @@
         
             &:-moz-placeholder {
                 color: $light-grey;
+            }
+
+            &:focus,
+            &:hover {
+                outline: 0;
+                @include sq-box-shadow(none);
             }
          }
 

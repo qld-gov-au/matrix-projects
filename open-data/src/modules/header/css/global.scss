@@ -47,6 +47,7 @@
         padding: 0;
         display: none;
         max-width: 25%;
+        margin: 0;
     }
 
     &__data-portal {
@@ -192,6 +193,8 @@
                 line-height: 16px;
                 width: 80%;
                 @include sq-border-radius(5px 0 0 5px);
+                margin: 0;
+                padding: pxToRem(10) pxToRem(15);
 
                 &::-webkit-input-placeholder {
                     color: $light-grey;
