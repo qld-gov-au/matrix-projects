@@ -498,13 +498,17 @@ h2 {
 .qg-topics__item {
   border-bottom: 1px solid #818181; }
 
+#qg-content #qg-primary-content .qg-topics__link {
+  text-decoration: none; }
+
 .qg-topics__link {
   color: #12578b;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   font-size: 18px;
-  padding: 16px; }
+  padding: 16px;
+  text-decoration: none; }
 
 .qg-topics__title {
   -webkit-box-flex: 1;
