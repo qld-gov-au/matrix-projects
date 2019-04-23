@@ -4,7 +4,7 @@
 
 .tiles {
 
-    padding: pxToRem(40) 0 pxToRem(50) 0;
+    padding: pxToRem(40) 0 0 0;
     overflow: hidden;
     @include sq-border-radius(4px);
 
@@ -156,16 +156,19 @@
         display: flex;
         justify-content: center;
         flex-flow: row wrap;
+        padding: pxToRem(40) 0 0 0;
 
         &__inner {
             display: flex;
             justify-content: space-between;
             flex-flow: row wrap;
-            max-width: pxToRem(625);
+            max-width: 95%;
+            width: 100%;
         }
 
         &__item {
-            max-width: pxToRem(300);
+            width: 31.5%;
+            // max-width: pxToRem(300);
         }
     }
 }

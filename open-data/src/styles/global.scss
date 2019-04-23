@@ -197,7 +197,7 @@ h2 {
     &[target="_blank"]{
 
         &:after {
-            content: "\f35d";
+            content: "\F08E";
             @include font-awesome;
             color: $white;
             font-size: pxToRem(13);
