@@ -239,6 +239,7 @@ body {
     #qg-content #qg-secondary-content .qg-aside .fa-icon__wrapper .fa {
       color: #77ba00;
       font-size: 46px;
+      margin: 0;
       padding: 4px 16px 4px 4px; }
   #qg-content #qg-secondary-content .qg-aside-button {
     border-radius: 4px;
@@ -324,7 +325,6 @@ h2 {
 
 .fa-icon__wrapper .fa {
   color: #77ba00;
-  margin: 0;
   text-shadow: 1px 1px 0 #000,  -1px -1px 0 #000,  1px -1px 0 #000,  -1px 1px 0 #000,  1px 1px 0 #000; }
 
 /*
