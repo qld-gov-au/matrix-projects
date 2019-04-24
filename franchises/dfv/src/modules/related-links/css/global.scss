@@ -2,10 +2,38 @@
  * Mobile layout
  */
 
-.common__wrapper {
+ #qg-primary-content {
+     
+    .related-links {
+        background-color: $deep-blue;
+        padding: 30px;
+    }
 
-}
+    .related-links__heading {
+        color: #fff;
+        font-weight: 600;
+        margin: 0 0 pxToRem(25) 0;
+    }
 
+    .related-links__list {
+        list-style: none;
+        margin-bottom: 0;
+    }
+
+
+    .related-links__item + .related-links__item { 
+        margin-top: pxToRem(20);
+    }
+    
+    
+    a.related-links__link:link {
+        color: #fff;
+        text-decoration: none;
+    }
+    
+    
+    
+ }
 
 /*
  * Tablet layout
