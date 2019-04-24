@@ -537,7 +537,7 @@ h2 {
  * Mobile layout
  */
 #qg-primary-content .qg-related-links {
-  background-color: #12578b;
+  background-color: #0c2e4c;
   margin-left: -25px;
   margin-right: -25px;
   padding: 1.875rem; }
@@ -564,8 +564,7 @@ h2 {
       -ms-flex-align: center;
           align-items: center; }
 
-#qg-primary-content a.qg-related-links__link:link,
-#qg-primary-content a.qg-related-links__link:visited {
+#qg-primary-content a.qg-related-links__link:link {
   color: #fff;
   text-decoration: none; }
 
