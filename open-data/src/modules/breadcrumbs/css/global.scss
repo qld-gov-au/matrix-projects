@@ -53,6 +53,10 @@
                 margin: 0 pxToRem(8) 0 pxToRem(8);
             }
 
+            &:after {
+                display: none;
+            }
+
             a {
                 color: $dark-blue;
                 font-size: pxToRem(16);
