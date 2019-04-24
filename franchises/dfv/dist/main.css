@@ -240,7 +240,12 @@ body {
       color: #77ba00;
       font-size: 46px;
       margin: 0;
-      padding: 4px 16px 4px 4px; }
+      padding: 4px; }
+  #qg-content #qg-secondary-content .qg-aside-icon {
+    display: inline-block;
+    padding-right: 16px; }
+    #qg-content #qg-secondary-content .qg-aside-icon img {
+      width: 44px; }
   #qg-content #qg-secondary-content .qg-aside-button {
     border-radius: 4px;
     display: inline-block;

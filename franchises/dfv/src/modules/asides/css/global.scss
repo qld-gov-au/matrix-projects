@@ -48,7 +48,16 @@
                 color: $light-green;
                 font-size: 46px;
                 margin: 0;
-                padding: 4px $small-spacing 4px 4px;
+                padding: 4px;
+            }
+        }
+
+        .qg-aside-icon {
+            display: inline-block;
+            padding-right: $small-spacing;
+
+            img {
+                width: 44px;
             }
         }
 
