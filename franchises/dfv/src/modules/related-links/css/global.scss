@@ -3,55 +3,91 @@
  */
 
  #qg-primary-content {
-     
-    .related-links {
+    
+    .qg-related-links {
         background-color: $deep-blue;
-        padding: 30px;
+        margin-left: -$medium-spacing;
+        margin-right: -$medium-spacing;
+        padding: pxToRem(30);
     }
 
-    .related-links__heading {
+    .qg-related-links__heading {
         color: #fff;
-        font-weight: 600;
+        font-weight: 400;
         margin: 0 0 pxToRem(25) 0;
     }
 
-    .related-links__list {
+    .qg-related-links__list {
         list-style: none;
         margin-bottom: 0;
+        padding-left: 0;
     }
 
-
-    .related-links__item + .related-links__item { 
+    .qg-related-links__item + .qg-related-links__item { 
         margin-top: pxToRem(20);
     }
     
+    .qg-related-links__link {
+        display: inline-block;
+        display: flex;
+        align-items: center;
+    }
     
-    a.related-links__link:link {
+    a.qg-related-links__link:link {
         color: #fff;
         text-decoration: none;
     }
-    
-    
-    
- }
 
-/*
- * Tablet layout
- */
+    .qg-related-links__arrow {
 
-@media screen and (min-width: $tablet){
-    .common__wrapper {
+        display: inline-block;
+        flex-shrink: 0;
+        height: pxToRem(11);
+        position: relative;
+        width: pxToRem(14);
+        margin-right: pxToRem(15);
+
+        &:after,
+        &:before {
+            content: "";
+            display: block;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 100%;
+        }
+
+        &:before {
+            background-color: #fff;
+            height: 2px;
+            transform: translateY(-50%);
+        }
+
+        &:after {
+            border-bottom: 2px solid #fff;
+            border-right: 2px solid #fff;
+            transform: translateY(-50%) rotate(-45deg);
+            width: 11px;
+        }
 
     }
+    
 }
 
-
-/*
+ /*
  * Desktop layout
  */
 
 @media screen and (min-width: $desktop){
-    .common__wrapper {
-        
+    
+    #qg-primary-content {
+
+        .qg-related-links {
+            margin-left: inherit;
+            margin-right: inherit;
+        }
+
     }
+
 }
