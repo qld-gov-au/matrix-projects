@@ -599,7 +599,8 @@ h2 {
  * Mobile layout
  */
 .qg-quicklinks__wrapper {
-  border-top: 4px solid #007eb1; }
+  border-top: 4px solid #007eb1;
+  width: 100%; }
 
 .qg-quicklinks__list {
   margin: 0;
