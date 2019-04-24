@@ -58,6 +58,34 @@ body {
     margin: 0;
     background: $white;
     font-family: 'Lato', sans-serif;
+
+    .masthead {
+        background-image: none;
+
+        &:before,
+        &:after {
+            display: none;
+        }
+    }
+
+    [role=main], .main {
+        background-image: none;
+        background-color: $white;
+    }
+
+    .wrapper {
+        @include sq-box-shadow(none);
+        border: none;
+        background-image: none;
+        margin: 0;
+    }
+
+    .container {
+        &:before,
+        &:after {
+            display: none;
+        }
+    }
 }
 
 img {
@@ -91,19 +119,6 @@ textarea {
     margin: 0.5cm;
 }
 
-// reset the bootstrap ".row" class margin
-
-.row {
-    margin-left: -25px;
-    margin-right: -25px;
-    max-width: pxToRem($max-width--lrg);
-}
-
-.container-fluid {
-    padding-left: 25px;
-    padding-right: 25px;
-}
-
 h1 {
     color: $light-blue;
     padding: 0;
@@ -117,60 +132,6 @@ h2 {
     line-height: pxToRem(29);
     font-weight: 700;
     color: $light-blue;
-}
-
-.section {
-    width: 100%;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-
-    &__inner {
-        max-width: pxToRem($max-width--lrg);
-        width: 100%;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: flex-start;
-        padding: 0 0 pxToRem(40) 0;
-
-        @media screen and (min-width: $desktop){
-            padding: 0 0 pxToRem(60) 0;
-        }
-
-        &--reorder-cols-mobile {
-            > div:first-child {
-                order: 2;
-
-                @media screen and (min-width: $tablet){
-                    order: 0;
-                }
-            }
-        }
-    }
-
-    &__col {
-        width: 100%;
-        padding-left: pxToRem($padding);
-        padding-right: pxToRem($padding);
-
-        &--no-padd {
-            padding-left: 0;
-            padding-right: 0;
-        }
-
-        @media screen and (min-width: $tablet){
-
-            &--left {
-                width: 25%;
-            }
-
-            &--right {
-                width: 66.666667%;
-            }
-
-        }
-    }
-
 }
 
 #asides .button:visited, 

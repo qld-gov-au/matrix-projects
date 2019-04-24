@@ -6,33 +6,43 @@
     </head>
     <body class="no-js">
         <div class="page-wrapper" id="page-wrapper">
-            
+
+            ${require('../modules/utility-navigation/html/index.html')}
             ${require('../modules/header/html/content.html')}
-            ${require('../modules/breadcrumbs/html/content.html')}
-    
-            <main class="main" id="main">
-                <div class="section">
-                    <div class="section__inner section__inner--reorder-cols-mobile">
 
-                        <div class="section__col section__col--left">
-                            ${require('../modules/social-aside/html/index.html')}
+            <div role="main">
+                <div id="content" class="container">
+                    
+                    ${require('../modules/breadcrumbs/html/content.html')}
+
+                    <div class="row">
+                        <div class="primary span9">
+                            <article class="module">
+                                <div class="module-content">
+                                    <h1>Lorem ipsum dolor sit amet</h1>
+
+                                    ${require('../modules/date-row/html/index.html')}
+
+                                    ${require('../modules/content-img/html/index.html')}
+                                    
+                                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                                    <br>
+                                    <p><a href="#" target="_blank" class="button button--mobile-only">Visit website</a></p>
+                                </div>
+                            </article>
                         </div>
-                        <div class="section__col section__col--right">
-                            <h1>Lorem ipsum dolor sit amet</h1>
 
-                            ${require('../modules/date-row/html/index.html')}
-
-                            ${require('../modules/content-img/html/index.html')}
-                            
-                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                            <br>
-                            <p><a href="#" target="_blank" class="button button--mobile-only">Visit website</a></p>
+                        <div class="secondary span3">
+                            <div class="module module-narrow module-shallow">
+                                <div class="module-content">
+                                    ${require('../modules/social-aside/html/index.html')}
+                                </div>
+                            </div>
                         </div>
-    
                     </div>
                 </div>
-            </main>
+            </div>
 
             <!--noindex-->
             ${require('../modules/footer/html/index.html')}

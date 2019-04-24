@@ -2,38 +2,28 @@
  * Mobile layout
  */
 
-.header {
+header.navbar.navbar-static-top.masthead {
     
     background-color: $light-blue;
-    padding: 0;
     margin: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-flow: row wrap;
+    padding: pxToRem(10) 0 0 0;
 
-    &__inner {
-        width: 100%;
+    > .container {
         display: flex;
         align-content: center;
+        flex-flow: row wrap;
         align-items: center;
         justify-content: space-between;
-        flex-flow: row wrap;
-    }
-
-    &__top {
-        padding: pxToRem(12) pxToRem(25) 0 pxToRem(25);
+        max-width: pxToRem(724);
         width: 100%;
-        display: flex;
-        align-content: center;
-        align-items: center;
-        justify-content: space-between;
-        flex-flow: row wrap;
+        padding: 0;
     }
 
-    &__logo {
+    .header-image.pull-left {
 
         padding: 0;
+        order: 0;
+        padding-left: pxToRem($padding);
 
         svg {
             width: 100%;
@@ -43,17 +33,10 @@
         }
     }
 
-    &__search {
-        padding: 0;
-        display: none;
-        max-width: 25%;
-        margin: 0;
-    }
-
-    &__data-portal {
+    .header__data-portal {
         
         width: 100%;
-        margin: pxToRem(8) 0 0 0;
+        margin: pxToRem(8) 0 pxToRem(10) 0;
 
         a {
             color: $white;
@@ -61,6 +44,8 @@
             text-align: left;
             font-weight: 600;
             @include font-smoothing;
+            font-size: pxToRem(14);
+            line-height: pxToRem(16);
 
             &:hover,
             &:focus {
@@ -69,24 +54,18 @@
         }
     }
 
-    &__mobile-button {
+    .btn.btn-navbar {
+        background-color: transparent;
+        padding: 0;
+        margin: 0 pxToRem(20) 0;
+        order: 2;
+        width: pxToRem(44);
+        height: pxToRem(44);
 
-        button {
-            @include clear-default-appearance;
+        .fa {
+            font-size: pxToRem(26);
+            line-height: pxToRem(26);
         }
-
-        .fa.fa-bars {
-            color: $white;
-
-            &:before {
-                color: $white;
-            }
-        }
-
-    }
-
-    &__lower {
-        width: 100%;
     }
 
 }
@@ -97,8 +76,11 @@
  */
 
 @media screen and (min-width: $tablet){
-    .header {
-
+    header.navbar.navbar-static-top.masthead {
+        position: relative;
+        > .container {
+            position: static;
+        }
     }
 }
 
@@ -108,138 +90,24 @@
  */
 
 @media screen and (min-width: $desktop){
-    .header {
+    header.navbar.navbar-static-top.masthead {
 
-        &__inner {
-            padding: pxToRem(15) pxToRem(25) pxToRem(25) pxToRem(25);
-            max-width: pxToRem($max-width--lrg); 
-        }
+        padding: pxToRem(10) 0 pxToRem(20) 0;
 
-        &__mobile-button {
-            display: none;
-        }
-
-        &__logo {
-
-            width: pxToRem(287);
-
-            svg {
-                width: pxToRem(287);
-                max-width: 100%;
-                height: pxToRem(55);
-            }
-        }
-
-        &__top {
-            width: 30%;
-            padding-left: 0;
-            padding-right: 0;
-        }
-
-        &__lower {
-            width: 65%;
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: space-between;
-            align-content: center;
-            align-items: center;
-            align-self: flex-end;
-            margin: 0 0 pxToRem(5) 0;
-        }
-
-        &__data-portal {
-            text-align: right;
-        }
-
-        &__search {
-            display: flex;
-            flex-flow: row nowrap;
-            background: $white;
-            @include sq-border-radius(5px);
-            background: $white;
-            align-content: center;
-            align-items: center;
-            border: 1px solid $light-grey;
+        > .container {
+            max-width: pxToRem(940);
             position: relative;
-
-            ul.listbox {
-                position: absolute;
-                top: pxToRem(46);
-                width: 100%;
-                @include sq-border-radius(5px);
-                border: none;
-                left: 0;
-
-                li {
-                    a {
-                        width: 100%;
-                        display: block;
-                        padding: pxToRem(7);
-
-                        &:hover,
-                        &:focus {
-                            background: none;
-                            color: $black;
-                            text-decoration: none;
-                        }
-                    }
-                }
-            }
-
-            input[type="text"]{
-                border: none;
-                height: pxToRem(44);
-                font-size: pxToRem(16);
-                line-height: 16px;
-                width: 80%;
-                @include sq-border-radius(5px 0 0 5px);
-                margin: 0;
-                padding: pxToRem(10) pxToRem(15);
-
-                &::-webkit-input-placeholder {
-                    color: $light-grey;
-                }
-            
-                &::-moz-placeholder {
-                    color: $light-grey;
-                }
-            
-                &:-ms-input-placeholder {
-                    color: $light-grey !important;
-                }
-            
-                &:-moz-placeholder {
-                    color: $light-grey;
-                }
-
-                &::-ms-clear {
-                    display: none;
-                }
-            }
-
-
-            button[type="submit"] {
-                border: none;
-                height: pxToRem(44);
-                background-color: $white;
-                padding: 0;
-                width: 20%;
-                @include sq-border-radius(0 5px 5px 0);
-
-                &:hover,
-                &:focus {
-                    outline: 0;
-
-                    .fa {
-                        color: $black;
-                    }
-                }
-
-                .fa {
-                    color: $light-grey;
-                    @include sq-transition(color 0.4s ease);
-                }
-            }
         }
+
+        .header-image.pull-left {
+            order: 0;
+            padding-left: 0;
+        }
+
+        .header__data-portal {
+            text-align: right;
+            margin-bottom: 0;
+        }
+
     }
 }

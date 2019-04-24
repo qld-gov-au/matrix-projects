@@ -7,27 +7,38 @@
     <body class="no-js">
         <div class="page-wrapper" id="page-wrapper">
             
-            ${require('../modules/header/html/index.html')}
-            ${require('../modules/breadcrumbs/html/landing.html')}
+            ${require('../modules/utility-navigation/html/index.html')}
+            ${require('../modules/header/html/content.html')}
     
-            <main class="main" id="main">
-                <div class="section">
-                    <div class="section__inner">
-                        <div class="section__col section__col--left">
-                            ${require('../modules/sub-nav/html/index.html')}
+            <div role="main">
+                <div id="content" class="container">
+                    ${require('../modules/breadcrumbs/html/landing.html')}
+
+                    <div class="row">
+                        <div class="primary span9">
+                            <article class="module">
+                                <div class="module-content">
+                                    <h1>News and Events</h1>
+                                    <h2>Featured</h2>
+        
+                                    ${require('../modules/list-block/html/index.html')}
+        
+                                    ${require('../modules/asset-list/html/index.html')}
+                                </div>
+                            </article>
                         </div>
-                        <div class="section__col section__col--right">
-                            <h1>News and Events</h1>
-                            <h2>Featured</h2>
-
-                            ${require('../modules/list-block/html/index.html')}
-
-                            ${require('../modules/asset-list/html/index.html')}
+                        <div class="secondary span3">
+                            <div class="module module-narrow module-shallow">
+                                <div class="module-content">
+                                    ${require('../modules/sub-nav/html/index.html')}
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </main>
 
+                </div>
+            </div>
+            
             <!--noindex-->
             ${require('../modules/footer/html/index.html')}
             <!--endnoindex-->   

@@ -2,75 +2,67 @@
  * Mobile layout
  */
 
-.breadcrumbs {
+.toolbar {
 
     width: 100%;
-    padding: pxToRem(15) pxToRem(25);
+    padding: pxToRem(15) pxToRem($padding) 0 pxToRem($padding);
+    margin: 0;
 
-    &__inner {
+    ol,
+    ol.breadcrumb {
+        
+        padding: 0;
+        margin: 0;
+        display: block;
 
-        width: 100%;
-        background: transparent;
+        li {
 
-        ol {
-            
             padding: 0;
             margin: 0;
+            color: $dark-blue;
+            font-size: pxToRem(16);
+            line-height: pxToRem(19);
+            font-weight: 600;
+            display: none;
+            width: auto;
+            position: relative;
 
-            li {
+            &.home {
 
-                padding: 0;
-                margin: 0;
+                display: block;
+
+                &:before,
+                &:after {
+                    display: none;
+                }
+
+                .fa {
+                    font-size: pxToRem(21);
+                    line-height: pxToRem(22);
+                    color: $dark-blue;
+                }
+            }
+
+            &:before {
+                color: $dark-blue;
+                content: "/";
+                font-size: pxToRem(21);
+                font-weight: 600;
+                line-height: pxToRem(20);
+                vertical-align: bottom;
+                margin: 0 pxToRem(8) 0 pxToRem(8);
+            }
+
+            a {
                 color: $dark-blue;
                 font-size: pxToRem(16);
                 line-height: pxToRem(19);
                 font-weight: 600;
-                display: none;
-                width: auto;
-                position: relative;
+                text-decoration: none;
 
-                &:first-child{
-                    display: block;
-
-                    a {
-                        position: absolute;
-                        left: 0;
-                        top: 0;
-                        width: pxToRem(22);
-                        height: pxToRem(22);
-                    }
-
-                    &:before {
-                        content: "\f015";
-                        margin-left: 0;
-                        margin-right: 0;
-                        @include font-awesome;
-                        font-size: pxToRem(23);
-                        line-height: pxToRem(24);
-                    }
-                }
-
-                &:before {
-                    color: $dark-blue;
-                    content: "/";
-                    font-size: pxToRem(21);
-                    font-weight: 600;
-                    line-height: pxToRem(20);
-                    vertical-align: bottom;
-                    margin: 0 pxToRem(8) 0 pxToRem(8);
-                }
-
-                a {
-                    color: $dark-blue;
-                    font-size: pxToRem(16);
-                    line-height: pxToRem(19);
-                    font-weight: 600;
-                    text-decoration: none;
-
-                    &:hover,
-                    &:focus {
-                        text-decoration: underline;
-                    }
+                &:hover,
+                &:focus {
+                    text-decoration: underline;
                 }
             }
         }
@@ -85,7 +77,7 @@
  */
 
 @media screen and (min-width: $tablet){
-    .breadcrumbs {
+    .toolbar {
 
         
 
@@ -98,39 +90,31 @@
  */
 
 @media screen and (min-width: $desktop){
-    .breadcrumbs {
+    .toolbar {
 
-        display: flex;
-        justify-content: center;
-        padding: pxToRem(20) 0;
-        margin: 0 0 pxToRem(10) 0;
+        padding: pxToRem(15) 0;
 
-        &__inner{
-            max-width: pxToRem($max-width--lrg);
-            padding-left: pxToRem(25);
-            padding-right: pxToRem(25);
+        ol,
+        ol.breadcrumb {
 
-            ol {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: flex-start;
+            align-content: center;
+            align-items: center;
 
-                display: flex;
-                flex-flow: row wrap;
-                justify-content: flex-start;
-                align-content: center;
-                align-items: center;
+            li {
+                display: block;
 
-                li {
-                    display: block;
+                &:first-child {
 
-                    &:first-child{
 
-    
-                        &:before {
-                            font-size: pxToRem(21);
-                            line-height: pxToRem(23);
-                        }
+                    &:before {
+                        font-size: pxToRem(21);
+                        line-height: pxToRem(23);
                     }
-    
                 }
+
             }
         }
         

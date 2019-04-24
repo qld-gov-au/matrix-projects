@@ -4,7 +4,9 @@
 
 .social-aside {
 
-    margin: pxToRem(20) 0 pxToRem(30) 0;
+    margin: pxToRem(30) 0 pxToRem(30) 0;
+    float: left;
+    width: 100%;
 
     ul {
         @include sq-list-reset;

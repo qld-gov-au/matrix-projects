@@ -7,20 +7,20 @@
     <body class="no-js">
         <div class="page-wrapper">
             <!--noindex-->
+            ${require('../modules/utility-navigation/html/index.html')}
             ${require('../modules/header/html/index.html')}
             <!--endnoindex-->
 
             ${require('../modules/hero-banner/html/index.html')}
 
-            <main class="main" id="main">
-                <div class="section">
-                    <div class="section__inner">
-                        <div class="section__col">
-                            ${require('../modules/tiles/html/index.html')}
-                        </div>
+            <div class="container">
+                <article class="module">
+                    <div class="module-content">
+                        ${require('../modules/tiles/html/index.html')}
                     </div>
-                </div>
-            </main>
+                </article>
+            </div>
+        </div>
     
             <!--noindex-->
             ${require('../modules/footer/html/index.html')}

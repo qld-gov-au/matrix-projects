@@ -7,28 +7,35 @@
     <body class="no-js">
         <div class="page-wrapper" id="page-wrapper">
             
-            ${require('../modules/header/html/contact.html')}
-            ${require('../modules/breadcrumbs/html/contact.html')}
-    
-            <main class="main" id="main">
-                <div class="section">
-                    <div class="section__inner section__inner--reorder-cols-mobile">
+            ${require('../modules/utility-navigation/html/index.html')}
+            ${require('../modules/header/html/content.html')}
 
-                        <div class="section__col section__col--left">
-                            ${require('../modules/sub-nav/html/contact.html')}
-                        </div>
-                        <div class="section__col section__col--right">
-                            <h1>General Open Data enquiry</h1>
-                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
+            <div role="main">
+                <div id="content" class="container">    
+                    ${require('../modules/breadcrumbs/html/contact.html')}
 
-                            ${require('../modules/form/html/text.html')}
-                            
+                    <div class="row">
+                        <div class="primary span9">
+                            <article class="module">
+                                <div class="module-content">
+                                    <h1>General Open Data enquiry</h1>
+                                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+                                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
+        
+                                    ${require('../modules/form/html/text.html')}
+                                </div>
+                            </article>
                         </div>
-    
+                        <div class="secondary span3">
+                            <div class="module module-narrow module-shallow">
+                                <div class="module-content">
+                                    ${require('../modules/sub-nav/html/contact.html')}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </main>
+            </div>
 
             <!--noindex-->
             ${require('../modules/footer/html/index.html')}

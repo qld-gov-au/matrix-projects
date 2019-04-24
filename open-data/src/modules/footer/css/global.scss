@@ -2,15 +2,12 @@
  * Mobile layout
  */
 
-.footer {
+.site-footer {
     margin: 0;
     width: 100%;
     background-color: $dark-blue;
-    padding: pxToRem(25) pxToRem(25) pxToRem(35) pxToRem(25);
-
-    &__inner {
-        width: 100%; 
-    }
+    padding: pxToRem(25) pxToRem($padding) pxToRem(35) pxToRem($padding);
+    background-image: none !important;
 
     ul {
         @include sq-list-reset;
@@ -90,7 +87,7 @@
  */
 
 @media screen and (min-width: $tablet){
-    .footer {
+    .site-footer {
 
     }
 }
@@ -101,16 +98,12 @@
  */
 
 @media screen and (min-width: $desktop){
-    .footer {
+    .site-footer {
 
         padding: pxToRem(45) pxToRem(25) pxToRem(45) pxToRem(25);
 
         display: flex;
         justify-content: center;
-
-        &__inner {
-            max-width: pxToRem($max-width--lrg); 
-        }
 
         &__signoff {
             display: none;

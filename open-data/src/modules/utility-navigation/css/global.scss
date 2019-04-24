@@ -2,14 +2,17 @@
  * Mobile layout
  */
 
-.utility-navigation {
+ header.account-masthead {
     
     background-color: $dark-blue;
     width: 100%;
     border-bottom: 2px solid $light-blue;
-    padding: pxToRem(5) pxToRem(25);
+    padding: 0;
+    border: none;
+    background-image: none;
+    margin: 0;
 
-    ul {
+    nav.account.not-authed ul.unstyled {
         @include sq-list-reset;
         width: 100%;
         display: flex;
@@ -19,29 +22,26 @@
 
         li {
             @include sq-list-reset;
-            margin: 0 pxToRem(15) 0 0;
-
-            &:last-child {
-                margin-right: 0;
-            }
+            border: none;
 
             a {
                 color: $white;
                 text-decoration: none;
-                font-size: pxToRem(16);
-                line-height: pxToRem(17);
-                @include sq-transition(color 0.4s ease);
+                font-size: pxToRem(14);
+                line-height: pxToRem(16);
+                @include sq-transition(background-color 0.4s ease);
                 @include font-smoothing;
                 font-weight: 600;
-                height: 44px;
-                min-width: 44px;
+                height: pxToRem(44);
+                min-width: pxToRem(44);
                 display: flex;
                 align-items: center;
                 align-content: center;
+                padding: 0 pxToRem(15);
 
                 &:hover,
                 &:focus {
-                    color: $light-blue;
+                    color: $white;
                 }
             }
         }
@@ -54,7 +54,7 @@
  */
 
 @media screen and (min-width: $tablet){
-    .utility-navigation {
+    header.account-masthead {
         
     }
 }
@@ -66,23 +66,19 @@
 
 @media screen and (min-width: $desktop){
     
-    .utility-navigation {
+    header.account-masthead {
 
-        display: flex;
-        justify-content: center;
-
-        ul {
-            max-width: pxToRem($max-width--lrg);
-            width: 100%;
-
+        nav.account.not-authed ul.unstyled {
+    
             li {
-                margin: 0 pxToRem(40) 0 0;
+                margin: 0 pxToRem(22) 0 0;
 
                 &:last-child {
-                    margin-right: pxToRem(25);
+                    margin-right: 0;
                 }
             }
         }
+
     }
 
 }

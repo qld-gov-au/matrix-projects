@@ -17,7 +17,7 @@
 
     &__inner {
         width: 100%;
-        padding: 0 pxToRem(25);
+        padding: 0 pxToRem($padding);
         position: relative;
         height: 100%;
         position: relative;
@@ -32,7 +32,7 @@
         width: 100%;
         max-width: pxToRem(270);
         padding: pxToRem(20);
-        left: pxToRem(25);
+        left: pxToRem(20);
         top: pxToRem(20);
         margin: 0;
 
@@ -166,6 +166,10 @@
 
         height: pxToRem(330);
 
+        &__inner {
+            max-width: pxToRem(724);
+        }
+
         &__text-wrap {
             top: pxToRem(40);
             max-width: pxToRem(350);
@@ -185,12 +189,13 @@
  * Desktop layout
  */
 
+
 @media screen and (min-width: $desktop){
     .hero-banner {
         height: pxToRem(370);
 
         &__inner {
-            max-width: pxToRem($max-width--lrg);
+            max-width: pxToRem(940);
         }
 
         &__text-wrap {
@@ -207,7 +212,7 @@
             max-width: 100%;
             width: pxToRem(860);
             margin: 0 0 pxToRem(40) 0;
-            padding: pxToRem(20) pxToRem(25);
+            padding: pxToRem(20) pxToRem(20);
 
             form {
                 width: 100%;
