@@ -33,7 +33,8 @@
         align-items: center;
     }
     
-    a.qg-related-links__link:link {
+    a.qg-related-links__link:link,
+    a.qg-related-links__link:visited {
         color: #fff;
         text-decoration: none;
     }

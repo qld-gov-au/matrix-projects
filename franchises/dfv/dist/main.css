@@ -564,7 +564,8 @@ h2 {
       -ms-flex-align: center;
           align-items: center; }
 
-#qg-primary-content a.qg-related-links__link:link {
+#qg-primary-content a.qg-related-links__link:link,
+#qg-primary-content a.qg-related-links__link:visited {
   color: #fff;
   text-decoration: none; }
 
