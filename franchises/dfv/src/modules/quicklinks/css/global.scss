@@ -55,7 +55,7 @@
 }
 
 .qg-quicklinks__prompt {
-    @include css-arrow(14px, 11px);
+    @include css-arrow(14px, 11px, $deep-blue);
 }
 
 

@@ -22,7 +22,7 @@
     padding-left: 0;
 }
 
-@mixin css-arrow($arrow-width, $arrow-height) {
+@mixin css-arrow($arrow-width, $arrow-height, $colour) {
     height: $arrow-height;
     position: relative;
     width: $arrow-width;
@@ -39,14 +39,14 @@
     }
 
     &:before {
-        background-color: $deep-blue;
+        background-color: $colour;
         height: 2px;
         transform: translateY(-50%);
     }
 
     &:after {
-        border-bottom: 2px solid $deep-blue;
-        border-right: 2px solid $deep-blue;
+        border-bottom: 2px solid $colour;
+        border-right: 2px solid $colour;
         transform: translateY(-50%) rotate(-45deg);
         width: $arrow-height;
     }
