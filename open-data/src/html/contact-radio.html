@@ -11,10 +11,11 @@
             ${require('../modules/header/html/content.html')}
 
             <div role="main">
-                <div id="content" class="container">    
+                <div id="content" class="container">
+
                     ${require('../modules/breadcrumbs/html/contact.html')}
 
-                    <div class="row">
+                    <div class="row wrapper">
                         <div class="primary span9">
                             <article class="module">
                                 <div class="module-content">
@@ -27,11 +28,7 @@
                             </article>
                         </div>
                         <div class="secondary span3">
-                            <div class="module module-narrow module-shallow">
-                                <div class="module-content">
-                                    ${require('../modules/sub-nav/html/contact.html')}
-                                </div>
-                            </div>
+                            ${require('../modules/sub-nav/html/contact.html')}
                         </div>
                     </div>
                 </div>
@@ -41,8 +38,9 @@
             ${require('../modules/footer/html/index.html')}
             <!--endnoindex-->   
 
-            ${require('../modules/01 Global/html/scripts.html')}
         </div>
+
+        ${require('../modules/01 Global/html/scripts.html')}
 
     </body>
 </html>

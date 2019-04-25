@@ -15,7 +15,7 @@
                     
                     ${require('../modules/breadcrumbs/html/content.html')}
 
-                    <div class="row">
+                    <div class="row wrapper">
                         <div class="primary span9">
                             <article class="module">
                                 <div class="module-content">
@@ -34,11 +34,7 @@
                         </div>
 
                         <div class="secondary span3">
-                            <div class="module module-narrow module-shallow">
-                                <div class="module-content">
-                                    ${require('../modules/social-aside/html/index.html')}
-                                </div>
-                            </div>
+                            ${require('../modules/social-aside/html/index.html')}
                         </div>
                     </div>
                 </div>
@@ -47,9 +43,9 @@
             <!--noindex-->
             ${require('../modules/footer/html/index.html')}
             <!--endnoindex-->   
-
-            ${require('../modules/01 Global/html/scripts.html')}
         </div>
+
+        ${require('../modules/01 Global/html/scripts.html')}
 
     </body>
 </html>
