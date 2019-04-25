@@ -536,26 +536,26 @@ h2 {
 /*
  * Mobile layout
  */
-#qg-primary-content .qg-related-links {
+#qg-primary-content .qg-links-list {
   background-color: #0c2e4c;
   margin-left: -25px;
   margin-right: -25px;
   padding: 1.875rem; }
 
-#qg-primary-content .qg-related-links__heading {
+#qg-primary-content .qg-links-list__heading {
   color: #fff;
   font-weight: 400;
   margin: 0 0 1.5625rem 0; }
 
-#qg-primary-content .qg-related-links__list {
+#qg-primary-content .qg-links-list__list {
   list-style: none;
   margin-bottom: 0;
   padding-left: 0; }
 
-#qg-primary-content .qg-related-links__item + .qg-related-links__item {
+#qg-primary-content .qg-links-list__item + .qg-links-list__item {
   margin-top: 1.25rem; }
 
-#qg-primary-content .qg-related-links__link {
+#qg-primary-content .qg-links-list__link {
   display: inline-block;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -564,12 +564,12 @@ h2 {
       -ms-flex-align: center;
           align-items: center; }
 
-#qg-primary-content a.qg-related-links__link:link,
-#qg-primary-content a.qg-related-links__link:visited {
+#qg-primary-content a.qg-links-list__link:link,
+#qg-primary-content a.qg-links-list__link:visited {
   color: #fff;
   text-decoration: none; }
 
-#qg-primary-content .qg-related-links__list-bullet {
+#qg-primary-content .qg-links-list__list-bullet {
   display: inline-block;
   -ms-flex-negative: 0;
       flex-shrink: 0;
@@ -577,7 +577,7 @@ h2 {
   position: relative;
   width: 0.875rem;
   margin-right: 0.9375rem; }
-  #qg-primary-content .qg-related-links__list-bullet:after, #qg-primary-content .qg-related-links__list-bullet:before {
+  #qg-primary-content .qg-links-list__list-bullet:after, #qg-primary-content .qg-links-list__list-bullet:before {
     content: "";
     display: block;
     height: 100%;
@@ -585,12 +585,12 @@ h2 {
     right: 0;
     top: 50%;
     width: 100%; }
-  #qg-primary-content .qg-related-links__list-bullet:before {
+  #qg-primary-content .qg-links-list__list-bullet:before {
     background-color: #fff;
     height: 2px;
     -webkit-transform: translateY(-50%);
             transform: translateY(-50%); }
-  #qg-primary-content .qg-related-links__list-bullet:after {
+  #qg-primary-content .qg-links-list__list-bullet:after {
     border-bottom: 2px solid #fff;
     border-right: 2px solid #fff;
     -webkit-transform: translateY(-50%) rotate(-45deg);
@@ -601,7 +601,7 @@ h2 {
  * Desktop layout
  */
 @media screen and (min-width: 992px) {
-  #qg-primary-content .qg-related-links {
+  #qg-primary-content .qg-links-list {
     margin-left: inherit;
     margin-right: inherit; } }
 

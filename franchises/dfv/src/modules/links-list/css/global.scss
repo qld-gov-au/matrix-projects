@@ -4,42 +4,42 @@
 
  #qg-primary-content {
     
-    .qg-related-links {
+    .qg-links-list {
         background-color: $dark-blue;
         margin-left: -$medium-spacing;
         margin-right: -$medium-spacing;
         padding: pxToRem(30);
     }
 
-    .qg-related-links__heading {
+    .qg-links-list__heading {
         color: #fff;
         font-weight: 400;
         margin: 0 0 pxToRem(25) 0;
     }
 
-    .qg-related-links__list {
+    .qg-links-list__list {
         list-style: none;
         margin-bottom: 0;
         padding-left: 0;
     }
 
-    .qg-related-links__item + .qg-related-links__item { 
+    .qg-links-list__item + .qg-links-list__item { 
         margin-top: pxToRem(20);
     }
     
-    .qg-related-links__link {
+    .qg-links-list__link {
         display: inline-block;
         display: flex;
         align-items: center;
     }
     
-    a.qg-related-links__link:link,
-    a.qg-related-links__link:visited {
+    a.qg-links-list__link:link,
+    a.qg-links-list__link:visited {
         color: #fff;
         text-decoration: none;
     }
 
-    .qg-related-links__list-bullet {
+    .qg-links-list__list-bullet {
 
         display: inline-block;
         flex-shrink: 0;
@@ -84,7 +84,7 @@
     
     #qg-primary-content {
 
-        .qg-related-links {
+        .qg-links-list {
             margin-left: inherit;
             margin-right: inherit;
         }
