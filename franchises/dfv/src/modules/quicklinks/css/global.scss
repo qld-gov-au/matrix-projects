@@ -55,33 +55,7 @@
 }
 
 .qg-quicklinks__prompt {
-    height: 11px;
-    position: relative;
-    width: 14px;
-
-    &:after,
-    &:before {
-        content: "";
-        display: block;
-        height: 100%;
-        position: absolute;
-        right: 0;
-        top: 50%;
-        width: 100%;
-    }
-
-    &:before {
-        background-color: $deep-blue;
-        height: 2px;
-        transform: translateY(-50%);
-    }
-
-    &:after {
-        border-bottom: 2px solid $deep-blue;
-        border-right: 2px solid $deep-blue;
-        transform: translateY(-50%) rotate(-45deg);
-        width: 11px;
-    }
+    @include css-arrow(14px, 11px);
 }
 
 

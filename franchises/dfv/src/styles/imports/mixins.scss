@@ -22,6 +22,36 @@
     padding-left: 0;
 }
 
+@mixin css-arrow($arrow-width, $arrow-height) {
+    height: $arrow-height;
+    position: relative;
+    width: $arrow-width;
+
+    &:after,
+    &:before {
+        content: "";
+        display: block;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        width: 100%;
+    }
+
+    &:before {
+        background-color: $deep-blue;
+        height: 2px;
+        transform: translateY(-50%);
+    }
+
+    &:after {
+        border-bottom: 2px solid $deep-blue;
+        border-right: 2px solid $deep-blue;
+        transform: translateY(-50%) rotate(-45deg);
+        width: $arrow-height;
+    }
+}
+
 
 // REM font sizing with pixel fall back
 // This technique will allow external font sizes to be set for html and respected
