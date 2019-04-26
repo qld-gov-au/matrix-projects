@@ -190,6 +190,6 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
         // Binds
         $('body').on('click', '.qg-search-filter__wrapper button[type="submit"]', qg_dfv.fn.handleSearchSubmit);
         $('body').on('click', '.qg-search-filter__wrapper button[type="reset"]', qg_dfv.fn.clearFilters);
-        $('body').on('click', '.qg-search-results__pagination .page-link', qg_dfv.fn.handleSearchPaginationClick)
+        $('body').on('click', '.qg-search-results__pagination a.page-link', qg_dfv.fn.handleSearchPaginationClick)
     });
 }());
