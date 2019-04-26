@@ -18,9 +18,7 @@
     }
 
     .qg-links-list__list {
-        list-style: none;
-        margin-bottom: 0;
-        padding-left: 0;
+        @include sq-list-reset();
     }
 
     .qg-links-list__item + .qg-links-list__item { 
@@ -28,8 +26,7 @@
     }
     
     .qg-links-list__link {
-        display: inline-block;
-        display: flex;
+        display: inline-flex;
         align-items: center;
     }
     
