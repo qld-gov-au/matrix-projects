@@ -1,5 +1,9 @@
 @mixin dfv-button() {
+    border-radius: 4px;
+    display: inline-block;
+    font-weight: 500;
     padding: 12px 20px;
+    text-decoration: none;
 }
 
 @mixin dfv-button-primary() {
@@ -7,7 +11,6 @@
     border-color: $deep-blue;
     background-color: $deep-blue;
     color: #fff;
-    font-weight: 500;
 }
 
 @mixin dfv-button-secondary() {
@@ -17,6 +20,62 @@
     color: $deep-blue;
     font-weight: 700;
     padding-left: 0;
+}
+
+@mixin dfv-button-tertiary() {
+    @include dfv-button();
+    border-color: $deep-yellow;
+    background-color: $deep-yellow;
+    color: $dark-blue;
+    font-weight: 700;
+}
+
+@mixin css-chevron($container-width, $chevron-size, $colour) {
+    display: inline-block;
+    position: relative;
+    width: $container-width;
+
+    &:after {
+        border-bottom: 2px solid $colour;
+        border-right: 2px solid $colour;
+        content: ' ';
+        height: $chevron-size;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        width: $chevron-size;
+    }
+}
+
+@mixin css-arrow($arrow-width, $arrow-height, $colour) {
+    height: $arrow-height;
+    position: relative;
+    width: $arrow-width;
+
+    &:after,
+    &:before {
+        content: "";
+        display: block;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        width: 100%;
+    }
+
+    &:before {
+        background-color: $colour;
+        height: 2px;
+        transform: translateY(-50%);
+    }
+
+    &:after {
+        border-bottom: 2px solid $colour;
+        border-right: 2px solid $colour;
+        transform: translateY(-50%) rotate(-45deg);
+        width: $arrow-height;
+    }
 }
 
 
