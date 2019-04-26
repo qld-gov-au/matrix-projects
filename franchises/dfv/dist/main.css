@@ -878,8 +878,6 @@ h2 {
 
 .qg-topics__more {
   display: inline-block;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
   position: relative;
   width: 25px; }
   .qg-topics__more:after {

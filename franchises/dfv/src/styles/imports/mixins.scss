@@ -22,6 +22,24 @@
     padding-left: 0;
 }
 
+@mixin css-chevron($container-width, $chevron-size, $colour) {
+    display: inline-block;
+    position: relative;
+    width: $container-width;
+
+    &:after {
+        border-bottom: 2px solid $colour;
+        border-right: 2px solid $colour;
+        content: ' ';
+        height: $chevron-size;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        width: $chevron-size;
+    }
+}
+
 @mixin css-arrow($arrow-width, $arrow-height, $colour) {
     height: $arrow-height;
     position: relative;
