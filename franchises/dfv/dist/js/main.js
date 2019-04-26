@@ -275,7 +275,8 @@ __webpack_require__.r(__webpack_exports__);
     $('.qg-search-filter__wrapper .filter__item').each(function (item_index, item) {
       var placeholder = $(item).find('label').text();
       $(item).find('select').select2({
-        'placeholder': placeholder
+        'placeholder': placeholder,
+        'width': '100%'
       });
     });
   }; // Get results with filters applied

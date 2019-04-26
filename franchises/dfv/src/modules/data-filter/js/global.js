@@ -66,7 +66,8 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
             var placeholder = $(item).find('label').text();
             
             $(item).find('select').select2({
-                'placeholder': placeholder
+                'placeholder': placeholder,
+                'width': '100%'
             });
         });
     };
