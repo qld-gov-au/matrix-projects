@@ -14,6 +14,10 @@ body {
     z-index: 1;
 }
 
+.show-desktop {
+    display: none;
+}
+
 
 /*
  * Tablet layout
@@ -33,5 +37,13 @@ body {
 @media screen and (min-width: $desktop){
     body {
         z-index: 3;
+    }
+
+    .show-mobile {
+        display: none;
+    }
+
+    .show-desktop {
+        display: block;
     }
 } 

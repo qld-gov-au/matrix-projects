@@ -183,8 +183,8 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
 
         if(isDevelopment()) {
             // Refresh grid for viewpoint change, as JS runs before styles are injected
-            var grid = document.querySelector('.qg-search-results__list');
-            salvattore.recreateColumns(grid);
+            console.log('rescanMediaQueries');
+            salvattore.rescanMediaQueries();
         }
 
         // Binds

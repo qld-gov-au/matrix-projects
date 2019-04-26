@@ -380,8 +380,8 @@ __webpack_require__.r(__webpack_exports__);
 
     if (Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* isDevelopment */ "c"])()) {
       // Refresh grid for viewpoint change, as JS runs before styles are injected
-      var grid = document.querySelector('.qg-search-results__list');
-      salvattore.recreateColumns(grid);
+      console.log('rescanMediaQueries');
+      salvattore.rescanMediaQueries();
     } // Binds
 
 
