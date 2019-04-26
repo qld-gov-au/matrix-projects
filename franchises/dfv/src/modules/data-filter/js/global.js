@@ -167,11 +167,10 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
     // Scroll to results area
     qg_dfv.fn.scrollToResults = function(results_container) {
         var scroll_to = results_container.position();
-
-        window.scrollTo({
-            'top': scroll_to['top'],
-            'behavior': 'smooth'
-        });
+        
+        $('html, body').animate({
+            scrollTop: scroll_to['top']
+        },  1000);
     };
     
     
