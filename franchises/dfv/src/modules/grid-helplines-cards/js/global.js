@@ -74,7 +74,7 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
 
     document.addEventListener("DOMContentLoaded", function() {
 
-        if(isDevelopment()) {  
+        if(isDevelopment()) {
             salvattore.rescanMediaQueries();
         }
 
