@@ -782,9 +782,6 @@ h2 {
   border-bottom: 1px solid #818181; }
 
 #qg-content #qg-primary-content .qg-topics__link {
-  text-decoration: none; }
-
-.qg-topics__link {
   color: #12578b;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -792,6 +789,9 @@ h2 {
   font-size: 18px;
   padding: 16px;
   text-decoration: none; }
+  #qg-content #qg-primary-content .qg-topics__link:hover {
+    color: #12578b;
+    text-decoration: underline; }
 
 .qg-topics__title {
   -webkit-box-flex: 1;
@@ -823,7 +823,7 @@ h2 {
 @media screen and (min-width: 992px) {
   .qg-topics__wrapper {
     display: inline-block; }
-  .qg-topics__link {
+  #qg-content #qg-primary-content .qg-topics__link {
     font-size: 21px; }
   .qg-topics__title {
     -webkit-box-flex: 1;

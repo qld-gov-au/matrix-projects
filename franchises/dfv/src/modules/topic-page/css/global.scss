@@ -11,15 +11,19 @@
 }
 
 #qg-content #qg-primary-content .qg-topics__link {
-    text-decoration: none;
-}
-
-.qg-topics__link {
     color: $deep-blue;
     display: flex;
     font-size: 18px;
     padding: $small-spacing;
     text-decoration: none;
+
+    &:hover {
+        color: $deep-blue;
+        text-decoration: underline;
+    }
+}
+
+.qg-topics__link {
 }
                 
 .qg-topics__title {
@@ -56,7 +60,7 @@
         display: inline-block;
     }
 
-    .qg-topics__link {
+    #qg-content #qg-primary-content .qg-topics__link {
         font-size: 21px;
     }
 
