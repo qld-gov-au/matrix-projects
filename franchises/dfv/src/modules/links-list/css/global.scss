@@ -1,18 +1,21 @@
 /*
+ * Global
+ */
+
+/*
  * Mobile layout
  */
 
  #qg-primary-content {
     
     .qg-links-list {
-        background-color: $dark-blue;
+        background-color: #ddecf1;
         margin-left: -$medium-spacing;
         margin-right: -$medium-spacing;
         padding: pxToRem(30);
     }
 
     .qg-links-list__heading {
-        color: #fff;
         font-weight: 400;
         margin: 0 0 pxToRem(25) 0;
     }
@@ -32,42 +35,18 @@
     
     a.qg-links-list__link:link,
     a.qg-links-list__link:visited {
-        color: #fff;
+        
         text-decoration: none;
+    }
+
+    a.qg-links-list__link:hover {
+        text-decoration: underline;
     }
 
     .qg-links-list__list-bullet {
 
-        display: inline-block;
-        flex-shrink: 0;
-        height: pxToRem(11);
-        position: relative;
-        width: pxToRem(14);
-        margin-right: pxToRem(15);
-
-        &:after,
-        &:before {
-            content: "";
-            display: block;
-            height: 100%;
-            position: absolute;
-            right: 0;
-            top: 50%;
-            width: 100%;
-        }
-
-        &:before {
-            background-color: #fff;
-            height: 2px;
-            transform: translateY(-50%);
-        }
-
-        &:after {
-            border-bottom: 2px solid #fff;
-            border-right: 2px solid #fff;
-            transform: translateY(-50%) rotate(-45deg);
-            width: 11px;
-        }
+    
+        @include css-chevron($medium-spacing, 8px, $deep-blue);
 
     }
     
@@ -88,4 +67,38 @@
 
     }
 
+}
+
+
+/*
+ * DFV Specific
+ */
+
+ #qg-primary-content {
+    
+    .qg-links-list {
+        background-color: $dark-blue;
+    }
+
+    .qg-links-list__heading {
+        color: #fff;
+    }
+        
+    a.qg-links-list__link:link,
+    a.qg-links-list__link:visited {
+        color: #fff;
+    }
+
+    .qg-links-list__list-bullet {
+
+        @include css-arrow(14px, 11px, #fff);
+        
+        margin-right: pxToRem(10);
+
+        &:after {
+            left: auto;
+        }
+
+    }
+    
 }

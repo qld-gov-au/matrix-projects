@@ -596,16 +596,18 @@ h2 {
         flex-shrink: 0; } }
 
 /*
+ * Global
+ */
+/*
  * Mobile layout
  */
 #qg-primary-content .qg-links-list {
-  background-color: #0c2e4c;
+  background-color: #ddecf1;
   margin-left: -25px;
   margin-right: -25px;
   padding: 1.875rem; }
 
 #qg-primary-content .qg-links-list__heading {
-  color: #fff;
   font-weight: 400;
   margin: 0 0 1.5625rem 0; }
 
@@ -627,17 +629,53 @@ h2 {
 
 #qg-primary-content a.qg-links-list__link:link,
 #qg-primary-content a.qg-links-list__link:visited {
-  color: #fff;
   text-decoration: none; }
+
+#qg-primary-content a.qg-links-list__link:hover {
+  text-decoration: underline; }
 
 #qg-primary-content .qg-links-list__list-bullet {
   display: inline-block;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
-  height: 0.6875rem;
   position: relative;
-  width: 0.875rem;
-  margin-right: 0.9375rem; }
+  width: 25px; }
+  #qg-primary-content .qg-links-list__list-bullet:after {
+    border-bottom: 2px solid #12578b;
+    border-right: 2px solid #12578b;
+    content: ' ';
+    height: 8px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+            transform: translate(-50%, -50%) rotate(-45deg);
+    width: 8px; }
+
+/*
+ * Desktop layout
+ */
+@media screen and (min-width: 992px) {
+  #qg-primary-content .qg-links-list {
+    margin-left: inherit;
+    margin-right: inherit; } }
+
+/*
+ * DFV Specific
+ */
+#qg-primary-content .qg-links-list {
+  background-color: #0c2e4c; }
+
+#qg-primary-content .qg-links-list__heading {
+  color: #fff; }
+
+#qg-primary-content a.qg-links-list__link:link,
+#qg-primary-content a.qg-links-list__link:visited {
+  color: #fff; }
+
+#qg-primary-content .qg-links-list__list-bullet {
+  height: 11px;
+  position: relative;
+  width: 14px;
+  margin-right: 0.625rem; }
   #qg-primary-content .qg-links-list__list-bullet:after, #qg-primary-content .qg-links-list__list-bullet:before {
     content: "";
     display: block;
@@ -657,14 +695,8 @@ h2 {
     -webkit-transform: translateY(-50%) rotate(-45deg);
             transform: translateY(-50%) rotate(-45deg);
     width: 11px; }
-
-/*
- * Desktop layout
- */
-@media screen and (min-width: 992px) {
-  #qg-primary-content .qg-links-list {
-    margin-left: inherit;
-    margin-right: inherit; } }
+  #qg-primary-content .qg-links-list__list-bullet:after {
+    left: auto; }
 
 /*
  * Mobile layout
