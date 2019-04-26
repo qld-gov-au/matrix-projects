@@ -22,6 +22,14 @@
     padding-left: 0;
 }
 
+@mixin dfv-button-tertiary() {
+    @include dfv-button();
+    border-color: $deep-yellow;
+    background-color: $deep-yellow;
+    color: $dark-blue;
+    font-weight: 700;
+}
+
 
 // REM font sizing with pixel fall back
 // This technique will allow external font sizes to be set for html and respected
