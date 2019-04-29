@@ -83,7 +83,8 @@
         &--twitter {
             .tiles__content {
                 height: 300px;
-                overflow: scroll;
+                overflow-y: scroll;
+                overflow-x: hidden;
             }
         }
     }

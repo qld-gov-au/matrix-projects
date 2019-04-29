@@ -8,6 +8,8 @@
     background-color: $dark-blue;
     padding: pxToRem(25) pxToRem($padding) pxToRem(35) pxToRem($padding);
     background-image: none !important;
+    display: flex;
+    justify-content: center;
 
     > .container {
         width: 100%;
@@ -108,9 +110,6 @@
     .site-footer {
 
         padding: pxToRem(45) pxToRem(25) pxToRem(45) pxToRem(25);
-
-        display: flex;
-        justify-content: center;
 
         > .container {
             max-width: pxToRem(940);
