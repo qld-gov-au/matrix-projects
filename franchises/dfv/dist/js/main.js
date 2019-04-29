@@ -274,9 +274,13 @@ __webpack_require__.r(__webpack_exports__);
   qg_dfv.fn.initFilterSelects = function () {
     $('.qg-search-filter__wrapper .filter__item').each(function (item_index, item) {
       var placeholder = $(item).find('label').text();
-      $(item).find('select').select2({
+      var select_inputs = $(item).find('select');
+      select_inputs.select2({
         'placeholder': placeholder,
         'width': '100%'
+      });
+      select_inputs.on('select2:open', function (e) {
+        $('.select2-search input').prop('focus', false);
       });
     });
   }; // Get results with filters applied
