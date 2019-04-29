@@ -626,13 +626,12 @@ h2 {
 .qg-quick-exit__tips {
   display: none; }
 
-.qg-quick-exit__input {
-  display: none; }
-  .qg-quick-exit__input:checked + .qg-tooltip__parent .qg-tooltip__wrapper {
-    display: block; }
-  .qg-quick-exit__input:checked + .qg-quick-exit__label {
-    color: #fff;
-    font-weight: 500; }
+.qg-quick-exit__input:checked + .qg-tooltip__parent .qg-tooltip__wrapper {
+  display: block; }
+
+.qg-quick-exit__input:checked + .qg-quick-exit__label {
+  color: #fff;
+  font-weight: 500; }
 
 .qg-tooltip__parent {
   position: relative; }
