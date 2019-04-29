@@ -9,6 +9,11 @@
     padding: pxToRem(25) pxToRem($padding) pxToRem(35) pxToRem($padding);
     background-image: none !important;
 
+    > .container {
+        width: 100%;
+        margin: 0;
+    }
+
     ul {
         @include sq-list-reset;
         display: flex;
@@ -88,7 +93,9 @@
 
 @media screen and (min-width: $tablet){
     .site-footer {
-
+        > .container {
+            max-width: pxToRem(724);
+        }
     }
 }
 
@@ -104,6 +111,10 @@
 
         display: flex;
         justify-content: center;
+
+        > .container {
+            max-width: pxToRem(940);
+        }
 
         &__signoff {
             display: none;

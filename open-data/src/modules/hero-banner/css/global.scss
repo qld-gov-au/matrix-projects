@@ -176,7 +176,7 @@
         }
 
         &__search {
-            max-width: pxToRem(490);
+            max-width: 100%;
             margin: 0 0 pxToRem(40) 0;
             padding: pxToRem(15) pxToRem(15);
         }
@@ -209,7 +209,6 @@
         }
 
         &__search {
-            max-width: 100%;
             width: pxToRem(860);
             margin: 0 0 pxToRem(40) 0;
             padding: pxToRem(20) pxToRem(20);

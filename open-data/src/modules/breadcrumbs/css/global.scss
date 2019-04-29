@@ -23,16 +23,16 @@
             font-size: pxToRem(16);
             line-height: pxToRem(19);
             font-weight: 600;
-            display: none;
             width: auto;
             position: relative;
+            display: inline-block;
 
             &.home {
 
-                display: block;
+                display: inline-block;
+                width: auto;
 
-                &:before,
-                &:after {
+                &:before {
                     display: none;
                 }
 
@@ -108,7 +108,6 @@
             align-items: center;
 
             li {
-                display: block;
 
                 &:first-child {
 

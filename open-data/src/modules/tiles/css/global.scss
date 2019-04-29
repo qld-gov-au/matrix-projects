@@ -4,7 +4,7 @@
 
 .tiles {
 
-    padding: pxToRem(40) 0 0 0;
+    padding: pxToRem(40) pxToRem(20) 0 pxToRem(20);
     overflow: hidden;
     @include sq-border-radius(4px);
 
@@ -14,7 +14,7 @@
         border: 1px solid $lightest-grey;
         overflow: hidden;
         @include sq-border-radius(4px);
-        padding: 0 0 pxToRem(25) 0;
+        padding: 0 0 pxToRem(16) 0;
 
         &--bg-title {
 
@@ -24,7 +24,18 @@
                 margin-top: 0;
                 @include font-smoothing;
                 font-weight: 700;
-                padding-bottom: pxToRem(12)
+                padding-bottom: pxToRem(12);
+                padding-top: pxToRem(12);
+
+                a {
+                    color: $white;
+                    text-decoration: none;
+
+                    &:hover,
+                    &:focus {
+                        text-decoration: underline;
+                    }
+                }
             }
 
             .tiles__content {
@@ -90,8 +101,20 @@
         font-weight: 700;
         font-size: pxToRem(20);
         line-height: pxToRem(22);
-        margin: pxToRem(15) 0 0 0;
-        padding: pxToRem(10) pxToRem(20) 0 pxToRem(20);
+        margin: pxToRem(16) 0 0 0;
+        padding: 0 pxToRem(16) 0 pxToRem(16);
+
+        a {
+            color: $black;
+            text-decoration: none;
+
+            &:hover,
+            &:focus {
+                text-decoration: underline;
+            }
+        }
+
+
     }
 
     &__sub-title {
@@ -100,7 +123,7 @@
         color: $lighter-grey;
         margin: pxToRem(8) 0 0 0;
         text-transform: uppercase;
-        padding: 0 pxToRem(20) 0 pxToRem(20);
+        padding: 0 pxToRem(16) 0 pxToRem(16);
 
         a {
             color: $lighter-grey;
@@ -115,25 +138,30 @@
 
     &__content {
         
-        margin: pxToRem(15) 0 0 0;
-        padding: 0 pxToRem(20) 0 pxToRem(20);
+        margin: pxToRem(16) 0 0 0;
+        padding: 0 pxToRem(16) pxToRem(16) pxToRem(16);
         
         * {
             color: $black;
             font-size: pxToRem(16);
             line-height: pxToRem(21);
         }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
     }
 
     &__link {
-        padding: pxToRem(5) pxToRem(20) 0 pxToRem(20);
+        padding: 0 pxToRem(20) 0 pxToRem(20);
         a {
-            color: $light-grey-2;
+            color: $medium-blue;
             text-decoration: underline;
 
             &:focus,
             &:hover {
                 text-decoration: none;
+                color: $light-blue;
             }
         }
     }
@@ -156,9 +184,16 @@
         flex-flow: row wrap;
         width: 100%;
 
+        
+
         &__item {
             width: 31.5%;
-            // max-width: pxToRem(300);
+
+            &--twitter {
+                .tiles__content {
+                    height: pxToRem(320);
+                }
+            }
         }
     }
 }
@@ -171,6 +206,14 @@
 @media screen and (min-width: $desktop){
     .tiles {
 
-        
+        &__item {
+            width: pxToRem(300);
+
+            &--twitter {
+                .tiles__content {
+                    height: pxToRem(300);
+                }
+            }
+        }
     }
 }
