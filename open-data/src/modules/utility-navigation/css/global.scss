@@ -54,32 +54,11 @@
  * Tablet layout
  */
 
-@media screen and (min-width: $tablet){
-    header.account-masthead {
-        
-    }
-}
+@media screen and (min-width: $tablet){}
 
 
 /*
  * Desktop layout
  */
 
-@media screen and (min-width: $desktop){
-    
-    header.account-masthead {
-
-        nav.account.not-authed ul.unstyled {
-    
-            li {
-                margin: 0 pxToRem(22) 0 0;
-
-                &:last-child {
-                    margin-right: 0;
-                }
-            }
-        }
-
-    }
-
-}
+@media screen and (min-width: $desktop){}
