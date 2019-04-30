@@ -26,15 +26,6 @@
         margin-bottom: 0;
     }
 
-    .card-prompt {
-
-        @include css-arrow(16px, 13px, $deep-blue);
-
-        display: none;
-        margin-left:pxToRem(5);
-        top: pxToRem(10);
-    }
-
     .card-top {
         margin-bottom: pxToRem(5);
     }
@@ -63,7 +54,9 @@
         }
 
         .card-prompt {
-            display: block;
+            @include css-arrow(16px, 13px, $deep-blue);
+            margin-left:pxToRem(5);
+            top: pxToRem(10);
             flex-shrink: 0;
         }
 

@@ -556,33 +556,6 @@ h2 {
 #qg-primary-content .qg-dfv-cards--type-top-prompt .card-title {
   margin-bottom: 0; }
 
-#qg-primary-content .qg-dfv-cards--type-top-prompt .card-prompt {
-  height: 13px;
-  position: relative;
-  width: 16px;
-  display: none;
-  margin-left: 0.3125rem;
-  top: 0.625rem; }
-  #qg-primary-content .qg-dfv-cards--type-top-prompt .card-prompt:after, #qg-primary-content .qg-dfv-cards--type-top-prompt .card-prompt:before {
-    content: "";
-    display: block;
-    height: 100%;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    width: 100%; }
-  #qg-primary-content .qg-dfv-cards--type-top-prompt .card-prompt:before {
-    background-color: #12578b;
-    height: 2px;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%); }
-  #qg-primary-content .qg-dfv-cards--type-top-prompt .card-prompt:after {
-    border-bottom: 2px solid #12578b;
-    border-right: 2px solid #12578b;
-    -webkit-transform: translateY(-50%) rotate(-45deg);
-            transform: translateY(-50%) rotate(-45deg);
-    width: 13px; }
-
 #qg-primary-content .qg-dfv-cards--type-top-prompt .card-top {
   margin-bottom: 0.3125rem; }
 
@@ -602,9 +575,32 @@ h2 {
         -ms-flex-positive: 1;
             flex-grow: 1; }
   #qg-primary-content .qg-dfv-cards--type-top-prompt .card-prompt {
-    display: block;
+    height: 13px;
+    position: relative;
+    width: 16px;
+    margin-left: 0.3125rem;
+    top: 0.625rem;
     -ms-flex-negative: 0;
-        flex-shrink: 0; } }
+        flex-shrink: 0; }
+    #qg-primary-content .qg-dfv-cards--type-top-prompt .card-prompt:after, #qg-primary-content .qg-dfv-cards--type-top-prompt .card-prompt:before {
+      content: "";
+      display: block;
+      height: 100%;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 100%; }
+    #qg-primary-content .qg-dfv-cards--type-top-prompt .card-prompt:before {
+      background-color: #12578b;
+      height: 2px;
+      -webkit-transform: translateY(-50%);
+              transform: translateY(-50%); }
+    #qg-primary-content .qg-dfv-cards--type-top-prompt .card-prompt:after {
+      border-bottom: 2px solid #12578b;
+      border-right: 2px solid #12578b;
+      -webkit-transform: translateY(-50%) rotate(-45deg);
+              transform: translateY(-50%) rotate(-45deg);
+      width: 13px; } }
 
 /*
  * Mobile layout
