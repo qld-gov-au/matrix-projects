@@ -69,6 +69,7 @@
                     a {
                         text-decoration: underline;
                         @include sq-border-radius(0);
+                        @include sq-box-shadow(none);
                     }
                 }
 
