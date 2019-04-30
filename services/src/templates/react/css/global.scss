@@ -1,0 +1,29 @@
+/*
+ * Mobile layout
+ */
+
+.mycomponent__wrapper {
+
+}
+
+
+/*
+ * Tablet layout
+ */
+
+@media screen and (min-width: $tablet){
+    .mycomponent__wrapper {
+
+    }
+}
+
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+    .mycomponent__wrapper {
+        
+    }
+}
