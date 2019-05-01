@@ -193,6 +193,10 @@ body {
 .show-desktop {
   display: none; }
 
+:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color; }
+
 /*
  * Tablet layout
  */
@@ -737,6 +741,10 @@ h2 {
 .qg-quick-exit__tips {
   display: none; }
 
+.qg-quick-exit__input:focus + .qg-quick-exit__label {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color; }
+
 .qg-quick-exit__input:checked + .qg-tooltip__parent .qg-tooltip__wrapper {
   display: block; }
 
@@ -750,8 +758,8 @@ h2 {
 .qg-tooltip__wrapper {
   background-color: #ffd200;
   bottom: 50px;
-  -webkit-box-shadow: 0px 0 8px 4px #8a8a8a;
-          box-shadow: 0px 0 8px 4px #8a8a8a;
+  -webkit-box-shadow: 0px 0 8px 0 #8a8a8a;
+          box-shadow: 0px 0 8px 0 #8a8a8a;
   color: #000;
   display: none;
   font-weight: 500;
@@ -763,8 +771,6 @@ h2 {
     border-right: 14px solid transparent;
     border-top: 14px solid transparent;
     bottom: -14px;
-    -webkit-box-shadow: -4px 4px 4px 0 #8a8a8a;
-            box-shadow: -4px 4px 4px 0 #8a8a8a;
     content: ' ';
     position: absolute;
     left: 25px;
@@ -831,7 +837,7 @@ h2 {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex; }
-    .qg-quick-exit__tip-link:hover {
+    .qg-quick-exit__tip-link:hover, .qg-quick-exit__tip-link:focus, .qg-quick-exit__tip-link:active {
       color: #fff;
       text-decoration: none; }
     .qg-quick-exit__tip-link .fa {
@@ -845,8 +851,6 @@ h2 {
             flex-grow: 0; }
   .qg-quick-exit__item {
     margin-left: 25px; }
-  .qg-tooltip__parent:hover .qg-tooltip__wrapper {
-    display: block; }
   .qg-tooltip__wrapper {
     bottom: auto;
     top: 40px;
@@ -857,8 +861,6 @@ h2 {
       border-right: 8px solid transparent;
       border-top: 8px solid transparent;
       bottom: auto;
-      -webkit-box-shadow: -4px 4px 4px 0 #505050;
-              box-shadow: -4px 4px 4px 0 #505050;
       left: 25px;
       top: -8px;
       -webkit-transform: rotate(135deg);
