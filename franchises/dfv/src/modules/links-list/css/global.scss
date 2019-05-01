@@ -17,7 +17,7 @@
 
     .qg-links-list__heading {
         font-weight: 400;
-        margin: 0 0 pxToRem(25) 0;
+        margin: 0 0 20px 0;
     }
 
     .qg-links-list__list {
@@ -61,6 +61,7 @@
     #qg-primary-content {
 
         .qg-links-list {
+            font-size: 17px;
             margin-left: inherit;
             margin-right: inherit;
         }
@@ -93,7 +94,7 @@
 
         @include css-arrow(14px, 11px, #fff);
         
-        margin-right: pxToRem(10);
+        margin-right: pxToRem(14);
 
         &:after {
             left: auto;

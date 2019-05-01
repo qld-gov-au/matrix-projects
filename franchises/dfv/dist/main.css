@@ -609,7 +609,7 @@ h2 {
 
 #qg-primary-content .qg-links-list__heading {
   font-weight: 400;
-  margin: 0 0 1.5625rem 0; }
+  margin: 0 0 20px 0; }
 
 #qg-primary-content .qg-links-list__list {
   margin: 0;
@@ -655,6 +655,7 @@ h2 {
  */
 @media screen and (min-width: 992px) {
   #qg-primary-content .qg-links-list {
+    font-size: 17px;
     margin-left: inherit;
     margin-right: inherit; } }
 
@@ -675,7 +676,7 @@ h2 {
   height: 11px;
   position: relative;
   width: 14px;
-  margin-right: 0.625rem; }
+  margin-right: 0.875rem; }
   #qg-primary-content .qg-links-list__list-bullet:after, #qg-primary-content .qg-links-list__list-bullet:before {
     content: "";
     display: block;
