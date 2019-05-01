@@ -83,13 +83,12 @@ h2 {
  */
 
 @media screen and (min-width: $desktop){
-
+    #qg-three-col,
     #qg-two-col-aside.wide {
         #qg-primary-content {
             flex: 0;
             flex-grow: 1;
             margin-top: $large-spacing;
-            max-width: 100%;
         }
 
         #qg-secondary-content {
@@ -97,6 +96,12 @@ h2 {
             margin-top: $large-spacing;
             padding-left: $large-spacing;
             max-width: 280px;
+        }
+    }
+
+    #qg-two-col-aside.wide {
+        #qg-primary-content {
+            max-width: 100%;
         }
     }
     
