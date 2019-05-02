@@ -127,6 +127,10 @@
 
     .dfv-resource-nav__item {
         border-bottom: 1px solid $hard-grey;
+
+        &.current {
+            border-color: #fff;
+        }
     }
 
     .dfv-resource-nav__link {
@@ -139,7 +143,6 @@
         &:hover,
         &:focus {
             background-color: $dark-blue;
-            border-color: #fff;
             color: #fff;
             text-decoration: none;
 
