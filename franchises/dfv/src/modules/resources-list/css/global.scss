@@ -125,15 +125,8 @@
         display: block;
     }
 
-    .dfv-resource-nav__item {
-        border-bottom: 1px solid $hard-grey;
-
-        &.current {
-            border-color: #fff;
-        }
-    }
-
     .dfv-resource-nav__link {
+        border-bottom: 1px solid $hard-grey;
         color: $dark-grey;
         display: flex;
         padding-left: $medium-spacing;
@@ -143,6 +136,7 @@
         &:hover,
         &:focus {
             background-color: $dark-blue;
+            border-color: #fff;
             color: #fff;
             text-decoration: none;
 

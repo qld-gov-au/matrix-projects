@@ -1067,11 +1067,8 @@ h2 {
     display: none; }
   .dfv-resource-nav__list {
     display: block; }
-  .dfv-resource-nav__item {
-    border-bottom: 1px solid #7e7e7e; }
-    .dfv-resource-nav__item.current {
-      border-color: #fff; }
   .dfv-resource-nav__link {
+    border-bottom: 1px solid #7e7e7e;
     color: #505050;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1080,6 +1077,7 @@ h2 {
     padding-right: 8px; }
     .dfv-resource-nav__item.current .dfv-resource-nav__link, .dfv-resource-nav__link:hover, .dfv-resource-nav__link:focus {
       background-color: #0c2e4c;
+      border-color: #fff;
       color: #fff;
       text-decoration: none; }
       .dfv-resource-nav__item.current .dfv-resource-nav__link .dfv-resource-nav__more:after, .dfv-resource-nav__link:hover .dfv-resource-nav__more:after, .dfv-resource-nav__link:focus .dfv-resource-nav__more:after {
