@@ -89,6 +89,7 @@ h2 {
             flex: 0;
             flex-grow: 1;
             margin-top: $large-spacing;
+            max-width: 100%;
         }
 
         #qg-secondary-content {
@@ -99,9 +100,10 @@ h2 {
         }
     }
 
-    #qg-two-col-aside.wide {
-        #qg-primary-content {
-            max-width: 100%;
+    #qg-three-col {
+        #qg-primary-content,
+        #qg-secondary-content {
+            left: 0;
         }
     }
     

@@ -2,62 +2,94 @@
  * Mobile layout
  */
 
-.qg-quicklinks__wrapper {
-    border-top: 4px solid $light-blue;
+.dfv-resource-nav__wrapper {
+    border-bottom: 2px solid $hard-grey;
+    border-top: 2px solid $hard-grey;
+    margin: $large-spacing $small-spacing 80px $small-spacing;
+    order: 1;
     width: 100%;
 }
 
-.qg-quicklinks__list {
+.dfv-resource-nav {
+    h2 {
+        margin: 0;
+        padding: 12px $small-spacing;
+    }
+}
+
+.dfv-resource-nav__content {
+    position: relative;
+}
+
+.dfv-resource-nav__list {
     @include sq-list-reset();
+    display: none;
 }
 
-.qg-quicklinks__item {
-    &.qg-quicklink--resource {
-        background-color: $ice-blue;
+.dfv-resource-nav__link {
+    display: block;
+    padding: $small-spacing;
+}
+
+#dfv-resource-nav__more-input {
+    & + label {
+        border-top: 1px solid $hard-grey;
+        color: $deep-blue;
+        display: flex;
+        font-weight: 500;
+        margin: 0;
+        padding: $small-spacing;
+
+        .dfv-resource-nav__more-text {
+            flex-grow: 1;
+            padding-right: 40px;
+        }
+
+        .dfv-resource-nav__more-chevron {
+            @include css-chevron($small-spacing, 8px, $deep-blue);
+
+            &:after {
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+        }
+    }
+
+    &:checked {
+        & + label {
+            background-color: $dark-blue;
+            color: #fff;
+
+            .dfv-resource-nav__more-chevron {
+                &:after {
+                    border-color: #fff;
+                    transform: translate(-50%, -50%) rotate(-135deg);
+                }
+            }
+        }
+
+        & ~ .dfv-resource-nav__list {
+            border: 1px solid $dark-blue;
+            display: block;
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            z-index: 5;
+
+            .dfv-resource-nav__link {
+                background-color: $dark-blue;
+                color: #fff;
+
+                &:hover,
+                &:focus {
+                    background-color: #fff;
+                    color: $dark-blue;
+                    font-weight: 700;
+                    text-decoration: none;
+                }
+            }
+        }
     }
 }
-
-.qg-quicklink {
-    padding: 0 $medium-spacing;
-
-    a {
-        font-weight: 700;
-    }
-
-    p {
-        margin: 12px 0;
-    }
-}
-
-.qg-quicklinks__link {
-    align-items: center;
-    border-bottom: 1px solid $light-green;
-    display: flex;
-    padding: 12px 0;
-
-    .qg-quicklinks__item:last-child & {
-        border-bottom: none;
-    }
-}
-
-.qg-quicklinks__icon {
-    margin-right: 20px;
-    width: 28px;
-
-    .fa {
-        font-size: 28px;
-        padding: 2px;
-    }
-}
-
-.qg-quicklinks__title {
-    flex-grow: 1;
-}
-
-.qg-quicklinks__prompt {
-    @include css-arrow(14px, 11px, $deep-blue);
-}
-
 
 
 /*
@@ -65,7 +97,64 @@
  */
 
 @media screen and (min-width: $desktop){
-    .qg-quicklinks__wrapper {
+    .dfv-resource-nav__wrapper {
+        border: none;
+        order: 0;
+        padding-left: 50px;
+        padding-right: 20px;
+        width: auto;
+    }
+
+    .dfv-resource-nav {
+        border-top: 1px solid $hard-grey;
+        width: 250px;
+
+        h2 {
+            font-size: 22px;
+            font-weight: 700;
+            padding-left: $medium-spacing;
+        }
+    }
+
+    #dfv-resource-nav__more-input + label {
         display: none;
     }
+
+    .dfv-resource-nav__list {
+        display: block;
+    }
+
+    .dfv-resource-nav__item {
+        border-bottom: 1px solid $hard-grey;
+    }
+
+    .dfv-resource-nav__link {
+        color: $dark-grey;
+        display: flex;
+        padding-left: $medium-spacing;
+        padding-right: 8px;
+
+        .dfv-resource-nav__item.current &,
+        &:hover,
+        &:focus {
+            background-color: $dark-blue;
+            color: #fff;
+            text-decoration: none;
+
+            .dfv-resource-nav__more:after {
+                border-color: #fff;
+            }
+        }
+    }
+
+    .dfv-resource-nav__title {
+        padding-right: $small-spacing;
+    }
+
+    .dfv-resource-nav__more {
+        @include css-chevron($medium-spacing, 8px, $hard-grey);
+        flex-shrink: 0;
+    }
+
+    
 }
