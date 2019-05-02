@@ -106,6 +106,7 @@
     }
 
     .dfv-resource-nav__wrapper {
+        border-bottom: none;
         border-top: 1px solid $hard-grey;
         width: 250px;
 
@@ -114,10 +115,6 @@
             font-weight: 700;
             padding-left: $medium-spacing;
         }
-    }
-
-    .dfv-resource-nav {
-        border: none;
     }
 
     #dfv-resource-nav__more-input + label {
