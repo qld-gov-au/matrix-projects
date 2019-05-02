@@ -2,22 +2,23 @@
  * Mobile layout
  */
 
-.dfv-resource-nav__wrapper {
-    border-bottom: 2px solid $hard-grey;
-    border-top: 2px solid $hard-grey;
-    margin: $large-spacing $small-spacing 80px $small-spacing;
+.dfv-navigation-content {
     order: 1;
     width: 100%;
 }
 
-.dfv-resource-nav {
+.dfv-resource-nav__wrapper {
+    border-bottom: 2px solid $hard-grey;
+    border-top: 2px solid $hard-grey;
+    margin: $large-spacing $small-spacing 80px $small-spacing;
+
     h2 {
         margin: 0;
         padding: 12px $small-spacing;
     }
 }
 
-.dfv-resource-nav__content {
+.dfv-resource-nav {
     position: relative;
 }
 
@@ -97,15 +98,14 @@
  */
 
 @media screen and (min-width: $desktop){
-    .dfv-resource-nav__wrapper {
-        border: none;
+    .dfv-navigation-content {
         order: 0;
         padding-left: 50px;
         padding-right: 20px;
         width: auto;
     }
 
-    .dfv-resource-nav {
+    .dfv-resource-nav__wrapper {
         border-top: 1px solid $hard-grey;
         width: 250px;
 
@@ -114,6 +114,10 @@
             font-weight: 700;
             padding-left: $medium-spacing;
         }
+    }
+
+    .dfv-resource-nav {
+        border: none;
     }
 
     #dfv-resource-nav__more-input + label {
