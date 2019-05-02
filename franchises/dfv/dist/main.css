@@ -1078,6 +1078,7 @@ h2 {
     padding-right: 8px; }
     .dfv-resource-nav__item.current .dfv-resource-nav__link, .dfv-resource-nav__link:hover, .dfv-resource-nav__link:focus {
       background-color: #0c2e4c;
+      border-color: #fff;
       color: #fff;
       text-decoration: none; }
       .dfv-resource-nav__item.current .dfv-resource-nav__link .dfv-resource-nav__more:after, .dfv-resource-nav__link:hover .dfv-resource-nav__more:after, .dfv-resource-nav__link:focus .dfv-resource-nav__more:after {
