@@ -1082,6 +1082,9 @@ h2 {
       .dfv-resource-nav__item.current .dfv-resource-nav__link .dfv-resource-nav__more:after, .dfv-resource-nav__link:hover .dfv-resource-nav__more:after, .dfv-resource-nav__link:focus .dfv-resource-nav__more:after {
         border-color: #fff; }
   .dfv-resource-nav__title {
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
     padding-right: 16px; }
   .dfv-resource-nav__more {
     display: inline-block;
