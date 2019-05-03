@@ -97,6 +97,12 @@
  * Desktop layout
  */
 
+@mixin resource-nav-item-alt-state() {
+    background-color: $dark-blue;
+    color: #fff;
+    font-weight: 500;
+}
+
 @media screen and (min-width: $desktop){
     .dfv-navigation-content {
         order: 0;
@@ -117,8 +123,33 @@
         }
     }
 
-    #dfv-resource-nav__more-input + label {
-        display: none;
+    #dfv-resource-nav__more-input {
+        & + label {
+            display: none;
+        }
+
+        &:checked {
+            & ~ .dfv-resource-nav__list {
+                border: none;
+                position: relative;
+
+                .dfv-resource-nav__link {
+                    background-color: #fff;
+                    color: $dark-blue;
+
+                    &:hover,
+                    &:focus {
+                        @include resource-nav-item-alt-state();
+                    }
+                }
+
+                .dfv-resource-nav__item.current {
+                    .dfv-resource-nav__link {
+                        @include resource-nav-item-alt-state();
+                    }
+                }
+            }
+        }
     }
 
     .dfv-resource-nav__list {
@@ -135,9 +166,7 @@
         .dfv-resource-nav__item.current &,
         &:hover,
         &:focus {
-            background-color: $dark-blue;
-            border-color: #fff;
-            color: #fff;
+            @include resource-nav-item-alt-state();
             text-decoration: none;
 
             .dfv-resource-nav__more:after {
