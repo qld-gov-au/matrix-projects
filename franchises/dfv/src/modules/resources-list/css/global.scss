@@ -99,6 +99,7 @@
 
 @mixin resource-nav-item-alt-state() {
     background-color: $dark-blue;
+    border-color: #fff;
     color: #fff;
     font-weight: 500;
 }
