@@ -106,15 +106,17 @@
     display: flex;
     font-size: 18px;
 
-    &[target="_blank"]:after {
-        display: none;
-    }
-
     &:active,
     &:hover,
     &:focus,
     &:visited {
         color: $deep-blue;
+    }
+}
+
+body:not([data-accessibility=false]):not([data-access-new-window=false]) {
+    #qg-content #qg-primary-content a.dfv-resources__link[target=_blank]:after {
+        display: none;
     }
 }
 
