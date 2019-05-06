@@ -1062,6 +1062,8 @@ h2 {
   display: -ms-flexbox;
   display: flex;
   font-size: 18px; }
+  #qg-primary-content a.dfv-resources__link[target="_blank"]:after {
+    display: none; }
   #qg-primary-content a.dfv-resources__link:active, #qg-primary-content a.dfv-resources__link:hover, #qg-primary-content a.dfv-resources__link:focus, #qg-primary-content a.dfv-resources__link:visited {
     color: #12578b; }
 

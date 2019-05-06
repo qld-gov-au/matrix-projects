@@ -106,6 +106,10 @@
     display: flex;
     font-size: 18px;
 
+    &[target="_blank"]:after {
+        display: none;
+    }
+
     &:active,
     &:hover,
     &:focus,
