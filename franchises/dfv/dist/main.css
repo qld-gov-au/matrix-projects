@@ -297,7 +297,8 @@ body {
   display: none; }
 
 h1, h2 {
-  color: #0c2e4c; }
+  color: #0c2e4c;
+  font-weight: 700; }
 
 h1 {
   font-size: 30px; }
@@ -1044,6 +1045,67 @@ h2 {
       font-weight: 700;
       text-decoration: none; }
 
+.dfv-resources__list {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+.dfv-resources__item {
+  margin-bottom: 32px; }
+
+#qg-primary-content a.dfv-resources__link {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #12578b;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 18px; }
+  #qg-primary-content a.dfv-resources__link:active, #qg-primary-content a.dfv-resources__link:hover, #qg-primary-content a.dfv-resources__link:focus, #qg-primary-content a.dfv-resources__link:visited {
+    color: #12578b; }
+
+.dfv-resources__title {
+  display: inline-block;
+  margin-right: 8px; }
+
+.dfv-resources__more {
+  height: 10px;
+  position: relative;
+  width: 14px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0; }
+  .dfv-resources__more:after, .dfv-resources__more:before {
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 100%; }
+  .dfv-resources__more:before {
+    background-color: #12578b;
+    height: 2px;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%); }
+  .dfv-resources__more:after {
+    border-bottom: 2px solid #12578b;
+    border-right: 2px solid #12578b;
+    -webkit-transform: translateY(-50%) rotate(-45deg);
+            transform: translateY(-50%) rotate(-45deg);
+    width: 10px; }
+
+.dfv-resources__note {
+  background-color: #ddecf1;
+  display: inline-block;
+  font-size: 14px;
+  margin-top: 10px;
+  padding: 6px; }
+
+.dfv-resources__description {
+  display: block;
+  margin-top: 14px; }
+
 /*
  * Desktop layout
  */
@@ -1120,7 +1182,19 @@ h2 {
       top: 50%;
       -webkit-transform: translate(-50%, -50%) rotate(-45deg);
               transform: translate(-50%, -50%) rotate(-45deg);
-      width: 8px; } }
+      width: 8px; }
+  #qg-primary-content a.dfv-resources__link {
+    font-size: 24px; }
+    #qg-primary-content a.dfv-resources__link:hover, #qg-primary-content a.dfv-resources__link:focus {
+      text-decoration: none; }
+  .dfv-resources__more {
+    height: 14px;
+    width: 18px; }
+    .dfv-resources__more:before {
+      height: 3px; }
+    .dfv-resources__more:after {
+      border-width: 3px;
+      width: 14px; } }
 
 /*
  * Mobile layout
