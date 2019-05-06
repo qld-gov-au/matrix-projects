@@ -2,7 +2,7 @@
  * Mobile layout
  */
 
-#qg-primary-content .qg-dfv-cards--type-top-prompt {
+#qg-primary-content .dfv-cards--type-top-prompt {
 
     &.row {
         margin-left: -12px;
@@ -38,7 +38,7 @@
 
 @media screen and (min-width: $desktop) {
 
-    #qg-primary-content .qg-dfv-cards--type-top-prompt {
+    #qg-primary-content .dfv-cards--type-top-prompt {
         
         .card-container {
             margin-bottom: pxToRem(30);

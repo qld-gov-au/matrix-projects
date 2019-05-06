@@ -1,5 +1,5 @@
 // Imports
-import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/utils";
+import { isDevelopment } from "../../../lib/utils";
 
 (function(){
     'use strict';

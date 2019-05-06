@@ -2,12 +2,12 @@
  * Mobile layout
  */
 
- #qg-primary-content .qg-dfv-cards--type-helplines {
+ #qg-primary-content .dfv-cards--type-helplines {
     margin: 0 -25px;
     overflow: hidden;
 }
 
- #qg-primary-content .qg-dfv-cards--type-helplines {
+ #qg-primary-content .dfv-cards--type-helplines {
     
     /* Start of Salvatorre plugin CSS */
     .column {
@@ -118,11 +118,11 @@
 
 @media screen and (min-width: $desktop){
 
-    #qg-primary-content .qg-dfv-cards--type-helplines {
+    #qg-primary-content .dfv-cards--type-helplines {
         margin-right: 0;
     }
 
-    #qg-primary-content .qg-dfv-cards--type-helplines {
+    #qg-primary-content .dfv-cards--type-helplines {
 
         &[data-columns]::before {
             content: '1 .outer';
