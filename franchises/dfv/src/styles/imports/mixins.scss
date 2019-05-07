@@ -80,6 +80,17 @@
     }
 }
 
+@mixin link-states($colour) {
+    color: $colour;
+    
+    &:focus,
+    &:active,
+    &:hover,
+    &:visited {
+        color: $colour;
+    }
+}
+
 
 // Squiz mixins
 

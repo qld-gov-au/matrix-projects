@@ -61,9 +61,7 @@
     #qg-primary-content {
 
         .qg-links-list {
-            font-size: 17px;
-            margin-left: inherit;
-            margin-right: inherit;
+            font-size: 18px;
         }
 
     }
@@ -79,6 +77,7 @@
     
     .qg-links-list {
         background-color: $dark-blue;
+        margin-top: 50px;
     }
 
     .qg-links-list__heading {
