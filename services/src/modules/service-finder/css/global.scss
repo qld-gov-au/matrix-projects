@@ -1,0 +1,245 @@
+/*
+ * Mobile layout
+ */
+
+.services-service-finder__heading {
+    color: #063652;
+    display: inline-block;
+    font-size: pxToRem(22);
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: pxToRem(10);
+}
+
+.services-service-finder__form {
+    display: flex;
+
+    .tt-menu {
+        border: 2px solid #063652;
+        border-top: 0;
+        border-radius: 0 0 pxToRem(8) pxToRem(8);
+        background-color: #fff;
+        left: 0 !important;
+        right: pxToRem(-60);
+
+        &.tt-scrollable {
+            max-height: pxToRem(500);
+            overflow-y: auto;
+        }
+
+    }
+
+    .tt-category {
+        @extend %screen-hide;
+    }
+
+    .tt-suggestion {
+        cursor: pointer;
+        padding: pxToRem(15) pxToRem(20);
+        &:hover {
+            background-color: #063652; 
+            color: #fff;
+        }
+
+    }
+
+    .tt-dataset-organic {
+
+        .tt-suggestion {
+            font-size: pxToRem(18);
+            letter-spacing: pxToRem(0.7);
+    
+            & + .tt-suggestion {
+                border-top: 2px solid #e1e1e1;
+            }
+        }
+
+    }
+    
+    .tt-dataset-featured {
+
+        .tt-suggestion {
+            border-top: 2px solid #063652;
+        }
+
+        .services-service-finder__featured-heading {
+            font-size: pxToRem(14);
+            font-weight: 700;
+            letter-spacing: pxToRem(0.5);
+            margin-bottom: pxToRem(10);
+            margin-top: 0;
+        }
+
+        .services-service-finder__featured-icon {
+            font-size: pxToRem(14);
+            margin-bottom: pxToRem(10);
+        }
+
+        .services-service-finder__featured-description {
+            font-size: pxToRem(12);
+            letter-spacing: pxToRem(0.4);
+            margin-bottom: pxToRem(0);
+        }
+
+        .services-service-finder__featured-btn {
+            display: none;
+        }
+
+    }
+
+}
+
+.services-service-finder__field-wrapper {
+    position: relative;
+    flex-grow: 1;
+}
+
+.services-service-finder__field {
+    background-color: #ffffff;
+    border: solid 2px #063652;
+    border-radius: pxToRem(8) 0 0 pxToRem(8);
+    color: #000;
+    font-size: pxToRem(18);
+    line-height: 1;
+    overflow: hidden;
+    padding: pxToRem(19) pxToRem(25) pxToRem(17) pxToRem(17);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: #607a89;
+    }
+
+    &::-moz-placeholder { /* Firefox 19+ */
+        color: #607a89;
+    }
+    
+    &:-ms-input-placeholder { /* IE 10+ */
+        color: #607a89;
+    }
+    
+    &:-moz-placeholder { /* Firefox 18- */
+        color: #607a89;
+    }
+
+    .results-shown & {
+        border-bottom-left-radius: 0;
+    }
+
+    &.tt-hint {
+        background-color: #fff !important;
+        color: #ccc !important;
+    }
+
+}
+
+.services-service-finder__btn {
+    background-color: #063652;
+    border-width: 0;
+    border-radius: 0 pxToRem(8) pxToRem(8) 0;
+    color: #fff;
+    flex-shrink: 0;
+    font-size: pxToRem(22);
+    width: pxToRem(60);
+
+    .results-shown & {
+        border-bottom-right-radius: 0;
+    }
+    
+}
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+
+    .services-service-finder__heading {
+        
+        color: #17628a;
+        font-size: pxToRem(48);
+        font-weight: 600;
+        margin-bottom: pxToRem(50);
+        
+        .services-banner & {
+
+            background-color: rgba(0, 0, 0, 0.55);
+            border-radius: 0 pxToRem(14) pxToRem(14) 0;
+            color: #fff;
+            margin-bottom: pxToRem(40);
+            padding: pxToRem(40) pxToRem(70) pxToRem(30) 0;
+            position: relative;
+            
+            &:before {
+                content: '';
+                position: absolute;
+                height: 100%;
+                width: 300%;
+                top: 0;
+                right: 100%;
+                background-color: rgba(0, 0, 0, 0.55);
+            }
+
+        }
+
+    }
+
+    .services-service-finder__form {
+
+        .tt-menu {
+            right: 0;
+        }
+
+        .tt-dataset-featured {
+
+            .services-service-finder__featured-btn {
+                width: 100%;
+                padding: pxToRem(20);
+                background-color: #063652;
+                border-radius: 4px;
+            }
+
+        }
+
+    }
+
+    .services-service-finder__field {  
+        border-radius: pxToRem(14) 0 0 pxToRem(14);
+        font-size: pxToRem(32);
+        padding: pxToRem(35);
+        
+        &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+            color: #063652;
+        }
+
+        &::-moz-placeholder { /* Firefox 19+ */
+            color: #063652;
+        }
+        
+        &:-ms-input-placeholder { /* IE 10+ */
+            color: #063652;
+        }
+        
+        &:-moz-placeholder { /* Firefox 18- */
+            color: #063652;
+        }
+
+        .services-banner & {
+            background-color: rgba(255,255,255,0.8);
+            border-width: 0;
+
+            &.tt-hint {
+                background-color: rgba(255,255,255,0.8) !important;
+            }
+        }
+        
+    }
+
+    .services-service-finder__btn {
+        border-radius: 0 pxToRem(14) pxToRem(14) 0;
+        font-size: pxToRem(44);
+        width: pxToRem(110);
+    }
+    
+}

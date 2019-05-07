@@ -1,13 +1,27 @@
-@import "~web-template-release/template-local/assets/v3.1/latest/css/qg-main.css";
-
 /*
  * Mobile layout
  */
 
+ html {
+    /* Override Bootstrap's default font-size */
+    font-size: $base-font-pixel + px;
+}
+
 body {
+    font-family: 'Fira Sans', sans-serif;
+    line-height: normal;
     z-index: 1;
 }
 
+.container--outer {
+    margin: 0 auto;
+    max-width: pxToRem(1390);
+    padding: 0 pxToRem(30);
+}
+
+.container--inner {
+    max-width: pxToRem(1220);
+}
 
 /*
  * Tablet layout
@@ -19,13 +33,14 @@ body {
     }
 }
 
-
 /*
  * Desktop layout
  */
 
 @media screen and (min-width: $desktop){
+    
     body {
         z-index: 3;
     }
+    
 } 
