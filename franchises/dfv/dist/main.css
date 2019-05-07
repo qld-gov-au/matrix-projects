@@ -1038,8 +1038,7 @@ h2 {
     #dfv-resource-nav__more-input:checked ~ .dfv-resource-nav__list .dfv-resource-nav__link:hover, #dfv-resource-nav__more-input:checked ~ .dfv-resource-nav__list .dfv-resource-nav__link:focus {
       background-color: #fff;
       color: #0c2e4c;
-      font-weight: 700;
-      text-decoration: none; }
+      font-weight: 700; }
 
 .dfv-resources__list {
   margin: 0;
@@ -1186,6 +1185,10 @@ body:not([data-accessibility=false]):not([data-access-new-window=false]) #qg-con
     font-size: 24px; }
     #qg-primary-content a.dfv-resources__link:hover, #qg-primary-content a.dfv-resources__link:focus {
       text-decoration: none; }
+      #qg-primary-content a.dfv-resources__link:hover .dfv-resources__title, #qg-primary-content a.dfv-resources__link:focus .dfv-resources__title {
+        text-decoration: none; }
+  .dfv-resources__title {
+    text-decoration: underline; }
   .dfv-resources__more {
     height: 14px;
     width: 18px; }

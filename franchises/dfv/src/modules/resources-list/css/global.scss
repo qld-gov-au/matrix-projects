@@ -85,7 +85,6 @@
                     background-color: #fff;
                     color: $dark-blue;
                     font-weight: 700;
-                    text-decoration: none;
                 }
             }
         }
@@ -243,7 +242,15 @@ body:not([data-accessibility=false]):not([data-access-new-window=false]) {
         &:hover,
         &:focus {
             text-decoration: none;
+
+            .dfv-resources__title {
+                text-decoration: none;
+            }
         }
+    }
+
+    .dfv-resources__title {
+        text-decoration: underline;
     }
 
     .dfv-resources__more {
