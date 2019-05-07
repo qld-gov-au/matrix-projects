@@ -1038,7 +1038,8 @@ h2 {
     #dfv-resource-nav__more-input:checked ~ .dfv-resource-nav__list .dfv-resource-nav__link:hover, #dfv-resource-nav__more-input:checked ~ .dfv-resource-nav__list .dfv-resource-nav__link:focus {
       background-color: #fff;
       color: #0c2e4c;
-      font-weight: 700; }
+      font-weight: 700;
+      text-decoration: none; }
 
 .dfv-resources__list {
   margin: 0;
