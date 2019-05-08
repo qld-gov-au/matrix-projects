@@ -7,9 +7,8 @@
         /* Initialise Funnelback Conceirge on input field */
         function initFBConceirge() {
 
-            var $services_service_finder_field = $services_service_finder.find(".services-service-finder__field");
+            services_service_finder.dom.$field.autocompletion({
 
-            $services_service_finder_field.autocompletion({
                 program   : 'https://stage-15-10-search.clients.funnelback.com/s/suggest.json',
                 scrollable: true,
                 datasets: {
@@ -47,9 +46,10 @@
 
             });
 
-            $tt_menu = $services_service_finder.find(".tt-menu");
+            // Cache dropdown result menu
+            services_service_finder.dom.$tt_menu = services_service_finder.dom.$root.find(".tt-menu");
 
-            $services_service_finder_field.on('input', function() { 
+            services_service_finder.dom.$field.on('input', function() { 
                 renderInputField();
             });
 
@@ -58,31 +58,72 @@
         function renderInputField() {
 
             // If results list menu has class and there are suggestions
-            // Add class to input field to adjust appearance
-            if ($tt_menu.hasClass("tt-open") && $tt_menu.find(".tt-suggestion").length) {
-                $services_service_finder.addClass("results-shown");
+            // Add classes to input field to adjust appearance
+
+            // This will add a class if there are results and menu is open
+            if (services_service_finder.dom.$tt_menu.hasClass("tt-open") && services_service_finder.dom.$tt_menu.find(".tt-suggestion").length) {
+                services_service_finder.dom.$root.addClass("results-shown");
             } else {
-                $services_service_finder.removeClass("results-shown");
+                services_service_finder.dom.$root.removeClass("results-shown");
             }
+
+            // This will add a class to specify there are featured results
+            if (services_service_finder.dom.$tt_menu.find(".tt-dataset-featured .tt-suggestion").length) {
+                services_service_finder.dom.$root.addClass("has-featured-result");
+            } else {
+                services_service_finder.dom.$root.removeClass("has-featured-result");
+            }
+            
+        }
+
+        // This function adds and removes a "focus" class whenever the field is focused / blurred
+        // This is to control CSS border radius of input and button
+        // If user is focusing on field, scroll to field so that user can always see the rest of the no results menu
+        function initFieldFocusEvent() {
+
+            services_service_finder.dom.$field.on("focus", function (event) {
+
+                var $this = $(event.target);
+
+                services_service_finder.dom.$root.addClass("services-service-finder--focused");
+
+                // Scroll to element
+                $([document.documentElement, document.body]).animate({
+                    scrollTop: $this.offset().top
+                }, 300);
+
+            });
+
+            services_service_finder.dom.$field.on("blur", function (event) {
+
+                services_service_finder.dom.$root.removeClass("services-service-finder--focused");
+
+            });
 
         }
 
         function init() {
             
-            $services_service_finder = $(".services-service-finder");
-            
-            if ($services_service_finder.length) {
+            services_service_finder.dom = {};
 
-                /* Initialise Funnelback Concerige */
+            services_service_finder.dom.$root = $(".services-service-finder");
+            
+            if (services_service_finder.dom.$root.length) {
+
+                // Cache field input
+                services_service_finder.dom.$field = services_service_finder.dom.$root.find(".services-service-finder__field");
+
+                // Set up root node to have class whenver field is focused on
+                initFieldFocusEvent();
+
+                // Initialise Funnelback Concerige
                 initFBConceirge();
 
             }
             
         }
         
-        // Cache elements
-        var $services_service_finder;
-        var $tt_menu;
+        var services_service_finder = {};
         
         return {
             init: init

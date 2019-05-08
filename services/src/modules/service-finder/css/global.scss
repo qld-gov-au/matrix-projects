@@ -15,7 +15,7 @@
     display: flex;
 
     .tt-menu {
-        border: 2px solid #063652;
+        border: pxToRem(2) solid #063652;
         border-top: 0;
         border-radius: 0 0 pxToRem(8) pxToRem(8);
         background-color: #fff;
@@ -34,34 +34,31 @@
     }
 
     .tt-suggestion {
-        cursor: pointer;
         padding: pxToRem(15) pxToRem(20);
-        &:hover {
-            background-color: #063652; 
-            color: #fff;
-        }
-
     }
 
     .tt-dataset-organic {
 
         .tt-suggestion {
+
+            cursor: pointer;
             font-size: pxToRem(18);
             letter-spacing: pxToRem(0.7);
-    
+            
             & + .tt-suggestion {
-                border-top: 2px solid #e1e1e1;
+                border-top: pxToRem(2) solid #e1e1e1;
+            }
+
+            &:hover {
+                background-color: #063652;
+                color: #fff;
             }
         }
 
     }
     
     .tt-dataset-featured {
-
-        .tt-suggestion {
-            border-top: 2px solid #063652;
-        }
-
+        
         .services-service-finder__featured-heading {
             font-size: pxToRem(14);
             font-weight: 700;
@@ -71,6 +68,7 @@
         }
 
         .services-service-finder__featured-icon {
+            color: #063652;
             font-size: pxToRem(14);
             margin-bottom: pxToRem(10);
         }
@@ -96,7 +94,7 @@
 
 .services-service-finder__field {
     background-color: #ffffff;
-    border: solid 2px #063652;
+    border: pxToRem(2) solid #063652;
     border-radius: pxToRem(8) 0 0 pxToRem(8);
     color: #000;
     font-size: pxToRem(18);
@@ -123,7 +121,11 @@
         color: #607a89;
     }
 
-    .results-shown & {
+    &:focus {
+        outline: 0;
+    }
+
+    .services-service-finder--focused & {
         border-bottom-left-radius: 0;
     }
 
@@ -134,6 +136,58 @@
 
 }
 
+.services-service-finder__no-results-menu {
+    
+    background-color: #fff;
+    box-shadow: 0 pxToRem(1) pxToRem(3) 0 rgba(0, 0, 0, 0.25);
+    display: none;
+    left: 0;
+    position: absolute;
+    right: pxToRem(-60);
+    top: 100%;
+    z-index: 100;
+    border-radius: 0 0 pxToRem(8) pxToRem(8);
+
+    .services-service-finder--focused & {
+        display: block;
+    }
+
+    .services-service-finder--focused.results-shown & {
+        display: none;
+    }
+
+    ul {
+        margin-bottom: 0;
+        padding-left: pxToRem(30);
+    }
+
+    li {
+        font-size: pxToRem(15);
+
+        & + li {
+            margin-top: pxToRem(25);
+        }
+    }
+
+    a {
+        color: #000;
+        text-decoration: underline;
+    }
+
+}
+
+.services-service-finder__no-results-menu-block {
+    flex: 1;
+    padding: pxToRem(20) pxToRem(15) pxToRem(35);
+}
+
+.services-service-finder__no-results-menu-heading {
+    font-size: pxToRem(18);
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: pxToRem(25);
+}
+
 .services-service-finder__btn {
     background-color: #063652;
     border-width: 0;
@@ -142,12 +196,63 @@
     flex-shrink: 0;
     font-size: pxToRem(22);
     width: pxToRem(60);
-
-    .results-shown & {
-        border-bottom-right-radius: 0;
-    }
-    
 }
+
+
+
+@media screen and (max-width: $desktop - 1px){
+
+    .services-service-finder__form {
+
+        .tt-dataset-featured {
+
+            .has-featured-result & {
+                border-top: pxToRem(1) solid #063652;
+            }
+
+            .tt-suggestion {
+
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #063652;
+                    color: #fff;
+        
+                    .services-service-finder__featured-icon {
+                        color: #fff;
+                    }
+        
+                }
+
+            }
+
+        }
+        
+    }
+
+    .services-service-finder__no-results-menu {
+        
+        border: pxToRem(2) solid #063652;
+        border-top: 0;
+        
+    }
+
+    .services-service-finder__no-results-block {
+        & + & {
+            border-top: pxToRem(1) solid #000;
+        }
+    }
+
+    .services-service-finder__btn {
+
+        .services-service-finder--focused & {
+            border-bottom-right-radius: 0;
+        }
+
+    }
+
+}
+
 
 /*
  * Desktop layout
@@ -188,16 +293,66 @@
     .services-service-finder__form {
 
         .tt-menu {
+            border: 0;
+            border-top: pxToRem(1) solid #063652;
+            box-shadow: 0 pxToRem(20) pxToRem(20) 0 rgba(0, 0, 0, 0.25);
             right: 0;
+
+            .results-shown & {
+                display: flex !important;
+            }
+            
         }
 
-        .tt-dataset-featured {
+        .tt-dataset-organic { 
 
+            flex-grow: 1;
+
+            .has-featured-result & {
+                border-right: pxToRem(1) solid #063652;
+            }
+
+            .tt-suggestion {
+                font-size: pxToRem(26);
+                letter-spacing: pxToRem(1);
+                padding: pxToRem(20) pxToRem(25);
+            }
+
+        }
+        
+        .tt-dataset-featured {
+            
+            .tt-suggestion {
+                padding: pxToRem(40) pxToRem(65);
+                width: pxToRem(390);
+            }
+
+            .services-service-finder__featured-heading {
+                font-size: pxToRem(28);
+                font-weight: 500;
+                margin-bottom: pxToRem(30);
+            }
+    
+            .services-service-finder__featured-icon {
+                font-size: pxToRem(41);
+                margin-bottom: pxToRem(20);
+            }
+    
+            .services-service-finder__featured-description {
+                font-size: pxToRem(20);
+                margin-bottom: pxToRem(30);
+            }
+    
             .services-service-finder__featured-btn {
-                width: 100%;
-                padding: pxToRem(20);
                 background-color: #063652;
-                border-radius: 4px;
+                border: 0;
+                border-radius: pxToRem(4);
+                color: #fff;
+                display: block;
+                font-size: pxToRem(26);
+                font-weight: 600;
+                padding: pxToRem(20);
+                width: 100%;
             }
 
         }
@@ -232,8 +387,60 @@
             &.tt-hint {
                 background-color: rgba(255,255,255,0.8) !important;
             }
+
+            &:focus {
+                background-color: #ffffff !important;
+            }
+            
         }
         
+    }
+
+    .services-service-finder__no-results-menu {
+        background-color: #f5f5f5;
+        box-shadow: 0 pxToRem(20) pxToRem(20) 0 rgba(0, 0, 0, 0.25);
+        border-top: pxToRem(1) solid #063652;
+        right: 0;
+        
+        .services-service-finder--focused & {
+            display: flex;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+
+            font-size: pxToRem(26);
+        
+            & + li {
+                margin-top: pxToRem(50);
+            }
+
+        }
+
+        a {
+            color: #063652;
+        }
+
+    }
+
+    .services-service-finder__no-results-menu-block {
+        
+        padding: pxToRem(50) pxToRem(80);
+
+        & + & {
+            border-left: pxToRem(1) solid #063652;
+        }
+
+    }
+
+    .services-service-finder__no-results-menu-heading {
+        color: #063652;
+        font-size: pxToRem(26);
+        margin-bottom: pxToRem(50);
     }
 
     .services-service-finder__btn {
