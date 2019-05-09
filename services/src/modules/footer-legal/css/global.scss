@@ -1,0 +1,30 @@
+/*
+ * Mobile layout
+ */
+
+.qg-site-footer-legal {
+    padding-top: pxToRem(35);
+    padding-bottom: pxToRem(40);
+}
+
+.qg-site-footer-legal__trademark {
+    font-size: pxToRem(14);
+}
+
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+
+    .qg-site-footer-legal {
+        padding-top: pxToRem(35);
+        padding-bottom: pxToRem(40);
+    }
+
+    .qg-site-footer-legal__trademark {
+        font-size: pxToRem(18);
+    }
+    
+}

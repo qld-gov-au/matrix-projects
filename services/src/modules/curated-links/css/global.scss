@@ -2,6 +2,10 @@
  * Mobile layout
  */
 
+.curated-links {
+    margin-bottom: pxToRem(50);
+}
+
  .curated-links__block {
 
     & + & {
@@ -54,6 +58,10 @@
  */
 
 @media screen and (min-width: $desktop){
+
+    .curated-links {
+        margin-bottom: pxToRem(30);
+    }
 
     .curated-links--inner {
         display: flex;

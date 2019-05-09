@@ -2,6 +2,21 @@
  * Mobile layout
  */
 
+.services-service-finder {
+    border-bottom: pxToRem(1) solid #d6dbdf;
+    margin-top: pxToRem(15);
+    margin-bottom: pxToRem(20);
+    padding-bottom: pxToRem(20);
+
+    .services-banner & {
+        border: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+}
+
 .services-service-finder__heading {
     color: #063652;
     display: inline-block;
@@ -12,9 +27,11 @@
 }
 
 .services-service-finder__form {
+
     display: flex;
 
     .tt-menu {
+
         border: pxToRem(2) solid #063652;
         border-top: 0;
         border-radius: 0 0 pxToRem(8) pxToRem(8);
@@ -43,6 +60,7 @@
             padding: pxToRem(15) pxToRem(20);
             
             &:hover {
+                
                 background-color: #063652;
                 color: #fff;
 
@@ -151,6 +169,8 @@
 .services-service-finder__no-results-menu {
     
     background-color: #fff;
+    border: pxToRem(2) solid #063652;
+    border-top: 0;
     box-shadow: 0 pxToRem(1) pxToRem(3) 0 rgba(0, 0, 0, 0.25);
     display: none;
     left: 0;
@@ -228,10 +248,7 @@
 
     }
     
-    .services-service-finder__no-results-menu {        
-        border: pxToRem(2) solid #063652;
-        border-top: 0;
-    }
+    
 
     .services-service-finder__no-results-block {
         & + & {
@@ -258,6 +275,11 @@
  */
 
 @media screen and (min-width: $desktop){
+
+    .services-service-finder {
+        margin-bottom: pxToRem(50);
+        padding-bottom: pxToRem(50);
+    }
 
     .services-service-finder__heading {
         
@@ -292,13 +314,17 @@
     .services-service-finder__form {
 
         .tt-menu {
-            border: 0;
-            border-top: pxToRem(1) solid #063652;
+            
             box-shadow: 0 pxToRem(20) pxToRem(20) 0 rgba(0, 0, 0, 0.25);
             right: 0;
 
             .results-shown & {
                 display: flex !important;
+            }
+
+            .services-banner & {
+                border: 0;
+                border-top: pxToRem(1) solid #063652;
             }
             
         }
@@ -415,9 +441,13 @@
     .services-service-finder__no-results-menu {
         background-color: #f5f5f5;
         box-shadow: 0 pxToRem(20) pxToRem(20) 0 rgba(0, 0, 0, 0.25);
-        border-top: pxToRem(1) solid #063652;
         right: 0;
         
+        .services-banner & {
+            border: 0;
+            border-top: pxToRem(1) solid #063652;
+        }
+
         .services-service-finder--focused & {
             display: flex;
         }
