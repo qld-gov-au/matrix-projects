@@ -38,6 +38,7 @@
                     },
                     render: function(event, suggestions, syncType, name) {
                         renderInputField();
+                        cloneFeaturedResult();
                     }
                     
                   }
@@ -46,12 +47,37 @@
 
             });
 
-            // Cache dropdown result menu
+            // Cache dropdown result menu elements
             services_service_finder.dom.$tt_menu = services_service_finder.dom.$root.find(".tt-menu");
+            services_service_finder.dom.$organic_results_wrapper = services_service_finder.dom.$tt_menu.find(".tt-dataset-organic");
+            services_service_finder.dom.$featured_result_wrapper = services_service_finder.dom.$tt_menu.find(".tt-dataset-featured");
 
             services_service_finder.dom.$field.on('input', function() { 
                 renderInputField();
             });
+
+        }
+
+        // Clone the featured result and insert into organic set so that featured result can appear between suggestions
+        function cloneFeaturedResult() {
+
+            var $featured_result = services_service_finder.dom.$featured_result_wrapper.find(".tt-suggestion");
+
+            if ($featured_result.length) {
+
+                var $featured_result_wrapper_clone = services_service_finder.dom.$featured_result_wrapper.clone();
+                
+                // Get number of organic results
+                var $organic_results = services_service_finder.dom.$organic_results_wrapper.find(".tt-suggestion");
+
+                
+                if ($organic_results.length > 2) {
+                    $featured_result_wrapper_clone.insertAfter($organic_results.eq(1));
+                } else {
+                    $featured_result_wrapper_clone.appendTo(services_service_finder.dom.$organic_results_wrapper);
+                }
+
+            }
 
         }
 
@@ -68,7 +94,7 @@
             }
 
             // This will add a class to specify there are featured results
-            if (services_service_finder.dom.$tt_menu.find(".tt-dataset-featured .tt-suggestion").length) {
+            if (services_service_finder.dom.$featured_result_wrapper.find(".tt-suggestion").length) {
                 services_service_finder.dom.$root.addClass("has-featured-result");
             } else {
                 services_service_finder.dom.$root.removeClass("has-featured-result");
