@@ -189,7 +189,8 @@ body {
 .show-desktop {
   display: none; }
 
-:focus {
+a:focus,
+button:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color; }
 
@@ -327,6 +328,62 @@ body {
     color: #13578b; }
   #qg-primary-content .dfv-content a:hover {
     text-decoration: none; }
+
+.qg-content-navigation__wrapper {
+  border-left: 4px solid #00618e;
+  padding-left: 25px; }
+
+.qg-content-navigation__list {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+.qg-content-navigation__link {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+
+.qg-content-navigation__item {
+  margin-bottom: 25px; }
+
+.qg-content-navigation__prompt {
+  height: 14px;
+  position: relative;
+  width: 14px;
+  margin-right: 10px;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg); }
+  .qg-content-navigation__prompt:after, .qg-content-navigation__prompt:before {
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 100%; }
+  .qg-content-navigation__prompt:before {
+    background-color: #13578b;
+    height: 2px;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%); }
+  .qg-content-navigation__prompt:after {
+    border-bottom: 2px solid #13578b;
+    border-right: 2px solid #13578b;
+    -webkit-transform: translateY(-50%) rotate(-45deg);
+            transform: translateY(-50%) rotate(-45deg);
+    width: 14px; }
+
+/*
+    DFV Content Navigation override
+*/
+.qg-content-navigation__wrapper {
+  border-left: none;
+  padding-left: 0; }
+  .qg-content-navigation__wrapper h2 {
+    display: none; }
 
 /*
     Cards

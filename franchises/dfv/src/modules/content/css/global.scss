@@ -50,6 +50,44 @@
     }
 }
 
+.qg-content-navigation__wrapper {
+    border-left: 4px solid $qg-blue;
+    padding-left: $medium-spacing;
+}
+
+.qg-content-navigation__list {
+    @include sq-list-reset();
+}
+
+.qg-content-navigation__link {
+    align-items: center;
+    display: flex;
+}
+
+.qg-content-navigation__item {
+    margin-bottom: $medium-spacing;
+}
+
+.qg-content-navigation__prompt {
+    @include css-arrow(14px, 14px, $deep-blue);
+    margin-right: 10px;
+    transform: rotate(90deg);
+}
+
+/*
+    DFV Content Navigation override
+*/
+
+.qg-content-navigation__wrapper {
+    border-left: none;
+    padding-left: 0;
+
+    h2 {
+        display: none;
+    }
+}
+
+
 
 /*
     Cards

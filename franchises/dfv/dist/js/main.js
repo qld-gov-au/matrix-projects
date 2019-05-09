@@ -91,7 +91,7 @@ var generateLoader = function generateLoader() {
   loader += '</div>';
   return loader;
 };
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(8)))
 
 /***/ }),
 /* 1 */
@@ -101,9 +101,10 @@ __webpack_require__(2);
 __webpack_require__(4);
 __webpack_require__(5);
 __webpack_require__(6);
-__webpack_require__(8);
+__webpack_require__(7);
 __webpack_require__(9);
-module.exports = __webpack_require__(10);
+__webpack_require__(10);
+module.exports = __webpack_require__(11);
 
 
 /***/ }),
@@ -188,6 +189,65 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 /* 6 */
+/***/ (function(module, exports) {
+
+(function () {
+  'use strict';
+  /*
+      Functions
+  */
+  // Build in-page navigation
+
+  qg_dfv.fn.initContentNavigation = function () {
+    var table_of_contents = $('.qg-content-navigation__wrapper');
+    var heading_list = table_of_contents.find('.qg-content-navigation__list');
+    var content_containers = table_of_contents.siblings();
+    var heading_depth = table_of_contents.attr('data-depth');
+    var all_headings = ['h2', 'h3', 'h4', 'h5', 'h6'];
+    var heading_items = []; // Figure out which headings to list
+
+    var depth_limit = all_headings.indexOf(heading_depth) + 1; // Take a sample of headings up to chosen limit
+
+    var allowed_headings = all_headings.slice(0, depth_limit); // Loop through all content containers that have content
+
+    content_containers.each(function (container_index, container) {
+      // Loop through chosen heading levels
+      $(allowed_headings).each(function (level_index, level) {
+        // Find this heading in the content
+        $(container).find(level).each(function (heading_index, heading) {
+          var heading_title = $(heading).text();
+          var heading_link = '#' + $(heading).attr('id'); // Create the navigation item
+
+          var list_item = '<li class="qg-content-navigation__item">';
+          list_item += '<a href="' + heading_link + '" class="qg-content-navigation__link">';
+          list_item += '<span class="qg-content-navigation__prompt"></span>';
+          list_item += '<span class="qg-content-navigation__title">' + heading_title + '</span>';
+          list_item += '</a>';
+          list_item += '</li>'; // Add to master list
+
+          heading_items.push(list_item);
+        });
+      });
+    }); // Append headings to navigation list
+
+    heading_list.html(heading_items.join(''));
+  };
+  /*
+      Ready
+  */
+
+
+  $(document).ready(function () {
+    // Only call this function when the template is included
+    if ($('.qg-content-navigation__wrapper').length > 0) {
+      // Build in-page navigation
+      qg_dfv.fn.initContentNavigation();
+    }
+  });
+})();
+
+/***/ }),
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -372,7 +432,7 @@ __webpack_require__.r(__webpack_exports__);
 })();
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -562,7 +622,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 (function () {
@@ -570,7 +630,7 @@ process.umask = function() { return 0; };
 })();
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -590,7 +650,7 @@ __webpack_require__.r(__webpack_exports__);
 })();
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 (function () {
