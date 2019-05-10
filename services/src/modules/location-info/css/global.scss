@@ -1,0 +1,24 @@
+/*
+ * Mobile layout
+ */
+
+ .qg-location-info {
+
+    .qg-site-footer-util__nearest-service-center & {
+        font-size: pxToRem(24);
+        font-weight: 600;
+        margin-bottom: pxToRem(35);
+
+        .qg-location-info__location-name-icon {
+            font-size: pxToRem(20);
+            margin-left: pxToRem(10);
+        }
+    }
+
+
+ }
+
+.qg-location-info__location-name {
+    text-decoration: underline;
+    cursor: pointer;
+}

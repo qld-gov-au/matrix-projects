@@ -73,6 +73,78 @@
 }
 
 /* Nearest Service Center */
+
+.qg-site-footer-util__nearest-service-center-location-selector-icon {
+    font-size: pxToRem(20);
+}
+
+.qg-site-footer-util__nearest-service-center-details {
+    margin-bottom: pxToRem(40);
+}
+
+.qg-site-footer-util__nearest-service-center-detail-name {
+
+    color: #000;
+    display: inline-block;
+    font-size: pxToRem(24);
+    text-decoration: underline;
+    margin-bottom: pxToRem(30);
+
+    &:hover,
+    &:focus {
+        color: #000;
+        text-decoration: none;
+    }
+
+}
+
+.qg-site-footer-util__nearest-service-center-detail-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin-left: pxToRem(26);
+}
+
+.qg-site-footer-util__nearest-service-center-detail-list-item {
+
+    padding-left: pxToRem(12);
+
+    & + & {
+        margin-top: pxToRem(30);
+    }
+
+}
+
+.qg-site-footer-util__nearest-service-center-detail-list-item-icon {
+    font-size: pxToRem(20);
+}
+
+.qg-site-footer-util__nearest-service-center-detail-availability-link {
+    color: #000;
+    font-size: pxToRem(20);
+    font-weight: 700;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+        color: #000;
+        text-decoration: none;
+    }
+}
+
+
+.qg-site-footer-util__nearest-service-center-detail-hours-state,
+.qg-site-footer-util__nearest-service-center-detail-distance-from {
+    font-size: pxToRem(20);
+    font-weight: 700;
+    margin-bottom: pxToRem(20);
+}
+
+.qg-site-footer-util__nearest-service-center-detail-hours-time-to,
+.qg-site-footer-util__nearest-service-center-detail-location-address {
+    font-size: pxToRem(14);
+    margin-bottom: 0;
+}
+
 .qg-site-footer-util__nearest-service-center-all-link {
 
     color: #000;
@@ -167,6 +239,11 @@
         border-top: pxToRem(0.5) solid rgba(0,0,0,0.33);
         font-size: pxToRem(18);
         padding-top: pxToRem(40);
+    }
+
+    .qg-site-footer-util__nearest-service-center-detail-hours-time-to,
+    .qg-site-footer-util__nearest-service-center-detail-location-address {
+        font-size: pxToRem(18)
     }
 
     .qg-site-footer-util__nearest-service-center-all-link {

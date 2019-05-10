@@ -350,6 +350,24 @@ body {
     position: absolute;
     width: 1px; } }
 
+@media screen and (max-width: 991px) {
+  .qg-site-footer-legal__links-list-item--privacy {
+    -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+            order: 0; }
+  .qg-site-footer-legal__links-list-item--disclaimer {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1; }
+  .qg-site-footer-legal__links-list-item--other-languages {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2; }
+  .qg-site-footer-legal__links-list-item--right-to-info {
+    -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+            order: 3; } }
+
 /*
  * Desktop layout
  */
@@ -358,7 +376,13 @@ body {
     padding-top: 2.1875rem;
     padding-bottom: 2.5rem; }
   .qg-site-footer-legal__links-list {
-    font-size: 1.125rem; }
+    font-size: 1.125rem;
+    margin-left: -0.625rem;
+    margin-right: -0.625rem;
+    margin-bottom: 0.3125rem; }
+  .qg-site-footer-legal__links-list-item {
+    margin-left: 0.625rem;
+    margin-right: 0.625rem; }
   .qg-site-footer-legal__trademark {
     font-size: 1.125rem; } }
 
@@ -416,6 +440,55 @@ body {
   margin-bottom: 0; }
 
 /* Nearest Service Center */
+.qg-site-footer-util__nearest-service-center-location-selector-icon {
+  font-size: 1.25rem; }
+
+.qg-site-footer-util__nearest-service-center-details {
+  margin-bottom: 2.5rem; }
+
+.qg-site-footer-util__nearest-service-center-detail-name {
+  color: #000;
+  display: inline-block;
+  font-size: 1.5rem;
+  text-decoration: underline;
+  margin-bottom: 1.875rem; }
+  .qg-site-footer-util__nearest-service-center-detail-name:hover, .qg-site-footer-util__nearest-service-center-detail-name:focus {
+    color: #000;
+    text-decoration: none; }
+
+.qg-site-footer-util__nearest-service-center-detail-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 1.625rem; }
+
+.qg-site-footer-util__nearest-service-center-detail-list-item {
+  padding-left: 0.75rem; }
+  .qg-site-footer-util__nearest-service-center-detail-list-item + .qg-site-footer-util__nearest-service-center-detail-list-item {
+    margin-top: 1.875rem; }
+
+.qg-site-footer-util__nearest-service-center-detail-list-item-icon {
+  font-size: 1.25rem; }
+
+.qg-site-footer-util__nearest-service-center-detail-availability-link {
+  color: #000;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: underline; }
+  .qg-site-footer-util__nearest-service-center-detail-availability-link:hover, .qg-site-footer-util__nearest-service-center-detail-availability-link:focus {
+    color: #000;
+    text-decoration: none; }
+
+.qg-site-footer-util__nearest-service-center-detail-hours-state,
+.qg-site-footer-util__nearest-service-center-detail-distance-from {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem; }
+
+.qg-site-footer-util__nearest-service-center-detail-hours-time-to,
+.qg-site-footer-util__nearest-service-center-detail-location-address {
+  font-size: 0.875rem;
+  margin-bottom: 0; }
+
 .qg-site-footer-util__nearest-service-center-all-link {
   color: #000;
   font-size: 1rem;
@@ -479,6 +552,9 @@ body {
     border-top: 0.03125rem solid rgba(0, 0, 0, 0.33);
     font-size: 1.125rem;
     padding-top: 2.5rem; }
+  .qg-site-footer-util__nearest-service-center-detail-hours-time-to,
+  .qg-site-footer-util__nearest-service-center-detail-location-address {
+    font-size: 1.125rem; }
   .qg-site-footer-util__nearest-service-center-all-link {
     font-size: 1.25rem; }
   .qg-site-footer-util__social-media-list {
@@ -486,6 +562,21 @@ body {
     font-size: 1.125rem; }
   .qg-site-footer-util__social-media-list-item {
     padding-left: 0.625rem; } }
+
+/*
+ * Mobile layout
+ */
+.qg-site-footer-util__nearest-service-center .qg-location-info {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 2.1875rem; }
+  .qg-site-footer-util__nearest-service-center .qg-location-info .qg-location-info__location-name-icon {
+    font-size: 1.25rem;
+    margin-left: 0.625rem; }
+
+.qg-location-info__location-name {
+  text-decoration: underline;
+  cursor: pointer; }
 
 /*
  * Mobile layout
@@ -793,6 +884,9 @@ body {
 .services-service-finder__no-results-menu-list-item-link {
   color: #000;
   text-decoration: underline; }
+  .services-service-finder__no-results-menu-list-item-link:hover, .services-service-finder__no-results-menu-list-item-link:focus {
+    color: #000;
+    text-decoration: none; }
 
 .services-service-finder__btn {
   background-color: #063652;

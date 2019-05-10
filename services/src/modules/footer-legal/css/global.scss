@@ -60,7 +60,25 @@
 
 }
 
+@media screen and (max-width: $desktop - 1px){
 
+    .qg-site-footer-legal__links-list-item--privacy {
+        order: 0;
+    }
+
+    .qg-site-footer-legal__links-list-item--disclaimer {
+        order: 1;
+    }
+
+    .qg-site-footer-legal__links-list-item--other-languages {
+        order: 2;
+    }
+
+    .qg-site-footer-legal__links-list-item--right-to-info {
+        order: 3;
+    }
+
+}
 
 /*
  * Desktop layout
