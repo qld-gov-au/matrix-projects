@@ -52,6 +52,7 @@
 
 @mixin css-arrow($arrow-width, $arrow-height, $colour) {
     height: $arrow-height;
+    flex-shrink: 0;
     position: relative;
     width: $arrow-width;
 
