@@ -1,0 +1,58 @@
+/*
+ * Mobile layout
+ */
+
+.dfv-back__wrapper {
+    background-color: $deep-blue;
+    border-top: 4px solid $light-blue;
+    width: 100%;
+}
+
+.dfv-back__link {
+    align-items: center;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    padding-bottom: $small-spacing;
+    padding-top: 12px;
+}
+
+.dfv-back__label {
+    display: inline-block;
+    margin-left: 6px;
+}
+
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+    .dfv-back__wrapper {
+        display: inline-block;
+    }
+
+    #qg-content {
+        a.dfv-back__link {
+            padding: 14px $medium-spacing;
+            @include link-states(#fff);
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        #qg-primary-content {
+            a.dfv-back__link {
+                text-decoration: none;
+            }
+        }
+    }
+
+    .dfv-back__wrapper {
+        border-top: none;
+        border-radius: 4px;
+        margin-bottom: 40px;
+        width: auto;
+    }
+}

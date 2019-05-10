@@ -2,8 +2,8 @@
  * Mobile layout
  */
 
+.dfv-emergency,
 .dfv-quicklinks__wrapper {
-    border-top: 4px solid $light-blue;
     width: 100%;
 }
 
@@ -17,6 +17,7 @@
     }
 }
 
+.dfv-emergency,
 .dfv-quicklink {
     padding: 0 $medium-spacing;
 
@@ -65,6 +66,7 @@
  */
 
 @media screen and (min-width: $desktop){
+    .dfv-emergency,
     .dfv-quicklinks__wrapper {
         display: none;
     }
