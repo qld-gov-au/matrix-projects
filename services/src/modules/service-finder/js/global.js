@@ -61,6 +61,9 @@
         // Clone the featured result and insert into organic set so that featured result can appear between suggestions
         function cloneFeaturedResult() {
 
+            // Remove featured result from organic result wrapper if exists
+            services_service_finder.dom.$organic_results_wrapper.find(".tt-dataset-featured").remove();
+
             var $featured_result = services_service_finder.dom.$featured_result_wrapper.find(".tt-suggestion");
 
             if ($featured_result.length) {
@@ -70,7 +73,6 @@
                 // Get number of organic results
                 var $organic_results = services_service_finder.dom.$organic_results_wrapper.find(".tt-suggestion");
 
-                
                 if ($organic_results.length > 2) {
                     $featured_result_wrapper_clone.insertAfter($organic_results.eq(1));
                 } else {

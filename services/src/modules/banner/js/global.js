@@ -36,7 +36,7 @@
             
             if ($services_banner.length) {
 
-                qg.event.on("location-selected", processSelectedLocation);
+                
 
             }
             

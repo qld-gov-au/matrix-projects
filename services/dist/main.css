@@ -247,19 +247,13 @@ body {
   margin-bottom: 0;
   margin-left: 1.25rem; }
 
-.curated-links__list-item {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex; }
-  .curated-links__list-item + .curated-links__list-item {
-    margin-top: 1.5625rem; }
+.curated-links__list-item + .curated-links__list-item {
+  margin-top: 1.5625rem; }
 
 .curated-links__list-item-bullet {
   color: #167489;
-  font-size: 0.9375rem; }
+  font-size: 0.9375rem;
+  margin-top: 0.125rem; }
 
 .curated-links__list-item-link {
   font-size: 1.125rem;
@@ -298,7 +292,8 @@ body {
     .curated-links__list-item + .curated-links__list-item {
       margin-top: 1.875rem; }
   .curated-links__list-item-bullet {
-    font-size: 1rem; }
+    font-size: 1rem;
+    margin-top: 0.3125rem; }
   .curated-links__list-item-link {
     font-size: 1.625rem; } }
 

@@ -80,9 +80,7 @@ __webpack_require__.r(__webpack_exports__);
     function init() {
       $services_banner = $(".services-banner");
 
-      if ($services_banner.length) {
-        qg.event.on("location-selected", processSelectedLocation);
-      }
+      if ($services_banner.length) {}
     }
 
     var $services_banner;
@@ -194,6 +192,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
     function cloneFeaturedResult() {
+      // Remove featured result from organic result wrapper if exists
+      services_service_finder.dom.$organic_results_wrapper.find(".tt-dataset-featured").remove();
       var $featured_result = services_service_finder.dom.$featured_result_wrapper.find(".tt-suggestion");
 
       if ($featured_result.length) {
