@@ -40,18 +40,23 @@
     }
 
     #qg-content {
-        a.dfv-back__link {
-            @include link-states(#fff);
-
-            &:hover {
-                text-decoration: underline;
-            }
-        }
 
         #qg-primary-content {
             a.dfv-back__link {
                 padding: 14px $medium-spacing;
                 text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        a.dfv-back__link {
+            @include link-states(#fff);
+
+            &:hover {
+                text-decoration: underline;
             }
         }
 
