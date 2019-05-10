@@ -21,6 +21,10 @@
     padding-top: 12px;
 }
 
+.dfv-back__icon {
+    flex-shrink: 0;
+}
+
 .dfv-back__label {
     display: inline-block;
     margin-left: 8px;
@@ -57,6 +61,10 @@
         }
 
         .dfv-resource-nav__wrapper {
+            .dfv-back {
+                width: 100%;
+            }
+
             a.dfv-back__link {
                 padding: 10px $medium-spacing;
             }
