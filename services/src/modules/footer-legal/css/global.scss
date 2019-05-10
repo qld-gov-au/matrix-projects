@@ -75,8 +75,16 @@
 
     .qg-site-footer-legal__links-list {
         font-size: pxToRem(18);
+        margin-left: pxToRem(-10);
+        margin-right: pxToRem(-10);
+        margin-bottom: pxToRem(5);
     }
 
+    .qg-site-footer-legal__links-list-item {
+        margin-left: pxToRem(10);
+        margin-right: pxToRem(10);
+    }
+    
     .qg-site-footer-legal__trademark {
         font-size: pxToRem(18);
     }
