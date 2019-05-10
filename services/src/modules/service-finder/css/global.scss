@@ -402,6 +402,12 @@
                 font-weight: 600;
                 padding: pxToRem(20);
                 width: 100%;
+
+                &:hover,
+                &:focus {
+                    text-decoration: underline;
+                }
+                
             }
 
         }

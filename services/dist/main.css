@@ -415,7 +415,7 @@ body {
   width: 100%; }
   .qg-site-footer-util__contact-us-btn:hover, .qg-site-footer-util__contact-us-btn:focus {
     color: #fff;
-    text-decoration: none; }
+    text-decoration: underline; }
 
 .qg-site-footer-util__contact-us-phone-link {
   color: #000;
@@ -636,7 +636,7 @@ body {
   text-align: center; }
   .services-search-results__featured-result-btn:hover {
     color: #fff;
-    text-decoration: none; }
+    text-decoration: underline; }
 
 .services-search-results__pagination {
   display: -webkit-inline-box;
@@ -977,6 +977,8 @@ body {
     font-weight: 600;
     padding: 1.25rem;
     width: 100%; }
+    .services-service-finder__form .tt-dataset-featured .services-service-finder__featured-btn:hover, .services-service-finder__form .tt-dataset-featured .services-service-finder__featured-btn:focus {
+      text-decoration: underline; }
   .services-service-finder__field {
     border-radius: 0.875rem 0 0 0.875rem;
     font-size: 2rem;

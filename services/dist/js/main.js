@@ -187,6 +187,10 @@ __webpack_require__.r(__webpack_exports__);
       services_service_finder.dom.$featured_result_wrapper = services_service_finder.dom.$tt_menu.find(".tt-dataset-featured");
       services_service_finder.dom.$field.on('input', function () {
         renderInputField();
+      }); // Unfocus on field when suggestion / featured result is clicked on
+
+      $("body").on("click", ".tt-suggestion", function () {
+        services_service_finder.dom.$field.blur();
       });
     } // Clone the featured result and insert into organic set so that featured result can appear between suggestions
 
@@ -197,7 +201,8 @@ __webpack_require__.r(__webpack_exports__);
       var $featured_result = services_service_finder.dom.$featured_result_wrapper.find(".tt-suggestion");
 
       if ($featured_result.length) {
-        var $featured_result_wrapper_clone = services_service_finder.dom.$featured_result_wrapper.clone(); // Get number of organic results
+        // Clone featured result set. Arguments are true in order to clone click events binded to search result
+        var $featured_result_wrapper_clone = services_service_finder.dom.$featured_result_wrapper.clone(true, true); // Get number of organic results
 
         var $organic_results = services_service_finder.dom.$organic_results_wrapper.find(".tt-suggestion");
 
