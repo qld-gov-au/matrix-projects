@@ -23,7 +23,106 @@
     font-weight: 700;
     line-height: 1.5;
     margin-top: 0;
-    margin-bottom: pxToRem(30);
+    margin-bottom: pxToRem(25);
+}
+
+/* Contact Us */
+.qg-site-footer-util__contact-us-btn {
+    background-color: #063652;
+    border-radius: pxToRem(4);
+    color: #fff;
+    display: inline-block;
+    font-size: pxToRem(18);
+    font-weight: 600;
+    margin-bottom: pxToRem(50);
+    padding: pxToRem(20) pxToRem(35);
+    text-align: center;
+    width: 100%;
+
+    &:hover,
+    &:focus {
+        color: #fff;
+        text-decoration: none;
+    }
+
+}
+
+.qg-site-footer-util__contact-us-phone-link {
+
+    color: #000;
+    display: inline-block;
+    font-size: pxToRem(24);
+    font-weight: 600;
+    margin-bottom: pxToRem(40);
+
+    &:hover,
+    &:focus {
+        color: #000;
+    }
+
+}
+
+.qg-site-footer-util__contact-us-phone-link-icon {
+    font-size: pxToRem(20);
+    margin-right: pxToRem(10);
+}
+
+.qg-site-footer-util__contact-us-text {
+    font-size: pxToRem(14);
+    margin-bottom: 0;
+}
+
+/* Nearest Service Center */
+.qg-site-footer-util__nearest-service-center-all-link {
+
+    color: #000;
+    font-size: pxToRem(16);
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+        color: #000;
+        text-decoration: none;
+    }
+
+}
+
+/* Social Media */
+
+.qg-site-footer-util__social-media-list {
+    font-size: pxToRem(14);
+    margin-left: pxToRem(24);
+}
+
+.qg-site-footer-util__social-media-list-item {
+    padding-left: pxToRem(15);
+
+    & + & {
+        margin-top: pxToRem(15);
+    }
+
+}
+
+.qg-site-footer-util__social-media-list-item-link {
+
+    color: #000;
+    
+    &:hover,
+    &:focus {
+        color: #000;
+    }
+}
+
+.qg-site-footer-util__social-media-list-item-icon {
+    font-size: pxToRem(21);
+}
+
+.qg-site-footer-util__social-media-list-item-icon--youtube {
+    font-size: pxToRem(17);
+}
+
+.qg-site-footer-util__social-media-list-item-icon--mobile-apps {
+    font-size: pxToRem(24);
 }
 
 /*
@@ -53,6 +152,34 @@
             padding-left: pxToRem(70);
         }
 
+    }
+
+    .qg-site-footer-util__heading {
+        font-size: pxToRem(30);
+        margin-bottom: pxToRem(30);
+    }
+
+    .qg-site-footer-util__contact-us-btn {
+        width: auto;
+    }
+
+    .qg-site-footer-util__contact-us-text {
+        border-top: pxToRem(0.5) solid rgba(0,0,0,0.33);
+        font-size: pxToRem(18);
+        padding-top: pxToRem(40);
+    }
+
+    .qg-site-footer-util__nearest-service-center-all-link {
+        font-size: pxToRem(20);
+    }
+    
+    .qg-site-footer-util__social-media-list {
+        margin-left: pxToRem(28);
+        font-size: pxToRem(18);
+    }
+
+    .qg-site-footer-util__social-media-list-item {
+        padding-left: pxToRem(10);
     }
 
 }

@@ -27,15 +27,13 @@
 
 .curated-links__list {
     margin-bottom: 0;
-    margin-left: pxToRem(10);
-    padding-left: pxToRem(10);
-    
+    margin-left: pxToRem(20);
 }
 
 .curated-links__list-item {
     align-items: center;
     display: flex;
-    padding-left: pxToRem(5);
+    
 
     & + & {
         margin-top: pxToRem(25);
