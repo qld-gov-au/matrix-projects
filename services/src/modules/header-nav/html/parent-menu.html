@@ -1,43 +1,35 @@
-<ul class="fa-ul qg-main-nav__menus qg-main-nav__menus--parent">
+<ul class="fa-ul qg-main-nav__menu-list qg-main-nav__menu-list--parent" aria-label="Parent menu list">
 
     <li class="qg-main-nav__menu-item">
 
-        <input id="qg-main-nav__sub-menu-toggle-1" class="qg-main-nav__sub-menu-toggle" type="checkbox" />
+        <input id="qg-main-nav__dropdown-toggle-1" class="qg-main-nav__dropdown-toggle" type="checkbox" />
     
-        <label class="fa-li qg-main-nav__menu-bullet" for="qg-main-nav__sub-menu-toggle-1" aria-label="Toggle sub menu">
+        <label class="fa-li qg-main-nav__menu-bullet" for="qg-main-nav__dropdown-toggle-1" aria-label="Toggle dropdown" aria-haspopup="true">
             <i class="fas fa-chevron-right"></i>
         </label>
     
-        <a href="#" class="qg-main-nav__menu-link qg-main-nav__menu-link--primary">
+        <a href="#" class="qg-main-nav__menu-link" aria-haspopup="true">
             Services
         </a>
         
-        ${require('../../header-nav/html/sub-menu.html')}
-    
-        <a href="#" class="qg-main-nav__menu-link qg-main-nav__menu-link--secondary">
-            List of all X
-        </a>
-    
+        ${require('../../header-nav/html/dropdown.html')}
+        
     </li>
 
     <li class="qg-main-nav__menu-item">
 
-        <input id="qg-main-nav__sub-menu-toggle-2" class="qg-main-nav__sub-menu-toggle" type="checkbox" />
+        <input id="qg-main-nav__dropdown-toggle-2" class="qg-main-nav__dropdown-toggle" type="checkbox" />
     
-        <label class="fa-li qg-main-nav__menu-bullet" for="qg-main-nav__sub-menu-toggle-2" aria-label="Toggle sub menu">
+        <label class="fa-li qg-main-nav__menu-bullet" for="qg-main-nav__dropdown-toggle-2" aria-label="Toggle dropdown" aria-haspopup="true">
             <i class="fas fa-chevron-right"></i>
         </label>
     
-        <a href="#" class="qg-main-nav__menu-link qg-main-nav__menu-link--primary">
-            Government employees
+        <a href="#" class="qg-main-nav__menu-link" aria-haspopup="true">
+            For Queenslanders
         </a>
         
-        ${require('../../header-nav/html/sub-menu.html')}
-    
-        <a href="#" class="qg-main-nav__menu-link qg-main-nav__menu-link--secondary">
-            List of all X
-        </a>
-    
+        ${require('../../header-nav/html/dropdown.html')}
+        
     </li>
 
 </ul>
