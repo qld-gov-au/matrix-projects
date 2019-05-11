@@ -35,18 +35,6 @@
     align-items: center;
 }
 
-.qg-util-bar__widget-location-info,
-.qg-util-bar__widget-weather-info {
-    padding-top: pxToRem(5);
-    padding-bottom: pxToRem(5);    
-}
-
-.qg-util-bar__widget-weather-info {
-    border-right: pxToRem(1) solid #fff;
-    padding-right: pxToRem(10);
-    margin-right: pxToRem(10);
-}
-
 @media screen and (max-width: $small - 1px) {
 
     .qg-util-bar__logos {
@@ -97,8 +85,8 @@
         display: none;
     }
 
-    .qg-util-bar__widget-location-info,
-    .qg-util-bar__widget-weather-info {
+    .qg-location-info-widget,
+    .qg-weather-info-widget {
 
         .mobile-nav-active & {
             display: none;

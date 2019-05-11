@@ -1,0 +1,75 @@
+/*
+ * Mobile layout
+ */
+
+ .qg-location-info-widget {
+
+    /* Widget located in header util bar */
+    .qg-util-bar__widgets & {
+        color: #fff;
+        font-size: pxToRem(14);
+        line-height: 1;
+        padding-top: pxToRem(5);
+        padding-bottom: pxToRem(5);
+        
+        .qg-location-info-widget__text {
+            margin-bottom: 0;
+        }
+
+        .qg-location-info-widget__location-name-icon {
+            font-size: pxToRem(20);
+            margin-left: pxToRem(5);
+        }
+
+    }
+
+    /* Widget located in footer nearest service center */
+    .qg-site-footer-util__nearest-service-center & {
+        font-size: pxToRem(24);
+        font-weight: 600;
+        
+        .qg-location-info-widget__text {
+            margin-bottom: pxToRem(35);
+        }
+
+        .qg-location-info-widget__location-name-icon {
+            font-size: pxToRem(20);
+            margin-left: pxToRem(10);
+        }
+    }
+
+ }
+
+.qg-location-info-widget__location-name {
+    text-decoration: underline;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+}
+
+.qg-location-info-widget__location-name-icon {
+    vertical-align: middle;
+}
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+
+    .qg-location-info-widget {
+
+        /* Widget located in header util bar */
+        .qg-util-bar__widgets & {
+            font-size: pxToRem(18);
+            border-right: pxToRem(1) solid #fff;
+            padding-right: pxToRem(10);
+            margin-right: pxToRem(10);  
+        }
+
+    }
+
+}

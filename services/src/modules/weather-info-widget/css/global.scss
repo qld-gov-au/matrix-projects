@@ -1,0 +1,33 @@
+/*
+ * Mobile layout
+ */
+
+.qg-weather-info-widget {
+
+    .qg-util-bar__widgets & {
+        font-size: pxToRem(14);
+        color: #fff;
+        padding-top: pxToRem(5);
+        padding-bottom: pxToRem(5);
+        border-right: pxToRem(1) solid #fff;
+        padding-right: pxToRem(10);
+        margin-right: pxToRem(10);
+    }
+
+}
+ 
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+    
+    .qg-weather-info-widget {
+
+        .qg-util-bar__widgets & {
+            font-size: pxToRem(18);
+        }
+    
+    }
+
+}
