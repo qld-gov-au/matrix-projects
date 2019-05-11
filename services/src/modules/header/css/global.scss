@@ -1,0 +1,32 @@
+/*
+ * Mobile layout
+ */
+
+@media screen and (max-width: $desktop - 1px) {
+
+    .qg-site-header {
+        background-image: linear-gradient(65deg, #17608a, #149086);
+        padding-top: pxToRem(30);
+        padding-bottom: pxToRem(10);
+
+        &.qg-site-header--mobile-menu-open {
+            height: 100%;
+            background-image: linear-gradient(30deg, #17608a, #149086);
+        }
+    
+    }
+
+}
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+
+    .qg-site-header {
+        display: flex;
+        flex-direction: column;
+    }
+
+}

@@ -2,11 +2,7 @@
  * Mobile layout
  */
 
-.qg-main-nav {
-    background-color: black;
-}
-
-/* Menu list */
+ /* Menu list */
 .qg-main-nav__menu-list {
     font-size: pxToRem(20);
     margin-bottom: 0;
@@ -80,7 +76,6 @@
     margin-top: pxToRem(15);
     margin-left: pxToRem(10);
 
-    .qg-main-nav__menu-item:hover &,
     .qg-main-nav__menu-link:focus + & {
         clip: auto;
         height: auto;
@@ -92,6 +87,28 @@
 
 /* Up to before desktop layout */
 @media screen and (max-width: $desktop - 1px) {
+
+    .qg-main-nav {
+
+        border: 0;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+
+        .qg-site-header--mobile-menu-open & {
+            clip: auto;
+            height: auto;
+            margin: 0;
+            overflow: visible;
+            position: static;
+            width: auto;
+        }
+
+    }
 
     /* Menu item */
     .qg-main-nav__menu-item {
@@ -144,7 +161,6 @@
     /* Dropdown */
     .qg-main-nav__dropdown {
         
-        .qg-main-nav__menu-item:hover &,
         .qg-main-nav__menu-link:focus + & {
             position: relative;
         }
@@ -259,17 +275,50 @@
     /* Dropdown */
     .qg-main-nav__dropdown {
         background-color: #333;
+        left: 0;
         margin: 0;
         padding: pxToRem(30) pxToRem(30) pxToRem(20);
         position: absolute;
-        top: 100%;
-        z-index: 100;
+        z-index: 5;
         
         .qg-main-nav__menu-item:hover &,
         .qg-main-nav__menu-link:focus + & {
             width: pxToRem(400);
         }
 
+        .qg-main-nav__menu-item:hover & {
+            clip: auto;
+            height: auto;
+            overflow: visible;
+        }
+        
+        /* At this breakpoint, the viewport is too small for the second last child and last child dropdown width */
+        /* Make them start from the right instead */
+        .qg-main-nav__menu-item:last-child &,
+        .qg-main-nav__menu-item:nth-last-child(2) & {
+            left: auto;
+            right: 0;
+        }
+
     }
 
 }
+
+/*
+ * Extra large desktop layout
+ */
+
+ @media screen and (min-width: 1500px) {
+
+    /* Dropdown */
+    .qg-main-nav__dropdown {
+
+        /* Screen should be large enough to allow menu to start from left */
+        .qg-main-nav__menu-item:nth-last-child(2) & {
+            left: 0;
+            right: auto;
+        }
+
+    }
+
+ }

@@ -1,0 +1,41 @@
+<div class="qg-util-bar">
+    
+    <div class="container--outer">
+
+        <div class="qg-util-bar__inner">
+
+            <!-- Logos -->
+            <div class="qg-util-bar__logos">
+                <a href="https://www.qld.gov.au" class="qg-util-bar__logo-link">
+                    <img class="qg-util-bar__logo qg-util-bar__logo--mobile" src="https://via.placeholder.com/100x60" />
+                    <img class="qg-util-bar__logo qg-util-bar__logo--desktop" src="https://via.placeholder.com/427x80" />
+                </a>
+            </div>
+        
+            <!-- Widgets -->
+            <div class="qg-util-bar__widgets">
+        
+                <div class="qg-util-bar__widget qg-util-bar__widget-weather-info">
+                    ${require('../../weather-info/html/index.html')}
+                </div>
+        
+                <div class="qg-util-bar__widget qg-util-bar__widget-location-info">
+                    ${require('../../location-info/html/index.html')}
+                </div>
+        
+                <div class="qg-util-bar__widget qg-util-bar__widget-weather-search">
+        
+                </div>
+        
+            </div>
+
+            <!--@@ Hamburger menu to display mobile links @@-->
+            <button class="qg-util-bar__mobile-nav-toggle" type="button" aria-label="Toggle mobile menu navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+        </div>
+
+    </div>
+    
+</div><!-- /.qg-util-bar -->

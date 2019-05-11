@@ -1,0 +1,134 @@
+/*
+ * Mobile layout
+ */
+
+.qg-util-bar__inner {
+    position: relative;
+}
+
+.qg-util-bar__mobile-nav-toggle {
+    background-color: transparent;
+    border: pxToRem(2) solid #ffffff;
+    border-radius: pxToRem(6);
+    color: #fff;
+    font-size: pxToRem(18);
+    height: pxToRem(45);
+    position: absolute;
+    left: 0;
+    top: pxToRem(3);
+    width: pxToRem(45);
+
+    &:hover {
+        background-color: #fff;
+        color: #17608a;
+    }
+
+    .qg-site-header--mobile-menu-open & {
+        background-color: #fff;
+        color: #17608a;
+    }
+
+}
+
+.qg-util-bar__widgets {
+    display: flex;
+    align-items: center;
+}
+
+.qg-util-bar__widget-location-info,
+.qg-util-bar__widget-weather-info {
+    padding-top: pxToRem(5);
+    padding-bottom: pxToRem(5);    
+}
+
+.qg-util-bar__widget-weather-info {
+    border-right: pxToRem(1) solid #fff;
+    padding-right: pxToRem(10);
+    margin-right: pxToRem(10);
+}
+
+@media screen and (max-width: $small - 1px) {
+
+    .qg-util-bar__logos {
+        margin-bottom: pxToRem(30);
+        text-align: center;
+    }
+
+    
+    
+}
+
+@media screen and (min-width: $small) {
+
+    .qg-util-bar {
+
+        .qg-site-header--mobile-menu-open & {
+            padding-bottom: pxToRem(30);
+        }
+
+    }
+
+    .qg-util-bar__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .qg-util-bar__logos {
+        margin-left: pxToRem(60);
+    }
+
+}
+
+@media screen and (max-width: $desktop - 1px) {
+
+    .qg-util-bar {
+
+        .qg-site-header--mobile-menu-open & {
+            border-bottom: pxToRem(1) solid #fff;
+            margin-bottom: pxToRem(30);
+        }
+
+    }
+
+    .qg-util-bar__logo--desktop {
+        display: none;
+    }
+
+    .qg-util-bar__widget-location-info,
+    .qg-util-bar__widget-weather-info {
+
+        .qg-site-header--mobile-menu-open & {
+            display: none;
+        }
+
+    }
+
+}
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+    
+    .qg-util-bar {
+        order: 1;
+        background-image: linear-gradient(85deg, #17608a, #149086);
+        padding-top: pxToRem(20);
+        padding-bottom: pxToRem(20);
+    }
+
+    .qg-util-bar__mobile-nav-toggle {
+        display: none;
+    }
+
+    .qg-util-bar__logos {
+        margin-left: 0;
+    }
+
+    .qg-util-bar__logo--mobile {
+        display: none;
+    }
+
+}

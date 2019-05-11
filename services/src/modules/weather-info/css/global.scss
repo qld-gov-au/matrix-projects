@@ -2,28 +2,20 @@
  * Mobile layout
  */
 
-.common__wrapper {
+.qg-weather-info {
 
-}
-
-
-/*
- * Tablet layout
- */
-
-@media screen and (min-width: $tablet){
-    .common__wrapper {
-
+    .qg-util-bar & {
+        font-size: pxToRem(14);
+        color: #fff;
     }
+
+
 }
-
-
+ 
 /*
  * Desktop layout
  */
 
 @media screen and (min-width: $desktop){
-    .common__wrapper {
-        
-    }
+    
 }

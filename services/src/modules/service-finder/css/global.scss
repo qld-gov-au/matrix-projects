@@ -10,7 +10,6 @@
 
     .services-banner & {
         border: 0;
-        margin-top: 0;
         margin-bottom: 0;
         padding-bottom: 0;
     }
@@ -255,9 +254,7 @@
 
     }
     
-    
-
-    .services-service-finder__no-results-block {
+    .services-service-finder__no-results-menu-block {
         & + & {
             border-top: pxToRem(1) solid #000;
         }
@@ -271,9 +268,6 @@
 
     }
 
-
-    
-
 }
 
 
@@ -286,6 +280,11 @@
     .services-service-finder {
         margin-bottom: pxToRem(50);
         padding-bottom: pxToRem(50);
+
+        .services-banner & {
+            margin-top: 0;
+        }
+
     }
 
     .services-service-finder__heading {

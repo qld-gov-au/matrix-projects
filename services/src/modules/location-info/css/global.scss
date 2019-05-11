@@ -4,6 +4,22 @@
 
  .qg-location-info {
 
+
+    /* Widget located in header */
+    .qg-util-bar__widget & {
+        color: #fff;
+        font-size: pxToRem(14);
+        line-height: 1;
+        margin-bottom: 0;
+
+        .qg-location-info__location-name-icon {
+            font-size: pxToRem(20);
+            margin-left: pxToRem(5);
+        }
+
+    }
+
+    /* Widget located in footer nearest service center */
     .qg-site-footer-util__nearest-service-center & {
         font-size: pxToRem(24);
         font-weight: 600;
@@ -15,10 +31,19 @@
         }
     }
 
-
  }
 
 .qg-location-info__location-name {
     text-decoration: underline;
     cursor: pointer;
+
+    &:hover {
+        text-decoration: none;
+    }
+
 }
+
+.qg-location-info__location-name-icon {
+    vertical-align: middle;
+}
+
