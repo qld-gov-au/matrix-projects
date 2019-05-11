@@ -1,17 +1,38 @@
-/*
- * Mobile layout
- */
+@media screen and (max-width: $small - 1px) {
+
+    .qg-site-header {
+        padding-bottom: pxToRem(10);
+
+        .mobile-nav-active & {
+            padding-bottom: pxToRem(30);
+        }
+
+    }
+
+}
+
+@media screen and (min-width: $small) and (max-width: $desktop - 1px) {
+
+    .qg-site-header {
+        padding-bottom: pxToRem(30);
+    }
+
+}
 
 @media screen and (max-width: $desktop - 1px) {
 
     .qg-site-header {
         background-image: linear-gradient(65deg, #17608a, #149086);
         padding-top: pxToRem(30);
-        padding-bottom: pxToRem(10);
-
-        &.qg-site-header--mobile-menu-open {
-            height: 100%;
+        
+        .mobile-nav-active & {
             background-image: linear-gradient(30deg, #17608a, #149086);
+            height: 100%;
+            overflow: auto;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 5;
         }
     
     }

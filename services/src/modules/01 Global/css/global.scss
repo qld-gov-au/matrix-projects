@@ -32,6 +32,18 @@ body {
     }
 }
 
+@media screen and (max-width: $desktop - 1px) {
+
+    body {
+
+        &.mobile-nav-active {
+            overflow-y: hidden;
+        }
+
+    }
+
+}
+
 /*
  * Desktop layout
  */

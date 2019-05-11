@@ -6,14 +6,14 @@
         
         function setupMobileNav() {
 
-            var $site_header = $(".qg-site-header");
-            var $mobile_nav_toggle = $site_header.find(".qg-util-bar__mobile-nav-toggle");
+            var $mobile_nav_toggle = $(".qg-util-bar__mobile-nav-toggle");
             
             $mobile_nav_toggle.click(function(event) {
                 
                 var $this = $(event.target);
 
-                $site_header.toggleClass("qg-site-header--mobile-menu-open");
+                /* Add class to body */
+                $("body").toggleClass("mobile-nav-active");
 
             });
 

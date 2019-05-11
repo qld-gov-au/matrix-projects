@@ -23,7 +23,7 @@
         color: #17608a;
     }
 
-    .qg-site-header--mobile-menu-open & {
+    .mobile-nav-active & {
         background-color: #fff;
         color: #17608a;
     }
@@ -54,19 +54,9 @@
         text-align: center;
     }
 
-    
-    
 }
 
 @media screen and (min-width: $small) {
-
-    .qg-util-bar {
-
-        .qg-site-header--mobile-menu-open & {
-            padding-bottom: pxToRem(30);
-        }
-
-    }
 
     .qg-util-bar__inner {
         display: flex;
@@ -80,11 +70,23 @@
 
 }
 
+@media screen and (min-width: $small) and (max-width: $desktop - 1px) {
+
+    .qg-util-bar {
+
+        .mobile-nav-active & {
+            padding-bottom: pxToRem(30);
+        }
+
+    }
+    
+}
+
 @media screen and (max-width: $desktop - 1px) {
 
     .qg-util-bar {
 
-        .qg-site-header--mobile-menu-open & {
+        .mobile-nav-active & {
             border-bottom: pxToRem(1) solid #fff;
             margin-bottom: pxToRem(30);
         }
@@ -98,7 +100,7 @@
     .qg-util-bar__widget-location-info,
     .qg-util-bar__widget-weather-info {
 
-        .qg-site-header--mobile-menu-open & {
+        .mobile-nav-active & {
             display: none;
         }
 

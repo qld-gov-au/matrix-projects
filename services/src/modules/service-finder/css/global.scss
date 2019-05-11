@@ -498,9 +498,14 @@
 
     .services-service-finder__no-results-menu-list-item-link {
         color: #063652;
+
+        &:hover,
+        &:focus {
+            color: #063652;
+        }
+
     }
     
-
     .services-service-finder__btn {
         border-radius: 0 pxToRem(14) pxToRem(14) 0;
         font-size: pxToRem(44);
