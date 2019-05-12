@@ -2,14 +2,34 @@
 
     'use strict';
 
+    /*
+     * =====================
+     * Service Finder Module
+     * =====================
+     * The search finder module is a form which has an input search field and a submit button.
+     * 
+     * ---------------------------------------------------
+     * Functionality - FB Autocomplete Conceirge
+     * ---------------------------------------------------
+     * The Funnelback autocomplete coneirge is applied on the input search field to allow
+     * - autocompletion
+     * - organic suggestions (Up to 5)
+     * - featured suggestion (1)
+     * The script also clones the featured result into the organic result set for mobile view
+     */
+
     var services_service_finder_module = (function() {
         
-        /* Initialise Funnelback Conceirge on input field */
+        // Initialise Funnelback Conceirge on input field
         function initFBConceirge() {
 
+            // Get autocomplete source url
+            var autocomplete_source_url = services_service_finder.dom.$root.data("autocomplete-source");
+
+            // Initiate conceirge plugin
             services_service_finder.dom.$field.autocompletion({
 
-                program   : 'https://stage-15-10-search.clients.funnelback.com/s/suggest.json',
+                program: autocomplete_source_url,
                 scrollable: true,
                 datasets: {
                     organic: {
@@ -110,7 +130,7 @@
             
         }
 
-        // This function adds and removes a "focus" class whenever the field is focused / blurred
+        // This function adds/removes a "focus" class whenever the field is focused/blurred
         // This is to control CSS border radius of input and button
         // If user is focusing on field, scroll to field so that user can always see the rest of the no results menu
         function initFieldFocusEvent() {
@@ -140,11 +160,13 @@
             
             services_service_finder.dom = {};
 
+            // Get root node
             services_service_finder.dom.$root = $(".services-service-finder");
             
+            // If sevice finder exists
             if (services_service_finder.dom.$root.length) {
 
-                // Cache field input
+                // Get field input
                 services_service_finder.dom.$field = services_service_finder.dom.$root.find(".services-service-finder__field");
 
                 // Set up root node to have class whenver field is focused on

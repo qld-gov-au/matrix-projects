@@ -76,7 +76,7 @@
     margin-top: pxToRem(15);
     margin-left: pxToRem(10);
 
-    .qg-main-nav__menu-link:focus + & {
+    .qg-main-nav__dropdown-link--focused > & {
         clip: auto;
         height: auto;
         overflow: visible;
@@ -126,8 +126,9 @@
     /* Menu bullet */
     .qg-main-nav__menu-bullet {
         
-        /* Parent menu bullet when dropdown is toggled */
-        .qg-main-nav__dropdown-toggle:checked ~ & {
+        /* Parent menu bullet when dropdown is toggled or dropdown menu link is focused (JS) */
+        .qg-main-nav__dropdown-toggle:checked ~ &,
+        .qg-main-nav__dropdown-link--focused > & {
             transform: rotate(90deg);
         }
 
@@ -161,10 +162,12 @@
     /* Dropdown */
     .qg-main-nav__dropdown {
         
-        .qg-main-nav__menu-link:focus + & {
-            position: relative;
+        // When dropdown menu link is focused (JS)
+        .qg-main-nav__dropdown-link--focused > & {
+            position: static;
         }
 
+        // Show dropdown when checkbox toggle is checked
         .qg-main-nav__dropdown-toggle:checked ~ & {
             clip: auto;
             height: auto;
@@ -252,6 +255,12 @@
             }
         }
 
+        /* When dropdown menu link is focused (JS) */
+        .qg-main-nav__menu-list--parent > .qg-main-nav__dropdown-link--focused > & {
+            background-color: #333;
+            color: #fff;
+        }
+
         /* Hovering over parent li of parent link */
         .qg-main-nav__menu-list--parent > .qg-main-nav__menu-item:hover > & {
             background-color: #333;
@@ -280,9 +289,9 @@
         padding: pxToRem(30) pxToRem(30) pxToRem(20);
         position: absolute;
         z-index: 5;
-        
+
         .qg-main-nav__menu-item:hover &,
-        .qg-main-nav__menu-link:focus + & {
+        .qg-main-nav__dropdown-link--focused > & {   
             width: pxToRem(400);
         }
 

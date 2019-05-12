@@ -44,7 +44,6 @@
     &:focus {
         outline: 0;
     }
-
 }
 
 .qg-search-widget__btn {
@@ -75,14 +74,13 @@
 @media screen and (max-width: $desktop - 1px) {
 
     .qg-search-widget {
-
         display: none;
 
         .mobile-nav-active & {
             display: block;
         }
-
     }
+
 }
 
 /*
@@ -91,8 +89,7 @@
 
 @media screen and (min-width: $desktop) {
     
-    .qg-search-widget__field-wrapper {
-        
+    .qg-search-widget__field-wrapper {    
         border: 0;
         clip: rect(0 0 0 0);
         height: 1px;
@@ -111,7 +108,6 @@
             position: static;
             width: auto;
         }
-
     }
 
     .qg-search-widget__btn {
@@ -127,11 +123,6 @@
             border-radius: 0 pxToRem(6) pxToRem(6) 0;
             width: pxToRem(45);
         }
-
     }
 
-
-
-
-    
 }

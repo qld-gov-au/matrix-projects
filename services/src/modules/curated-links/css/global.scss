@@ -47,6 +47,11 @@
 .curated-links__list-item-link {
     font-size: pxToRem(18);
     color: #000;
+
+    &:hover,
+    &:focus {
+        color: #000;
+    }
 }
 
 /*
@@ -87,8 +92,6 @@
         margin-left: pxToRem(35);
     }
 
-
-    
     .curated-links__list-item {
         padding-left: pxToRem(15);
 

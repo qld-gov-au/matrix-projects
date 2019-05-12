@@ -6,7 +6,6 @@
      * ====================
      * Search Widget Module
      * ====================
-     * 
      * The search widget is a form which has an input search field and a submit button.
      * 
      * ---------------------------------------------------
@@ -39,8 +38,6 @@
         }
 
         function form_focused(event) {
-
-            var $this = $(event.target);
             
             // Add class to parent so that not only field can show but hide other widgets in util bar as well
             qg_search_widget_module.dom.$parent.addClass("search-form-widget--focused");
@@ -48,8 +45,6 @@
         }
 
         function form_blurred(event) {
-
-            var $this = $(event.target);
             
             // Remove class to hide search field and show other widgets
             qg_search_widget_module.dom.$parent.removeClass("search-form-widget--focused");
