@@ -11,7 +11,7 @@
 
 <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700" rel="stylesheet" />
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
 
@@ -23,163 +23,216 @@
 
         <!--noindex-->
         <header class="qg-site-header">
+    <div class="qg-util-bar">
+    
+    <div class="container--outer">
+
+        <div class="qg-util-bar__inner">
+
+            <!-- Logos -->
+            <div class="qg-util-bar__logos">
+                <a href="https://www.qld.gov.au" class="qg-util-bar__logo-link">
+                    <img class="qg-util-bar__logo qg-util-bar__logo--mobile" src="https://via.placeholder.com/100x60" />
+                    <img class="qg-util-bar__logo qg-util-bar__logo--desktop" src="https://via.placeholder.com/427x80" />
+                </a>
+            </div>
+        
+            <!-- Widgets -->
+            <div class="qg-util-bar__widgets">
+        
+                <div class="qg-weather-info-widget">
+    <span class="qg-weather-info-widget__current-forecast-temperature">27.3 &deg;C</span> 
+    <div class="qg-weather-info-widget__current-forecast-image"></div>
+</div>
+
+                
+                <div class="qg-location-info-widget">
+    <p class="qg-location-info-widget__text">
+        Your location is <span class="qg-location-info-widget__location-name">Unknown</span>
+        <i class="fas fa-map-marker-alt qg-location-info-widget__location-name-icon"></i>
+    </p>
+</div>
+
+                <div class="qg-search-widget">
+      
+    <form action="https://find.search.qld.gov.au/s/search.html" class="qg-search-widget__form" autocomplete="off">
+
+        <div class="qg-search-widget__field-wrapper">
+            <input class="qg-search-widget__field" name="query" type="text" placeholder="Search qld.gov.au" aria-label="Search qld.gov.au" required />
+        </div>
+
+        <button class="qg-search-widget__btn" type="submit" aria-label="Search qld.gov.au">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+
+        <input type="hidden" name="num_ranks" value="10" />
+        <input type="hidden" name="tiers" value="off" />
+        <input type="hidden" name="collection" value="qld-gov" />
+        <input type="hidden" name="profile" value="qld" />
+
+    </form>
+
+</div>
+                
+            </div>
+
+            <!--@@ Hamburger menu to display mobile links @@-->
+            <button class="qg-util-bar__mobile-nav-toggle" type="button" aria-label="Toggle mobile menu navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+        </div>
+
+    </div>
+    
+</div><!-- /.qg-util-bar -->
+
     <nav class="qg-main-nav" role="navigation" aria-label="Main navigation">
 
     <div class="container--outer">
-        <ul class="fa-ul qg-main-nav__menus qg-main-nav__menus--parent">
 
-    <li class="qg-main-nav__menu">
+        <div class="qg-main-nav__inner">
+            <ul class="fa-ul qg-main-nav__menu-list qg-main-nav__menu-list--parent" aria-label="Parent menu list">
 
-        <input id="qg-main-nav__sub-menu-toggle-1" class="qg-main-nav__sub-menu-toggle" type="checkbox" />
+    <li class="qg-main-nav__menu-item">
+
+        <input id="qg-main-nav__dropdown-toggle-1" class="qg-main-nav__dropdown-toggle" type="checkbox" />
     
-        <label class="fa-li qg-main-nav__menu-bullet" for="qg-main-nav__sub-menu-toggle-1" aria-label="Toggle sub menu">
+        <label class="fa-li qg-main-nav__menu-bullet" for="qg-main-nav__dropdown-toggle-1" aria-label="Toggle dropdown" aria-haspopup="true">
             <i class="fas fa-chevron-right"></i>
         </label>
     
-        <a href="#" class="qg-main-nav__menu-link qg-main-nav__menu-link--primary">
-            Parent Link
+        <a href="#" class="qg-main-nav__menu-link" aria-haspopup="true">
+            Services
         </a>
         
-        <ul class="fa-ul qg-main-nav__menus qg-main-nav__menus--sub">
+        <div class="qg-main-nav__dropdown">
 
-    <li class="qg-main-nav__menu">
-
-    <span class="fa-li qg-main-nav__menu-bullet">
-        <i class="fas fa-chevron-right"></i>
-    </span>
-
-    <a href="#" class="qg-main-nav__menu-link" >Sub link</a>
-
-</li>
-
-    <li class="qg-main-nav__menu">
+    <ul class="fa-ul qg-main-nav__menu-list qg-main-nav__menu-list--sub" aria-label="Sub menu list">
+    <li class="qg-main-nav__menu-item">
 
     <span class="fa-li qg-main-nav__menu-bullet">
         <i class="fas fa-chevron-right"></i>
     </span>
 
-    <a href="#" class="qg-main-nav__menu-link" >Sub link</a>
+    <a href="#" class="qg-main-nav__menu-link">Sub link</a>
 
 </li>
 
-    <li class="qg-main-nav__menu">
+    <li class="qg-main-nav__menu-item">
 
     <span class="fa-li qg-main-nav__menu-bullet">
         <i class="fas fa-chevron-right"></i>
     </span>
 
-    <a href="#" class="qg-main-nav__menu-link" >Sub link</a>
+    <a href="#" class="qg-main-nav__menu-link">Sub link</a>
 
 </li>
 
-    <li class="qg-main-nav__menu">
+    <li class="qg-main-nav__menu-item">
 
     <span class="fa-li qg-main-nav__menu-bullet">
         <i class="fas fa-chevron-right"></i>
     </span>
 
-    <a href="#" class="qg-main-nav__menu-link" >Sub link</a>
+    <a href="#" class="qg-main-nav__menu-link">Sub link</a>
 
 </li>
 
-    <li class="qg-main-nav__menu">
+    <li class="qg-main-nav__menu-item">
 
     <span class="fa-li qg-main-nav__menu-bullet">
         <i class="fas fa-chevron-right"></i>
     </span>
 
-    <a href="#" class="qg-main-nav__menu-link" >Sub link</a>
+    <a href="#" class="qg-main-nav__menu-link">Sub link</a>
 
 </li>
-
 
 </ul>
     
-        <a href="#" class="qg-main-nav__menu-link qg-main-nav__menu-link--secondary">
-            List of all X
-        </a>
+    <a href="#" class="qg-main-nav__menu-link">
+        All categories
+    </a>
     
+</div>
+        
     </li>
 
-    <li class="qg-main-nav__menu">
+    <li class="qg-main-nav__menu-item">
 
-        <input id="qg-main-nav__sub-menu-toggle-2" class="qg-main-nav__sub-menu-toggle" type="checkbox" />
+        <input id="qg-main-nav__dropdown-toggle-2" class="qg-main-nav__dropdown-toggle" type="checkbox" />
     
-        <label class="fa-li qg-main-nav__menu-bullet" for="qg-main-nav__sub-menu-toggle-2" aria-label="Toggle sub menu">
+        <label class="fa-li qg-main-nav__menu-bullet" for="qg-main-nav__dropdown-toggle-2" aria-label="Toggle dropdown" aria-haspopup="true">
             <i class="fas fa-chevron-right"></i>
         </label>
     
-        <a href="#" class="qg-main-nav__menu-link qg-main-nav__menu-link--primary">
-            Parent Link
+        <a href="#" class="qg-main-nav__menu-link" aria-haspopup="true">
+            For Queenslanders
         </a>
         
-        <ul class="fa-ul qg-main-nav__menus qg-main-nav__menus--sub">
+        <div class="qg-main-nav__dropdown">
 
-    <li class="qg-main-nav__menu">
-
-    <span class="fa-li qg-main-nav__menu-bullet">
-        <i class="fas fa-chevron-right"></i>
-    </span>
-
-    <a href="#" class="qg-main-nav__menu-link" >Sub link</a>
-
-</li>
-
-    <li class="qg-main-nav__menu">
+    <ul class="fa-ul qg-main-nav__menu-list qg-main-nav__menu-list--sub" aria-label="Sub menu list">
+    <li class="qg-main-nav__menu-item">
 
     <span class="fa-li qg-main-nav__menu-bullet">
         <i class="fas fa-chevron-right"></i>
     </span>
 
-    <a href="#" class="qg-main-nav__menu-link" >Sub link</a>
+    <a href="#" class="qg-main-nav__menu-link">Sub link</a>
 
 </li>
 
-    <li class="qg-main-nav__menu">
+    <li class="qg-main-nav__menu-item">
 
     <span class="fa-li qg-main-nav__menu-bullet">
         <i class="fas fa-chevron-right"></i>
     </span>
 
-    <a href="#" class="qg-main-nav__menu-link" >Sub link</a>
+    <a href="#" class="qg-main-nav__menu-link">Sub link</a>
 
 </li>
 
-    <li class="qg-main-nav__menu">
+    <li class="qg-main-nav__menu-item">
 
     <span class="fa-li qg-main-nav__menu-bullet">
         <i class="fas fa-chevron-right"></i>
     </span>
 
-    <a href="#" class="qg-main-nav__menu-link" >Sub link</a>
+    <a href="#" class="qg-main-nav__menu-link">Sub link</a>
 
 </li>
 
-    <li class="qg-main-nav__menu">
+    <li class="qg-main-nav__menu-item">
 
     <span class="fa-li qg-main-nav__menu-bullet">
         <i class="fas fa-chevron-right"></i>
     </span>
 
-    <a href="#" class="qg-main-nav__menu-link" >Sub link</a>
+    <a href="#" class="qg-main-nav__menu-link">Sub link</a>
 
 </li>
-
 
 </ul>
     
-        <a href="#" class="qg-main-nav__menu-link qg-main-nav__menu-link--secondary">
-            List of all X
-        </a>
+    <a href="#" class="qg-main-nav__menu-link">
+        All categories
+    </a>
     
+</div>
+        
     </li>
 
 </ul>
+        </div>
+
     </div>
 
 </nav>
 <!-- /.qg-main-nav -->
 </header><!-- /.qg-site-header -->
+
         <!--endnoindex-->
 
         <main class="main" role="main">
@@ -194,7 +247,7 @@
 
             <div class="services-service-finder__field-wrapper">
 
-                <input class="services-service-finder__field" type="text" placeholder="What can we help you find?" aria-label="Search services" required />
+                <input class="services-service-finder__field" name="query" type="text" placeholder="What can we help you find?" aria-label="Search services" required />
 
                 <!-- No results menu -->
 <div class="services-service-finder__no-results-menu">
@@ -369,10 +422,12 @@
 
                     <h2 class="qg-site-footer-util__heading">Your nearest service center</h2>
 
-                    <p class="qg-location-info">
-    Your location is <span class="qg-location-info__location-name">Unknown<span>
-    <i class="fas fa-map-marker-alt qg-location-info__location-name-icon"></i>
-</p>
+                    <div class="qg-location-info-widget">
+    <p class="qg-location-info-widget__text">
+        Your location is <span class="qg-location-info-widget__location-name">Unknown</span>
+        <i class="fas fa-map-marker-alt qg-location-info-widget__location-name-icon"></i>
+    </p>
+</div>
 
                     <div class="qg-site-footer-util__nearest-service-center-details">
 

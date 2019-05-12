@@ -38,6 +38,15 @@
         }
     }
 
+    &.qg-location-info-widget--has-result {
+
+        /* Hide this if embedded in footer util bar and has result */
+        .qg-site-footer-util__nearest-service-center & {
+            display: none;
+        }
+        
+    }
+
  }
 
 .qg-location-info-widget__location-name {
@@ -70,6 +79,16 @@
             margin-right: pxToRem(10);  
         }
 
+        /* Hide widget if search form widget is active/hovered */
+        .qg-util-bar__widgets.search-form-widget--focused &,
+        .qg-util-bar__widgets.search-form-widget--hover & {
+            display: none;
+        }
+
+        
+
     }
+
+    
 
 }

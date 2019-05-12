@@ -77,6 +77,7 @@
         .mobile-nav-active & {
             border-bottom: pxToRem(1) solid #fff;
             margin-bottom: pxToRem(30);
+            padding-bottom: pxToRem(30);
         }
 
     }
