@@ -262,6 +262,8 @@ body {
 .curated-links__list-item-link {
   font-size: 1.125rem;
   color: #000; }
+  .curated-links__list-item-link:hover, .curated-links__list-item-link:focus {
+    color: #000; }
 
 /*
  * Desktop layout
@@ -605,7 +607,7 @@ body {
 .qg-main-nav__dropdown {
   margin-top: 0.9375rem;
   margin-left: 0.625rem; }
-  .qg-main-nav__menu-link:focus + .qg-main-nav__dropdown {
+  .qg-main-nav__dropdown-link--focused > .qg-main-nav__dropdown {
     clip: auto;
     height: auto;
     overflow: visible;
@@ -636,9 +638,10 @@ body {
     margin-top: 1.25rem; }
   /* Menu bullet */
   .qg-main-nav__menu-bullet {
-    /* Parent menu bullet when dropdown is toggled */
+    /* Parent menu bullet when dropdown is toggled or dropdown menu link is focused (JS) */
     /* Sub menu bullets */ }
-    .qg-main-nav__dropdown-toggle:checked ~ .qg-main-nav__menu-bullet {
+    .qg-main-nav__dropdown-toggle:checked ~ .qg-main-nav__menu-bullet,
+    .qg-main-nav__dropdown-link--focused > .qg-main-nav__menu-bullet {
       -webkit-transform: rotate(90deg);
               transform: rotate(90deg); }
     .qg-main-nav__menu-list--sub .qg-main-nav__menu-bullet {
@@ -654,8 +657,8 @@ body {
       .qg-main-nav__dropdown .qg-main-nav__menu-link:hover, .qg-main-nav__dropdown .qg-main-nav__menu-link:focus {
         text-decoration: none; }
   /* Dropdown */
-  .qg-main-nav__menu-link:focus + .qg-main-nav__dropdown {
-    position: relative; }
+  .qg-main-nav__dropdown-link--focused > .qg-main-nav__dropdown {
+    position: static; }
   .qg-main-nav__dropdown-toggle:checked ~ .qg-main-nav__dropdown {
     clip: auto;
     height: auto;
@@ -701,6 +704,7 @@ body {
   /* Menu link */
   .qg-main-nav__menu-link {
     /* Parent link */
+    /* When dropdown menu link is focused (JS) */
     /* Hovering over parent li of parent link */
     /* Footer link in dropdown */ }
     .qg-main-nav__menu-list--parent > .qg-main-nav__menu-item > .qg-main-nav__menu-link {
@@ -712,6 +716,9 @@ body {
       .qg-main-nav__menu-list--parent > .qg-main-nav__menu-item > .qg-main-nav__menu-link:hover, .qg-main-nav__menu-list--parent > .qg-main-nav__menu-item > .qg-main-nav__menu-link:focus {
         background-color: #333;
         color: #fff; }
+    .qg-main-nav__menu-list--parent > .qg-main-nav__dropdown-link--focused > .qg-main-nav__menu-link {
+      background-color: #333;
+      color: #fff; }
     .qg-main-nav__menu-list--parent > .qg-main-nav__menu-item:hover > .qg-main-nav__menu-link {
       background-color: #333;
       color: #fff; }
@@ -731,7 +738,7 @@ body {
     /* At this breakpoint, the viewport is too small for the second last child and last child dropdown width */
     /* Make them start from the right instead */ }
     .qg-main-nav__menu-item:hover .qg-main-nav__dropdown,
-    .qg-main-nav__menu-link:focus + .qg-main-nav__dropdown {
+    .qg-main-nav__dropdown-link--focused > .qg-main-nav__dropdown {
       width: 25rem; }
     .qg-main-nav__menu-item:hover .qg-main-nav__dropdown {
       clip: auto;
@@ -858,7 +865,7 @@ body {
       position: fixed;
       top: 0;
       width: 100%;
-      z-index: 5; } }
+      z-index: 999; } }
 
 /*
  * Desktop layout

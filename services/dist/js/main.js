@@ -129,24 +129,60 @@ __webpack_require__.r(__webpack_exports__);
 
 (function () {
   'use strict';
+  /*
+  * ======================
+  * Main Navigation Module
+  * ======================
+  * The main navigation has parent menu items, each with its own sub menu
+  * 
+  * ---------------------------
+  * Functionality - Mobile mode
+  * ---------------------------
+  * When mobile mode is made active by clicking on the hamburger menu, a class is added to the body tag.
+  * This allows the main body overflow-y to be hidden which disallows users to scroll whatever is behind the
+  * expanded menu.
+  * 
+  * --------------------------------------
+  * Functionality - Focused dropdown links
+  * --------------------------------------
+  * For better keyboard navigation, we want the dropdown to stay open when user focuses on a dropdown link
+  * 
+  */
 
   var qg_main_nav_module = function () {
-    function setupMobileNav() {
+    function setupMobileMode() {
+      // Get hamburger menu
       var $mobile_nav_toggle = $(".qg-util-bar__mobile-nav-toggle");
       $mobile_nav_toggle.click(function (event) {
-        var $this = $(event.target);
-        /* Add class to body */
+        var $this = $(event.target); // Toggle class on body
 
         $("body").toggleClass("mobile-nav-active");
       });
     }
 
+    function setupDropdownLinks() {
+      // Get links in dropdown
+      qg_main_nav.dom.$root.$submenu_links = qg_main_nav.dom.$root.find(".qg-main-nav__dropdown .qg-main-nav__menu-link");
+      qg_main_nav.dom.$root.$submenu_links.on("focus", function (event) {
+        var $this = $(event.target); // Find parent menu item and add class
+
+        $this.closest(".qg-main-nav__dropdown").parent().addClass("qg-main-nav__dropdown-link--focused");
+      });
+      qg_main_nav.dom.$root.$submenu_links.on("blur", function (event) {
+        var $this = $(event.target); // // Find parent menu item and remove class
+
+        $this.closest(".qg-main-nav__dropdown").parent().removeClass("qg-main-nav__dropdown-link--focused");
+      });
+    }
+
     function init() {
-      qg_main_nav.dom = {};
-      qg_main_nav.dom.$root = $(".qg-main-nav");
+      qg_main_nav.dom = {}; // Get root element
+
+      qg_main_nav.dom.$root = $(".qg-main-nav"); // If main navigation exists
 
       if (qg_main_nav.dom.$root.length) {
-        setupMobileNav();
+        setupMobileMode();
+        setupDropdownLinks();
       }
     }
 
@@ -203,7 +239,6 @@ __webpack_require__.r(__webpack_exports__);
    * ====================
    * Search Widget Module
    * ====================
-   * 
    * The search widget is a form which has an input search field and a submit button.
    * 
    * ---------------------------------------------------
@@ -231,14 +266,12 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     function form_focused(event) {
-      var $this = $(event.target); // Add class to parent so that not only field can show but hide other widgets in util bar as well
-
+      // Add class to parent so that not only field can show but hide other widgets in util bar as well
       qg_search_widget_module.dom.$parent.addClass("search-form-widget--focused");
     }
 
     function form_blurred(event) {
-      var $this = $(event.target); // Remove class to hide search field and show other widgets
-
+      // Remove class to hide search field and show other widgets
       qg_search_widget_module.dom.$parent.removeClass("search-form-widget--focused");
     }
 
@@ -283,12 +316,30 @@ __webpack_require__.r(__webpack_exports__);
 
 (function () {
   'use strict';
+  /*
+   * =====================
+   * Service Finder Module
+   * =====================
+   * The search finder module is a form which has an input search field and a submit button.
+   * 
+   * ---------------------------------------------------
+   * Functionality - FB Autocomplete Conceirge
+   * ---------------------------------------------------
+   * The Funnelback autocomplete coneirge is applied on the input search field to allow
+   * - autocompletion
+   * - organic suggestions (Up to 5)
+   * - featured suggestion (1)
+   * The script also clones the featured result into the organic result set for mobile view
+   */
 
   var services_service_finder_module = function () {
-    /* Initialise Funnelback Conceirge on input field */
+    // Initialise Funnelback Conceirge on input field
     function initFBConceirge() {
+      // Get autocomplete source url
+      var autocomplete_source_url = services_service_finder.dom.$root.data("autocomplete-source"); // Initiate conceirge plugin
+
       services_service_finder.dom.$field.autocompletion({
-        program: 'https://stage-15-10-search.clients.funnelback.com/s/suggest.json',
+        program: autocomplete_source_url,
         scrollable: true,
         datasets: {
           organic: {
@@ -373,7 +424,7 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         services_service_finder.dom.$root.removeClass("has-featured-result");
       }
-    } // This function adds and removes a "focus" class whenever the field is focused / blurred
+    } // This function adds/removes a "focus" class whenever the field is focused/blurred
     // This is to control CSS border radius of input and button
     // If user is focusing on field, scroll to field so that user can always see the rest of the no results menu
 
@@ -393,11 +444,12 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     function init() {
-      services_service_finder.dom = {};
-      services_service_finder.dom.$root = $(".services-service-finder");
+      services_service_finder.dom = {}; // Get root node
+
+      services_service_finder.dom.$root = $(".services-service-finder"); // If sevice finder exists
 
       if (services_service_finder.dom.$root.length) {
-        // Cache field input
+        // Get field input
         services_service_finder.dom.$field = services_service_finder.dom.$root.find(".services-service-finder__field"); // Set up root node to have class whenver field is focused on
 
         initFieldFocusEvent(); // Initialise Funnelback Concerige
