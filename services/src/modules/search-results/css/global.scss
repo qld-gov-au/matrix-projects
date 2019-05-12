@@ -40,7 +40,6 @@
     color: #063652;
 }
 
-
 .services-search-results__result {
     margin-bottom: pxToRem(20);
 }
@@ -54,6 +53,13 @@
     color: #17608a; 
     font-size: pxToRem(14);
     text-decoration: underline;
+
+    &:hover,
+    &:focus {
+        color: #17608a; 
+        text-decoration: none;
+    }
+
 }
 
 .services-search-results__result-summary {
@@ -77,7 +83,8 @@
     padding: pxToRem(20);
     text-align: center;
 
-    &:hover {
+    &:hover,
+    &:focus {
         color: #fff;
         text-decoration: underline;
     }

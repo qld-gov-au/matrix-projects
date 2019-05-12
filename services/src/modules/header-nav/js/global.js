@@ -42,6 +42,8 @@
 
         function setupDropdownLinks() {
 
+            var focus_class = "qg-main-nav__dropdown-link--focused";
+
             // Get links in dropdown
             qg_main_nav.dom.$root.$submenu_links = qg_main_nav.dom.$root.find(".qg-main-nav__dropdown .qg-main-nav__menu-link");
 
@@ -50,7 +52,7 @@
                 var $this = $(event.target);
 
                 // Find parent menu item and add class
-                $this.closest(".qg-main-nav__dropdown").parent().addClass("qg-main-nav__dropdown-link--focused");
+                $this.closest(".qg-main-nav__dropdown").parent().addClass(focus_class);
 
             });
 
@@ -59,7 +61,7 @@
                 var $this = $(event.target);
 
                 // // Find parent menu item and remove class
-                $this.closest(".qg-main-nav__dropdown").parent().removeClass("qg-main-nav__dropdown-link--focused");
+                $this.closest(".qg-main-nav__dropdown").parent().removeClass(focus_class);
 
             });
             

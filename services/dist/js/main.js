@@ -161,17 +161,18 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     function setupDropdownLinks() {
-      // Get links in dropdown
+      var focus_class = "qg-main-nav__dropdown-link--focused"; // Get links in dropdown
+
       qg_main_nav.dom.$root.$submenu_links = qg_main_nav.dom.$root.find(".qg-main-nav__dropdown .qg-main-nav__menu-link");
       qg_main_nav.dom.$root.$submenu_links.on("focus", function (event) {
         var $this = $(event.target); // Find parent menu item and add class
 
-        $this.closest(".qg-main-nav__dropdown").parent().addClass("qg-main-nav__dropdown-link--focused");
+        $this.closest(".qg-main-nav__dropdown").parent().addClass(focus_class);
       });
       qg_main_nav.dom.$root.$submenu_links.on("blur", function (event) {
         var $this = $(event.target); // // Find parent menu item and remove class
 
-        $this.closest(".qg-main-nav__dropdown").parent().removeClass("qg-main-nav__dropdown-link--focused");
+        $this.closest(".qg-main-nav__dropdown").parent().removeClass(focus_class);
       });
     }
 
@@ -322,19 +323,26 @@ __webpack_require__.r(__webpack_exports__);
    * =====================
    * The search finder module is a form which has an input search field and a submit button.
    * 
-   * ---------------------------------------------------
+   * -----------------------------------------
    * Functionality - FB Autocomplete Conceirge
-   * ---------------------------------------------------
+   * -----------------------------------------
    * The Funnelback autocomplete coneirge is applied on the input search field to allow
    * - autocompletion
    * - organic suggestions (Up to 5)
    * - featured suggestion (1)
    * The script also clones the featured result into the organic result set for mobile view
+   * 
+   * -------------------------------------------
+   * Functionality - No results menu links focus
+   * -------------------------------------------
+   * We would prefer users are able to keyboard navigate through the no-menu links
+   * Thus, a class needs to be added to the parent to keep the no-menu open when tabbing through
+   * 
    */
 
   var services_service_finder_module = function () {
-    // Initialise Funnelback Conceirge on input field
-    function initFBConceirge() {
+    // Set up Funnelback Conceirge on input field
+    function setupFBConceirge() {
       // Get autocomplete source url
       var autocomplete_source_url = services_service_finder.dom.$root.data("autocomplete-source"); // Initiate conceirge plugin
 
@@ -429,7 +437,7 @@ __webpack_require__.r(__webpack_exports__);
     // If user is focusing on field, scroll to field so that user can always see the rest of the no results menu
 
 
-    function initFieldFocusEvent() {
+    function setupFieldFocusEvent() {
       services_service_finder.dom.$field.on("focus", function (event) {
         var $this = $(event.target);
         services_service_finder.dom.$root.addClass("services-service-finder--focused"); // Scroll to element
@@ -440,6 +448,19 @@ __webpack_require__.r(__webpack_exports__);
       });
       services_service_finder.dom.$field.on("blur", function (event) {
         services_service_finder.dom.$root.removeClass("services-service-finder--focused");
+      });
+    } // Whenever a link in the no results menu is selected, ensure that the no results menu is visible
+    // This allows better keyboard navigation
+
+
+    function setupNoResultsMenuLinks() {
+      var no_result_menu_link_focused_state_class = "services-service-finder--no-results-menu-link-focused";
+      services_service_finder.dom.$no_result_menu_links = services_service_finder.dom.$root.find(".services-service-finder__no-results-menu-list-item-link");
+      services_service_finder.dom.$no_result_menu_links.on("focus", function (event) {
+        services_service_finder.dom.$root.addClass(no_result_menu_link_focused_state_class);
+      });
+      services_service_finder.dom.$no_result_menu_links.on("blur", function (event) {
+        services_service_finder.dom.$root.removeClass(no_result_menu_link_focused_state_class);
       });
     }
 
@@ -452,9 +473,11 @@ __webpack_require__.r(__webpack_exports__);
         // Get field input
         services_service_finder.dom.$field = services_service_finder.dom.$root.find(".services-service-finder__field"); // Set up root node to have class whenver field is focused on
 
-        initFieldFocusEvent(); // Initialise Funnelback Concerige
+        setupFieldFocusEvent(); // Initialise Funnelback Concerige
 
-        initFBConceirge();
+        setupFBConceirge(); // Set up no results menu links
+
+        setupNoResultsMenuLinks();
       }
     }
 

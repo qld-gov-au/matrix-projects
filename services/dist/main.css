@@ -1,4 +1,4 @@
-.visuallyhidden, .sr-only, .qg-main-nav__dropdown-toggle, .qg-main-nav__dropdown, .services-service-finder__form .tt-category {
+.visuallyhidden, .sr-only, .qg-main-nav__dropdown, .services-service-finder__form .tt-category, .services-service-finder__no-results-menu {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
@@ -603,6 +603,9 @@ body {
     color: #fff; }
 
 /* Dropdown toggle */
+.qg-main-nav__dropdown-toggle {
+  display: none; }
+
 /* Dropdown - Contains sub menu list and footer link */
 .qg-main-nav__dropdown {
   margin-top: 0.9375rem;
@@ -738,8 +741,10 @@ body {
     /* At this breakpoint, the viewport is too small for the second last child and last child dropdown width */
     /* Make them start from the right instead */ }
     .qg-main-nav__menu-item:hover .qg-main-nav__dropdown,
+    .qg-main-nav__menu-link:focus + .qg-main-nav__dropdown,
     .qg-main-nav__dropdown-link--focused > .qg-main-nav__dropdown {
       width: 25rem; }
+    .qg-main-nav__menu-link:focus + .qg-main-nav__dropdown,
     .qg-main-nav__menu-item:hover .qg-main-nav__dropdown {
       clip: auto;
       height: auto;
@@ -892,32 +897,38 @@ body {
     line-height: 1;
     padding-top: 0.3125rem;
     padding-bottom: 0.3125rem; }
-    .qg-util-bar__widgets .qg-location-info-widget .qg-location-info-widget__text {
-      margin-bottom: 0; }
-    .qg-util-bar__widgets .qg-location-info-widget .qg-location-info-widget__location-name-icon {
-      font-size: 1.25rem;
-      margin-left: 0.3125rem; }
   .qg-site-footer-util__nearest-service-center .qg-location-info-widget {
     font-size: 1.5rem;
     font-weight: 600; }
-    .qg-site-footer-util__nearest-service-center .qg-location-info-widget .qg-location-info-widget__text {
-      margin-bottom: 2.1875rem; }
-    .qg-site-footer-util__nearest-service-center .qg-location-info-widget .qg-location-info-widget__location-name-icon {
-      font-size: 1.25rem;
-      margin-left: 0.625rem; }
   .qg-location-info-widget.qg-location-info-widget--has-result {
     /* Hide this if embedded in footer util bar and has result */ }
     .qg-site-footer-util__nearest-service-center .qg-location-info-widget.qg-location-info-widget--has-result {
       display: none; }
 
+.qg-util-bar__widgets .qg-location-info-widget__text {
+  margin-bottom: 0; }
+
+.qg-site-footer-util__nearest-service-center .qg-location-info-widget__text {
+  margin-bottom: 2.1875rem; }
+
 .qg-location-info-widget__location-name {
   text-decoration: underline;
   cursor: pointer; }
-  .qg-location-info-widget__location-name:hover {
+  .qg-location-info-widget__location-name:hover, .qg-location-info-widget__location-name:focus {
     text-decoration: none; }
+  .qg-util-bar__widgets .qg-location-info-widget__location-name {
+    color: #fff; }
+  .qg-site-footer-util__nearest-service-center .qg-location-info-widget__location-name {
+    color: #000; }
 
 .qg-location-info-widget__location-name-icon {
   vertical-align: middle; }
+  .qg-util-bar__widgets .qg-location-info-widget__location-name-icon {
+    font-size: 1.25rem;
+    margin-left: 0.3125rem; }
+  .qg-site-footer-util__nearest-service-center .qg-location-info-widget__location-name-icon {
+    font-size: 1.25rem;
+    margin-left: 0.625rem; }
 
 /*
  * Desktop layout
@@ -977,6 +988,9 @@ body {
   color: #17608a;
   font-size: 0.875rem;
   text-decoration: underline; }
+  .services-search-results__result-heading:hover, .services-search-results__result-heading:focus {
+    color: #17608a;
+    text-decoration: none; }
 
 .services-search-results__result-summary {
   font-size: 0.75rem;
@@ -996,7 +1010,7 @@ body {
   font-weight: 600;
   padding: 1.25rem;
   text-align: center; }
-  .services-search-results__featured-result-btn:hover {
+  .services-search-results__featured-result-btn:hover, .services-search-results__featured-result-btn:focus {
     color: #fff;
     text-decoration: underline; }
 
@@ -1291,7 +1305,8 @@ body {
     color: #607a89; }
   .services-service-finder__field:focus {
     outline: 0; }
-  .services-service-finder--focused .services-service-finder__field {
+  .services-service-finder--focused .services-service-finder__field,
+  .services-service-finder--no-results-menu-link-focused .services-service-finder__field {
     border-bottom-left-radius: 0; }
   .services-service-finder__field.tt-hint {
     background-color: #fff !important;
@@ -1301,17 +1316,20 @@ body {
   background-color: #fff;
   border: 0.125rem solid #063652;
   border-top: 0;
+  border-radius: 0 0 0.5rem 0.5rem;
   -webkit-box-shadow: 0 0.0625rem 0.1875rem 0 rgba(0, 0, 0, 0.25);
           box-shadow: 0 0.0625rem 0.1875rem 0 rgba(0, 0, 0, 0.25);
-  display: none;
   left: 0;
-  position: absolute;
   right: -3.75rem;
   top: 100%;
-  z-index: 100;
-  border-radius: 0 0 0.5rem 0.5rem; }
-  .services-service-finder--focused .services-service-finder__no-results-menu {
-    display: block; }
+  z-index: 100; }
+  .services-service-finder--focused .services-service-finder__no-results-menu,
+  .services-service-finder--no-results-menu-link-focused .services-service-finder__no-results-menu {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    width: auto; }
   .services-service-finder--focused.results-shown .services-service-finder__no-results-menu {
     display: none; }
 
@@ -1358,7 +1376,8 @@ body {
     display: none; }
   .services-service-finder__no-results-menu-block + .services-service-finder__no-results-menu-block {
     border-top: 0.0625rem solid #000; }
-  .services-service-finder--focused .services-service-finder__btn {
+  .services-service-finder--focused .services-service-finder__btn,
+  .services-service-finder--no-results-menu-link-focused .services-service-finder__btn {
     border-bottom-right-radius: 0; } }
 
 /*
@@ -1472,7 +1491,8 @@ body {
     .services-banner .services-service-finder__no-results-menu {
       border: 0;
       border-top: 0.0625rem solid #063652; }
-    .services-service-finder--focused .services-service-finder__no-results-menu {
+    .services-service-finder--focused .services-service-finder__no-results-menu,
+    .services-service-finder--no-results-menu-link-focused .services-service-finder__no-results-menu {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex; }

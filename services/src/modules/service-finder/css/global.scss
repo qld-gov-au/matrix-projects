@@ -154,7 +154,8 @@
         outline: 0;
     }
 
-    .services-service-finder--focused & {
+    .services-service-finder--focused &,
+    .services-service-finder--no-results-menu-link-focused & {
         border-bottom-left-radius: 0;
     }
 
@@ -167,20 +168,25 @@
 
 .services-service-finder__no-results-menu {
     
+    @extend %screen-hide;
+
     background-color: #fff;
     border: pxToRem(2) solid #063652;
     border-top: 0;
+    border-radius: 0 0 pxToRem(8) pxToRem(8);
     box-shadow: 0 pxToRem(1) pxToRem(3) 0 rgba(0, 0, 0, 0.25);
-    display: none;
     left: 0;
-    position: absolute;
     right: pxToRem(-60);
     top: 100%;
     z-index: 100;
-    border-radius: 0 0 pxToRem(8) pxToRem(8);
 
-    .services-service-finder--focused & {
-        display: block;
+    .services-service-finder--focused &,
+    .services-service-finder--no-results-menu-link-focused & {
+        clip: auto;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        width: auto;
     }
 
     .services-service-finder--focused.results-shown & {
@@ -260,7 +266,8 @@
 
     .services-service-finder__btn {
 
-        .services-service-finder--focused & {
+        .services-service-finder--focused &,
+        .services-service-finder--no-results-menu-link-focused & {
             border-bottom-right-radius: 0;
         }
 
@@ -458,7 +465,8 @@
             border-top: pxToRem(1) solid #063652;
         }
 
-        .services-service-finder--focused & {
+        .services-service-finder--focused &,
+        .services-service-finder--no-results-menu-link-focused & {
             display: flex;
         }
 

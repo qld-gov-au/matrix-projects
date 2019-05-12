@@ -8,20 +8,27 @@
      * =====================
      * The search finder module is a form which has an input search field and a submit button.
      * 
-     * ---------------------------------------------------
+     * -----------------------------------------
      * Functionality - FB Autocomplete Conceirge
-     * ---------------------------------------------------
+     * -----------------------------------------
      * The Funnelback autocomplete coneirge is applied on the input search field to allow
      * - autocompletion
      * - organic suggestions (Up to 5)
      * - featured suggestion (1)
      * The script also clones the featured result into the organic result set for mobile view
+     * 
+     * -------------------------------------------
+     * Functionality - No results menu links focus
+     * -------------------------------------------
+     * We would prefer users are able to keyboard navigate through the no-menu links
+     * Thus, a class needs to be added to the parent to keep the no-menu open when tabbing through
+     * 
      */
 
     var services_service_finder_module = (function() {
         
-        // Initialise Funnelback Conceirge on input field
-        function initFBConceirge() {
+        // Set up Funnelback Conceirge on input field
+        function setupFBConceirge() {
 
             // Get autocomplete source url
             var autocomplete_source_url = services_service_finder.dom.$root.data("autocomplete-source");
@@ -133,7 +140,7 @@
         // This function adds/removes a "focus" class whenever the field is focused/blurred
         // This is to control CSS border radius of input and button
         // If user is focusing on field, scroll to field so that user can always see the rest of the no results menu
-        function initFieldFocusEvent() {
+        function setupFieldFocusEvent() {
 
             services_service_finder.dom.$field.on("focus", function (event) {
 
@@ -156,6 +163,24 @@
 
         }
 
+        // Whenever a link in the no results menu is selected, ensure that the no results menu is visible
+        // This allows better keyboard navigation
+        function setupNoResultsMenuLinks() {
+
+            var no_result_menu_link_focused_state_class = "services-service-finder--no-results-menu-link-focused";
+
+            services_service_finder.dom.$no_result_menu_links = services_service_finder.dom.$root.find(".services-service-finder__no-results-menu-list-item-link");
+
+            services_service_finder.dom.$no_result_menu_links.on("focus", function(event) {
+                services_service_finder.dom.$root.addClass(no_result_menu_link_focused_state_class);
+            });
+
+            services_service_finder.dom.$no_result_menu_links.on("blur", function(event) {
+                services_service_finder.dom.$root.removeClass(no_result_menu_link_focused_state_class);
+            });
+
+        }
+
         function init() {
             
             services_service_finder.dom = {};
@@ -170,17 +195,20 @@
                 services_service_finder.dom.$field = services_service_finder.dom.$root.find(".services-service-finder__field");
 
                 // Set up root node to have class whenver field is focused on
-                initFieldFocusEvent();
+                setupFieldFocusEvent();
 
                 // Initialise Funnelback Concerige
-                initFBConceirge();
+                setupFBConceirge();
+
+                // Set up no results menu links
+                setupNoResultsMenuLinks();
 
             }
             
         }
         
         var services_service_finder = {};
-        
+
         return {
             init: init
         }

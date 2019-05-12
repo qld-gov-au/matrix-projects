@@ -67,7 +67,7 @@
 
 /* Dropdown toggle */
 .qg-main-nav__dropdown-toggle {
-    @extend %screen-hide;
+    display: none;
 }
 
 /* Dropdown - Contains sub menu list and footer link */
@@ -291,10 +291,12 @@
         z-index: 5;
 
         .qg-main-nav__menu-item:hover &,
+        .qg-main-nav__menu-link:focus + &,
         .qg-main-nav__dropdown-link--focused > & {   
             width: pxToRem(400);
         }
-
+        
+        .qg-main-nav__menu-link:focus + &,
         .qg-main-nav__menu-item:hover & {
             clip: auto;
             height: auto;
