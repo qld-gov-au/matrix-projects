@@ -273,21 +273,21 @@ __webpack_require__.r(__webpack_exports__);
       qg_nearest_service_centre.dom.$root = $(".qg-site-footer-util__nearest-service-centre"); // If widget exists
 
       if (qg_nearest_service_centre.dom.$root.length) {
-        nearest_service_centre_data_source = qg_nearest_service_centre.dom.$root.data("data-source-url");
+        nearest_service_center_data_source_url = qg_nearest_service_centre.dom.$root.data("data-source-url");
       }
     }
 
     var qg_nearest_service_centre = {};
-    var data_source_url; // On location set event, update the widge
+    var nearest_service_center_data_source_url; // On location set event, update the widge
+    // qg_user_location_module.event.on("location set", updateDetails);
 
-    qg_user_location_module.event.on("location set", updateDetails);
     return {
       init: init
     };
   }();
 
-  document.addEventListener("DOMContentLoaded", function () {// qg_nearest_service_centre_module.init();
-    // Remove when user-location modue is implemented!
+  document.addEventListener("DOMContentLoaded", function () {
+    qg_nearest_service_centre_module.init(); // Remove when user-location modue is implemented!
     // qg_user_location_module.event.emit("location set",{"lat":"-27.4802", "lon": "153.0122"});
   });
 })();
