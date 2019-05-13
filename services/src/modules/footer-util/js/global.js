@@ -58,8 +58,11 @@
             // If widget exists
             if (qg_nearest_service_centre.dom.$root.length) {
 
-                nearest_service_center_data_source_url = qg_nearest_service_centre.dom.$root.data("data-source-url");
+                nearest_service_center_data_source_url = qg_nearest_service_centre.dom.$root.data("data-nearest-service-centre-source");
                 
+                console.log(nearest_service_center_data_source_url);
+
+
             }
             
         }

@@ -144,14 +144,7 @@
 
             services_service_finder.dom.$field.on("focus", function (event) {
 
-                var $this = $(event.target);
-
                 services_service_finder.dom.$root.addClass("services-service-finder--focused");
-
-                // Scroll to element
-                $([document.documentElement, document.body]).animate({
-                    scrollTop: $this.offset().top
-                }, 300);
 
             });
 

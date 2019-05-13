@@ -273,7 +273,8 @@ __webpack_require__.r(__webpack_exports__);
       qg_nearest_service_centre.dom.$root = $(".qg-site-footer-util__nearest-service-centre"); // If widget exists
 
       if (qg_nearest_service_centre.dom.$root.length) {
-        nearest_service_center_data_source_url = qg_nearest_service_centre.dom.$root.data("data-source-url");
+        nearest_service_center_data_source_url = qg_nearest_service_centre.dom.$root.data("data-nearest-service-centre-source");
+        console.log(nearest_service_center_data_source_url);
       }
     }
 
@@ -649,12 +650,7 @@ __webpack_require__.r(__webpack_exports__);
 
     function setupFieldFocusEvent() {
       services_service_finder.dom.$field.on("focus", function (event) {
-        var $this = $(event.target);
-        services_service_finder.dom.$root.addClass("services-service-finder--focused"); // Scroll to element
-
-        $([document.documentElement, document.body]).animate({
-          scrollTop: $this.offset().top
-        }, 300);
+        services_service_finder.dom.$root.addClass("services-service-finder--focused");
       });
       services_service_finder.dom.$field.on("blur", function (event) {
         services_service_finder.dom.$root.removeClass("services-service-finder--focused");
