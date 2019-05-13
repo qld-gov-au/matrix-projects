@@ -4,6 +4,13 @@
 
 .qg-weather-info-widget {
 
+    display: none;
+
+    &.qg-weather-info-widget--has-result {
+        align-items: center;
+        display: flex;
+    }
+    
     .qg-util-bar__widgets & {
         font-size: pxToRem(14);
         color: #fff;
@@ -15,7 +22,35 @@
     }
 
 }
- 
+
+.qg-weather-info-widget__temperature {
+
+    .qg-util-bar__widgets & {
+        margin-right: pxToRem(3);
+    }
+
+}
+
+.qg-weather-info-widget__image {
+    
+    .qg-util-bar__widgets & {
+        font-size: pxToRem(17);
+        margin-left: pxToRem(5);
+        min-width: pxToRem(25);
+    }
+
+}
+
+@media screen and (max-width: $desktop - 1px) {
+    .qg-weather-info-widget {
+
+        .mobile-nav-active & {
+            display: none;
+        }
+
+    }
+}
+
 /*
  * Desktop layout
  */
@@ -37,3 +72,4 @@
     }
 
 }
+

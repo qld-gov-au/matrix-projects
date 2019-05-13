@@ -150,6 +150,10 @@
         color: #607a89;
     }
 
+    &::placeholder {
+        color: #607a89;
+    }
+
     &:focus {
         outline: 0;
     }

@@ -42,7 +42,7 @@
 
 }
 
-.qg-location-info-widget__location-name {
+.qg-location-info-widget__link {
     text-decoration: underline;
     cursor: pointer;
     
@@ -61,7 +61,7 @@
 
 }
 
-.qg-location-info-widget__location-name-icon {
+.qg-location-info-widget__icon {
     vertical-align: middle;
 
     .qg-util-bar__widgets & {
@@ -75,6 +75,19 @@
     }
 
 }
+
+@media screen and (max-width: $desktop - 1px){
+
+    .qg-location-info-widget {
+
+        .mobile-nav-active & {
+            display: none;
+        }
+
+    }
+
+}
+
 
 /*
  * Desktop layout
