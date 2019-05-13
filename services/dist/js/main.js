@@ -732,19 +732,25 @@ __webpack_require__.r(__webpack_exports__);
     function updateImage() {
       var prefix = 'wi wi-'; // Get code from weather data JSON
 
-      var weather_data_code = weather_data.weather[0].id; // Get mapped icon
+      var weather_data_code = weather_data.weather[0].id; // Get single char from icon string which tells us its day (d) or night (n)
 
-      var icon = weather_icons_map[weather_data_code].icon; // If we are not in the ranges mentioned above, add a day prefix.
+      var weather_data_icon_char = weather_data.weather[0].icon.slice(-1); // Get mapped icon
+
+      var mapped_icon = weather_icons_map[weather_data_code].icon; // If we are not in the ranges mentioned above, add a prefix.
 
       if (!(weather_data_code > 699 && weather_data_code < 800) && !(weather_data_code > 899 && weather_data_code < 1000)) {
-        icon = 'day-' + icon;
+        if (weather_data_icon_char === "d") {
+          mapped_icon = 'day-' + mapped_icon;
+        } else {
+          mapped_icon = 'night-' + mapped_icon;
+        }
       } // Get description from weather data API
 
 
       var description = weather_data.weather[0].description; // Create icon element
 
       var $icon = $('<i/>', {
-        "class": 'wi wi-' + icon,
+        "class": 'wi wi-' + mapped_icon,
         "title": description
       }); // Empty wrapper and append icon
 
