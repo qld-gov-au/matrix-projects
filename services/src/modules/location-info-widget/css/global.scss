@@ -14,7 +14,7 @@
     }
 
     /* Widget located in footer nearest service center */
-    .qg-site-footer-util__nearest-service-center & {
+    .qg-site-footer-util__nearest-service-centre & {
         font-size: pxToRem(24);
         font-weight: 600;
     }
@@ -22,7 +22,7 @@
     &.qg-location-info-widget--has-result {
 
         /* Hide this if embedded in footer util bar and has result */
-        .qg-site-footer-util__nearest-service-center & {
+        .qg-site-footer-util__nearest-service-centre & {
             display: none;
         }
         
@@ -36,10 +36,14 @@
         margin-bottom: 0;
     }
 
-    .qg-site-footer-util__nearest-service-center & {
+    .qg-site-footer-util__nearest-service-centre & {
         margin-bottom: pxToRem(35);
     }
 
+}
+
+.qg-location-info-widget__link-icon {
+    white-space: nowrap;
 }
 
 .qg-location-info-widget__link {
@@ -55,7 +59,7 @@
         color: #fff;
     }
 
-    .qg-site-footer-util__nearest-service-center & {
+    .qg-site-footer-util__nearest-service-centre & {
         color: #000;
     }
 
@@ -69,7 +73,7 @@
         margin-left: pxToRem(5);
     }
 
-    .qg-site-footer-util__nearest-service-center & {
+    .qg-site-footer-util__nearest-service-centre & {
         font-size: pxToRem(20);
         margin-left: pxToRem(10);
     }

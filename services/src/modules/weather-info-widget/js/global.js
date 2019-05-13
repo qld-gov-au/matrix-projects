@@ -6,7 +6,7 @@
      * ===========================
      * Weather Info Widget Module
      * ===========================
-     * This widget module deals with displaying the weather depending on the user's coordinates
+     * This widget module deals with getting and displaying the current weather depending on the user's coordinates
      * 
      * ---------------------------
      * Functionality
