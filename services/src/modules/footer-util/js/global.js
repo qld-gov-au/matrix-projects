@@ -79,10 +79,10 @@
     
     document.addEventListener("DOMContentLoaded", function() {
 
-        qg_nearest_service_centre_module.init();
+        // qg_nearest_service_centre_module.init();
 
         // Remove when user-location modue is implemented!
-        qg_user_location_module.event.emit("location set",{"lat":"-27.4802", "lon": "153.0122"});
+        // qg_user_location_module.event.emit("location set",{"lat":"-27.4802", "lon": "153.0122"});
 
     });
 
