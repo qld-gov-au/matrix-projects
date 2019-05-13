@@ -12,6 +12,8 @@
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css" />
+
 <!-- <link rel="stylesheet" href="https://stage-15-10-search.clients.funnelback.com/s/resources/qld-gov/services/css/typeahead.css" /> -->
     <link href="main.css" rel="stylesheet"></head>
     <body>
@@ -41,15 +43,15 @@
             <div class="qg-util-bar__widgets">
         
                 <div class="qg-weather-info-widget">
-    <span class="qg-weather-info-widget__current-forecast-temperature">27.3 &deg;C</span> 
-    <div class="qg-weather-info-widget__current-forecast-image"></div>
+    <span class="qg-weather-info-widget__temperature"></span>  &deg;C
+    <div class="qg-weather-info-widget__image"></div>
 </div>
 
                 
                 <div class="qg-location-info-widget">
     <p class="qg-location-info-widget__text">
-        Your location is <a href="#" class="qg-location-info-widget__location-name">Unknown</a>
-        <i class="fas fa-map-marker-alt qg-location-info-widget__location-name-icon"></i>
+        Your location is <a href="#" class="qg-location-info-widget__link">Unknown</a>
+        <i class="fas fa-map-marker-alt qg-location-info-widget__icon"></i>
     </p>
 </div>
 
@@ -58,7 +60,7 @@
     <form action="https://find.search.qld.gov.au/s/search.html" class="qg-search-widget__form" autocomplete="off">
 
         <div class="qg-search-widget__field-wrapper">
-            <input class="qg-search-widget__field" name="query" type="text" placeholder="Search qld.gov.au" aria-label="Search qld.gov.au" required />
+            <input class="qg-search-widget__field" name="query" type="text" placeholder="Search qld.gov.au" aria-label="Search qld.gov.au" />
         </div>
 
         <button class="qg-search-widget__btn" type="submit" aria-label="Search qld.gov.au">
@@ -269,8 +271,8 @@
 
                     <div class="qg-location-info-widget">
     <p class="qg-location-info-widget__text">
-        Your location is <a href="#" class="qg-location-info-widget__location-name">Unknown</a>
-        <i class="fas fa-map-marker-alt qg-location-info-widget__location-name-icon"></i>
+        Your location is <a href="#" class="qg-location-info-widget__link">Unknown</a>
+        <i class="fas fa-map-marker-alt qg-location-info-widget__icon"></i>
     </p>
 </div>
 

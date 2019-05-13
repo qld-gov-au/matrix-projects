@@ -57,6 +57,8 @@
     
     
     }());
+
+    
     
     document.addEventListener("DOMContentLoaded", function() {
         qg_location_info_widget_module.init();

@@ -62,14 +62,21 @@
         .qg-util-bar__widgets & {
             font-size: pxToRem(18);
         }
-
-        /* Hide widget if search form widget is active/hovered over */
-        .qg-util-bar__widgets.search-form-widget--focused &,
-        .qg-util-bar__widgets.search-form-widget--hover & {
-            display: none;
-        }
     
     }
 
 }
 
+@media screen and (min-width: $desktop) and (max-width: 1399px) {
+
+    .qg-weather-info-widget {
+       
+        /* Hide widget if search form widget is active/hovered */
+        .qg-util-bar__widgets.search-form-widget--focused &,
+        .qg-util-bar__widgets.search-form-widget--hover & {
+            display: none;
+        }
+
+    }
+
+}

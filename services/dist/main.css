@@ -826,9 +826,6 @@ body {
     margin-bottom: 1.875rem;
     padding-bottom: 1.875rem; }
   .qg-util-bar__logo--desktop {
-    display: none; }
-  .mobile-nav-active .qg-location-info-widget, .mobile-nav-active
-  .qg-weather-info-widget {
     display: none; } }
 
 /*
@@ -911,37 +908,44 @@ body {
 .qg-site-footer-util__nearest-service-center .qg-location-info-widget__text {
   margin-bottom: 2.1875rem; }
 
-.qg-location-info-widget__location-name {
+.qg-location-info-widget__link {
   text-decoration: underline;
   cursor: pointer; }
-  .qg-location-info-widget__location-name:hover, .qg-location-info-widget__location-name:focus {
+  .qg-location-info-widget__link:hover, .qg-location-info-widget__link:focus {
     text-decoration: none; }
-  .qg-util-bar__widgets .qg-location-info-widget__location-name {
+  .qg-util-bar__widgets .qg-location-info-widget__link {
     color: #fff; }
-  .qg-site-footer-util__nearest-service-center .qg-location-info-widget__location-name {
+  .qg-site-footer-util__nearest-service-center .qg-location-info-widget__link {
     color: #000; }
 
-.qg-location-info-widget__location-name-icon {
+.qg-location-info-widget__icon {
   vertical-align: middle; }
-  .qg-util-bar__widgets .qg-location-info-widget__location-name-icon {
+  .qg-util-bar__widgets .qg-location-info-widget__icon {
     font-size: 1.25rem;
     margin-left: 0.3125rem; }
-  .qg-site-footer-util__nearest-service-center .qg-location-info-widget__location-name-icon {
+  .qg-site-footer-util__nearest-service-center .qg-location-info-widget__icon {
     font-size: 1.25rem;
     margin-left: 0.625rem; }
+
+@media screen and (max-width: 991px) {
+  .mobile-nav-active .qg-location-info-widget {
+    display: none; } }
 
 /*
  * Desktop layout
  */
 @media screen and (min-width: 992px) {
   .qg-location-info-widget {
-    /* Widget located in header util bar */
-    /* Hide widget if search form widget is active/hovered */ }
+    /* Widget located in header util bar */ }
     .qg-util-bar__widgets .qg-location-info-widget {
       font-size: 1.125rem;
       border-right: 0.0625rem solid #fff;
       padding-right: 0.625rem;
-      margin-right: 0.625rem; }
+      margin-right: 0.625rem; } }
+
+@media screen and (min-width: 992px) and (max-width: 1399px) {
+  .qg-location-info-widget {
+    /* Hide widget if search form widget is active/hovered */ }
     .qg-util-bar__widgets.search-form-widget--focused .qg-location-info-widget,
     .qg-util-bar__widgets.search-form-widget--hover .qg-location-info-widget {
       display: none; } }
@@ -1193,6 +1197,24 @@ body {
       overflow: visible;
       position: static;
       width: auto; }
+  .qg-search-widget__field {
+    background-color: #fff;
+    border-radius: 0.25rem 0 0 0.25rem;
+    color: #000;
+    font-size: 1.125rem;
+    width: 17.1875rem; }
+    .qg-search-widget__field::-webkit-input-placeholder {
+      /* Chrome/Opera/Safari */
+      color: #7d7d7d; }
+    .qg-search-widget__field::-moz-placeholder {
+      /* Firefox 19+ */
+      color: #7d7d7d; }
+    .qg-search-widget__field:-ms-input-placeholder {
+      /* IE 10+ */
+      color: #7d7d7d; }
+    .qg-search-widget__field:-moz-placeholder {
+      /* Firefox 18- */
+      color: #7d7d7d; }
   .qg-search-widget__btn {
     border: 0;
     padding: 0;
@@ -1200,9 +1222,11 @@ body {
     width: auto; }
     .qg-util-bar__widgets.search-form-widget--focused .qg-search-widget__btn,
     .qg-util-bar__widgets.search-form-widget--hover .qg-search-widget__btn {
+      background-color: #fff;
+      color: #138e86;
       border: 0.125rem solid #fff;
       border-left: 0;
-      border-radius: 0 0.375rem 0.375rem 0;
+      border-radius: 0 0.25rem 0.25rem 0;
       width: 2.8125rem; } }
 
 /*
@@ -1300,8 +1324,9 @@ body {
   .services-service-finder__field:-ms-input-placeholder {
     /* IE 10+ */
     color: #607a89; }
-  .services-service-finder__field:-moz-placeholder {
-    /* Firefox 18- */
+  .services-service-finder__field::-ms-input-placeholder {
+    color: #607a89; }
+  .services-service-finder__field::placeholder {
     color: #607a89; }
   .services-service-finder__field:focus {
     outline: 0; }
@@ -1523,23 +1548,55 @@ body {
 /*
  * Mobile layout
  */
-.qg-util-bar__widgets .qg-weather-info-widget {
-  font-size: 0.875rem;
-  color: #fff;
-  padding-top: 0.3125rem;
-  padding-bottom: 0.3125rem;
-  border-right: 0.0625rem solid #fff;
-  padding-right: 0.625rem;
-  margin-right: 0.625rem; }
+/*
+ * Tablet layout
+ */
+/*
+ * Desktop layout
+ */
+/*
+ * Mobile layout
+ */
+.qg-weather-info-widget {
+  display: none; }
+  .qg-weather-info-widget.qg-weather-info-widget--has-result {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
+  .qg-util-bar__widgets .qg-weather-info-widget {
+    font-size: 0.875rem;
+    color: #fff;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    border-right: 0.0625rem solid #fff;
+    padding-right: 0.625rem;
+    margin-right: 0.625rem; }
+
+.qg-util-bar__widgets .qg-weather-info-widget__temperature {
+  margin-right: 0.1875rem; }
+
+.qg-util-bar__widgets .qg-weather-info-widget__image {
+  font-size: 1.0625rem;
+  margin-left: 0.3125rem;
+  min-width: 1.5625rem; }
+
+@media screen and (max-width: 991px) {
+  .mobile-nav-active .qg-weather-info-widget {
+    display: none; } }
 
 /*
  * Desktop layout
  */
 @media screen and (min-width: 992px) {
+  .qg-util-bar__widgets .qg-weather-info-widget {
+    font-size: 1.125rem; } }
+
+@media screen and (min-width: 992px) and (max-width: 1399px) {
   .qg-weather-info-widget {
-    /* Hide widget if search form widget is active/hovered over */ }
-    .qg-util-bar__widgets .qg-weather-info-widget {
-      font-size: 1.125rem; }
+    /* Hide widget if search form widget is active/hovered */ }
     .qg-util-bar__widgets.search-form-widget--focused .qg-weather-info-widget,
     .qg-util-bar__widgets.search-form-widget--hover .qg-weather-info-widget {
       display: none; } }

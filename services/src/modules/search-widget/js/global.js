@@ -13,7 +13,7 @@
      * ---------------------------------------------------
      * When hover events happen on the form, or focus events happen on the input search field and submit button:
      * Classes are removed and added to the parent of the widget.
-     * For example, the search widget will be embedded in the header util bar.
+     * For example, the search widget is embedded in the header util bar.
      * On desktop, the search widget appears as a magnifying glass icon only.
      * If the classes are applied to the parent:
      * - other widgets in the header util bar are hidden 
