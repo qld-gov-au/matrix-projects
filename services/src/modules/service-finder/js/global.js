@@ -49,7 +49,7 @@
                         name: 'Featured result',
                         collection: 'qld-gov',
                         profile: 'featured_auto-completion',
-                        template: {'suggestion':'<div><h6 class="services-service-finder__featured-heading">{{label.title}}</h6>{{#if label.icon}}<i class="fas {{label.icon}} services-service-finder__featured-icon"></i>{{/if}}<p class="services-service-finder__featured-description">{{label.description}}</p><button class="services-service-finder__featured-btn" href="{{label.link}}">{{label.CTA}}</button></div>'},
+                        template: {'suggestion':'<div><h6 class="services-service-finder__featured-heading">{{label.title}}</h6>{{#if label.icon}}<i class="fas {{label.icon}} services-service-finder__featured-icon" aria-hidden="true" title="{{label.icon}}"></i>{{/if}}<p class="services-service-finder__featured-description">{{label.description}}</p><button type="button" class="services-service-finder__featured-btn">{{label.CTA}}</button></div>'},
                         show: 1
                     }
                 },

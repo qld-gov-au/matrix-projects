@@ -601,7 +601,7 @@ __webpack_require__.r(__webpack_exports__);
             collection: 'qld-gov',
             profile: 'featured_auto-completion',
             template: {
-              'suggestion': '<div><h6 class="services-service-finder__featured-heading">{{label.title}}</h6>{{#if label.icon}}<i class="fas {{label.icon}} services-service-finder__featured-icon"></i>{{/if}}<p class="services-service-finder__featured-description">{{label.description}}</p><button class="services-service-finder__featured-btn" href="{{label.link}}">{{label.CTA}}</button></div>'
+              'suggestion': '<div><h6 class="services-service-finder__featured-heading">{{label.title}}</h6>{{#if label.icon}}<i class="fas {{label.icon}} services-service-finder__featured-icon" aria-hidden="true" title="{{label.icon}}"></i>{{/if}}<p class="services-service-finder__featured-description">{{label.description}}</p><button type="button" class="services-service-finder__featured-btn">{{label.CTA}}</button></div>'
             },
             show: 1
           }
@@ -795,7 +795,11 @@ __webpack_require__.r(__webpack_exports__);
       if (!(weather_data_code > 699 && weather_data_code < 800) && !(weather_data_code > 899 && weather_data_code < 1000)) {
         if (weather_data_icon_char === "d") {
           mapped_icon = 'day-' + mapped_icon;
-        } else {
+        } else if (weather_data_icon_char === "n") {
+          if (mapped_icon === "sunny") {
+            mapped_icon = 'clear';
+          }
+
           mapped_icon = 'night-' + mapped_icon;
         }
       } // Get description from weather data API
@@ -805,7 +809,8 @@ __webpack_require__.r(__webpack_exports__);
 
       var $icon = $('<i/>', {
         "class": 'wi wi-' + mapped_icon,
-        "title": description
+        "title": description,
+        "aria-hidden": "hidden"
       }); // Empty wrapper and append icon
 
       qg_weather_info_widget.dom.$image_wrapper.empty().append($icon);

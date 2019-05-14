@@ -262,7 +262,7 @@ body {
   margin-left: 1.25rem; }
 
 .curated-links__list-item + .curated-links__list-item {
-  margin-top: 1.5625rem; }
+  margin-top: 1.25rem; }
 
 .curated-links__list-item-bullet {
   color: #167489;
@@ -306,7 +306,7 @@ body {
   .curated-links__list-item {
     padding-left: 0.9375rem; }
     .curated-links__list-item + .curated-links__list-item {
-      margin-top: 1.875rem; }
+      margin-top: 0.9375rem; }
   .curated-links__list-item-bullet {
     font-size: 1rem;
     margin-top: 0.3125rem; }

@@ -44,9 +44,19 @@
             if (!(weather_data_code > 699 && weather_data_code < 800) && !(weather_data_code > 899 && weather_data_code < 1000)) {
 
                 if (weather_data_icon_char === "d") {
+
                     mapped_icon = 'day-' + mapped_icon;
-                } else {
+
+                } else if (weather_data_icon_char === "n") {
+
+                    if (mapped_icon === "sunny") {
+
+                        mapped_icon = 'clear'    
+
+                    }
+                    
                     mapped_icon = 'night-' + mapped_icon;
+                    
                 }
                 
             }
@@ -57,7 +67,8 @@
             // Create icon element
             var $icon = $('<i/>', {
                 "class": 'wi wi-' + mapped_icon,
-                "title": description
+                "title": description,
+                "aria-hidden": "hidden"
             });
 
             // Empty wrapper and append icon
