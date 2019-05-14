@@ -105,7 +105,7 @@
 }
 
 .qg-site-footer-util__nearest-service-centre-detail-list-item {
-
+    font-size: pxToRem(20);
     padding-left: pxToRem(12);
 
     & + & {
@@ -116,11 +116,12 @@
 
 .qg-site-footer-util__nearest-service-centre-detail-list-item-icon {
     font-size: pxToRem(20);
+    left: pxToRem(-40);
+    margin-top: pxToRem(3);
 }
 
-.qg-site-footer-util__nearest-service-centre-detail-availability-link {
+.qg-site-footer-util__nearest-service-centre-detail-services-available-link {
     color: #000;
-    font-size: pxToRem(20);
     font-weight: 700;
     text-decoration: underline;
 
@@ -134,7 +135,6 @@
 
 .qg-site-footer-util__nearest-service-centre-detail-hours-state,
 .qg-site-footer-util__nearest-service-centre-detail-distance-from {
-    font-size: pxToRem(20);
     font-weight: 700;
     margin-bottom: pxToRem(20);
 }

@@ -252,19 +252,33 @@ __webpack_require__.r(__webpack_exports__);
   */
 
   var qg_nearest_service_centre_module = function () {
-    function getWeatherData(lat, lon) {
-      var request_url = weather_api_source + "&lat=" + lat + "&lon=" + lon;
-      return $.getJSON(request_url, function (data) {
-        weather_data = data;
-      });
-    }
+    function updateCentreName() {}
+
+    function updateServicesAvailable() {} // function updateHours() {
+    // }
+
+
+    function updateLocation() {}
 
     function updateDetails(location) {
-      // When the weather data is retrieved from open weather API by passing in the user's coords
-      // Tempereature is updated
-      // Image is updated
-      // Class to make the widget show is added to the root node
-      $.when(getNearestCentre(location.lat, location.lon)).then(function (data, textStatus, jqXHR) {});
+      var request_url = nearest_service_center_data_source_url + "&origin=" + location.lat + "%3B" + location.lon; // When the nearest service centre data is retrieved from source by passing in the user's coords
+
+      $.getJSON(request_url, function (data) {
+        nearest_service_centre_data = data; // If there are results in the features key
+
+        if (nearest_service_centre_data.features.length) {
+          // Update centre name
+          updateCentreName(); // Update services available text
+
+          updateServicesAvailable(); // Update hours text
+          // updateHours();
+          // Update location text
+
+          updateLocation(); // Class to make the widget show is added to the root node
+
+          qg_nearest_service_centre.dom.$root.addClass("qg-site-footer-util__nearest-service-centre--has-result");
+        }
+      });
     }
 
     function init() {
@@ -273,23 +287,21 @@ __webpack_require__.r(__webpack_exports__);
       qg_nearest_service_centre.dom.$root = $(".qg-site-footer-util__nearest-service-centre"); // If widget exists
 
       if (qg_nearest_service_centre.dom.$root.length) {
-        nearest_service_center_data_source_url = qg_nearest_service_centre.dom.$root.data("data-nearest-service-centre-source");
-        console.log(nearest_service_center_data_source_url);
+        nearest_service_center_data_source_url = qg_nearest_service_centre.dom.$root.data("nearest-service-centre-source");
       }
     }
 
     var qg_nearest_service_centre = {};
-    var nearest_service_center_data_source_url; // On location set event, update the widge
-    // qg_user_location_module.event.on("location set", updateDetails);
-
+    var nearest_service_centre_data;
+    var nearest_service_center_data_source_url;
+    qg_user_location_module.event.on("location set", updateDetails);
     return {
       init: init
     };
   }();
 
   document.addEventListener("DOMContentLoaded", function () {
-    qg_nearest_service_centre_module.init(); // Remove when user-location modue is implemented!
-    // qg_user_location_module.event.emit("location set",{"lat":"-27.4802", "lon": "153.0122"});
+    qg_nearest_service_centre_module.init();
   });
 })();
 
@@ -725,7 +737,7 @@ __webpack_require__.r(__webpack_exports__);
       qg_weather_info_widget.dom.$temperature_wrapper.text(current_temperature);
     }
 
-    function updateImage() {
+    function updateIcon() {
       var prefix = 'wi wi-'; // Get code from weather data JSON
 
       var weather_data_code = weather_data.weather[0].id; // Get single char from icon string which tells us its day (d) or night (n)
@@ -753,21 +765,16 @@ __webpack_require__.r(__webpack_exports__);
       qg_weather_info_widget.dom.$image_wrapper.empty().append($icon);
     }
 
-    function getWeatherData(lat, lon) {
-      var request_url = weather_api_source + "&lat=" + lat + "&lon=" + lon;
-      return $.getJSON(request_url, function (data) {
-        weather_data = data;
-      });
-    }
-
     function updateWidget(location) {
-      // When the weather data is retrieved from open weather API by passing in the user's coords
-      // Tempereature is updated
-      // Image is updated
-      // Class to make the widget show is added to the root node
-      $.when(getWeatherData(location.lat, location.lon)).then(function (data, textStatus, jqXHR) {
-        updateTemperature();
-        updateImage();
+      var request_url = weather_data_source + "&lat=" + location.lat + "&lon=" + location.lon; // When the weather data is retrieved from open weather API by passing in the user's coords
+
+      $.getJSON(request_url, function (data) {
+        weather_data = data; // Update temperature
+
+        updateTemperature(); // Update image icon
+
+        updateIcon(); // Class to make the widget show is added to the root node
+
         qg_weather_info_widget.dom.$root.addClass("qg-weather-info-widget--has-result");
       });
     }
@@ -782,11 +789,12 @@ __webpack_require__.r(__webpack_exports__);
         qg_weather_info_widget.dom.$temperature_wrapper = qg_weather_info_widget.dom.$root.find(".qg-weather-info-widget__temperature"); // Get wrapper which contains image
 
         qg_weather_info_widget.dom.$image_wrapper = qg_weather_info_widget.dom.$root.find(".qg-weather-info-widget__image");
+        weather_data_source = qg_weather_info_widget.dom.$root.data("weather-source");
       }
     }
 
     var qg_weather_info_widget = {};
-    var weather_api_source = "https://api.openweathermap.org/data/2.5/weather?APPID=cc58e12aadc49c12c7b2aa2322eb0981&units=metric";
+    var weather_data_source;
     var weather_data; ///https://gist.github.com/tbranyen/62d974681dea8ee0caa1
 
     var weather_icons_map = {
@@ -1081,7 +1089,7 @@ __webpack_require__.r(__webpack_exports__);
       "962": {
         "label": "hurricane",
         "icon": "cloudy-gusts"
-      } // On location set event, update the widge
+      } // On "location set" event, update the widget
 
     };
     qg_user_location_module.event.on("location set", updateWidget);
@@ -1094,8 +1102,8 @@ __webpack_require__.r(__webpack_exports__);
     qg_weather_info_widget_module.init(); // Remove when user-location modue is implemented!
 
     qg_user_location_module.event.emit("location set", {
-      "lat": "-27.4802",
-      "lon": "153.0122"
+      "lat": "-27.4773931",
+      "lon": "153.0131612"
     });
   });
 })();

@@ -27,7 +27,7 @@
 
         }
 
-        function updateImage() {
+        function updateIcon() {
 
             var prefix = 'wi wi-';
 
@@ -65,30 +65,22 @@
 
         }
 
-        function getWeatherData(lat, lon) {
+        function updateWidget(location) {
 
-            var request_url = weather_api_source + "&lat=" + lat + "&lon=" + lon;
-        
-            return $.getJSON( request_url, function( data ) {
+            var request_url = weather_data_source + "&lat=" + location.lat + "&lon=" + location.lon;
+            
+            // When the weather data is retrieved from open weather API by passing in the user's coords
+            $.getJSON( request_url, function( data ) {
                 
                 weather_data = data;
 
-            });
-
-        }
-
-        function updateWidget(location) {
-
-            // When the weather data is retrieved from open weather API by passing in the user's coords
-            // Tempereature is updated
-            // Image is updated
-            // Class to make the widget show is added to the root node
-            $.when( getWeatherData(location.lat, location.lon) ).then(function( data, textStatus, jqXHR ) {
-                
+                // Update temperature
                 updateTemperature();
 
-                updateImage();
+                // Update image icon
+                updateIcon();
 
+                // Class to make the widget show is added to the root node
                 qg_weather_info_widget.dom.$root.addClass("qg-weather-info-widget--has-result");
 
             });
@@ -110,14 +102,16 @@
 
                 // Get wrapper which contains image
                 qg_weather_info_widget.dom.$image_wrapper = qg_weather_info_widget.dom.$root.find(".qg-weather-info-widget__image");
-                   
+                
+                weather_data_source = qg_weather_info_widget.dom.$root.data("weather-source");
+
             }
             
         }
         
         var qg_weather_info_widget = {};
 
-        var weather_api_source = "https://api.openweathermap.org/data/2.5/weather?APPID=cc58e12aadc49c12c7b2aa2322eb0981&units=metric";
+        var weather_data_source;
 
         var weather_data;
 
@@ -491,7 +485,7 @@
 
         }
 
-        // On location set event, update the widge
+        // On "location set" event, update the widget
         qg_user_location_module.event.on("location set", updateWidget);
 
         return {
@@ -501,10 +495,11 @@
     }());
     
     document.addEventListener("DOMContentLoaded", function() {
+        
         qg_weather_info_widget_module.init();
 
         // Remove when user-location modue is implemented!
-        qg_user_location_module.event.emit("location set",{"lat":"-27.4802", "lon": "153.0122"});
+        qg_user_location_module.event.emit("location set",{"lat":"-27.4773931", "lon": "153.0131612"});
 
     });
 

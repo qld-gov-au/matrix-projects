@@ -18,37 +18,60 @@
 
     var qg_nearest_service_centre_module = (function() {
         
-        
-
-        
-
-        function getWeatherData(lat, lon) {
-
-            var request_url = weather_api_source + "&lat=" + lat + "&lon=" + lon;
-        
-            return $.getJSON( request_url, function( data ) {
-                
-                weather_data = data;
-
-            });
+        function updateCentreName() {
 
         }
 
+        function updateServicesAvailable() {
+
+        }
+
+        // function updateHours() {
+
+        // }
+
+        function updateLocation() {
+
+        }
+
+
+
+
         function updateDetails(location) {
 
-            // When the weather data is retrieved from open weather API by passing in the user's coords
-            // Tempereature is updated
-            // Image is updated
-            // Class to make the widget show is added to the root node
-            $.when( getNearestCentre(location.lat, location.lon) ).then(function( data, textStatus, jqXHR ) {
+            var request_url = nearest_service_center_data_source_url + "&origin=" + location.lat + "%3B" + location.lon;
+        
+            // When the nearest service centre data is retrieved from source by passing in the user's coords
+            $.getJSON( request_url, function( data ) {
                 
-                
+                nearest_service_centre_data = data;
+
+                // If there are results in the features key
+                if (nearest_service_centre_data.features.length) {
+
+                    // Update centre name
+                    updateCentreName();
+
+                    // Update services available text
+                    updateServicesAvailable();
+
+                    // Update hours text
+                    // updateHours();
+
+                    // Update location text
+                    updateLocation();
+
+                    // Class to make the widget show is added to the root node
+                    qg_nearest_service_centre.dom.$root.addClass("qg-site-footer-util__nearest-service-centre--has-result");
+
+                }
 
             });
 
         }
 
         function init() {
+            
             
             qg_nearest_service_centre.dom = {};
 
@@ -58,21 +81,19 @@
             // If widget exists
             if (qg_nearest_service_centre.dom.$root.length) {
 
-                nearest_service_center_data_source_url = qg_nearest_service_centre.dom.$root.data("data-nearest-service-centre-source");
+                nearest_service_center_data_source_url = qg_nearest_service_centre.dom.$root.data("nearest-service-centre-source");
                 
-                console.log(nearest_service_center_data_source_url);
-
-
             }
-            
+
         }
         
         var qg_nearest_service_centre = {};
 
+        var nearest_service_centre_data;
+
         var nearest_service_center_data_source_url;
         
-        // On location set event, update the widge
-        // qg_user_location_module.event.on("location set", updateDetails);
+        qg_user_location_module.event.on("location set", updateDetails);
 
         return {
             init: init
@@ -81,12 +102,7 @@
     }());
     
     document.addEventListener("DOMContentLoaded", function() {
-
         qg_nearest_service_centre_module.init();
-
-        // Remove when user-location modue is implemented!
-        // qg_user_location_module.event.emit("location set",{"lat":"-27.4802", "lon": "153.0122"});
-
     });
 
 }());

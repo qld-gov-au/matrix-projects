@@ -42,7 +42,7 @@
             <!-- Widgets -->
             <div class="qg-util-bar__widgets">
         
-                <div class="qg-weather-info-widget">
+                <div class="qg-weather-info-widget" data-weather-source="https://api.openweathermap.org/data/2.5/weather?APPID=cc58e12aadc49c12c7b2aa2322eb0981&units=metric">
     <span class="qg-weather-info-widget__temperature"></span>  &deg;C
     <div class="qg-weather-info-widget__image"></div>
 </div>
@@ -264,7 +264,7 @@
                     
                 </div>
 
-                <div class="qg-site-footer-util__block qg-site-footer-util__nearest-service-centre" data-nearest-service-centre-source="https://find.search.qld.gov.au/s/search.html?tiers=off&collection=qld-gov&profile=mapservice&form=geojson&meta_sfinder_sand=yes&collapsing=on&collapsing_sig=%5Bsid%5D&suggest_profile=qld&query=null">
+                <div class="qg-site-footer-util__block qg-site-footer-util__nearest-service-centre" data-nearest-service-centre-source="https://find.search.qld.gov.au/s/search.html?tiers=off&collection=qld-gov&profile=mapservice&form=geojson&meta_sfinder_sand=yes&collapsing=on&collapsing_sig=%5Bsid%5D&suggest_profile=qld&query=null&num_ranks=1">
 
                     <h2 class="qg-site-footer-util__heading">Your nearest service centre</h2>
 
@@ -277,19 +277,19 @@
                     <div class="qg-site-footer-util__nearest-service-centre-details">
 
                         <a href="#" class="qg-site-footer-util__nearest-service-centre-detail-name">Cairns Queensland Government Service Centre</a>
-
+                        
                         <ul class="fa-ul qg-site-footer-util__nearest-service-centre-detail-list">
 
-                           <li class="qg-site-footer-util__nearest-service-centre-detail-list-item qg-site-footer-util__nearest-service-centre-detail-availability">
+                           <li class="qg-site-footer-util__nearest-service-centre-detail-list-item qg-site-footer-util__nearest-service-centre-detail-services-available">
                                 <span class="fa-li"><i class="fas fa-info-circle qg-site-footer-util__nearest-service-centre-detail-list-item-icon"></i></span>
-                                <a href="#" class="qg-site-footer-util__nearest-service-centre-detail-availability-link">Services available</a>
+                                <a href="#" class="qg-site-footer-util__nearest-service-centre-detail-services-available-link">Services available</a>
                            </li>
 
-                           <li class="qg-site-footer-util__nearest-service-centre-detail-list-item qg-site-footer-util__nearest-service-centre-detail-hours">
+                           <!-- <li class="qg-site-footer-util__nearest-service-centre-detail-list-item qg-site-footer-util__nearest-service-centre-detail-hours">
                                 <span class="fa-li"><i class="fas fa-clock qg-site-footer-util__nearest-service-centre-detail-list-item-icon"></i></span>
                                 <p class="qg-site-footer-util__nearest-service-centre-detail-hours-state">Open</p>
                                 <p class="qg-site-footer-util__nearest-service-centre-detail-hours-time-to">Closes in 30 minutes</p>
-                           </li>
+                           </li> -->
 
                            <li class="qg-site-footer-util__nearest-service-centre-detail-list-item qg-site-footer-util__nearest-service-centre-detail-location">
                                 <span class="fa-li"><i class="fas fa-compass qg-site-footer-util__nearest-service-centre-detail-list-item-icon"></i></span>

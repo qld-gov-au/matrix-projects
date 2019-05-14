@@ -19,12 +19,10 @@
         font-weight: 600;
     }
 
-    &.qg-location-info-widget--has-result {
+    .qg-site-footer-util__nearest-service-centre--has-result  & {
 
-        /* Hide this if embedded in footer util bar and has result */
-        .qg-site-footer-util__nearest-service-centre & {
-            display: none;
-        }
+        /* Hide this if embedded in footer util bar and has result */   
+        display: none;
         
     }
 
