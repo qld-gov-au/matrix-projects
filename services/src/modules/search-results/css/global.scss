@@ -69,8 +69,15 @@
  }
 
 .services-search-results__result-footer-link {
-    color:#666666;
+    color:#666;
     font-size: pxToRem(10);
+    word-break: break-word;
+
+    &:hover,
+    &:focus {
+        color: #666;
+    }
+
 }
 
 .services-search-results__featured-result-btn {

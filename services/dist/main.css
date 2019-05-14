@@ -1038,8 +1038,11 @@ body {
   margin-bottom: 0.9375rem; }
 
 .services-search-results__result-footer-link {
-  color: #666666;
-  font-size: 0.625rem; }
+  color: #666;
+  font-size: 0.625rem;
+  word-break: break-word; }
+  .services-search-results__result-footer-link:hover, .services-search-results__result-footer-link:focus {
+    color: #666; }
 
 .services-search-results__featured-result-btn {
   background-color: #063652;
@@ -1412,7 +1415,7 @@ body {
 .services-service-finder__no-results-menu-list-item {
   font-size: 0.9375rem; }
   .services-service-finder__no-results-menu-list-item + .services-service-finder__no-results-menu-list-item {
-    margin-top: 1.5625rem; }
+    margin-top: 1.25rem; }
 
 .services-service-finder__no-results-menu-list-item-link {
   color: #000;
