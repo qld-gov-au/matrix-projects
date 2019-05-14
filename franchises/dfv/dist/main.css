@@ -1601,7 +1601,8 @@ body:not([data-accessibility=false]):not([data-access-new-window=false]) #qg-con
  */
 @media screen and (min-width: 992px) {
   .dfv-topics__wrapper {
-    display: inline-block; }
+    display: inline-block;
+    width: 776px; }
   #qg-content #qg-primary-content .dfv-topics__link {
     font-size: 21px; }
   .dfv-topics__title {
