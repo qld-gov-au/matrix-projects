@@ -1,0 +1,175 @@
+/*
+ * Mobile layout
+ */
+
+ #qg-primary-content .dfv-cards--type-helplines {
+    margin: 0 -25px;
+    overflow: hidden;
+}
+
+ #qg-primary-content .dfv-cards--type-helplines {
+    
+    /* Start of Salvatorre plugin CSS */
+    .column {
+        float: left;
+    }
+
+    .size-1of2 { 
+        width: 50%; 
+    }
+
+    /* End of Salvatorre plugin CSS */
+     
+    .card-container {
+        margin-bottom: pxToRem(15);
+        padding: 0 pxToRem(7) 0;
+    }
+
+    .card {
+        background-color: #ddecf1;
+        border: 0;
+        box-shadow: none;
+        display: block;
+    }
+
+    .card-title {
+        color: $deep-blue;
+        margin-bottom: pxToRem(12);
+    }
+
+    .card-phone {
+        margin-bottom: pxToRem(15);
+    }
+
+    .card-text {
+        margin-bottom: pxToRem(15);
+    }
+
+    .card-bottom {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        margin-top: auto;
+    }
+
+    .card-bottom__text {
+        color: $deep-blue;
+        flex-grow: 1;
+        font-weight: 700;
+    }
+
+    .card-bottom__prompt {
+        @include css-arrow(14px, 11px, $deep-blue);
+        flex-shrink: 0;
+    }
+
+    .card--view-mobile {
+
+        a.card-title {
+            color: $deep-blue;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .card-phone__number a {
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        a.card-bottom__text {
+            color: $deep-blue;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+
+        }
+
+    }
+    
+    a.card--view-desktop {
+        color: inherit;
+        display: none;
+        text-decoration: none;
+    }
+
+}
+
+/* Salvattore plugins need declaration within media query for responsive to work */
+@media screen and (max-width: $desktop - 1px){
+
+    &[data-columns]::before {
+        content: '2 .column.size-1of2';
+        display: none;
+    }
+    
+}
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+
+    #qg-primary-content .dfv-cards--type-helplines {
+        margin-right: 0;
+    }
+
+    #qg-primary-content .dfv-cards--type-helplines {
+
+        &[data-columns]::before {
+            content: '1 .outer';
+            display: none;
+        }
+        
+        .outer {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 0.9375rem;
+            margin-right: -0.9375rem;
+        }
+
+        .card-container {
+            margin-bottom: pxToRem(30);
+            min-height: pxToRem(340);
+            padding: 0 pxToRem(15) 0;
+        }
+
+        .card {
+            box-shadow: 0px 11px 16px -13px rgba(0,0,0,0.37);
+            height: 100%;
+        }
+        
+        .card-body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            height: pxToRem(75);
+            margin-bottom: 0;
+        }
+
+        .card-phone {
+            margin-bottom: pxToRem(25);
+        }
+
+        .card--view-mobile {
+            display: none;
+        }
+
+        a.card--view-desktop {
+            display: flex;
+        }
+
+
+    }
+
+}

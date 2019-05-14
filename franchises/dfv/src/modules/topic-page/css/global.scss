@@ -1,0 +1,60 @@
+/*
+ * Mobile layout
+ */
+
+.dfv-topics__list {
+    @include sq-list-reset();
+}
+
+.dfv-topics__item {
+    border-bottom: 1px solid $darkish-grey;
+}
+
+#qg-content #qg-primary-content .dfv-topics__link {
+    color: $deep-blue;
+    display: flex;
+    font-size: 18px;
+    padding: $small-spacing;
+    text-decoration: none;
+
+    &:hover {
+        color: $deep-blue;
+        text-decoration: underline;
+    }
+}
+                
+.dfv-topics__title {
+    flex-grow: 1;
+    padding-right: 40px;
+}
+
+.dfv-topics__more {
+    @include css-chevron($medium-spacing, 8px, $deep-blue);
+}
+
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+    .dfv-topics__wrapper {
+        display: inline-block;
+    }
+
+    #qg-content #qg-primary-content .dfv-topics__link {
+        font-size: 21px;
+    }
+
+    .dfv-topics__title {
+        flex-grow: 1;
+    }
+
+    .dfv-topics__more {
+        &:after {
+            border-width: 3px;
+            height: 12px;
+            width: 12px;
+        }
+    }
+}

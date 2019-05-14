@@ -1,0 +1,133 @@
+/*
+ * Mobile layout
+ */
+
+#qg-two-col-aside.wide {
+    #qg-secondary-content {
+        display: none;
+    }
+}
+
+h1, h2 {
+    color: $dark-blue;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 30px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+.dfv-page-introduction {
+    padding: 0 5px;
+
+    p {
+        font-size: 18px;
+        margin-bottom: $small-spacing;
+    }
+}
+
+
+/*
+    Cards
+*/
+
+.card {
+    border: 2px solid $deep-blue;
+    border-radius: 0;
+    box-shadow: 0px 0 8px 4px $grey;
+    color: $dark-grey;
+}
+
+.card-body {
+    font-size: 14px;
+    padding: $small-spacing;
+}
+
+.card-title,
+.card-subtitle {
+    display: block;
+    font-weight: 700;
+    margin-bottom: $small-spacing;
+}
+
+.card-title {
+    color: $deep-blue;
+    font-size: 20px;
+}
+
+.card-subtitle {
+    color: $dark-blue;
+    font-size: 15px;
+}
+
+
+/*
+    Font aweseme icons
+*/
+
+.fa-icon__wrapper {
+  display: inline-block; 
+}
+
+.fa-icon__wrapper .fa {
+    color: $light-green;
+    text-shadow: 1px 1px 0 #000,  -1px -1px 0 #000,  1px -1px 0 #000,  -1px 1px 0 #000,  1px 1px 0 #000; 
+}
+
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+    #qg-three-col,
+    #qg-two-col-aside.wide {
+        #qg-primary-content {
+            flex: 0;
+            flex-grow: 1;
+            margin-top: $large-spacing;
+            max-width: 100%;
+        }
+
+        #qg-secondary-content {
+            display: block;
+            margin-top: $large-spacing;
+            padding-left: $large-spacing;
+            max-width: 280px;
+        }
+    }
+
+    #qg-three-col {
+        #qg-primary-content,
+        #qg-secondary-content {
+            left: 0;
+        }
+    }
+    
+    #qg-primary-content {
+        h1 {
+            font-size: 40px;
+        }
+
+        h1, h1:first-child {
+            margin-bottom: $medium-spacing;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+    }
+
+    .dfv-page-introduction {
+        padding-left: $medium-spacing;
+
+        p {
+            font-size: 24px;
+            margin-bottom: 50px;
+        }
+    }
+}
