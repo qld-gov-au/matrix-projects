@@ -2,22 +2,23 @@
  * Mobile layout
  */
 
- .nav-collapse.collapse,
- .nav-collapse {
+ .navbar-collapse.collapse,
+ .navbar-collapse.collapsing,
+ .navbar-collapse {
 
-    width: 100%;
-    margin: 0;
+    width: auto;
+    margin: 0 pxToRem(-15);
     padding: 0;
-    position: absolute;
-    left: 0;
-    top: pxToRem(139);
-    z-index: 150;
+    border: none;
+
+    .masthead & {
+        padding: 0;
+    }
 
 
     .section.site-search.simple-input {
         padding: 0;
         display: none;
-        max-width: 25%;
         margin: 0;
     }
 
@@ -53,13 +54,13 @@
                     
                     background-color: $medium-grey;
 
-                    a {
-                    
+                    a {                    
                         &:focus,
                         &:hover {
-                            color: $white;
-                            background-color: transparent;
+                            color: $light-blue;
+                            background-color: #fff;
                             @include sq-border-radius(0);
+                            text-decoration: none;
                         }
                     }
                 }
@@ -89,9 +90,10 @@
 
                     &:focus,
                     &:hover {
-                        text-decoration: underline;
+                        color: $light-blue;
+                        background-color: #fff;
                         @include sq-border-radius(0);
-                        color: $white;
+                        text-decoration: none;
                     }
                 }
             }
@@ -107,52 +109,17 @@
 
 @media screen and (min-width: $tablet){
     
-    .nav-collapse.collapse {
-        top: pxToRem(95);
-    }
-}
-
-
-/*
- * Desktop layout
- */
-
-@media screen and (min-width: $desktop){
-    
-    .nav-collapse.collapse {
-
-        width: 75%;
+    .navbar-collapse.collapse {
         margin: 0;
-        display: flex;
-        justify-content: space-between;
-        flex-flow: row wrap;
-        align-items: center;
-        align-content: center;
-        align-self: flex-end;
         padding: 0;
-        order: 1;
-        position: relative;
-        top: 0;
+        position: absolute;
+        right: pxToRem(5);
+        bottom: 0;
 
-        .section.site-search.simple-input {
-
-            background: $white;
-            @include sq-border-radius(5px);
-            background: $white;
-            border: 1px solid $light-grey;
-            position: relative;
-            display: block;
-            margin: 0;
-            width: 20%;
-
-
-            .field {
-                display: flex;
-                flex-flow: row nowrap;
-                align-content: center;
-                align-items: center;
-                width: 100%;
-            }
+        nav.navigation {
+            padding: 0;
+            background: transparent;
+            width: auto;
 
             ul.listbox {
                 position: absolute;
@@ -178,93 +145,17 @@
                 }
             }
 
-            input[type="text"]{
-                border: none;
-                height: pxToRem(44);
-                font-size: pxToRem(16);
-                line-height: 16px;
-                width: 80%;
-                @include sq-border-radius(5px 0 0 5px);
-                margin: 0;
-                padding: pxToRem(10) pxToRem(10);
-
-
-
-                &::-webkit-input-placeholder {
-                    color: $light-grey;
-                }
-            
-                &::-moz-placeholder {
-                    color: $light-grey;
-                }
-            
-                &:-ms-input-placeholder {
-                    color: $light-grey !important;
-                }
-            
-                &:-moz-placeholder {
-                    color: $light-grey;
-                }
-
-                &::-ms-clear {
-                    display: none;
-                }
-            }
-
-
-            button[type="submit"] {
-                position: relative;
-                top: 0;
-                right: 0;
-                left: 0;
-                border: none;
-                height: pxToRem(44);
-                background-color: $white;
-                padding: 0;
-                width: 20%;
-                @include sq-border-radius(0 5px 5px 0);
-                margin: 0;
-                @include clear-default-appearance;
-
-                &:hover,
-                &:focus {
-                    outline: 0;
-
-                    .fa {
-                        color: $black;
-                    }
-                }
-
-                .fa {
-                    color: $light-grey;
-                    @include sq-transition(color 0.4s ease);
-                }
-            }
-        }
-
-        nav.navigation {
-            padding: 0;
-            background: transparent;
-            display: block !important;
-            width: 80%;
-            position: relative;
-            left: 0;
-            top: 0;
-
             ul,
             ul.nav,
             ul.nav.nav-pills {
-                display: flex;
-                flex-flow: row wrap;
-                justify-content: space-between;
-                align-content: center;
-                align-items: center;
-                flex-flow: row nowrap;
                 @include sq-list-reset;
+                width: auto;
+                float: left;
 
                 li {
                     width: auto;
                     @include sq-list-reset;
+                    padding: 0 pxToRem(5);
                     
 
                     &:nth-child(2n) {
@@ -314,6 +205,102 @@
                             text-decoration: none;
                         }
                     }
+                }
+            }
+        }
+    }
+}
+
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+    
+    .navbar-collapse.collapse {
+        right: pxToRem(15);
+
+        nav.navigation {
+            padding-right: pxToRem(20);
+
+            ul,
+            ul.nav,
+            ul.nav.nav-pills {
+                li {
+                    padding: 0 pxToRem(10);
+                }
+            }
+        }
+
+        .section.site-search.simple-input {
+            display: block;
+            margin: 0;
+
+            input[type="text"]{
+                border: none;
+                height: pxToRem(44);
+                font-size: pxToRem(16);
+                line-height: 22px;
+                width: pxToRem(220);
+                @include sq-border-radius(5px 0 0 5px);
+                margin: 0;
+                padding: pxToRem(10) pxToRem(45) pxToRem(10) pxToRem(15);
+                background: $white;
+                border: 1px solid $light-grey;
+                @include sq-border-radius(5px);
+
+
+
+                &::-webkit-input-placeholder {
+                    color: $light-grey;
+                }
+            
+                &::-moz-placeholder {
+                    color: $light-grey;
+                }
+            
+                &:-ms-input-placeholder {
+                    color: $light-grey !important;
+                }
+            
+                &:-moz-placeholder {
+                    color: $light-grey;
+                }
+
+                &::-ms-clear {
+                    display: none;
+                }
+            }
+
+
+            button[type="submit"] {
+                position: absolute;
+                top: 0;
+                right: 0;
+                left: 0;
+                left: auto;
+                border: none;
+                height: pxToRem(44);
+                width: pxToRem(44);
+                background-color: $white;
+                padding: 0;
+                @include sq-border-radius(0 5px 5px 0);
+                margin: 0;
+                @include clear-default-appearance;
+
+                &:hover,
+                &:focus {
+                    outline: 0;
+
+                    .fa {
+                        color: $black;
+                    }
+                }
+
+                .fa {
+                    color: $light-grey;
+                    @include sq-transition(color 0.4s ease);
                 }
             }
         }

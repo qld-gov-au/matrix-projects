@@ -18,6 +18,7 @@
 }
 html {
     @include sq-border-box;
+    font-size: 16px;
 }
 // == End box-sizing reset ==
 
@@ -68,11 +69,6 @@ body {
 
     .masthead {
         background-image: none;
-
-        &:before,
-        &:after {
-            display: none;
-        }
     }
 
     [role=main], .main {
@@ -85,9 +81,7 @@ body {
         border: none;
         background-image: none;
         margin: 0;
-    }
 
-    .container {
         &:before,
         &:after {
             display: none;

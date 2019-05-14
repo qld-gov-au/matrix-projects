@@ -2,19 +2,16 @@
  * Mobile layout
  */
 
- header.account-masthead {
-    
-    background-color: $dark-blue;
+ header.account-masthead {    
+    background: $dark-blue;
     width: 100%;
-    border-bottom: 2px solid $light-blue;
     padding: 0;
     border: none;
-    background-image: none;
     margin: 0;
 
     nav.account.not-authed ul.unstyled {
         @include sq-list-reset;
-        width: 100%;
+        margin: 0 pxToRem(-15);
         display: flex;
         justify-content: flex-end;
         align-content: center;
