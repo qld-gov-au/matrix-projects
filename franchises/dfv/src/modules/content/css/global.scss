@@ -109,6 +109,7 @@
 .card-title {
     color: $deep-blue;
     font-size: 20px;
+    line-height: 24px;
 }
 
 .card-subtitle {
@@ -210,5 +211,10 @@
         p {
             margin: $medium-spacing 0;
         }        
+    }
+
+    .card-title {
+        font-size: 24px;
+        line-height: 32px;
     }
 }

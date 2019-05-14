@@ -283,11 +283,11 @@ button:focus {
  * Mobile layout
  */
 .dfv-back__wrapper {
+  border-top: 4px solid #007eb1;
   width: 100%; }
 
 .dfv-back {
-  background-color: #13578b;
-  border-top: 4px solid #007eb1; }
+  background-color: #13578b; }
 
 .dfv-back__link {
   -webkit-box-align: center;
@@ -471,7 +471,8 @@ button:focus {
 
 .card-title {
   color: #13578b;
-  font-size: 20px; }
+  font-size: 20px;
+  line-height: 24px; }
 
 .card-subtitle {
   color: #0c2e4c;
@@ -542,7 +543,10 @@ button:focus {
     margin-bottom: 107px;
     width: 600px; }
     .dfv-content p {
-      margin: 25px 0; } }
+      margin: 25px 0; }
+  .card-title {
+    font-size: 24px;
+    line-height: 32px; } }
 
 /*
  * Mobile layout
@@ -1537,8 +1541,6 @@ body:not([data-accessibility=false]):not([data-access-new-window=false]) #qg-con
   .card-subtitle {
     display: block;
     margin-bottom: 18px; }
-  .card-title {
-    font-size: 24px; }
   .card-subtitle,
   .support-categories {
     font-size: 18px; }

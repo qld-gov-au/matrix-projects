@@ -3,12 +3,12 @@
  */
 
 .dfv-back__wrapper {
+    border-top: 4px solid $light-blue;
     width: 100%;
 }
 
 .dfv-back {
     background-color: $deep-blue;
-    border-top: 4px solid $light-blue;
 }
 
 .dfv-back__link {
