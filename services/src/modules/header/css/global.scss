@@ -1,3 +1,16 @@
+/*
+ * Mobile layout
+ */
+
+.qg-site-footer-util__nearest-service-centre-details {
+    display: none;
+
+    .qg-site-footer-util__nearest-service-centre--has-result & {
+        display: block;
+    }
+
+}
+
 @media screen and (max-width: $small - 1px) {
 
     .qg-site-header {

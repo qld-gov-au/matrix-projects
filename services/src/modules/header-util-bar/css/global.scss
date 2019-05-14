@@ -30,6 +30,14 @@
 
 }
 
+.qg-util-bar__logo--mobile {
+    width: pxToRem(100);
+}
+
+.qg-util-bar__logo--desktop {
+    width: pxToRem(427);
+}
+
 .qg-util-bar__widgets {
     display: flex;
     align-items: center;

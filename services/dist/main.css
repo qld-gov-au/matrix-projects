@@ -469,7 +469,7 @@ body {
 .qg-site-footer-util__nearest-service-centre-detail-list {
   list-style-type: none;
   padding-left: 0;
-  margin-left: 1.625rem; }
+  margin-left: 1.875rem; }
 
 .qg-site-footer-util__nearest-service-centre-detail-list-item {
   font-size: 1.25rem;
@@ -799,6 +799,12 @@ body {
     background-color: #fff;
     color: #17608a; }
 
+.qg-util-bar__logo--mobile {
+  width: 6.25rem; }
+
+.qg-util-bar__logo--desktop {
+  width: 26.6875rem; }
+
 .qg-util-bar__widgets {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -855,6 +861,14 @@ body {
     margin-left: 0; }
   .qg-util-bar__logo--mobile {
     display: none; } }
+
+/*
+ * Mobile layout
+ */
+.qg-site-footer-util__nearest-service-centre-details {
+  display: none; }
+  .qg-site-footer-util__nearest-service-centre--has-result .qg-site-footer-util__nearest-service-centre-details {
+    display: block; }
 
 @media screen and (max-width: 575px) {
   .qg-site-header {
