@@ -226,6 +226,9 @@ button:focus {
  * Desktop layout
  */
 @media screen and (min-width: 992px) {
+  #qg-two-col-aside.wide #qg-secondary-content,
+  #qg-two-col-aside #qg-secondary-content {
+    display: block; }
   #qg-content #qg-secondary-content .qg-aside {
     color: #000;
     margin-bottom: 32px; }

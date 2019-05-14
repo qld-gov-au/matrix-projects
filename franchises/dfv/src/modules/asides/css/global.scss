@@ -19,6 +19,13 @@
  */
 
 @media screen and (min-width: $desktop){
+    #qg-two-col-aside {
+        &.wide #qg-secondary-content,
+        #qg-secondary-content {
+            display: block;
+        }
+    }
+
     #qg-content #qg-secondary-content {
         .qg-aside {
             color: #000;
