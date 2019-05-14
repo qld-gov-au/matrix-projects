@@ -206,6 +206,7 @@ body {
   .services-banner__caption-icon {
     color: #fff;
     background-color: #0b0b0b;
+    border-top-left-radius: 0.25rem;
     padding: 0 0.625rem;
     font-size: 1.25rem;
     display: -webkit-box;
@@ -432,12 +433,15 @@ body {
     color: #fff;
     text-decoration: underline; }
 
-.qg-site-footer-util__contact-us-phone-link {
+.qg-site-footer-util__contact-us-phone {
   color: #000;
   display: inline-block;
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 2.5rem; }
+
+.qg-site-footer-util__contact-us-phone-link {
+  color: #000; }
   .qg-site-footer-util__contact-us-phone-link:hover, .qg-site-footer-util__contact-us-phone-link:focus {
     color: #000; }
 
@@ -532,6 +536,10 @@ body {
 .qg-site-footer-util__social-media-list-item-icon--mobile-apps {
   font-size: 1.5rem; }
 
+@media screen and (max-width: 991px) {
+  .qg-site-footer-util__contact-us-phone-text {
+    display: none; } }
+
 /*
  * Desktop layout
  */
@@ -559,6 +567,8 @@ body {
     margin-bottom: 1.875rem; }
   .qg-site-footer-util__contact-us-btn {
     width: auto; }
+  .qg-site-footer-util__contact-us-phone-link {
+    display: none; }
   .qg-site-footer-util__contact-us-text {
     border-top: 0.03125rem solid rgba(0, 0, 0, 0.33);
     font-size: 1.125rem;
@@ -1356,7 +1366,8 @@ body {
     color: #607a89; }
   .services-service-finder__field:focus {
     outline: 0; }
-  .services-service-finder--focused .services-service-finder__field,
+  .services-service-finder--results-shown .services-service-finder__field,
+  .services-service-finder--focused.services-service-finder--no-input .services-service-finder__field,
   .services-service-finder--no-results-menu-link-focused .services-service-finder__field {
     border-bottom-left-radius: 0; }
   .services-service-finder__field.tt-hint {
@@ -1374,15 +1385,13 @@ body {
   right: -3.75rem;
   top: 100%;
   z-index: 100; }
-  .services-service-finder--focused .services-service-finder__no-results-menu,
+  .services-service-finder--focused.services-service-finder--no-input .services-service-finder__no-results-menu,
   .services-service-finder--no-results-menu-link-focused .services-service-finder__no-results-menu {
     clip: auto;
     height: auto;
     margin: 0;
     overflow: visible;
     width: auto; }
-  .services-service-finder--focused.results-shown .services-service-finder__no-results-menu {
-    display: none; }
 
 .services-service-finder__no-results-menu-block {
   -webkit-box-flex: 1;
@@ -1464,7 +1473,7 @@ body {
     -webkit-box-shadow: 0 1.25rem 1.25rem 0 rgba(0, 0, 0, 0.25);
             box-shadow: 0 1.25rem 1.25rem 0 rgba(0, 0, 0, 0.25);
     right: 0; }
-    .results-shown .services-service-finder__form .tt-menu {
+    .services-service-finder--results-shown .services-service-finder__form .tt-menu {
       display: -webkit-box !important;
       display: -ms-flexbox !important;
       display: flex !important; }
@@ -1475,7 +1484,7 @@ body {
     -webkit-box-flex: 1;
         -ms-flex-positive: 1;
             flex-grow: 1; }
-    .has-featured-result .services-service-finder__form .tt-dataset-organic {
+    .services-service-finder--has-featured-result .services-service-finder__form .tt-dataset-organic {
       border-right: 0.0625rem solid #063652; }
     .services-service-finder__form .tt-dataset-organic .tt-suggestion {
       font-size: 1.625rem;
@@ -1547,6 +1556,8 @@ body {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex; }
+    .services-service-finder--has-input .services-service-finder__no-results-menu {
+      display: none; }
   .services-service-finder__no-results-menu-block {
     padding: 3.125rem 5rem; }
     .services-service-finder__no-results-menu-block + .services-service-finder__no-results-menu-block {

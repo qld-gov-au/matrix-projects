@@ -158,7 +158,8 @@
         outline: 0;
     }
 
-    .services-service-finder--focused &,
+    .services-service-finder--results-shown &,
+    .services-service-finder--focused.services-service-finder--no-input &,
     .services-service-finder--no-results-menu-link-focused & {
         border-bottom-left-radius: 0;
     }
@@ -184,17 +185,13 @@
     top: 100%;
     z-index: 100;
 
-    .services-service-finder--focused &,
+    .services-service-finder--focused.services-service-finder--no-input &,
     .services-service-finder--no-results-menu-link-focused & {
         clip: auto;
         height: auto;
         margin: 0;
         overflow: visible;
         width: auto;
-    }
-
-    .services-service-finder--focused.results-shown & {
-        display: none;
     }
 
 }
@@ -333,7 +330,7 @@
             box-shadow: 0 pxToRem(20) pxToRem(20) 0 rgba(0, 0, 0, 0.25);
             right: 0;
 
-            .results-shown & {
+            .services-service-finder--results-shown & {
                 display: flex !important;
             }
 
@@ -348,7 +345,7 @@
 
             flex-grow: 1;
 
-            .has-featured-result & {
+            .services-service-finder--has-featured-result & {
                 border-right: pxToRem(1) solid #063652;
             }
 
@@ -472,6 +469,10 @@
         .services-service-finder--focused &,
         .services-service-finder--no-results-menu-link-focused & {
             display: flex;
+        }
+
+        .services-service-finder--has-input & {
+            display: none;
         }
 
     }

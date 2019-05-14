@@ -23,7 +23,9 @@
             var centre_name = nearest_service_centre_data.title;
 
             qg_nearest_service_centre.dom.$centre_name.text(centre_name);
-            
+
+
+            qg_nearest_service_centre.dom.$centre_name.prop("href");
 
         }
 

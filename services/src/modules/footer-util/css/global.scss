@@ -47,13 +47,17 @@
 
 }
 
-.qg-site-footer-util__contact-us-phone-link {
-
+.qg-site-footer-util__contact-us-phone {
     color: #000;
     display: inline-block;
     font-size: pxToRem(24);
     font-weight: 600;
     margin-bottom: pxToRem(40);
+}
+
+.qg-site-footer-util__contact-us-phone-link {
+
+    color: #000;
 
     &:hover,
     &:focus {
@@ -197,6 +201,14 @@
     font-size: pxToRem(24);
 }
 
+@media screen and (max-width: $desktop - 1) {
+
+    .qg-site-footer-util__contact-us-phone-text {
+        display: none;
+    }
+
+}
+
 /*
  * Desktop layout
  */
@@ -233,6 +245,10 @@
 
     .qg-site-footer-util__contact-us-btn {
         width: auto;
+    }
+
+    .qg-site-footer-util__contact-us-phone-link {
+        display: none;
     }
 
     .qg-site-footer-util__contact-us-text {

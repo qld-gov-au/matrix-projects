@@ -255,6 +255,7 @@ __webpack_require__.r(__webpack_exports__);
     function updateCentreName() {
       var centre_name = nearest_service_centre_data.title;
       qg_nearest_service_centre.dom.$centre_name.text(centre_name);
+      qg_nearest_service_centre.dom.$centre_name.prop("href");
     }
 
     function updateServicesAvailable() {} // function updateHours() {
@@ -660,28 +661,55 @@ __webpack_require__.r(__webpack_exports__);
       // Add classes to input field to adjust appearance
       // This will add a class if there are results and menu is open
       if (services_service_finder.dom.$tt_menu.hasClass("tt-open") && services_service_finder.dom.$tt_menu.find(".tt-suggestion").length) {
-        services_service_finder.dom.$root.addClass("results-shown");
+        services_service_finder.dom.$root.addClass("services-service-finder--results-shown");
       } else {
-        services_service_finder.dom.$root.removeClass("results-shown");
+        services_service_finder.dom.$root.removeClass("services-service-finder--results-shown");
       } // This will add a class to specify there are featured results
 
 
       if (services_service_finder.dom.$featured_result_wrapper.find(".tt-suggestion").length) {
-        services_service_finder.dom.$root.addClass("has-featured-result");
+        services_service_finder.dom.$root.addClass("services-service-finder--has-featured-result");
       } else {
-        services_service_finder.dom.$root.removeClass("has-featured-result");
+        services_service_finder.dom.$root.removeClass("services-service-finder--has-featured-result");
+      }
+    }
+
+    function checkFieldHasInput(current_value) {
+      if (current_value.length === 0) {
+        services_service_finder.dom.$root.addClass("services-service-finder--no-input");
+      } else {
+        services_service_finder.dom.$root.removeClass("services-service-finder--no-input");
       }
     } // This function adds/removes a "focus" class whenever the field is focused/blurred
     // This is to control CSS border radius of input and button
-    // If user is focusing on field, scroll to field so that user can always see the rest of the no results menu
+    // Also, if user is focused / blurred from field input, check if there is input
+    // This is to make the "no results menu" hide if there is input
 
 
     function setupFieldFocusEvent() {
+      // Focus event
       services_service_finder.dom.$field.on("focus", function (event) {
+        var $this = $(event.target);
+        var current_value = $this.val();
+        checkFieldHasInput(current_value);
         services_service_finder.dom.$root.addClass("services-service-finder--focused");
-      });
+      }); // Blur event
+
       services_service_finder.dom.$field.on("blur", function (event) {
+        var $this = $(event.target);
+        var current_value = $this.val();
+        checkFieldHasInput(current_value);
         services_service_finder.dom.$root.removeClass("services-service-finder--focused");
+      });
+    } // Whenever user is typing or deleting input, check if there is input
+    // This is to make the "no results menu" hide if there is input 
+
+
+    function setupFieldInputEvent() {
+      services_service_finder.dom.$field.on("input", function (event) {
+        var $this = $(event.target);
+        var current_value = $this.val();
+        checkFieldHasInput(current_value);
       });
     } // Whenever a link in the no results menu is selected, ensure that the no results menu is visible
     // This allows better keyboard navigation
@@ -705,9 +733,11 @@ __webpack_require__.r(__webpack_exports__);
 
       if (services_service_finder.dom.$root.length) {
         // Get field input
-        services_service_finder.dom.$field = services_service_finder.dom.$root.find(".services-service-finder__field"); // Set up root node to have class whenver field is focused on
+        services_service_finder.dom.$field = services_service_finder.dom.$root.find(".services-service-finder__field"); // Set up root node to have class whenever field is focused on
 
-        setupFieldFocusEvent(); // Initialise Funnelback Concerige
+        setupFieldFocusEvent(); // Set up root node to have a class whenever something is being typed into the search field
+
+        setupFieldInputEvent(); // Initialise Funnelback Concerige
 
         setupFBConceirge(); // Set up no results menu links
 
