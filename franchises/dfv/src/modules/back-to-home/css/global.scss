@@ -3,8 +3,11 @@
  */
 
 .dfv-back__wrapper {
-    border-top: 4px solid $light-blue;
     width: 100%;
+
+    &.show-mobile {
+        border-top: 4px solid $light-blue;
+    }
 }
 
 .dfv-back {

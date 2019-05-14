@@ -283,8 +283,9 @@ button:focus {
  * Mobile layout
  */
 .dfv-back__wrapper {
-  border-top: 4px solid #007eb1;
   width: 100%; }
+  .dfv-back__wrapper.show-mobile {
+    border-top: 4px solid #007eb1; }
 
 .dfv-back {
   background-color: #13578b; }
