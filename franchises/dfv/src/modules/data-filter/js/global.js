@@ -55,6 +55,33 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
         return false;
     };
 
+    qg_dfv.fn.checkForConditionalEvents = function(target_input) {
+        var input_id = target_input.attr('id');
+        var input_structure = input_id.split('--');
+        var filter_namespace = input_structure[0];
+        var filter_id = input_structure[1];
+
+        var region_input = $('#' + filter_namespace + '--region');
+        var suburb_input = $('#' + filter_namespace + '--suburb');
+
+        var current_region = region_input.val();
+        var current_suburb = suburb_input.val();
+
+        // Reset other filters based on new values
+        if(current_region !== 'All' && current_suburb !== 'All') {
+            switch(filter_id) {
+                case 'suburb':
+                    region_input.val('All').trigger('change');
+                    
+                    break;
+                case 'region':
+                    suburb_input.val('All').trigger('change');
+
+                    break;
+            }
+        }
+    };
+
 
     /*
         Functions
@@ -73,6 +100,11 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
 
             select_inputs.on('select2:open', function(e) {
                 $('.select2-search input').prop('focus',false);
+            });
+
+            select_inputs.on('change', function(event) {
+                var target_input = $(event.target);
+                qg_dfv.fn.checkForConditionalEvents(target_input);
             });
         });
     };
