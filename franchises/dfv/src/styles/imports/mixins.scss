@@ -52,6 +52,7 @@
 
 @mixin css-arrow($arrow-width, $arrow-height, $colour) {
     height: $arrow-height;
+    flex-shrink: 0;
     position: relative;
     width: $arrow-width;
 
@@ -77,6 +78,17 @@
         border-right: 2px solid $colour;
         transform: translateY(-50%) rotate(-45deg);
         width: $arrow-height;
+    }
+}
+
+@mixin link-states($colour) {
+    color: $colour;
+    
+    &:focus,
+    &:active,
+    &:hover,
+    &:visited {
+        color: $colour;
     }
 }
 

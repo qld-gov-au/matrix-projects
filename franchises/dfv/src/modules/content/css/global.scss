@@ -2,23 +2,24 @@
  * Mobile layout
  */
 
-#qg-two-col-aside.wide {
-    #qg-secondary-content {
-        display: none;
+#qg-two-col-aside,
+#qg-three-col {
+    h1, h2, h3 {
+        color: $dark-blue;
+        font-weight: 700;
     }
-}
 
-h1, h2 {
-    color: $dark-blue;
-    font-weight: 700;
-}
+    h1 {
+        font-size: 32px;
+    }
 
-h1 {
-    font-size: 30px;
-}
+    h2 {
+        font-size: 24px;
+    }
 
-h2 {
-    font-size: 20px;
+    h3 {
+        font-size: 16px;
+    }
 }
 
 .dfv-page-introduction {
@@ -29,6 +30,57 @@ h2 {
         margin-bottom: $small-spacing;
     }
 }
+
+.dfv-content {
+    color: $dark-grey;
+    margin-bottom: 69px;
+}
+
+#qg-primary-content .dfv-content a {
+    @include link-states($deep-blue);
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.qg-content-navigation__wrapper {
+    border-left: 4px solid $qg-blue;
+    padding-left: $medium-spacing;
+}
+
+.qg-content-navigation__list {
+    @include sq-list-reset();
+}
+
+.qg-content-navigation__link {
+    align-items: center;
+    display: flex;
+}
+
+.qg-content-navigation__item {
+    margin-bottom: $medium-spacing;
+}
+
+.qg-content-navigation__prompt {
+    @include css-arrow(14px, 14px, $deep-blue);
+    margin-right: 10px;
+    transform: rotate(90deg);
+}
+
+/*
+    DFV Content Navigation override
+*/
+
+.qg-content-navigation__wrapper {
+    border-left: none;
+    padding-left: 0;
+
+    h2 {
+        display: none;
+    }
+}
+
 
 
 /*
@@ -85,19 +137,29 @@ h2 {
 
 @media screen and (min-width: $desktop){
     #qg-three-col,
-    #qg-two-col-aside.wide {
+    #qg-two-col-aside {
         #qg-primary-content {
             flex: 0;
             flex-grow: 1;
+            left: 0;
             margin-top: $large-spacing;
             max-width: 100%;
         }
 
         #qg-secondary-content {
             display: block;
+            left: 0;
             margin-top: $large-spacing;
             padding-left: $large-spacing;
             max-width: 280px;
+        }
+
+        &.wide {
+            #qg-primary-content {
+                flex: 0;
+                flex-grow: 1;
+                max-width: 100%;
+            }
         }
     }
 
@@ -120,6 +182,10 @@ h2 {
         h2 {
             font-size: 24px;
         }
+
+        h3 {
+            font-size: 18px;
+        }
     }
 
     .dfv-page-introduction {
@@ -129,5 +195,20 @@ h2 {
             font-size: 24px;
             margin-bottom: 50px;
         }
+    }
+
+    .dfv-content__wrapper {
+        padding-left: 220px;
+    }
+
+    .dfv-content {
+        font-size: 18px;
+        line-height: 28px;
+        margin-bottom: 107px;
+        width: 600px;
+
+        p {
+            margin: $medium-spacing 0;
+        }        
     }
 }
