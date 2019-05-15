@@ -3,38 +3,22 @@
  */
 
 .hero-banner {
-
     width: 100%;
-    height: pxToRem(290);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    display: flex;
-    justify-content: center;
-    align-content: stretch;
-    align-items: stretch;
-    flex-flow: row wrap;
 
     &__inner {
-        width: 100%;
-        padding: 0 pxToRem($padding);
-        position: relative;
-        height: 100%;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        align-content: flex-end;
+        padding-top: pxToRem(20);
+        padding-bottom: pxToRem(20);
     }
 
     &__text-wrap {
-        position: absolute;
         width: 100%;
-        max-width: pxToRem(270);
+        max-width: pxToRem(250);
         padding: pxToRem(20);
-        left: pxToRem(20);
-        top: pxToRem(20);
         margin: 0;
+        position: relative;
 
         h1 {
             position: relative;
@@ -64,7 +48,7 @@
     }
 
     &__search {
-         margin: 0 0 pxToRem(25) 0;
+         margin: pxToRem(20) 0 0 0;
          background: $white;
          @include sq-border-radius(5px);
          overflow: hidden;
@@ -72,26 +56,21 @@
          width: 100%;
 
          form {
-             width: 100%;
-             border: 1px solid $light-grey;
-             @include sq-border-radius(3px);
-             display: flex;
-             justify-content: space-between;
-             flex-flow: row nowrap;
-             align-content: stretch;
-             align-items: stretch;
-             margin: pxToRem(15) 0 0 0;
-             padding: 0 pxToRem(10);
+             padding-top: pxToRem(10);
+             position: relative;
          }
 
          input[type="text"] {
              @include clear-default-appearance;
              color: $light-grey;
-             width: 90%;
+             width: 100%;
              height: pxToRem(44);
              margin: 0;
              font-size: pxToRem(16);
              line-height: pxToRem(18);
+             border: 1px solid $light-grey;
+             @include sq-border-radius(3px);
+             padding: pxToRem(10) pxToRem(45) pxToRem(10) pxToRem(15);
 
              &::-webkit-input-placeholder {
                 color: $light-grey;
@@ -108,24 +87,18 @@
             &:-moz-placeholder {
                 color: $light-grey;
             }
-
-            &:focus,
-            &:hover {
-                outline: 0;
-                @include sq-box-shadow(none);
-            }
          }
 
          button[type="submit"] {
             @include clear-default-appearance;
-            width: pxToRem(20);
+            width: pxToRem(44);
             height: pxToRem(44);
+            position: absolute;
+            bottom: 0;
+            right: 0;
 
             &:hover,
             &:focus {
-                border: none;
-                outline: 0;
-
                 &:before {
                     color: $black;
                 }
@@ -163,21 +136,18 @@
 
 @media screen and (min-width: $tablet){
     .hero-banner {
-
-        height: pxToRem(330);
-
         &__inner {
-            max-width: pxToRem(724);
+            padding-top: pxToRem(60);
+            padding-bottom: pxToRem(60);
         }
 
         &__text-wrap {
-            top: pxToRem(40);
             max-width: pxToRem(350);
         }
 
         &__search {
-            max-width: 100%;
-            margin: 0 0 pxToRem(40) 0;
+            margin: pxToRem(40) auto 0 auto;
+            max-width: pxToRem(860);
             padding: pxToRem(15) pxToRem(15);
         }
 
@@ -192,14 +162,8 @@
 
 @media screen and (min-width: $desktop){
     .hero-banner {
-        height: pxToRem(370);
-
-        &__inner {
-            max-width: pxToRem(940);
-        }
 
         &__text-wrap {
-
             max-width: pxToRem(495);
     
             h1 {
@@ -209,29 +173,21 @@
         }
 
         &__search {
-            width: pxToRem(860);
-            margin: 0 0 pxToRem(40) 0;
             padding: pxToRem(20) pxToRem(20);
+            margin: pxToRem(50) auto 0 auto;
 
             form {
-                width: 100%;
                 max-width: pxToRem(783);
-                margin: pxToRem(15) auto 0 auto;
-            }
-
-            input[type="text"] {
-                width: 95%;
-            }
-
-            button[type="submit"] {
-                width: pxToRem(44);
+                margin: 0 auto;
+                padding-top: pxToRem(20);
             }
         }
 
         &__search-title {
             font-size: pxToRem(26);
             line-height: pxToRem(28);
-            margin-left: pxToRem(15);
+            max-width: pxToRem(783);
+            margin: 0 auto;
         }
 
     }

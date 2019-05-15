@@ -3,9 +3,8 @@
  */
 
 .toolbar {
-
     width: 100%;
-    padding: pxToRem(15) pxToRem($padding) 0 pxToRem($padding);
+    padding: pxToRem(15) 0 0 0;
     margin: 0;
 
     ol,
