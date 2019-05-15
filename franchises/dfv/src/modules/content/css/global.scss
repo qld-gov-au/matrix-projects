@@ -46,6 +46,7 @@ h2:before {
     margin-bottom: 69px;
 }
 
+#qg-primary-content .dfv-page-introduction a,
 #qg-primary-content .dfv-content a {
     @include link-states($deep-blue);
 

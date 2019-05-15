@@ -398,10 +398,16 @@ h2:before {
   color: #505050;
   margin-bottom: 69px; }
 
+#qg-primary-content .dfv-page-introduction a,
 #qg-primary-content .dfv-content a {
   color: #13578b; }
-  #qg-primary-content .dfv-content a:focus, #qg-primary-content .dfv-content a:active, #qg-primary-content .dfv-content a:hover, #qg-primary-content .dfv-content a:visited {
+  #qg-primary-content .dfv-page-introduction a:focus, #qg-primary-content .dfv-page-introduction a:active, #qg-primary-content .dfv-page-introduction a:hover, #qg-primary-content .dfv-page-introduction a:visited,
+  #qg-primary-content .dfv-content a:focus,
+  #qg-primary-content .dfv-content a:active,
+  #qg-primary-content .dfv-content a:hover,
+  #qg-primary-content .dfv-content a:visited {
     color: #13578b; }
+  #qg-primary-content .dfv-page-introduction a:hover,
   #qg-primary-content .dfv-content a:hover {
     text-decoration: none; }
 
