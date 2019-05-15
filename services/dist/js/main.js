@@ -877,7 +877,8 @@ __webpack_require__.r(__webpack_exports__);
       var request_url = weather_data_source + "&lat=" + location.lat + "&lon=" + location.lon; // When the weather data is retrieved from open weather API by passing in the user's coords
 
       $.getJSON(request_url, function (data) {
-        if (data.hasOwnPropety("weather")) {
+        // If result is valud
+        if (data.hasOwnProperty("weather")) {
           weather_data = data; // Update temperature
 
           updateTemperature(); // Update image icon
