@@ -53,7 +53,7 @@
         function locateWithCoordinates() {
 
             // Create endpoint to query endpoint with coordinates
-            var parameters = "&latlng=" + user_location.lat + "," + user_location.lon;
+            var parameters = "&address=" + user_location.lat + "," + user_location.lon;
 
             // Get user location
             geocode(parameters);

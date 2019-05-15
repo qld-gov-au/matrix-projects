@@ -90,7 +90,7 @@ __webpack_require__.r(__webpack_exports__);
 
     function locateWithCoordinates() {
       // Create endpoint to query endpoint with coordinates
-      var parameters = "&latlng=" + user_location.lat + "," + user_location.lon; // Get user location
+      var parameters = "&address=" + user_location.lat + "," + user_location.lon; // Get user location
 
       geocode(parameters);
     } // Locate user with provided suburb and LGA
