@@ -76,7 +76,7 @@
 
         function geocode(parameters) {
 
-            var endpoint_to_call = map_data_api + parameters;
+            var endpoint_to_call = map_data_api + encodeURIComponent(parameters);
 
             $.getJSON( endpoint_to_call, function( data ) {
 
@@ -155,7 +155,7 @@
 
         var user_location = {};
 
-        var map_data_api = "https://maps.googleapis.com/maps/api/geocode/json?&region=au&key=AIzaSyBZn3RJ44EvydUDMtoFSpP0-AJ51x_p-1g";
+        var map_data_api = "https://www.qld.gov.au/_qgdesigns/integrations/services/rest/google-maps-api";
 
         var event = new EventEmitter2();
 
