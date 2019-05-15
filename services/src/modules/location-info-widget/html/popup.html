@@ -1,29 +1,50 @@
-<div class="qg-location-info__modal">
+<div id="qg-location-info__modal" class="modal fade" tabindex="-1" aria-hidden="true" role="dialog" aria-labbeledby="qg-location-info__modal-heading">
 
-    <h2 class="qg-location-info__modal-heading">Update your location</h2>
+    <div class="qg-location-info__modal-dialog modal-dialog" role="document">
 
-    <h3 class="qg-location-info__modal-subheading">Suburb</h3>
+        <div class="qg-location-info__modal-content modal-content">
 
-    <div class="qg-location-info__modal-subheading">
+            <div class="qg-location-info__modal-main">
 
-        <div class="qg-location-info__modal-field-wrapper">
+                <h2 id="qg-location-info__modal-heading">Update your location</h2>
 
-            <input class="qg-location-info__modal-field" type="text" aria-label="Input your suburb" />
+                <h3 class="qg-location-info__modal-subheading">Suburb</h3>
+        
+                <div class="qg-location-info__modal-form-wrapper">
+        
+                    <div class="qg-location-info__modal-field-wrapper">
+        
+                        <input class="qg-location-info__modal-field" type="text" aria-label="Input your suburb" />
+        
+                        <ul class="qg-location-info__modal-suburb-list">
+                            <li class="qg-location-info__modal-suburb-list-item" data-suburb="abbeywood">Abbeywood, South Burnett regional</li>
+                            <li class="qg-location-info__modal-suburb-list-item" data-suburb="abbotsford">Abbotsford, Bundaberg regional</li>
+                            <li class="qg-location-info__modal-suburb-list-item" data-suburb="abercorn">Abercorn, North Burnett regional</li>
+                        </ul>
+        
+                    </div>
+        
+                    <button class="qg-location-info__modal-btn-detect-location" type="submit" aria-label="Detect your current location">
+                        <i class="fas fa-crosshairs" aria-hidden="true" title="Detect your current location"></i>
+                    </button>
+        
+                </div>
+        
+                <button class="qg-location-info__modal-btn-set-location" type="button">Set location</button>
 
-            <ul class="qg-location-info__modal__suburb-list">
-                <li class="qg-location-info__modal__suburb-list-item">ABBEYWOOD, SOUTH BURNETT REGIONAL</li>
-                <li class="qg-location-info__modal__suburb-list-item">ABBOTSFORD, BUNDABERG REGIONAL</li>
-                <li class="qg-location-info__modal__suburb-list-item">ABERCORN, NORTH BURNETT REGIONAL</li>
-            </ul>
+            </div>
+            
+            <div class="qg-location-info__modal-close-links">
+                <a data-dismiss="modal" href="#" class="qg-location-info__modal-close-link-text">
+                    Close
+                </a>
+
+                <a data-dismiss="modal" href="#" class="qg-location-info__modal-close-link-icon" aria-label="Close update your location modal">
+                    <i class="fas fa-times" aria-hidden-"true" title="Close update your modal location modal"></i>
+                </a>
+            </div>
 
         </div>
 
-        <button class="services-service-finder__btn--detect-location" type="submit" aria-label="Detect your current location">
-            <i class="fas fa-crosshairs" aria-hidden="true" title="Detect your current location"></i>
-        </button>
-
     </div>
-
-    <button class="services-service-finder__btn--set-location" type="button">Set location</button>
-
 </div>

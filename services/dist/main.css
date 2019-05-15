@@ -969,7 +969,7 @@ body {
 .qg-location-info-widget__link {
   text-decoration: underline;
   cursor: pointer; }
-  .qg-location-info-widget__link:hover, .qg-location-info-widget__link:focus {
+  .qg-location-info-widget__link:hover {
     text-decoration: none; }
   .qg-util-bar__widgets .qg-location-info-widget__link {
     color: #fff; }
@@ -984,6 +984,196 @@ body {
   .qg-site-footer-util__nearest-service-centre .qg-location-info-widget__icon {
     font-size: 1.25rem;
     margin-left: 0.625rem; }
+
+/* Popup styling */
+#qg-location-info__modal {
+  padding-right: 0 !important; }
+
+.qg-location-info__modal-dialog {
+  max-width: 657px;
+  margin: 0.625rem 0.625rem 0; }
+
+.qg-location-info__modal-content {
+  border-radius: 0.5rem;
+  background-image: linear-gradient(44deg, #17608a, #149086);
+  padding: 1.875rem 1.25rem 1.25rem; }
+
+#qg-location-info__modal-heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.9375rem; }
+
+.qg-location-info__modal-subheading {
+  font-size: 1.125rem;
+  color: #fff;
+  font-weight: 400;
+  margin-bottom: 1.25rem; }
+
+.qg-location-info__modal-form-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 0.625rem; }
+
+.qg-location-info__modal-field-wrapper {
+  position: relative;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1; }
+
+.qg-location-info__modal-field {
+  background-color: #ffffff;
+  border: 0;
+  border-radius: 0.5rem 0 0 0.5rem;
+  color: #000;
+  line-height: 1;
+  padding: 1.25rem 0.9375rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%; }
+  .qg-location-info__modal-field:focus {
+    outline: 0; }
+  .qg-location-info__modal--focused.qg-location-info__modal--has-result .qg-location-info__modal-field {
+    border-bottom-left-radius: 0; }
+
+.qg-location-info__modal-suburb-list {
+  background-color: #fff;
+  display: none;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  border-radius: 0 0 0.5rem 0.5rem;
+  -webkit-box-shadow: 0 0.0625rem 0.1875rem 0 rgba(0, 0, 0, 0.25);
+          box-shadow: 0 0.0625rem 0.1875rem 0 rgba(0, 0, 0, 0.25);
+  left: 0;
+  position: absolute;
+  right: -3.75rem;
+  top: 100%;
+  z-index: 100; }
+  .qg-location-info__modal--focused.qg-location-info__modal--has-result .qg-location-info__modal-suburb-list {
+    display: block; }
+
+.qg-location-info__modal-suburb-list-item {
+  cursor: pointer;
+  font-size: 1.125rem;
+  letter-spacing: 0.04375rem;
+  padding: 0.9375rem 1.25rem; }
+  .qg-location-info__modal-suburb-list-item:hover {
+    background-color: #063652;
+    color: #fff; }
+  .qg-location-info__modal-suburb-list-item + .qg-location-info__modal-suburb-list-item {
+    border-top: 0.125rem solid #e1e1e1; }
+
+.qg-location-info__modal-btn-detect-location {
+  background-color: #063652;
+  border-width: 0;
+  border-radius: 0 0.5rem 0.5rem 0;
+  color: #fff;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  font-size: 1.25rem;
+  width: 3.75rem; }
+
+.qg-location-info__modal-btn-set-location {
+  background-color: #063652;
+  border-width: 0;
+  border-radius: 0.25rem;
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 600;
+  padding: 1.125rem;
+  width: 100%; }
+  .qg-location-info__modal-btn-set-location:hover {
+    text-decoration: underline; }
+
+.qg-location-info__modal-close-links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end; }
+
+.qg-location-info__modal-close-link-text {
+  color: #fff;
+  font-size: 1.125rem;
+  text-decoration: underline; }
+  .qg-location-info__modal-close-link-text:hover, .qg-location-info__modal-close-link-text:focus {
+    color: #fff;
+    text-decoration: none; }
+
+.qg-location-info__modal-close-link-icon {
+  color: #fff;
+  font-size: 1.5rem;
+  margin-left: 0.8125rem;
+  text-decoration: none; }
+  .qg-location-info__modal-close-link-icon:hover, .qg-location-info__modal-close-link-icon:focus {
+    color: #fff; }
+
+@media screen and (min-width: 576px) {
+  .qg-location-info__modal-dialog {
+    margin: 0.625rem 0.625rem 0; } }
+
+@media screen and (min-width: 677px) {
+  .qg-location-info__modal-dialog {
+    margin: 2.5rem auto 0; } }
+
+@media screen and (max-width: 767px) {
+  .qg-location-info__modal-main {
+    margin-bottom: 2.5rem; }
+  .qg-location-info__modal--focused.qg-location-info__modal--has-result .qg-location-info__modal-btn-detect-location {
+    border-bottom-right-radius: 0; } }
+
+@media screen and (min-width: 768px) {
+  .qg-location-info__modal-content {
+    background-image: linear-gradient(44deg, #17608a, #149086);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 1.25rem 1.25rem 2.8125rem 6.875rem; }
+  #qg-location-info__modal-heading {
+    font-size: 2.25rem;
+    margin-bottom: 1.25rem; }
+  .qg-location-info__modal-subheading {
+    font-size: 1.5rem; }
+  .qg-location-info__modal-form-wrapper {
+    margin-bottom: 1.25rem; }
+  .qg-location-info__modal-field-wrapper {
+    -webkit-box-flex: 0;
+        -ms-flex-positive: 0;
+            flex-grow: 0; }
+  .qg-location-info__modal-field {
+    border-radius: 0.875rem 0 0 0.875rem;
+    font-size: 1.125rem;
+    padding: 1.4375rem 1.25rem;
+    width: 23.125rem; }
+  .qg-location-info__modal-suburb-list {
+    right: 0; }
+  .qg-location-info__modal-btn-detect-location {
+    border-radius: 0 0.875rem 0.875rem 0;
+    font-size: 1.75rem;
+    width: 4.375rem; }
+  .qg-location-info__modal-btn-set-location {
+    font-size: 1.625rem;
+    padding: 0.9375rem 1.5625rem;
+    width: auto; }
+  .qg-location-info__modal-close-links {
+    -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+            order: 0; }
+  .qg-location-info__modal-main {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1; } }
 
 @media screen and (max-width: 991px) {
   .mobile-nav-active .qg-location-info-widget {
