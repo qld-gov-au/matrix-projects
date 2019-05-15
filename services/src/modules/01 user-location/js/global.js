@@ -127,6 +127,8 @@
 
             } else {
 
+                console.log("Geolocation is unavailable");
+
                 // Broadcast the geolocation is not available
                 event.emit("geolocation is unavailable");
 

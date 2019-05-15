@@ -143,7 +143,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           locateWithCoordinates();
         });
       } else {
-        // Broadcast the geolocation is not available
+        console.log("Geolocation is unavailable"); // Broadcast the geolocation is not available
+
         event.emit("geolocation is unavailable");
       }
     }
