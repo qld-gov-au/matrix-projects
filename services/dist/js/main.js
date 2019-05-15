@@ -241,7 +241,7 @@ __webpack_require__.r(__webpack_exports__);
   * ===========================
   * Nearest Service Centre
   * ===========================
-  * This widget module deals with getting and displaying the nearest service centre depending on the user's coordinates
+  * This module deals with getting and displaying the nearest service centre depending on the user's coordinates
   * 
   * ---------------------------
   * Functionality
@@ -252,38 +252,90 @@ __webpack_require__.r(__webpack_exports__);
   */
 
   var qg_nearest_service_centre_module = function () {
-    function updateCentreName() {
-      var centre_name = nearest_service_centre_data.title;
-      qg_nearest_service_centre.dom.$centre_name.text(centre_name);
-      qg_nearest_service_centre.dom.$centre_name.prop("href");
+    function generateLinkToCentreDetail() {
+      // Get display url parameters from data
+      var display_url = nearest_service_centre_data.displayUrl;
+      var fb_domain = nearest_service_center_data_source_url.split('?')[0];
+      return fb_domain + display_url;
     }
 
-    function updateServicesAvailable() {} // function updateHours() {
-    // }
+    function updateCentreName() {
+      // Get centre name from data 
+      var centre_name = nearest_service_centre_data.title; // Generate link to centre detail page
 
+      var link = generateLinkToCentreDetail(); // Update heading
 
-    function updateLocation() {}
+      qg_nearest_service_centre.dom.$centre_name.text(centre_name); // Update link
+
+      qg_nearest_service_centre.dom.$centre_name.prop("href", link);
+    }
+
+    function updateServicesAvailable() {
+      // If services key exists and is not empty
+      if (nearest_service_centre_data.metaData.hasOwnProperty('s') && nearest_service_centre_data.metaData.s.length) {
+        // Generate link to centre detail page
+        var link = generateLinkToCentreDetail();
+        qg_nearest_service_centre.dom.$services_available_link.prop("href", link);
+      } else {
+        qg_nearest_service_centre.dom.$services_available_wrapper.hide();
+        qg_nearest_service_centre.dom.$services_available_link.prop("href", "#");
+      }
+    }
+
+    function updateLocationDistanceFrom() {
+      // Update distance from ;
+      // If kmFromOrigin key exists and is not empty
+      if (nearest_service_centre_data.hasOwnProperty('kmFromOrigin') && nearest_service_centre_data.kmFromOrigin.length) {
+        var distance_from_origin = nearest_service_centre_data.kmFromOrigin + "km away";
+        qg_nearest_service_centre.dom.$location_distance_from.text(distance_from_origin).show();
+      } else {
+        // Clear text and hide distance from origin text
+        qg_nearest_service_centre.dom.$location_distance_from.hide().text("");
+      }
+    }
+
+    function updatelocationAddress() {
+      // Update address
+      var address1 = nearest_service_centre_data.metaData.address1;
+      var suburb = nearest_service_centre_data.metaData.suburb;
+      var postcode = nearest_service_centre_data.metaData.postcode;
+      var full_address = address1 + "<br />" + suburb + " " + postcode;
+      qg_nearest_service_centre.dom.$location_address.html(full_address);
+    }
+
+    function updateLocation() {
+      updateLocationDistanceFrom();
+      updatelocationAddress();
+    }
+
+    function populateDetails() {
+      // Update centre name
+      updateCentreName(); // Update services available text
+
+      updateServicesAvailable(); // Update location text
+
+      updateLocation(); // Class to make the widget show is added to the root node
+
+      qg_nearest_service_centre.dom.$root.addClass("qg-site-footer-util__nearest-service-centre--has-result");
+    }
+
+    function clearDetails() {
+      qg_nearest_service_centre.dom.$root.removeClass("qg-site-footer-util__nearest-service-centre--has-result");
+    }
 
     function updateDetails(location) {
       var request_url = nearest_service_center_data_source_url + "&origin=" + location.lat + "%3B" + location.lon; // When the nearest service centre data is retrieved from source by passing in the user's coords
 
       $.getJSON(request_url, function (data) {
-        // If there are results in the features key
-        if (data.hasOwnProperty('features')) {
-          if (data.features.length) {
-            // Get result from 1st item in array
-            nearest_service_centre_data = data.features[0].properties; // Update centre name
+        // If there are results in the features key and there is a result
+        if (data.hasOwnProperty('features') && data.features.length) {
+          // Get result from 1st item in array
+          nearest_service_centre_data = data.features[0].properties; // Populate and show details
 
-            updateCentreName(); // Update services available text
-
-            updateServicesAvailable(); // Update hours text
-            // updateHours();
-            // Update location text
-
-            updateLocation(); // Class to make the widget show is added to the root node
-
-            qg_nearest_service_centre.dom.$root.addClass("qg-site-footer-util__nearest-service-centre--has-result");
-          }
+          populateDetails();
+        } else {
+          // Clear and hide details
+          clearDetails();
         }
       });
     }
@@ -297,8 +349,8 @@ __webpack_require__.r(__webpack_exports__);
         // Cache centre name element
         qg_nearest_service_centre.dom.$centre_name = qg_nearest_service_centre.dom.$root.find(".qg-site-footer-util__nearest-service-centre-detail-name"); // Cache services available elements
 
-        qg_nearest_service_centre.dom.$service_available_wrapper = qg_nearest_service_centre.dom.$root.find(".qg-site-footer-util__nearest-service-centre-detail-services-available");
-        qg_nearest_service_centre.dom.$service_available_link = qg_nearest_service_centre.dom.$service_available_wrapper.find(".qg-site-footer-util__nearest-service-centre-detail-services-available-link"); // Cache location wrapper elements
+        qg_nearest_service_centre.dom.$services_available_wrapper = qg_nearest_service_centre.dom.$root.find(".qg-site-footer-util__nearest-service-centre-detail-services-available");
+        qg_nearest_service_centre.dom.$services_available_link = qg_nearest_service_centre.dom.$services_available_wrapper.find(".qg-site-footer-util__nearest-service-centre-detail-services-available-link"); // Cache location wrapper elements
 
         qg_nearest_service_centre.dom.$location_wrapper = qg_nearest_service_centre.dom.$root.find(".qg-site-footer-util__nearest-service-centre-detail-location");
         qg_nearest_service_centre.dom.$location_distance_from = qg_nearest_service_centre.dom.$location_wrapper.find(".qg-site-footer-util__nearest-service-centre-detail-distance-from");
@@ -1150,12 +1202,15 @@ __webpack_require__.r(__webpack_exports__);
   }();
 
   document.addEventListener("DOMContentLoaded", function () {
-    qg_weather_info_widget_module.init(); // Remove when user-location modue is implemented!
+    qg_weather_info_widget_module.init(); // West end
 
     qg_user_location_module.event.emit("location set", {
       "lat": "-27.4773931",
       "lon": "153.0131612"
-    });
+    }); // Buranda housing - no services
+    // qg_user_location_module.event.emit("location set",{"lat":"-27.496579", "lon": "153.040391"});
+    // Cairns 5b sheridan
+    // qg_user_location_module.event.emit("location set",{"lat":"-16.926496", "lon": "145.775533"});
   });
 })();
 

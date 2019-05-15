@@ -509,8 +509,14 @@
         
         qg_weather_info_widget_module.init();
 
-        // Remove when user-location modue is implemented!
+        // West end
         qg_user_location_module.event.emit("location set",{"lat":"-27.4773931", "lon": "153.0131612"});
+
+        // Buranda housing - no services
+        // qg_user_location_module.event.emit("location set",{"lat":"-27.496579", "lon": "153.040391"});
+
+        // Cairns 5b sheridan
+        // qg_user_location_module.event.emit("location set",{"lat":"-16.926496", "lon": "145.775533"});
 
     });
 
