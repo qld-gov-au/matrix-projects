@@ -22,6 +22,15 @@
     }
 }
 
+h2:before {
+    content: '';
+    display: block;
+    height: 5em;
+    margin-top: -5em;
+    position: relative;
+    width: 0;
+}
+
 .dfv-page-introduction {
     padding: 0 5px;
 
