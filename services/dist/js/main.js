@@ -68,6 +68,7 @@ __webpack_require__.r(__webpack_exports__);
 
   window.qg_user_location_module = function () {
     function broadcastLocation() {
+      console.log(user_location);
       event.emit("location set", user_location);
     }
 
@@ -876,13 +877,15 @@ __webpack_require__.r(__webpack_exports__);
       var request_url = weather_data_source + "&lat=" + location.lat + "&lon=" + location.lon; // When the weather data is retrieved from open weather API by passing in the user's coords
 
       $.getJSON(request_url, function (data) {
-        weather_data = data; // Update temperature
+        if (data.hasOwnPropety("weather")) {
+          weather_data = data; // Update temperature
 
-        updateTemperature(); // Update image icon
+          updateTemperature(); // Update image icon
 
-        updateIcon(); // Class to make the widget show is added to the root node
+          updateIcon(); // Class to make the widget show is added to the root node
 
-        qg_weather_info_widget.dom.$root.addClass("qg-weather-info-widget--has-result");
+          qg_weather_info_widget.dom.$root.addClass("qg-weather-info-widget--has-result");
+        }
       });
     }
 
