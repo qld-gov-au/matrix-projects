@@ -100,13 +100,13 @@ __webpack_require__.r(__webpack_exports__);
 
     function locateWithArea(suburb, lga) {
       // Create endpoint to query endpoint with coordinates
-      var parameters = "&address=" + suburb + "," + lga + ",qld"; // Get user location
+      var parameters = "&address=" + encodeURIComponent(suburb) + "," + encodeURIComponent(lga) + ",qld"; // Get user location
 
       geocode(parameters);
     }
 
     function geocode(parameters) {
-      var endpoint_to_call = map_data_api + encodeURIComponent(parameters);
+      var endpoint_to_call = map_data_api + parameters;
       $.getJSON(endpoint_to_call, function (data) {
         // Get the first result item in the returned JSON
         var results = data.results[0]; // Get latitutde
