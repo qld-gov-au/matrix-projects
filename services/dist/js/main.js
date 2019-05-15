@@ -48,6 +48,8 @@ __webpack_require__.r(__webpack_exports__);
 /* 4 */
 /***/ (function(module, exports) {
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 (function () {
   'use strict';
   /*
@@ -68,7 +70,6 @@ __webpack_require__.r(__webpack_exports__);
 
   window.qg_user_location_module = function () {
     function broadcastLocation() {
-      console.log(user_location);
       event.emit("location set", user_location);
     }
 
@@ -98,9 +99,9 @@ __webpack_require__.r(__webpack_exports__);
     } // Locate user with provided suburb and LGA
 
 
-    function locateWithArea(suburb, lga) {
+    function locateWithArea(area) {
       // Create endpoint to query endpoint with coordinates
-      var parameters = "&address=" + encodeURIComponent(suburb) + "," + encodeURIComponent(lga) + ",qld"; // Get user location
+      var parameters = "&address=" + encodeURIComponent(area) + ",qld"; // Get user location
 
       geocode(parameters);
     }
@@ -141,6 +142,9 @@ __webpack_require__.r(__webpack_exports__);
           user_location.lon = position.coords.longitude;
           locateWithCoordinates();
         });
+      } else {
+        // Broadcast the geolocation is not available
+        event.emit("geolocation is not available");
       }
     }
 
@@ -154,23 +158,18 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         // Start locating the user
         locateUser();
-      } // West End
-      // qg_user_location_module.event.emit("location set",{"lat":"-27.4773931", "lon": "153.0131612"});
-      // Buranda housing - no services
-      // qg_user_location_module.event.emit("location set",{"lat":"-27.496579", "lon": "153.040391"});
-      // Cairns 5B Sheridan
-      // qg_user_location_module.event.emit("location set",{"lat":"-16.926496", "lon": "145.775533"});
-
+      }
     }
 
     var user_location = {};
     var map_data_api = "https://www.qld.gov.au/_qgdesigns/integrations/services/rest/google-maps-api?SQ_ASSET_CONTENTS_RAW";
     var event = new EventEmitter2();
-    event.on("Area manually selected", locateWithArea);
-    return {
+    event.on("area manually selected", locateWithArea);
+    return _defineProperty({
       init: init,
-      event: event
-    };
+      event: event,
+      locateUser: locateUser
+    }, "locateUser", locateUser);
   }();
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -495,17 +494,43 @@ __webpack_require__.r(__webpack_exports__);
   */
 
   var qg_location_info_widget_module = function () {
+    function closeModal() {
+      qg_location_info_widget.dom.$modal.modal('hide');
+    }
+
+    function shakeForm() {
+      // Add animation class to make form shake
+      qg_location_info_widget.dom.$form_wrapper.addClass("shake"); // Clear animation
+
+      clearTimeout(remove_shake_class_timeout);
+      remove_shake_class_timeout = setTimeout(function () {
+        qg_location_info_widget.dom.$form_wrapper.removeClass("shake");
+      }, 750);
+    }
+
+    function setupModalDetectLocationButton() {
+      qg_location_info_widget.dom.$detect_location_btn.click(function (event) {
+        var $this = $(event.target);
+        qg_user_location_module.locateUser();
+      });
+    }
+
     function setupModalSetLocationButton() {
       qg_location_info_widget.dom.$set_location_btn.click(function (event) {
-        var current_value = qg_location_info_widget.dom.$modal_input.val();
+        var current_value = qg_location_info_widget.dom.$modal_input.val(); // Check if inputted value is at least one of the suburb list items
+
         var selected_suburb_list_item = qg_location_info_widget.dom.$suburb_list_items.filter(function () {
-          return $(this).text() === current_value;
-        });
+          return $(this).text().toLowerCase() === current_value.toLowerCase();
+        }); // If inputted value exists in the suburb list
 
         if (selected_suburb_list_item.length) {
-          console.log("Yes");
+          // Emit event
+          qg_user_location_module.event.emit("area manually selected", current_value); // Dismiss the modal
+
+          closeModal();
         } else {
-          console.log("No");
+          // Shake the form to alert user
+          shakeForm();
         }
       });
     }
@@ -517,7 +542,10 @@ __webpack_require__.r(__webpack_exports__);
 
     function filterSuburbList(value) {
       var lowered_case_value = value.toLowerCase();
-      var filtered_suburbs = qg_location_info_widget.dom.$suburb_list_items.filter("[data-suburb*='" + lowered_case_value + "']");
+      var filtered_suburbs = qg_location_info_widget.dom.$suburb_list_items.filter(function () {
+        var lowered_case_list_item_option = $(this).text().toLowerCase();
+        return lowered_case_list_item_option.indexOf(lowered_case_value) === 0;
+      });
 
       if (filtered_suburbs.length) {
         filtered_suburbs.show();
@@ -544,7 +572,7 @@ __webpack_require__.r(__webpack_exports__);
         var $this = $(event.target);
         var current_value = $this.val();
 
-        if (current_value.length > 3) {
+        if (current_value.length > 2) {
           filterSuburbList(current_value);
         } else {
           hideSuburbList(current_value);
@@ -572,27 +600,32 @@ __webpack_require__.r(__webpack_exports__);
         // Get widget link
         qg_location_info_widget.dom.$link = qg_location_info_widget.dom.$root.find(".qg-location-info-widget__link"); // Get Modal
 
-        qg_location_info_widget.dom.$modal = $("#qg-location-info__modal"); // Get field input in modal
+        qg_location_info_widget.dom.$modal = $("#qg-location-info__modal"); // Get form wrapper
 
-        qg_location_info_widget.dom.$modal_input = qg_location_info_widget.dom.$modal.find(".qg-location-info__modal-field"); // Get suburb list items
+        qg_location_info_widget.dom.$form_wrapper = qg_location_info_widget.dom.$modal.find(".qg-location-info__modal-form-wrapper"); // Get field input in modal
 
-        qg_location_info_widget.dom.$suburb_list_items = qg_location_info_widget.dom.$modal.find(".qg-location-info__modal-suburb-list-item"); // Get detect location button in modal
+        qg_location_info_widget.dom.$modal_input = qg_location_info_widget.dom.$form_wrapper.find(".qg-location-info__modal-field"); // Get suburb list items
 
-        qg_location_info_widget.dom.$detect_location_btn = qg_location_info_widget.dom.$modal.find(".qg-location-info__modal-btn-detect-location"); // Get set location button in modal
+        qg_location_info_widget.dom.$suburb_list_items = qg_location_info_widget.dom.$form_wrapper.find(".qg-location-info__modal-suburb-list-item"); // Get detect location button in modal
+
+        qg_location_info_widget.dom.$detect_location_btn = qg_location_info_widget.dom.$form_wrapper.find(".qg-location-info__modal-btn-detect-location"); // Get set location button in modal
 
         qg_location_info_widget.dom.$set_location_btn = qg_location_info_widget.dom.$modal.find(".qg-location-info__modal-btn-set-location");
         setupModalInput();
-        setupModalSetLocationButton();
         setupSuburbListItems();
+        setupModalDetectLocationButton();
+        setupModalSetLocationButton();
       }
     }
 
     var qg_location_info_widget = {}; // List to store suburb/ LGAs
 
-    var area_list_array = []; // Initialise this module only when the user location module is initiliased
+    var area_list_array = [];
+    var remove_shake_class_timeout; // Initialise this module only when the user location module is initiliased
 
     qg_user_location_module.event.on("user location module initialised", init);
     qg_user_location_module.event.on("location set", updateLink);
+    qg_user_location_module.event.on("geolocation is unavailable", shakeForm);
     return {
       init: init
     };

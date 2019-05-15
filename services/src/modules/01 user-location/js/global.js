@@ -22,7 +22,6 @@
 
         function broadcastLocation() {
             
-            console.log(user_location);
             event.emit("location set", user_location);
 
         }
@@ -64,10 +63,10 @@
         }
 
         // Locate user with provided suburb and LGA
-        function locateWithArea(suburb, lga) {
+        function locateWithArea(area) {
 
             // Create endpoint to query endpoint with coordinates
-            var parameters = "&address=" + encodeURIComponent(suburb) + "," + encodeURIComponent(lga) + ",qld";
+            var parameters = "&address=" + encodeURIComponent(area) + ",qld";
             
             // Get user location
             geocode(parameters);
@@ -126,6 +125,11 @@
                                                         
                 });
 
+            } else {
+
+                // Broadcast the geolocation is not available
+                event.emit("geolocation is not available");
+
             }
 
         }
@@ -147,15 +151,6 @@
 
             }
 
-            // West End
-            // qg_user_location_module.event.emit("location set",{"lat":"-27.4773931", "lon": "153.0131612"});
-
-            // Buranda housing - no services
-            // qg_user_location_module.event.emit("location set",{"lat":"-27.496579", "lon": "153.040391"});
- 
-            // Cairns 5B Sheridan
-            // qg_user_location_module.event.emit("location set",{"lat":"-16.926496", "lon": "145.775533"});
-
         }
 
         var user_location = {};
@@ -164,11 +159,12 @@
 
         var event = new EventEmitter2();
 
-        event.on("Area manually selected", locateWithArea);
+        event.on("area manually selected", locateWithArea);
 
         return {
             init: init,
-            event: event
+            event: event,
+            locateUser,locateUser
         }
 
     }());

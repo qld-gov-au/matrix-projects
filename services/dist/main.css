@@ -141,6 +141,38 @@ body {
 .container--inner {
   max-width: 76.25rem; }
 
+.shake {
+  -webkit-animation: shake 0.7s linear;
+          animation: shake 0.7s linear; }
+
+@-webkit-keyframes shake {
+  0% {
+    -webkit-transform: translate(30px); }
+  20% {
+    -webkit-transform: translate(-30px); }
+  40% {
+    -webkit-transform: translate(15px); }
+  60% {
+    -webkit-transform: translate(-15px); }
+  80% {
+    -webkit-transform: translate(8px); }
+  100% {
+    -webkit-transform: translate(0px); } }
+
+@keyframes shake {
+  0% {
+    -webkit-transform: translate(30px); }
+  20% {
+    -webkit-transform: translate(-30px); }
+  40% {
+    -webkit-transform: translate(15px); }
+  60% {
+    -webkit-transform: translate(-15px); }
+  80% {
+    -webkit-transform: translate(8px); }
+  100% {
+    -webkit-transform: translate(0px); } }
+
 /*
  * Tablet layout
  */
