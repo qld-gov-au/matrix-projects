@@ -76,11 +76,12 @@ __webpack_require__.r(__webpack_exports__);
       var user_location_session_storage = sessionStorage.getItem('user_location');
 
       if (user_location_session_storage !== null) {
-        // Get details from stored Google maps result
-        user_location.lat = user_location_session_storage.lat;
-        user_location.lon = user_location_session_storage.lng;
-        user_location.suburb = user_location_session_storage.suburb;
-        user_location.lga = user_location_session_storage.lga;
+        var user_location_session_storage_json = JSON.parse(user_location_session_storage); // Get details from stored Google maps result
+
+        user_location.lat = user_location_session_storage_json.lat;
+        user_location.lon = user_location_session_storage_json.lng;
+        user_location.suburb = user_location_session_storage_json.suburb;
+        user_location.lga = user_location_session_storage_json.lga;
         return true;
       } else {
         return false;
@@ -122,7 +123,7 @@ __webpack_require__.r(__webpack_exports__);
           return obj.types.indexOf("administrative_area_level_2") !== -1;
         }).long_name; // Store location object in session storage
 
-        sessionStorage.setItem("user_location", user_location);
+        sessionStorage.setItem("user_location", JSON.stringify(user_location));
         broadcastLocation();
       });
     }
