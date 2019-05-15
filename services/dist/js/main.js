@@ -108,24 +108,27 @@ __webpack_require__.r(__webpack_exports__);
     function geocode(parameters) {
       var endpoint_to_call = map_data_api + parameters;
       $.getJSON(endpoint_to_call, function (data) {
-        // Get the first result item in the returned JSON
-        var results = data.results[0]; // Get latitutde
+        // If successful request of location from Google
+        if (data.hasOwnProperty("results")) {
+          // Get the first result item in the returned JSON
+          var results = data.results[0]; // Get latitutde
 
-        user_location.lat = results.geometry.location.lat; // Get longtitude - Note that google's data is spelt lng
+          user_location.lat = results.geometry.location.lat; // Get longtitude - Note that google's data is spelt lng
 
-        user_location.lon = results.geometry.location.lng;
-        var address_components = results.address_components; // Get suburb 
+          user_location.lon = results.geometry.location.lng;
+          var address_components = results.address_components; // Get suburb 
 
-        user_location.suburb = _.find(address_components, function (obj) {
-          return obj.types.indexOf("locality") !== -1;
-        }).long_name; // Get LGA
+          user_location.suburb = _.find(address_components, function (obj) {
+            return obj.types.indexOf("locality") !== -1;
+          }).long_name; // Get LGA
 
-        user_location.lga = _.find(address_components, function (obj) {
-          return obj.types.indexOf("administrative_area_level_2") !== -1;
-        }).long_name; // Store location object in session storage
+          user_location.lga = _.find(address_components, function (obj) {
+            return obj.types.indexOf("administrative_area_level_2") !== -1;
+          }).long_name; // Store location object in session storage
 
-        sessionStorage.setItem("user_location", JSON.stringify(user_location));
-        broadcastLocation();
+          sessionStorage.setItem("user_location", JSON.stringify(user_location));
+          broadcastLocation();
+        }
       });
     }
 
