@@ -128,7 +128,7 @@
             } else {
 
                 // Broadcast the geolocation is not available
-                event.emit("geolocation is not available");
+                event.emit("geolocation is unavailable");
 
             }
 

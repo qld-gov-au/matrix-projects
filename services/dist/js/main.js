@@ -144,7 +144,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       } else {
         // Broadcast the geolocation is not available
-        event.emit("geolocation is not available");
+        event.emit("geolocation is unavailable");
       }
     }
 
