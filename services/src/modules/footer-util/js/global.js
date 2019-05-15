@@ -193,7 +193,11 @@
         var nearest_service_centre_data;
 
         var nearest_service_center_data_source_url;
-        
+
+        // Initialise this module only when the user location module is initiliased
+        qg_user_location_module.event.on("user location module initialised", init);
+
+        // On location set event, update details
         qg_user_location_module.event.on("location set", updateDetails);
 
         return {
@@ -202,8 +206,4 @@
     
     }());
     
-    document.addEventListener("DOMContentLoaded", function() {
-        qg_nearest_service_centre_module.init();
-    });
-
 }());

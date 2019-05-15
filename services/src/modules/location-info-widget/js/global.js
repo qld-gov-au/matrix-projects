@@ -50,6 +50,8 @@
         var qg_location_info_widget = {};
 
 
+        // Initialise this module only when the user location module is initialised
+        qg_user_location_module.event.emit("user location module initialised");
 
         return {
             init: init
@@ -57,11 +59,5 @@
     
     
     }());
-
-    
-    
-    document.addEventListener("DOMContentLoaded", function() {
-        qg_location_info_widget_module.init();
-    });
 
 }());

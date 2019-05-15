@@ -68,94 +68,93 @@ __webpack_require__.r(__webpack_exports__);
 
   window.qg_user_location_module = function () {
     function broadcastLocation() {
-      //event.emit("location set", location);
-      console.log("Broadcasting location");
+      event.emit("location set", user_location);
     }
 
     function checkSessionStorage() {
-      // Check latitude
-      user_location.lat = sessionStorage.getItem('user.location.lat');
+      // Check if Google maps JSON is stored in session storage
+      var user_location_session_storage = sessionStorage.getItem('user_location');
 
-      if (isNaN(user_location.lat) || user_location.lat === null) {
-        user_location.lat = "";
-        sessionStorage.removeItem('user.location.lat');
-      } // Check longtitude
-
-
-      user_location.lon = sessionStorage.getItem('user.location.lon');
-
-      if (isNaN(user_location.lon) || user_location.lon === null) {
-        user_location.lon = "";
-        sessionStorage.removeItem('user.location.lon');
-      } // Check suburb
-
-
-      user_location.suburb = sessionStorage.getItem('user.location.suburb');
-
-      if (!isNaN(user_location.suburb) || user_location.suburb === null) {
-        location.suburb = "";
-        sessionStorage.removeItem('user.location.suburb');
-      } // Check LGA
-
-
-      location.lga = sessionStorage.getItem('user.location.lga');
-
-      if (!isNaN(user_location.lga) || user_location.lga === null) {
-        location.lga = "";
-        sessionStorage.removeItem('user.location.lga');
-      }
-
-      if (user_location.lat && user_location.lon && user_location.suburb & user_location.lga) {
+      if (user_location_session_storage !== null) {
+        // Get details from stored Google maps result
+        user_location.lat = user_location_session_storage.lat;
+        user_location.lon = user_location_session_storage.lng;
+        user_location.suburb = user_location_session_storage.suburb;
+        user_location.lga = user_location_session_storage.lga;
         return true;
       } else {
         return false;
       }
-    } // Update Suburb and LGA by using Coordinates
+    } // Locate suburb and LGA with coordinates
 
 
-    function updateRegion() {} // Look at location_reference
-    // Get and set closest suburb
-    // Get and set related LGA
-    //broadcastLocation();
-    // Update coordinates by using Suburb
+    function locateWithCoordinates() {
+      // Create endpoint to query endpoint with coordinates
+      var parameters = "&latlng=" + user_location.lat + "," + user_location.lon; // Get user location
+
+      geocode(parameters);
+    } // Locate user with provided suburb and LGA
 
 
-    function updateCoordinates(suburb) {// Look at location_reference
-      // Get and set coordinates
-      //broadcastLocation();
+    function locateWithArea(suburb, lga) {
+      // Create endpoint to query endpoint with coordinates
+      var parameters = "&address=" + suburb + "," + lga + ",qld"; // Get user location
+
+      geocode(parameters);
     }
 
-    function init() {
-      if (checkSessionStorage()) {
-        broadcastLocation();
-      } else {
-        // Check coordinates
-        if (!user_location.lat || !user_location.lon) {
-          // Use HTML5 geolocation to get user's coordinates
-          if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-              // Set coordinates
-              user_location.lat = position.coords.latitude;
-              user_location.lon = position.coords.longitude; // Set session storage
+    function geocode(parameters) {
+      var endpoint_to_call = map_data_api + parameters;
+      $.getJSON(endpoint_to_call, function (user_location_data) {
+        // Get latitutde
+        user_location.lat = user_location_data.geometry.location.lat; // Get longtitude - Note that google's data is spelt lng
 
-              sessionStorage.setItem('user.location.lat', user_location.lat);
-              sessionStorage.setItem('user.location.lon', user_location.lon);
-              updateRegion();
-            });
-          } else {
-            console.log("Geolocation disabled");
-          }
-        } else if (!user_location.suburb) {
-          updateRegion();
-        }
+        user_location.lon = user_location_data.geometry.location.lng; // Get suburb 
+
+        user_location.suburb = user_location_data.address_components[0].long_name; // Get LGA
+
+        user_location.lga = user_location_data.address_components[1].long_name; // Store location object in session storage
+
+        sessionStorage.setItem("user_location", user_location);
+        broadcastLocation();
+      });
+    }
+
+    function locateUser() {
+      // Use HTML5 geolocation to get user's coordinates
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          // Set coordinates
+          user_location.lat = position.coords.latitude;
+          user_location.lon = position.coords.longitude;
+          locateWithCoordinates();
+        });
       }
     }
 
+    function init() {
+      // Emit this so other modules dependent on user location can get initialised first before emmitting events
+      qg_user_location_module.event.emit("user location module initialised");
+
+      if (checkSessionStorage()) {
+        // Emit event user's current location
+        broadcastLocation();
+      } else {
+        // Start locating the user
+        locateUser();
+      } // West End
+      // qg_user_location_module.event.emit("location set",{"lat":"-27.4773931", "lon": "153.0131612"});
+      // Buranda housing - no services
+      // qg_user_location_module.event.emit("location set",{"lat":"-27.496579", "lon": "153.040391"});
+      // Cairns 5B Sheridan
+      // qg_user_location_module.event.emit("location set",{"lat":"-16.926496", "lon": "145.775533"});
+
+    }
+
     var user_location = {};
-    var location_reference_url = "";
-    var location_reference_json;
+    var map_data_api = "https://maps.googleapis.com/maps/api/geocode/json?&region=au&key=AIzaSyBZn3RJ44EvydUDMtoFSpP0-AJ51x_p-1g";
     var event = new EventEmitter2();
-    event.on("suburb manually selected", updateCoordinates);
+    event.on("Area manually selected", locateWithArea);
     return {
       init: init,
       event: event
@@ -362,16 +361,15 @@ __webpack_require__.r(__webpack_exports__);
 
     var qg_nearest_service_centre = {};
     var nearest_service_centre_data;
-    var nearest_service_center_data_source_url;
+    var nearest_service_center_data_source_url; // Initialise this module only when the user location module is initiliased
+
+    qg_user_location_module.event.on("user location module initialised", init); // On location set event, update details
+
     qg_user_location_module.event.on("location set", updateDetails);
     return {
       init: init
     };
   }();
-
-  document.addEventListener("DOMContentLoaded", function () {
-    qg_nearest_service_centre_module.init();
-  });
 })();
 
 /***/ }),
@@ -503,15 +501,13 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
 
-    var qg_location_info_widget = {};
+    var qg_location_info_widget = {}; // Initialise this module only when the user location module is initialised
+
+    qg_user_location_module.event.emit("user location module initialised");
     return {
       init: init
     };
   }();
-
-  document.addEventListener("DOMContentLoaded", function () {
-    qg_location_info_widget_module.init();
-  });
 })();
 
 /***/ }),
@@ -1192,26 +1188,16 @@ __webpack_require__.r(__webpack_exports__);
       "962": {
         "label": "hurricane",
         "icon": "cloudy-gusts"
-      } // On "location set" event, update the widget
+      } // Initialise this module only when the user location module is initiliased
 
     };
+    qg_user_location_module.event.on("user location module initialised", init); // On "location set" event, update the widget
+
     qg_user_location_module.event.on("location set", updateWidget);
     return {
       init: init
     };
   }();
-
-  document.addEventListener("DOMContentLoaded", function () {
-    qg_weather_info_widget_module.init(); // West end
-
-    qg_user_location_module.event.emit("location set", {
-      "lat": "-27.4773931",
-      "lon": "153.0131612"
-    }); // Buranda housing - no services
-    // qg_user_location_module.event.emit("location set",{"lat":"-27.496579", "lon": "153.040391"});
-    // Cairns 5b sheridan
-    // qg_user_location_module.event.emit("location set",{"lat":"-16.926496", "lon": "145.775533"});
-  });
 })();
 
 /***/ })

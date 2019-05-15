@@ -159,14 +159,9 @@ body {
   body {
     z-index: 3; } }
 
-/*
- * Mobile layout
- */
-/*
- * Tablet layout
- */
-/*
- * Desktop layout
+/*----------------------
+ * Banner
+ *----------------------
  */
 /*
  * Mobile layout
@@ -239,6 +234,10 @@ body {
       top: 0;
       width: 300%; } }
 
+/*----------------------
+ * Curated Links
+ *----------------------
+ */
 /*
  * Mobile layout
  */
@@ -313,6 +312,10 @@ body {
   .curated-links__list-item-link {
     font-size: 1.625rem; } }
 
+/*----------------------
+ * Footer - Legal
+ *----------------------
+ */
 /*
  * Mobile layout
  */
@@ -397,6 +400,10 @@ body {
   .qg-site-footer-legal__trademark {
     font-size: 1.125rem; } }
 
+/*----------------------
+ * Footer Util
+ *----------------------
+ */
 /*
  * Mobile layout
  */
@@ -583,6 +590,10 @@ body {
   .qg-site-footer-util__social-media-list-item {
     padding-left: 0.625rem; } }
 
+/*----------------------
+ * Header Main Navigation
+ *----------------------
+ */
 /*
  * Mobile layout
  */
@@ -784,6 +795,10 @@ body {
       left: 0;
       right: auto; } }
 
+/*----------------------
+ * Header Util Bar
+ *----------------------
+ */
 /*
  * Mobile layout
  */
@@ -871,6 +886,10 @@ body {
   .qg-util-bar__logo--mobile {
     display: none; } }
 
+/*----------------------
+ * Header
+ *----------------------
+ */
 /*
  * Mobile layout
  */
@@ -915,6 +934,10 @@ body {
         -ms-flex-direction: column;
             flex-direction: column; } }
 
+/*----------------------
+ * Location Info Widget
+ *----------------------
+ */
 /*
  * Mobile layout
  */
@@ -985,6 +1008,10 @@ body {
     .qg-util-bar__widgets.search-form-widget--hover .qg-location-info-widget {
       display: none; } }
 
+/*----------------------
+ * Search Results
+ *----------------------
+ */
 /*
  * Mobile layout
  */
@@ -1148,6 +1175,10 @@ body {
     width: 4.6875rem;
     height: 4.6875rem; } }
 
+/*----------------------
+ * Search Widget
+ *----------------------
+ */
 /*
  * Mobile layout
  */
@@ -1267,6 +1298,10 @@ body {
       border-radius: 0 0.25rem 0.25rem 0;
       width: 2.8125rem; } }
 
+/*----------------------
+ * Service Finder
+ *----------------------
+ */
 /*
  * Mobile layout
  */
@@ -1584,6 +1619,10 @@ body {
     font-size: 2.75rem;
     width: 6.875rem; } }
 
+/*----------------------
+ * Weather Info Widget
+ *----------------------
+ */
 /*
  * Mobile layout
  */
