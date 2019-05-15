@@ -80,10 +80,7 @@ body {
         background-image: none;
         margin: 0;
 
-        &:before,
-        &:after {
-            display: none;
-        }
+        @extend %clearfix;
     }
 }
 
@@ -131,6 +128,10 @@ h2 {
     line-height: pxToRem(29);
     font-weight: 700;
     color: $light-blue;
+}
+
+.primary {
+    padding: 0;
 }
 
 #asides .button:visited, 
@@ -184,6 +185,16 @@ h2 {
         display: none;
     }
 
+}
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop){
+    .primary {
+        padding-left: pxToRem(45);
+    }
 }
 
 /*

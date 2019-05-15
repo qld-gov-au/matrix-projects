@@ -3,10 +3,10 @@
  */
 
 .social-aside {
-
-    margin: pxToRem(30) 0 pxToRem(30) 0;
+    padding: 0 0 pxToRem(30) 0;
     float: left;
     width: 100%;
+    margin: 0 pxToRem(-15);
 
     ul {
         @include sq-list-reset;
@@ -73,5 +73,6 @@
 @media screen and (min-width: $desktop){
     .social-aside {
         margin: 0;
+        padding: pxToRem(30) 0;
     }
 }
