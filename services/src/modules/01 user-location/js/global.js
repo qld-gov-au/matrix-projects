@@ -22,6 +22,7 @@
 
         function broadcastLocation() {
             
+            console.log(user_location);
             event.emit("location set", user_location);
 
         }

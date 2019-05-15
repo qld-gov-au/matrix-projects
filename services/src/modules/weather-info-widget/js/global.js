@@ -83,17 +83,21 @@
             // When the weather data is retrieved from open weather API by passing in the user's coords
             $.getJSON( request_url, function( data ) {
                 
-                weather_data = data;
+                if (data.hasOwnPropety("weather")) {
 
-                // Update temperature
-                updateTemperature();
+                    weather_data = data;
 
-                // Update image icon
-                updateIcon();
+                    // Update temperature
+                    updateTemperature();
 
-                // Class to make the widget show is added to the root node
-                qg_weather_info_widget.dom.$root.addClass("qg-weather-info-widget--has-result");
+                    // Update image icon
+                    updateIcon();
 
+                    // Class to make the widget show is added to the root node
+                    qg_weather_info_widget.dom.$root.addClass("qg-weather-info-widget--has-result");
+
+                } 
+                
             });
 
         }
