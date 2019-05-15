@@ -786,10 +786,34 @@ h2:before {
   display: block;
   color: inherit;
   height: 100%;
-  text-decoration: none; }
+  text-decoration: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease; }
+  #qg-primary-content .dfv-cards--type-top-prompt a.card:hover {
+    background: #0c2e4c;
+    border-color: #0c2e4c;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    color: #fff; }
+    #qg-primary-content .dfv-cards--type-top-prompt a.card:hover .card-title {
+      color: #fff; }
+    #qg-primary-content .dfv-cards--type-top-prompt a.card:hover .card-prompt:before {
+      background: #fff; }
+    #qg-primary-content .dfv-cards--type-top-prompt a.card:hover .card-prompt:after {
+      border-color: #fff; }
 
 #qg-primary-content .dfv-cards--type-top-prompt .card-title {
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease; }
+
+#qg-primary-content .dfv-cards--type-top-prompt .card-prompt:before {
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease; }
+
+#qg-primary-content .dfv-cards--type-top-prompt .card-prompt:after {
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease; }
 
 #qg-primary-content .dfv-cards--type-top-prompt .card-top {
   margin-bottom: 0.3125rem; }
@@ -1606,10 +1630,8 @@ body:not([data-accessibility=false]):not([data-access-new-window=false]) #qg-con
   padding: 0;
   list-style: none; }
 
-.dfv-topics__item {
-  border-bottom: 1px solid #818181; }
-
 #qg-content #qg-primary-content .dfv-topics__link {
+  border-bottom: 1px solid #818181;
   color: #13578b;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1618,8 +1640,11 @@ body:not([data-accessibility=false]):not([data-access-new-window=false]) #qg-con
   padding: 16px;
   text-decoration: none; }
   #qg-content #qg-primary-content .dfv-topics__link:hover {
-    color: #13578b;
-    text-decoration: underline; }
+    background: #0c2e4c;
+    border-color: #007eb1;
+    color: #fff; }
+    #qg-content #qg-primary-content .dfv-topics__link:hover .dfv-topics__more:after {
+      border-color: #fff; }
 
 .dfv-topics__title {
   -webkit-box-flex: 1;

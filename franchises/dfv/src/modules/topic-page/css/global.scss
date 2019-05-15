@@ -6,11 +6,8 @@
     @include sq-list-reset();
 }
 
-.dfv-topics__item {
-    border-bottom: 1px solid $darkish-grey;
-}
-
 #qg-content #qg-primary-content .dfv-topics__link {
+    border-bottom: 1px solid $darkish-grey;
     color: $deep-blue;
     display: flex;
     font-size: 18px;
@@ -18,8 +15,13 @@
     text-decoration: none;
 
     &:hover {
-        color: $deep-blue;
-        text-decoration: underline;
+        background: $dark-blue;
+        border-color: $light-blue;
+        color: #fff;
+
+        .dfv-topics__more:after {
+            border-color: #fff;
+        }
     }
 }
                 
