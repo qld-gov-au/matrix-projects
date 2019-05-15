@@ -167,7 +167,12 @@ __webpack_require__.r(__webpack_exports__);
 
         if ($franchise_list_item_next_siblings.length > 1) {
           // Prepare the breadcrumb ellipses DOM element
-          $breadcrumb_ellipses = $("<li class='qg-breadcrumb__ellipses'><a href='#' role='button' aria-pressed='false' aria-label='Reveal hidden breadcrumbs'>...</a></li>"); // Insert it after the franchise breacrumb item and attach a click handler
+          var ellipses_markup = '<li class="qg-breadcrumb__ellipses">';
+          ellipses_markup += '<a href="#" role="button" aria-pressed="false" aria-label="Reveal hidden breadcrumbs" data-analytics-link-group="dfv-breadcrumbs">';
+          ellipses_markup += '...';
+          ellipses_markup += '</a>';
+          ellipses_markup += '</li>';
+          $breadcrumb_ellipses = $(ellipses_markup); // Insert it after the franchise breacrumb item and attach a click handler
 
           $breadcrumb_ellipses.insertAfter($franchise_list_item).click(breadcrumbEllipsesClicked);
         }
