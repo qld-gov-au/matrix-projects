@@ -155,7 +155,7 @@
 
         var user_location = {};
 
-        var map_data_api = "https://www.qld.gov.au/_qgdesigns/integrations/services/rest/google-maps-api";
+        var map_data_api = "https://www.qld.gov.au/_qgdesigns/integrations/services/rest/google-maps-api?SQ_ASSET_CONTENTS_RAW";
 
         var event = new EventEmitter2();
 
