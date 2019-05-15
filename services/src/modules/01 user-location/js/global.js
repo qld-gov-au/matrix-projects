@@ -94,7 +94,7 @@
                 user_location.suburb = _.find(address_components, function(obj) { return obj.types.indexOf("locality") !== -1; }).long_name;
 
                 // Get LGA
-                user_location.suburb = _.find(address_components, function(obj) { return obj.types.indexOf("administrative_area_level_2") !== -1; }).long_name;
+                user_location.lga = _.find(address_components, function(obj) { return obj.types.indexOf("administrative_area_level_2") !== -1; }).long_name;
 
                 // Store location object in session storage
                 sessionStorage.setItem("user_location", JSON.stringify(user_location));

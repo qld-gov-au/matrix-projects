@@ -119,7 +119,7 @@ __webpack_require__.r(__webpack_exports__);
           return obj.types.indexOf("locality") !== -1;
         }).long_name; // Get LGA
 
-        user_location.suburb = _.find(address_components, function (obj) {
+        user_location.lga = _.find(address_components, function (obj) {
           return obj.types.indexOf("administrative_area_level_2") !== -1;
         }).long_name; // Store location object in session storage
 
