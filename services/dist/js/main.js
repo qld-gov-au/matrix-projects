@@ -105,15 +105,17 @@ __webpack_require__.r(__webpack_exports__);
 
     function geocode(parameters) {
       var endpoint_to_call = map_data_api + parameters;
-      $.getJSON(endpoint_to_call, function (user_location_data) {
-        // Get latitutde
-        user_location.lat = user_location_data.geometry.location.lat; // Get longtitude - Note that google's data is spelt lng
+      $.getJSON(endpoint_to_call, function (data) {
+        // Get the first item in the returned JSON
+        var results = data[0]; // Get latitutde
 
-        user_location.lon = user_location_data.geometry.location.lng; // Get suburb 
+        user_location.lat = results.geometry.location.lat; // Get longtitude - Note that google's data is spelt lng
 
-        user_location.suburb = user_location_data.address_components[0].long_name; // Get LGA
+        user_location.lon = results.geometry.location.lng; // Get suburb 
 
-        user_location.lga = user_location_data.address_components[1].long_name; // Store location object in session storage
+        user_location.suburb = results.address_components[0].long_name; // Get LGA
+
+        user_location.lga = results.address_components[1].long_name; // Store location object in session storage
 
         sessionStorage.setItem("user_location", user_location);
         broadcastLocation();
