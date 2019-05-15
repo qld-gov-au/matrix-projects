@@ -290,7 +290,7 @@ button:focus {
 .dfv-back {
   background-color: #13578b; }
 
-.dfv-back__link {
+#qg-content a.dfv-back__link {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -303,7 +303,12 @@ button:focus {
           justify-content: center;
   line-height: 21px;
   padding-bottom: 16px;
-  padding-top: 12px; }
+  padding-top: 12px;
+  color: #fff; }
+  #qg-content a.dfv-back__link:focus, #qg-content a.dfv-back__link:active, #qg-content a.dfv-back__link:hover, #qg-content a.dfv-back__link:visited {
+    color: #fff; }
+  #qg-content a.dfv-back__link:hover .dfv-back__label {
+    text-decoration: underline; }
 
 .dfv-back__icon {
   -ms-flex-negative: 0;
@@ -325,12 +330,6 @@ button:focus {
   #qg-content #qg-primary-content a.dfv-back__link {
     padding: 14px 25px;
     text-decoration: none; }
-  #qg-content a.dfv-back__link {
-    color: #fff; }
-    #qg-content a.dfv-back__link:focus, #qg-content a.dfv-back__link:active, #qg-content a.dfv-back__link:hover, #qg-content a.dfv-back__link:visited {
-      color: #fff; }
-    #qg-content a.dfv-back__link:hover .dfv-back__label {
-      text-decoration: underline; }
   #qg-content .dfv-resource-nav__wrapper .dfv-back {
     width: 100%; }
   #qg-content .dfv-resource-nav__wrapper a.dfv-back__link {

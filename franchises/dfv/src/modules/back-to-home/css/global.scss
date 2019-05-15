@@ -14,14 +14,21 @@
     background-color: $deep-blue;
 }
 
-.dfv-back__link {
-    align-items: center;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    line-height: 21px;
-    padding-bottom: $small-spacing;
-    padding-top: 12px;
+#qg-content {
+    a.dfv-back__link {
+        align-items: center;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        line-height: 21px;
+        padding-bottom: $small-spacing;
+        padding-top: 12px;
+        @include link-states(#fff);
+
+        &:hover .dfv-back__label {
+            text-decoration: underline;
+        }
+    }
 }
 
 .dfv-back__icon {
@@ -52,14 +59,6 @@
             a.dfv-back__link {
                 padding: 14px $medium-spacing;
                 text-decoration: none;
-            }
-        }
-
-        a.dfv-back__link {
-            @include link-states(#fff);
-
-            &:hover .dfv-back__label {
-                text-decoration: underline;
             }
         }
 
