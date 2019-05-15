@@ -133,19 +133,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     }
 
+    function geolocationSuccess(position) {
+      // Set coordinates
+      user_location.lat = position.coords.latitude;
+      user_location.lon = position.coords.longitude;
+      locateWithCoordinates();
+    }
+
+    function geolocationFail(error) {
+      // Broadcast the geolocation encountered an error
+      event.emit("geolocation error");
+    }
+
     function locateUser() {
       // Use HTML5 geolocation to get user's coordinates
       if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-          // Set coordinates
-          user_location.lat = position.coords.latitude;
-          user_location.lon = position.coords.longitude;
-          locateWithCoordinates();
-        });
+        navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationFail);
       } else {
-        console.log("Geolocation is unavailable"); // Broadcast the geolocation is not available
-
-        event.emit("geolocation is unavailable");
+        // Broadcast the geolocation encountered an error
+        event.emit("geolocation error");
       }
     }
 
@@ -627,7 +633,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     qg_user_location_module.event.on("user location module initialised", init);
     qg_user_location_module.event.on("location set", updateLink);
     qg_user_location_module.event.on("location set", closeModal);
-    qg_user_location_module.event.on("geolocation is unavailable", shakeForm);
+    qg_user_location_module.event.on("geolocation error", shakeForm);
     return {
       init: init
     };

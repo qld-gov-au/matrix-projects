@@ -65,7 +65,7 @@
                    
                     // Shake the form to alert user
                     shakeForm();
-                    
+
                 }
 
             });
@@ -208,7 +208,7 @@
 
         qg_user_location_module.event.on("location set", closeModal);
 
-        qg_user_location_module.event.on("geolocation is unavailable", shakeForm);
+        qg_user_location_module.event.on("geolocation error", shakeForm);
 
         return {
             init: init

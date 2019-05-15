@@ -110,27 +110,32 @@
 
         }
 
+        function geolocationSuccess(position) {
+            // Set coordinates
+            user_location.lat = position.coords.latitude;
+            user_location.lon = position.coords.longitude;
+
+            locateWithCoordinates();
+        }
+
+        function geolocationFail(error) {
+
+            // Broadcast the geolocation encountered an error
+            event.emit("geolocation error");
+
+        }
+
         function locateUser() {
 
             // Use HTML5 geolocation to get user's coordinates
             if ("geolocation" in navigator) {
 
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    
-                    // Set coordinates
-                    user_location.lat = position.coords.latitude;
-                    user_location.lon = position.coords.longitude;
-
-                    locateWithCoordinates();
-                                                        
-                });
+                navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationFail);
 
             } else {
 
-                console.log("Geolocation is unavailable");
-
-                // Broadcast the geolocation is not available
-                event.emit("geolocation is unavailable");
+                // Broadcast the geolocation encountered an error
+                event.emit("geolocation error");
 
             }
 
