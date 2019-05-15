@@ -38,7 +38,7 @@
 
                 // Get details from stored Google maps result
                 user_location.lat = user_location_session_storage_json.lat;
-                user_location.lon = user_location_session_storage_json.lng;
+                user_location.lon = user_location_session_storage_json.lon;
                 user_location.suburb = user_location_session_storage_json.suburb;
                 user_location.lga = user_location_session_storage_json.lga;
 
