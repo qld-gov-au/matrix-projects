@@ -1345,30 +1345,31 @@ body {
     .services-service-finder__form .tt-dataset-organic .tt-suggestion:hover {
       background-color: #063652;
       color: #fff; }
-      .services-service-finder__form .tt-dataset-organic .tt-suggestion:hover .services-service-finder__featured-icon {
-        color: #fff; }
     .services-service-finder__form .tt-dataset-organic .tt-suggestion + .tt-suggestion {
       border-top: 0.125rem solid #e1e1e1; }
     .services-service-finder__form .tt-dataset-organic .tt-suggestion + .tt-dataset-featured {
       border-top: 0.0625rem solid #063652; }
       .services-service-finder__form .tt-dataset-organic .tt-suggestion + .tt-dataset-featured + .tt-suggestion {
         border-top: 0.0625rem solid #063652; }
-    .services-service-finder__form .tt-dataset-organic .tt-suggestion .services-service-finder__featured-btn {
-      display: none; }
-  .services-service-finder__form .tt-dataset-featured .services-service-finder__featured-heading {
-    font-size: 0.875rem;
-    font-weight: 700;
-    letter-spacing: 0.03125rem;
-    margin-bottom: 0.625rem;
-    margin-top: 0; }
-  .services-service-finder__form .tt-dataset-featured .services-service-finder__featured-icon {
-    color: #063652;
-    font-size: 0.875rem;
-    margin-bottom: 0.625rem; }
-  .services-service-finder__form .tt-dataset-featured .services-service-finder__featured-description {
-    font-size: 0.75rem;
-    letter-spacing: 0.025rem;
-    margin-bottom: 0rem; }
+
+.services-service-finder__featured-heading {
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.03125rem;
+  margin-bottom: 0.625rem;
+  margin-top: 0; }
+
+.services-service-finder__featured-icon {
+  color: #063652;
+  font-size: 0.875rem;
+  margin-bottom: 0.625rem; }
+  .services-service-finder__featured-icon + .services-service-finder__featured-icon {
+    margin-left: 0.625rem; }
+
+.services-service-finder__featured-description {
+  font-size: 0.75rem;
+  letter-spacing: 0.025rem;
+  margin-bottom: 0rem; }
 
 .services-service-finder__field-wrapper {
   position: relative;
@@ -1471,6 +1472,10 @@ body {
 @media screen and (max-width: 991px) {
   .services-service-finder__form .tt-dataset-organic + .tt-dataset-featured {
     display: none; }
+  .services-service-finder__featured-btn {
+    display: none; }
+  .tt-suggestion:hover .services-service-finder__featured-icon {
+    color: #fff; }
   .services-service-finder__no-results-menu-block + .services-service-finder__no-results-menu-block {
     border-top: 0.0625rem solid #000; }
   .services-service-finder--focused .services-service-finder__btn,
@@ -1536,17 +1541,17 @@ body {
   .services-service-finder__form .tt-dataset-featured .tt-suggestion {
     padding: 2.5rem 4.0625rem;
     width: 24.375rem; }
-  .services-service-finder__form .tt-dataset-featured .services-service-finder__featured-heading {
+  .services-service-finder__featured-heading {
     font-size: 1.75rem;
     font-weight: 500;
     margin-bottom: 1.875rem; }
-  .services-service-finder__form .tt-dataset-featured .services-service-finder__featured-icon {
+  .services-service-finder__featured-icon {
     font-size: 2.5625rem;
     margin-bottom: 1.25rem; }
-  .services-service-finder__form .tt-dataset-featured .services-service-finder__featured-description {
+  .services-service-finder__featured-description {
     font-size: 1.25rem;
     margin-bottom: 1.875rem; }
-  .services-service-finder__form .tt-dataset-featured .services-service-finder__featured-btn {
+  .services-service-finder__featured-btn {
     background-color: #063652;
     border: 0;
     border-radius: 0.25rem;
@@ -1555,8 +1560,10 @@ body {
     font-weight: 600;
     padding: 1.25rem;
     width: 100%; }
-    .services-service-finder__form .tt-dataset-featured .services-service-finder__featured-btn:hover, .services-service-finder__form .tt-dataset-featured .services-service-finder__featured-btn:focus {
+    .services-service-finder__featured-btn:hover, .services-service-finder__featured-btn:focus {
       text-decoration: underline; }
+  .services-service-finder__featured-icon + .services-service-finder__featured-icon {
+    margin-left: 1.25rem; }
   .services-service-finder__field {
     border-radius: 0.875rem 0 0 0.875rem;
     font-size: 2rem;

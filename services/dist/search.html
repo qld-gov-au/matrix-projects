@@ -52,7 +52,7 @@
 </div>
 
                 
-                <div class="qg-location-info-widget">
+                <div class="qg-location-info-widget"> 
     <p class="qg-location-info-widget__text">
         Your location is <span class="qg-location-info-widget__link-icon"><a href="#" class="qg-location-info-widget__link" title="Manually change location">Unknown</a><i class="fas fa-map-marker-alt qg-location-info-widget__icon" aria-hidden="true" title="Marker icon"></i></span>
     </p>
@@ -395,6 +395,37 @@
                 
         </main>
 
+        <!-- Location widget popup -->
+        <div class="qg-location-info__modal">
+
+    <h2 class="qg-location-info__modal-heading">Update your location</h2>
+
+    <h3 class="qg-location-info__modal-subheading">Suburb</h3>
+
+    <div class="qg-location-info__modal-subheading">
+
+        <div class="qg-location-info__modal-field-wrapper">
+
+            <input class="qg-location-info__modal-field" type="text" aria-label="Input your suburb" />
+
+            <ul class="qg-location-info__modal__suburb-list">
+                <li class="qg-location-info__modal__suburb-list-item">ABBEYWOOD, SOUTH BURNETT REGIONAL</li>
+                <li class="qg-location-info__modal__suburb-list-item">ABBOTSFORD, BUNDABERG REGIONAL</li>
+                <li class="qg-location-info__modal__suburb-list-item">ABERCORN, NORTH BURNETT REGIONAL</li>
+            </ul>
+
+        </div>
+
+        <button class="services-service-finder__btn--detect-location" type="submit" aria-label="Detect your current location">
+            <i class="fas fa-crosshairs" aria-hidden="true" title="Detect your current location"></i>
+        </button>
+
+    </div>
+
+    <button class="services-service-finder__btn--set-location" type="button">Set location</button>
+
+</div>
+
         <!--noindex-->
         <footer class="qg-site-footer">
     <div class="qg-site-footer-util">
@@ -424,7 +455,7 @@
 
                     <h2 class="qg-site-footer-util__heading">Your nearest service centre</h2>
 
-                    <div class="qg-location-info-widget">
+                    <div class="qg-location-info-widget"> 
     <p class="qg-location-info-widget__text">
         Your location is <span class="qg-location-info-widget__link-icon"><a href="#" class="qg-location-info-widget__link" title="Manually change location">Unknown</a><i class="fas fa-map-marker-alt qg-location-info-widget__icon" aria-hidden="true" title="Marker icon"></i></span>
     </p>

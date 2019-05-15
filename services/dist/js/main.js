@@ -500,6 +500,11 @@ __webpack_require__.r(__webpack_exports__);
       event.preventDefault(); // Prevent bubbling
 
       event.stopPropagation();
+    } // When location is set, set the suburb in the link
+
+
+    function updateLink(location) {
+      qg_location_info_widget.dom.$link.text(location.suburb);
     }
 
     function init() {
@@ -513,9 +518,12 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
 
-    var qg_location_info_widget = {}; // Initialise this module only when the user location module is initialised
+    var qg_location_info_widget = {}; // List to store suburb/ LGAs
 
-    qg_user_location_module.event.emit("user location module initialised");
+    var area_list_array = []; // Initialise this module only when the user location module is initiliased
+
+    qg_user_location_module.event.on("user location module initialised", init);
+    qg_user_location_module.event.on("location set", updateLink);
     return {
       init: init
     };
@@ -644,7 +652,16 @@ __webpack_require__.r(__webpack_exports__);
     // Set up Funnelback Conceirge on input field
     function setupFBConceirge() {
       // Get autocomplete source url
-      var autocomplete_source_url = services_service_finder.dom.$root.data("autocomplete-source"); // Initiate conceirge plugin
+      var autocomplete_source_url = services_service_finder.dom.$root.data("autocomplete-source"); // Create handlebars helper that will create the icons
+
+      Handlebars.registerHelper('generateIconsMarkup', function (icons) {
+        var icons_array = icons.split(" ");
+        var icons_markup = "";
+        icons_array.forEach(function (icon) {
+          icons_markup += "<i class='fas " + icon + " services-service-finder__featured-icon' aria-hidden='true' title='" + icon + "'></i>";
+        });
+        return new Handlebars.SafeString(icons_markup);
+      }); // Initiate conceirge plugin
 
       services_service_finder.dom.$field.autocompletion({
         program: autocomplete_source_url,
@@ -661,7 +678,7 @@ __webpack_require__.r(__webpack_exports__);
             collection: 'qld-gov',
             profile: 'featured_auto-completion',
             template: {
-              'suggestion': '<div><h6 class="services-service-finder__featured-heading">{{label.title}}</h6>{{#if label.icon}}<i class="fas {{label.icon}} services-service-finder__featured-icon" aria-hidden="true" title="{{label.icon}}"></i>{{/if}}<p class="services-service-finder__featured-description">{{label.description}}</p><button type="button" class="services-service-finder__featured-btn">{{label.CTA}}</button></div>'
+              'suggestion': '<div><h6 class="services-service-finder__featured-heading">{{label.title}}</h6>{{#if label.icon}}<div class="services-service-finder__featured-icons">{{generateIconsMarkup label.icon}}</div>{{/if}}<p class="services-service-finder__featured-description">{{label.description}}</p><button type="button" class="services-service-finder__featured-btn">{{label.CTA}}</button></div>'
             },
             show: 1
           }
