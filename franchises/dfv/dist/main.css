@@ -355,21 +355,27 @@ button:focus {
 /*
  * Mobile layout
  */
-#qg-two-col-aside h1, #qg-two-col-aside h2, #qg-two-col-aside h3,
+#qg-one-col h1, #qg-one-col h2, #qg-one-col h3,
+#qg-two-col-aside h1,
+#qg-two-col-aside h2,
+#qg-two-col-aside h3,
 #qg-three-col h1,
 #qg-three-col h2,
 #qg-three-col h3 {
   color: #0c2e4c;
   font-weight: 700; }
 
+#qg-one-col h1,
 #qg-two-col-aside h1,
 #qg-three-col h1 {
   font-size: 32px; }
 
+#qg-one-col h2,
 #qg-two-col-aside h2,
 #qg-three-col h2 {
   font-size: 24px; }
 
+#qg-one-col h3,
 #qg-two-col-aside h3,
 #qg-three-col h3 {
   font-size: 16px; }
