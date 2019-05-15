@@ -33,6 +33,21 @@
             // Get autocomplete source url
             var autocomplete_source_url = services_service_finder.dom.$root.data("autocomplete-source");
 
+            // Create handlebars helper that will create the icons
+
+            Handlebars.registerHelper('generateIconsMarkup', function(icons) {
+
+                var icons_array = icons.split(" ");
+                var icons_markup = "";
+
+                icons_array.forEach(function(icon) {
+                    icons_markup += "<i class='fas " + icon + " services-service-finder__featured-icon' aria-hidden='true' title='" + icon + "'></i>";
+                });
+
+                return new Handlebars.SafeString(icons_markup);
+
+            });
+
             // Initiate conceirge plugin
             services_service_finder.dom.$field.autocompletion({
 
@@ -49,7 +64,7 @@
                         name: 'Featured result',
                         collection: 'qld-gov',
                         profile: 'featured_auto-completion',
-                        template: {'suggestion':'<div><h6 class="services-service-finder__featured-heading">{{label.title}}</h6>{{#if label.icon}}<i class="fas {{label.icon}} services-service-finder__featured-icon" aria-hidden="true" title="{{label.icon}}"></i>{{/if}}<p class="services-service-finder__featured-description">{{label.description}}</p><button type="button" class="services-service-finder__featured-btn">{{label.CTA}}</button></div>'},
+                        template: {'suggestion':'<div><h6 class="services-service-finder__featured-heading">{{label.title}}</h6>{{#if label.icon}}<div class="services-service-finder__featured-icons">{{generateIconsMarkup label.icon}}</div>{{/if}}<p class="services-service-finder__featured-description">{{label.description}}</p><button type="button" class="services-service-finder__featured-btn">{{label.CTA}}</button></div>'},
                         show: 1
                     }
                 },
