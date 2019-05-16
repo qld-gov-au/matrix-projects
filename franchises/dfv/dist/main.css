@@ -267,7 +267,8 @@ button:focus {
       padding: 4px; }
   #qg-content #qg-secondary-content .qg-aside-icon {
     display: inline-block;
-    padding-right: 16px; }
+    padding-right: 16px;
+    width: auto; }
     #qg-content #qg-secondary-content .qg-aside-icon img {
       width: 44px; }
   #qg-content #qg-secondary-content .qg-aside-button {
