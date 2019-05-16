@@ -1,4 +1,5 @@
-/*----------------------
+/*
+ *----------------------
  * Curated Links
  *----------------------
  */
@@ -14,9 +15,9 @@
  .curated-links__block {
 
     & + & {
+        border-top: 1px solid #bcbcbc;
         margin-top: pxToRem(35);
         padding-top: pxToRem(30);
-        border-top: 1px solid #bcbcbc;
     }
 
  }
@@ -25,8 +26,8 @@
     color: #167489;
     font-size: pxToRem(24);
     font-weight: 700;
-    margin-top: 0;
     margin-bottom: pxToRem(25);
+    margin-top: 0;
 }
 
 
@@ -75,7 +76,6 @@
     }
 
     .curated-links__block {
-        
         flex: 1;
         padding-top: pxToRem(30);
         padding-bottom: pxToRem(75);
@@ -88,7 +88,6 @@
             margin-left: pxToRem(70);
             padding-left: pxToRem(70);
         }
-
     }
 
     .curated-links__heading {
@@ -110,7 +109,6 @@
         font-size: pxToRem(16);
         margin-top: pxToRem(5);
     }
-    
     
     .curated-links__list-item-link {
         font-size: pxToRem(26);

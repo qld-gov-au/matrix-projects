@@ -3,16 +3,14 @@
     'use strict';
 
      /*
-     * ===========================
+     * ==========================
      * Weather Info Widget Module
-     * ===========================
-     * This widget module deals with getting and displaying the current weather depending on the user's coordinates
+     * ==========================
+     * Deals with getting and displaying the current forecast depending on the user's coordinates
      * 
-     * ---------------------------
-     * Functionality
-     * ---------------------------
-     * When coordinates are received, the widget makes a call to the open weather API and retrieves current weather data in JSON
-     * The temperature and icon is then extracted to populate the widget
+     * When coordinates are received, the widget makes a call to the open weather API with the coordinates
+     * The response is the current forecast in JSON
+     * The widget is then updated with the current forecast of the user's location and a related weather icon is shown
      * 
      */
 
@@ -21,13 +19,15 @@
         // Update temperature from weather data
         function updateTemperature() {
 
-            // Current temperature to 1 decimal place
+            // Convert current temperature to 1 decimal place
             var current_temperature = parseFloat(weather_data.main.temp).toFixed(1);
 
+            // Update widget with current temperature
             qg_weather_info_widget.dom.$temperature_wrapper.text(current_temperature);
 
         }
 
+        // Update widget with related weather icon
         function updateIcon() {
 
             var prefix = 'wi wi-';
@@ -77,30 +77,71 @@
 
         }
 
-        function updateWidget(location) {
+        function updateWidget() {
 
+            // Update temperature
+            updateTemperature();
+
+            // Update image icon
+            updateIcon();
+
+            // Class to make the widget show is added to the root node
+            qg_weather_info_widget.dom.$root.addClass("qg-weather-info-widget--has-result");
+
+        }
+
+        // Get current forecast from open weather api
+        function getCurrentForecast(location) {
+
+            // Create request url to pass to Open Weather API
             var request_url = weather_data_source + "&lat=" + location.lat + "&lon=" + location.lon;
             
             // When the weather data is retrieved from open weather API by passing in the user's coords
             $.getJSON( request_url, function( data ) {
                 
-                // If result is valud
+                // If result is valid
                 if (data.hasOwnProperty("weather")) {
 
                     weather_data = data;
 
-                    // Update temperature
-                    updateTemperature();
-
-                    // Update image icon
-                    updateIcon();
-
-                    // Class to make the widget show is added to the root node
-                    qg_weather_info_widget.dom.$root.addClass("qg-weather-info-widget--has-result");
+                    updateWidget()
 
                 } 
                 
             });
+
+        }
+
+        function resetWidget() {
+
+            // Empty temperature wrapper
+            qg_weather_info_widget.dom.$temperature_wrapper.text("");
+
+            // Empty image wrapper
+            qg_weather_info_widget.dom.$image_wrapper.empty();
+
+            // Class to make the widget show is added to the root node
+            qg_weather_info_widget.dom.$root.removeClass("qg-weather-info-widget--has-result");
+
+        }
+
+        function subscribeToEvents() {
+            
+            // On "location set" event, get current forecast
+            qg_user_location_module.event.on("location set", getCurrentForecast);
+
+            // If fail to detect user's location
+            qg_user_location_module.event.on("location unknown", resetWidget);
+
+        }
+
+        function cacheElements() {
+
+            // Get wrapper which contains temperature text
+            qg_weather_info_widget.dom.$temperature_wrapper = qg_weather_info_widget.dom.$root.find(".qg-weather-info-widget__temperature");
+
+            // Get wrapper which contains image
+            qg_weather_info_widget.dom.$image_wrapper = qg_weather_info_widget.dom.$root.find(".qg-weather-info-widget__image");
 
         }
 
@@ -114,18 +155,12 @@
             // If widget exists
             if (qg_weather_info_widget.dom.$root.length) {
 
-                // Get wrapper which contains temeperature text
-                qg_weather_info_widget.dom.$temperature_wrapper = qg_weather_info_widget.dom.$root.find(".qg-weather-info-widget__temperature");
+                subscribeToEvents();
 
-                // Get wrapper which contains image
-                qg_weather_info_widget.dom.$image_wrapper = qg_weather_info_widget.dom.$root.find(".qg-weather-info-widget__image");
-                
+                cacheElements();
+
+                // Get weather api data source url from root node
                 weather_data_source = qg_weather_info_widget.dom.$root.data("weather-source");
-
-                
-
-                // On "location set" event, update the widget
-                qg_user_location_module.event.on("location set", updateWidget);
 
             }
             
@@ -137,7 +172,7 @@
 
         var weather_data;
 
-        ///https://gist.github.com/tbranyen/62d974681dea8ee0caa1
+        /// Mapping is from https://gist.github.com/tbranyen/62d974681dea8ee0caa1
         var weather_icons_map = {
 
             "200": {
@@ -509,10 +544,6 @@
 
         // Initialise this module only when the user location module is initiliased
         qg_user_location_module.event.on("user location module initialised", init);
-
-        return {
-            init: init
-        }
     
     }());
     

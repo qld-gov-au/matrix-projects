@@ -8,9 +8,6 @@
      * ====================
      * The search widget is a form which has an input search field and a submit button.
      * 
-     * ---------------------------------------------------
-     * Functionality - Control appearance with class names
-     * ---------------------------------------------------
      * When hover events happen on the form, or focus events happen on the input search field and submit button:
      * Classes are removed and added to the parent of the widget.
      * For example, the search widget is embedded in the header util bar.
@@ -51,6 +48,7 @@
 
         }
 
+        // Initialisation
         function init() {
             
             qg_search_widget_module.dom = {};

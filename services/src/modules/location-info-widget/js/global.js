@@ -6,12 +6,8 @@
      * ===========================
      * Location Info Widget Module
      * ===========================
-     * This widget module deals with displaying the user's location and providing an interface for the user to select a location
-     * 
-     * ---------------------------
-     * Functionality
-     * ---------------------------
-     * 
+     * This widget module deals with displaying the user's current suburb 
+     * It also allows the user to manually select a suburb through a modal popup form
      * 
      */
 
@@ -21,11 +17,9 @@
 
             qg_location_info_widget.dom.$modal.modal('hide');
 
-            
-
         }
 
-        function shakeForm() {
+        function shakeModalForm() {
             // Add animation class to make form shake
             qg_location_info_widget.dom.$form_wrapper.addClass("shake");
 
@@ -74,7 +68,7 @@
                 } else {
                    
                     // Shake the form to alert user
-                    shakeForm();
+                    shakeModalForm();
 
                 }
 
@@ -174,7 +168,6 @@
 
             });
 
-
         }
 
         function setupModal() {
@@ -191,6 +184,51 @@
             qg_location_info_widget.dom.$link.text(location.suburb);
         }
 
+        // Set link back to say "Unknown"
+        function resetLink() {
+            qg_location_info_widget.dom.$link.text("Unknown");
+        }
+
+        function subscribeToEvents() {
+
+            qg_user_location_module.event.on("location set", updateLink);
+
+            qg_user_location_module.event.on("location set", closeModal);
+
+            qg_user_location_module.event.on("location unknown", shakeModalForm);
+
+            qg_user_location_module.event.on("location unknown", resetLink);
+
+        }
+
+        function cacheElements() {
+
+            // Get widget link
+            qg_location_info_widget.dom.$link = qg_location_info_widget.dom.$root.find(".qg-location-info-widget__link");
+                            
+            // Get Modal
+            qg_location_info_widget.dom.$modal = $("#qg-location-info__modal");
+
+            // Get form wrapper
+            qg_location_info_widget.dom.$form_wrapper = qg_location_info_widget.dom.$modal.find(".qg-location-info__modal-form-wrapper");
+
+            // Get field input in modal
+            qg_location_info_widget.dom.$modal_input = qg_location_info_widget.dom.$form_wrapper.find(".qg-location-info__modal-field");
+
+            // Get suburb list items
+            qg_location_info_widget.dom.$suburb_list_items = qg_location_info_widget.dom.$form_wrapper.find(".qg-location-info__modal-suburb-list-item");
+
+            // Get suurb list item links
+            qg_location_info_widget.dom.$suburb_list_items_links = qg_location_info_widget.dom.$suburb_list_items.find(".qg-location-info__modal-suburb-list-item-link");
+
+            // Get detect location button in modal
+            qg_location_info_widget.dom.$detect_location_btn = qg_location_info_widget.dom.$form_wrapper.find(".qg-location-info__modal-btn-detect-location");
+
+            // Get set location button in modal
+            qg_location_info_widget.dom.$set_location_btn = qg_location_info_widget.dom.$modal.find(".qg-location-info__modal-btn-set-location");
+
+        }
+
         function init() {
             
             qg_location_info_widget.dom = {};
@@ -201,29 +239,9 @@
             // If widget exists
             if (qg_location_info_widget.dom.$root.length) {
 
-                // Get widget link
-                qg_location_info_widget.dom.$link = qg_location_info_widget.dom.$root.find(".qg-location-info-widget__link");
-                
-                // Get Modal
-                qg_location_info_widget.dom.$modal = $("#qg-location-info__modal");
+                subscribeToEvents();
 
-                // Get form wrapper
-                qg_location_info_widget.dom.$form_wrapper = qg_location_info_widget.dom.$modal.find(".qg-location-info__modal-form-wrapper");
-
-                // Get field input in modal
-                qg_location_info_widget.dom.$modal_input = qg_location_info_widget.dom.$form_wrapper.find(".qg-location-info__modal-field");
-
-                // Get suburb list items
-                qg_location_info_widget.dom.$suburb_list_items = qg_location_info_widget.dom.$form_wrapper.find(".qg-location-info__modal-suburb-list-item");
-
-                // Get suurb list item links
-                qg_location_info_widget.dom.$suburb_list_items_links = qg_location_info_widget.dom.$suburb_list_items.find(".qg-location-info__modal-suburb-list-item-link");
-
-                // Get detect location button in modal
-                qg_location_info_widget.dom.$detect_location_btn = qg_location_info_widget.dom.$form_wrapper.find(".qg-location-info__modal-btn-detect-location");
-
-                // Get set location button in modal
-                qg_location_info_widget.dom.$set_location_btn = qg_location_info_widget.dom.$modal.find(".qg-location-info__modal-btn-set-location");
+                cacheElements();
 
                 setupModal();
 
@@ -234,14 +252,6 @@
                 setupModalDetectLocationButton();
 
                 setupModalSetLocationButton();
-
-                
-
-                qg_user_location_module.event.on("location set", updateLink);
-
-                qg_user_location_module.event.on("location set", closeModal);
-
-                qg_user_location_module.event.on("location unknown", shakeForm);
 
             }
             
@@ -257,10 +267,6 @@
         // Initialise this module only when the user location module is initiliased
         qg_user_location_module.event.on("user location module initialised", init);
         
-        return {
-            init: init
-        }
-
     }());
 
 }());

@@ -257,7 +257,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
    */
 
   var services_banner_module = function () {
-    // Function to allow random numbers
+    // Function to generate random numbers
     function getRandomInt(max) {
       return Math.floor(Math.random() * Math.floor(max));
     } // Update he banner image
@@ -313,6 +313,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       qg_user_location_module.event.on("location set", setBanner); // If locatoin is unknown, pick a random banner
 
       qg_user_location_module.event.on("location unknown", randomiseBanner);
+    }
+
+    function cacheElements() {
+      // Get caption text node
+      services_banner.dom.$caption_text = services_banner.dom.$root.find(".services-banner__caption-text");
     } // Initialise module
 
 
@@ -322,15 +327,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       services_banner.dom.$root = $(".services-banner"); // If root node exists
 
       if (services_banner.dom.$root.length) {
-        subscribeToEvents(); // Get banner list JSON from data attribute
+        subscribeToEvents();
+        cacheElements(); // Get banner list JSON from data attribute
 
-        banners_list = services_banner.dom.$root.data("banners-list"); // Get caption text node
-
-        services_banner.dom.$caption_text = services_banner.dom.$root.find(".services-banner__caption-text");
+        banners_list = services_banner.dom.$root.data("banners-list");
       }
     }
 
-    var services_banner = {};
+    var services_banner = {}; // Variable to store banner list JSON which is stored in a data attribute on the root node
+
     var banners_list; // When user location module has initialised, initialise this module
 
     qg_user_location_module.event.on("user location module initialised", init);
@@ -341,9 +346,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* 6 */
 /***/ (function(module, exports) {
 
-(function () {
-  'use strict';
-})();
+
 
 /***/ }),
 /* 7 */
@@ -360,23 +363,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 (function () {
   'use strict';
   /*
-  * ===========================
-  * Nearest Service Centre
-  * ===========================
-  * This module deals with getting and displaying the nearest service centre depending on the user's coordinates
-  * 
-  * ---------------------------
-  * Functionality
-  * ---------------------------
-  * When coordinates are received, a call is made to a funnelback endpoint which returns the closest service centre.
-  * The nearest service centre details are then updated
-  * 
-  */
+   * ======================
+   * Nearest Service Centre
+   * ======================
+   * Deals with getting the closest service centre from Funnelback and displaying its details
+   * Depends on receiving coordinates from the user location module
+   * 
+   */
 
   var qg_nearest_service_centre_module = function () {
+    // The funnelback results returns a displayUrl result but no domain
+    // Need to get the funnelback domain from the source API endpoint and concatenate with display url
     function generateLinkToCentreDetail() {
-      // Get display url parameters from data
-      var display_url = nearest_service_centre_data.displayUrl;
+      // Get display url parameter from nearest centre data
+      var display_url = nearest_service_centre_data.displayUrl; // Get funnelback domain from source url by splitting the URL into a string and getting everything before the ? char
+
       var fb_domain = nearest_service_center_data_source_url.split('?')[0];
       return fb_domain + display_url;
     }
@@ -392,16 +393,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       qg_nearest_service_centre.dom.$centre_name.prop("href", link);
     }
 
+    function clearCentreName() {
+      // Clear heading
+      qg_nearest_service_centre.dom.$centre_name.text(""); // Change href property to be #
+
+      qg_nearest_service_centre.dom.$centre_name.prop("href", "#");
+    }
+
     function updateServicesAvailable() {
       // If services key exists and is not empty
       if (nearest_service_centre_data.metaData.hasOwnProperty('s') && nearest_service_centre_data.metaData.s.length) {
-        // Generate link to centre detail page
-        var link = generateLinkToCentreDetail();
+        // Generate link to nearest service centre detail page
+        var link = generateLinkToCentreDetail(); // Update href property to be link to nearest service centre detail page
+
         qg_nearest_service_centre.dom.$services_available_link.prop("href", link);
       } else {
-        qg_nearest_service_centre.dom.$services_available_wrapper.hide();
+        // Hide services available link
+        qg_nearest_service_centre.dom.$services_available_wrapper.hide(); // Change href to #
+
         qg_nearest_service_centre.dom.$services_available_link.prop("href", "#");
       }
+    }
+
+    function clearServicesAvailable() {
+      qg_nearest_service_centre.dom.$services_available_link.prop("href", "#");
     }
 
     function updateLocationDistanceFrom() {
@@ -423,27 +438,40 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var postcode = nearest_service_centre_data.metaData.postcode;
       var full_address = address1 + "<br />" + suburb + " " + postcode;
       qg_nearest_service_centre.dom.$location_address.html(full_address);
-    }
+    } // Update location related details
+
 
     function updateLocation() {
       updateLocationDistanceFrom();
       updatelocationAddress();
-    }
+    } // Clear location related details
 
-    function populateDetails() {
+
+    function clearLocation() {
+      qg_nearest_service_centre.dom.$location_distance_from.text("");
+      qg_nearest_service_centre.dom.$location_address.html("");
+    } // Update details
+
+
+    function updateDetails() {
       // Update centre name
       updateCentreName(); // Update services available text
 
       updateServicesAvailable(); // Update location text
 
-      updateLocation(); // Class to make the widget show is added to the root node
+      updateLocation(); // Class to show nearest service centre details
 
       qg_nearest_service_centre.dom.$root.addClass("qg-site-footer-util__nearest-service-centre--has-result");
-    }
+    } // Clear and hide details
 
-    function clearDetails() {
+
+    function reset() {
+      clearCentreName();
+      clearServicesAvailable();
+      clearLocation();
       qg_nearest_service_centre.dom.$root.removeClass("qg-site-footer-util__nearest-service-centre--has-result");
-    }
+    } // If request to FB collection is successful
+
 
     function successfulRequest(data) {
       // If there are results in the features key and there is a result
@@ -451,22 +479,44 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         // Get result from 1st item in array
         nearest_service_centre_data = data.features[0].properties; // Populate and show details
 
-        populateDetails();
+        updateDetails();
       } else {
         // Clear and hide details
-        clearDetails();
+        reset();
       }
-    }
+    } // If request to FB collection failed
+
 
     function failedRequest(data) {
       // Clear and hide details
-      clearDetails();
-    }
+      reset();
+    } // Update nearest service centre details
 
-    function updateDetails(location) {
+
+    function getNearestServiceCentre(location) {
+      // Create request url by adding coordinates as parameters
       var request_url = nearest_service_center_data_source_url + "&origin=" + location.lat + "%3B" + location.lon; // When the nearest service centre data is retrieved from source by passing in the user's coords
 
       $.getJSON(request_url, successfulRequest, failedRequest);
+    }
+
+    function subscribeToEvents() {
+      // On location set event, update details
+      qg_user_location_module.event.on("location set", getNearestServiceCentre); // If user's location is unknown clear details
+
+      qg_user_location_module.event.on("location unknown", clearDetails);
+    }
+
+    function cacheElements() {
+      // Cache centre name element
+      qg_nearest_service_centre.dom.$centre_name = qg_nearest_service_centre.dom.$root.find(".qg-site-footer-util__nearest-service-centre-detail-name"); // Cache services available elements
+
+      qg_nearest_service_centre.dom.$services_available_wrapper = qg_nearest_service_centre.dom.$root.find(".qg-site-footer-util__nearest-service-centre-detail-services-available");
+      qg_nearest_service_centre.dom.$services_available_link = qg_nearest_service_centre.dom.$services_available_wrapper.find(".qg-site-footer-util__nearest-service-centre-detail-services-available-link"); // Cache location wrapper elements
+
+      qg_nearest_service_centre.dom.$location_wrapper = qg_nearest_service_centre.dom.$root.find(".qg-site-footer-util__nearest-service-centre-detail-location");
+      qg_nearest_service_centre.dom.$location_distance_from = qg_nearest_service_centre.dom.$location_wrapper.find(".qg-site-footer-util__nearest-service-centre-detail-distance-from");
+      qg_nearest_service_centre.dom.$location_address = qg_nearest_service_centre.dom.$location_wrapper.find(".qg-site-footer-util__nearest-service-centre-detail-location-address");
     }
 
     function init() {
@@ -475,30 +525,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       qg_nearest_service_centre.dom.$root = $(".qg-site-footer-util__nearest-service-centre"); // If widget exists
 
       if (qg_nearest_service_centre.dom.$root.length) {
-        // Cache centre name element
-        qg_nearest_service_centre.dom.$centre_name = qg_nearest_service_centre.dom.$root.find(".qg-site-footer-util__nearest-service-centre-detail-name"); // Cache services available elements
+        subscribeToEvents();
+        cacheElements(); // Get API source data endpoint URL from data attribute on root node
 
-        qg_nearest_service_centre.dom.$services_available_wrapper = qg_nearest_service_centre.dom.$root.find(".qg-site-footer-util__nearest-service-centre-detail-services-available");
-        qg_nearest_service_centre.dom.$services_available_link = qg_nearest_service_centre.dom.$services_available_wrapper.find(".qg-site-footer-util__nearest-service-centre-detail-services-available-link"); // Cache location wrapper elements
-
-        qg_nearest_service_centre.dom.$location_wrapper = qg_nearest_service_centre.dom.$root.find(".qg-site-footer-util__nearest-service-centre-detail-location");
-        qg_nearest_service_centre.dom.$location_distance_from = qg_nearest_service_centre.dom.$location_wrapper.find(".qg-site-footer-util__nearest-service-centre-detail-distance-from");
-        qg_nearest_service_centre.dom.$location_address = qg_nearest_service_centre.dom.$location_wrapper.find(".qg-site-footer-util__nearest-service-centre-detail-location-address"); // Get API source data endpoint URL from data attribute
-
-        nearest_service_center_data_source_url = qg_nearest_service_centre.dom.$root.data("nearest-service-centre-source"); // On location set event, update details
-
-        qg_user_location_module.event.on("location set", updateDetails);
+        nearest_service_center_data_source_url = qg_nearest_service_centre.dom.$root.data("nearest-service-centre-source");
       }
     }
 
-    var qg_nearest_service_centre = {};
-    var nearest_service_centre_data;
+    var qg_nearest_service_centre = {}; // To store respoonse results from FB
+
+    var nearest_service_centre_data; // To store the FB endpoint which is found on the root nodes data attribute
+
     var nearest_service_center_data_source_url; // Initialise this module only when the user location module is initiliased
 
     qg_user_location_module.event.on("user location module initialised", init);
-    return {
-      init: init
-    };
   }();
 })();
 
@@ -603,12 +643,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   * ===========================
   * Location Info Widget Module
   * ===========================
-  * This widget module deals with displaying the user's location and providing an interface for the user to select a location
-  * 
-  * ---------------------------
-  * Functionality
-  * ---------------------------
-  * 
+  * This widget module deals with displaying the user's current suburb 
+  * It also allows the user to manually select a suburb through a modal popup form
   * 
   */
 
@@ -617,7 +653,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       qg_location_info_widget.dom.$modal.modal('hide');
     }
 
-    function shakeForm() {
+    function shakeModalForm() {
       // Add animation class to make form shake
       qg_location_info_widget.dom.$form_wrapper.addClass("shake"); // Clear animation
 
@@ -653,7 +689,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           closeModal();
         } else {
           // Shake the form to alert user
-          shakeForm();
+          shakeModalForm();
         }
       });
     }
@@ -730,6 +766,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     function updateLink(location) {
       qg_location_info_widget.dom.$link.text(location.suburb);
+    } // Set link back to say "Unknown"
+
+
+    function resetLink() {
+      qg_location_info_widget.dom.$link.text("Unknown");
+    }
+
+    function subscribeToEvents() {
+      qg_user_location_module.event.on("location set", updateLink);
+      qg_user_location_module.event.on("location set", closeModal);
+      qg_user_location_module.event.on("location unknown", shakeModalForm);
+      qg_user_location_module.event.on("location unknown", resetLink);
+    }
+
+    function cacheElements() {
+      // Get widget link
+      qg_location_info_widget.dom.$link = qg_location_info_widget.dom.$root.find(".qg-location-info-widget__link"); // Get Modal
+
+      qg_location_info_widget.dom.$modal = $("#qg-location-info__modal"); // Get form wrapper
+
+      qg_location_info_widget.dom.$form_wrapper = qg_location_info_widget.dom.$modal.find(".qg-location-info__modal-form-wrapper"); // Get field input in modal
+
+      qg_location_info_widget.dom.$modal_input = qg_location_info_widget.dom.$form_wrapper.find(".qg-location-info__modal-field"); // Get suburb list items
+
+      qg_location_info_widget.dom.$suburb_list_items = qg_location_info_widget.dom.$form_wrapper.find(".qg-location-info__modal-suburb-list-item"); // Get suurb list item links
+
+      qg_location_info_widget.dom.$suburb_list_items_links = qg_location_info_widget.dom.$suburb_list_items.find(".qg-location-info__modal-suburb-list-item-link"); // Get detect location button in modal
+
+      qg_location_info_widget.dom.$detect_location_btn = qg_location_info_widget.dom.$form_wrapper.find(".qg-location-info__modal-btn-detect-location"); // Get set location button in modal
+
+      qg_location_info_widget.dom.$set_location_btn = qg_location_info_widget.dom.$modal.find(".qg-location-info__modal-btn-set-location");
     }
 
     function init() {
@@ -738,30 +805,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       qg_location_info_widget.dom.$root = $(".qg-location-info-widget"); // If widget exists
 
       if (qg_location_info_widget.dom.$root.length) {
-        // Get widget link
-        qg_location_info_widget.dom.$link = qg_location_info_widget.dom.$root.find(".qg-location-info-widget__link"); // Get Modal
-
-        qg_location_info_widget.dom.$modal = $("#qg-location-info__modal"); // Get form wrapper
-
-        qg_location_info_widget.dom.$form_wrapper = qg_location_info_widget.dom.$modal.find(".qg-location-info__modal-form-wrapper"); // Get field input in modal
-
-        qg_location_info_widget.dom.$modal_input = qg_location_info_widget.dom.$form_wrapper.find(".qg-location-info__modal-field"); // Get suburb list items
-
-        qg_location_info_widget.dom.$suburb_list_items = qg_location_info_widget.dom.$form_wrapper.find(".qg-location-info__modal-suburb-list-item"); // Get suurb list item links
-
-        qg_location_info_widget.dom.$suburb_list_items_links = qg_location_info_widget.dom.$suburb_list_items.find(".qg-location-info__modal-suburb-list-item-link"); // Get detect location button in modal
-
-        qg_location_info_widget.dom.$detect_location_btn = qg_location_info_widget.dom.$form_wrapper.find(".qg-location-info__modal-btn-detect-location"); // Get set location button in modal
-
-        qg_location_info_widget.dom.$set_location_btn = qg_location_info_widget.dom.$modal.find(".qg-location-info__modal-btn-set-location");
+        subscribeToEvents();
+        cacheElements();
         setupModal();
         setupModalInput();
         setupSuburbListItemLinks();
         setupModalDetectLocationButton();
         setupModalSetLocationButton();
-        qg_user_location_module.event.on("location set", updateLink);
-        qg_user_location_module.event.on("location set", closeModal);
-        qg_user_location_module.event.on("location unknown", shakeForm);
       }
     }
 
@@ -771,9 +821,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var remove_shake_class_timeout; // Initialise this module only when the user location module is initiliased
 
     qg_user_location_module.event.on("user location module initialised", init);
-    return {
-      init: init
-    };
   }();
 })();
 
@@ -781,9 +828,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* 13 */
 /***/ (function(module, exports) {
 
-(function () {
-  'use strict';
-})();
+
 
 /***/ }),
 /* 14 */
@@ -797,9 +842,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
    * ====================
    * The search widget is a form which has an input search field and a submit button.
    * 
-   * ---------------------------------------------------
-   * Functionality - Control appearance with class names
-   * ---------------------------------------------------
    * When hover events happen on the form, or focus events happen on the input search field and submit button:
    * Classes are removed and added to the parent of the widget.
    * For example, the search widget is embedded in the header util bar.
@@ -829,7 +871,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     function form_blurred(event) {
       // Remove class to hide search field and show other widgets
       qg_search_widget_module.dom.$parent.removeClass("search-form-widget--focused");
-    }
+    } // Initialisation
+
 
     function init() {
       qg_search_widget_module.dom = {}; // Get root node
@@ -1048,7 +1091,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       services_service_finder.dom.$no_result_menu_links.on("blur", function (event) {
         services_service_finder.dom.$root.removeClass(no_result_menu_link_focused_state_class);
       });
-    }
+    } // Initialisation
+
 
     function init() {
       services_service_finder.dom = {}; // Get root node
@@ -1087,26 +1131,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 (function () {
   'use strict';
   /*
-  * ===========================
+  * ==========================
   * Weather Info Widget Module
-  * ===========================
-  * This widget module deals with getting and displaying the current weather depending on the user's coordinates
+  * ==========================
+  * Deals with getting and displaying the current forecast depending on the user's coordinates
   * 
-  * ---------------------------
-  * Functionality
-  * ---------------------------
-  * When coordinates are received, the widget makes a call to the open weather API and retrieves current weather data in JSON
-  * The temperature and icon is then extracted to populate the widget
+  * When coordinates are received, the widget makes a call to the open weather API with the coordinates
+  * The response is the current forecast in JSON
+  * The widget is then updated with the current forecast of the user's location and a related weather icon is shown
   * 
   */
 
   var qg_weather_info_widget_module = function () {
     // Update temperature from weather data
     function updateTemperature() {
-      // Current temperature to 1 decimal place
-      var current_temperature = parseFloat(weather_data.main.temp).toFixed(1);
+      // Convert current temperature to 1 decimal place
+      var current_temperature = parseFloat(weather_data.main.temp).toFixed(1); // Update widget with current temperature
+
       qg_weather_info_widget.dom.$temperature_wrapper.text(current_temperature);
-    }
+    } // Update widget with related weather icon
+
 
     function updateIcon() {
       var prefix = 'wi wi-'; // Get code from weather data JSON
@@ -1141,21 +1185,50 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       qg_weather_info_widget.dom.$image_wrapper.empty().append($icon);
     }
 
-    function updateWidget(location) {
+    function updateWidget() {
+      // Update temperature
+      updateTemperature(); // Update image icon
+
+      updateIcon(); // Class to make the widget show is added to the root node
+
+      qg_weather_info_widget.dom.$root.addClass("qg-weather-info-widget--has-result");
+    } // Get current forecast from open weather api
+
+
+    function getCurrentForecast(location) {
+      // Create request url to pass to Open Weather API
       var request_url = weather_data_source + "&lat=" + location.lat + "&lon=" + location.lon; // When the weather data is retrieved from open weather API by passing in the user's coords
 
       $.getJSON(request_url, function (data) {
-        // If result is valud
+        // If result is valid
         if (data.hasOwnProperty("weather")) {
-          weather_data = data; // Update temperature
-
-          updateTemperature(); // Update image icon
-
-          updateIcon(); // Class to make the widget show is added to the root node
-
-          qg_weather_info_widget.dom.$root.addClass("qg-weather-info-widget--has-result");
+          weather_data = data;
+          updateWidget();
         }
       });
+    }
+
+    function resetWidget() {
+      // Empty temperature wrapper
+      qg_weather_info_widget.dom.$temperature_wrapper.text(""); // Empty image wrapper
+
+      qg_weather_info_widget.dom.$image_wrapper.empty(); // Class to make the widget show is added to the root node
+
+      qg_weather_info_widget.dom.$root.removeClass("qg-weather-info-widget--has-result");
+    }
+
+    function subscribeToEvents() {
+      // On "location set" event, get current forecast
+      qg_user_location_module.event.on("location set", getCurrentForecast); // If fail to detect user's location
+
+      qg_user_location_module.event.on("location unknown", resetWidget);
+    }
+
+    function cacheElements() {
+      // Get wrapper which contains temperature text
+      qg_weather_info_widget.dom.$temperature_wrapper = qg_weather_info_widget.dom.$root.find(".qg-weather-info-widget__temperature"); // Get wrapper which contains image
+
+      qg_weather_info_widget.dom.$image_wrapper = qg_weather_info_widget.dom.$root.find(".qg-weather-info-widget__image");
     }
 
     function init() {
@@ -1164,19 +1237,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       qg_weather_info_widget.dom.$root = $(".qg-weather-info-widget"); // If widget exists
 
       if (qg_weather_info_widget.dom.$root.length) {
-        // Get wrapper which contains temeperature text
-        qg_weather_info_widget.dom.$temperature_wrapper = qg_weather_info_widget.dom.$root.find(".qg-weather-info-widget__temperature"); // Get wrapper which contains image
+        subscribeToEvents();
+        cacheElements(); // Get weather api data source url from root node
 
-        qg_weather_info_widget.dom.$image_wrapper = qg_weather_info_widget.dom.$root.find(".qg-weather-info-widget__image");
-        weather_data_source = qg_weather_info_widget.dom.$root.data("weather-source"); // On "location set" event, update the widget
-
-        qg_user_location_module.event.on("location set", updateWidget);
+        weather_data_source = qg_weather_info_widget.dom.$root.data("weather-source");
       }
     }
 
     var qg_weather_info_widget = {};
     var weather_data_source;
-    var weather_data; ///https://gist.github.com/tbranyen/62d974681dea8ee0caa1
+    var weather_data; /// Mapping is from https://gist.github.com/tbranyen/62d974681dea8ee0caa1
 
     var weather_icons_map = {
       "200": {
@@ -1474,9 +1544,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     };
     qg_user_location_module.event.on("user location module initialised", init);
-    return {
-      init: init
-    };
   }();
 })();
 

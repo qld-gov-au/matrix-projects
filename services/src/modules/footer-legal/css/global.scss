@@ -8,8 +8,8 @@
  */
 
 .qg-site-footer-legal {
-    padding-top: pxToRem(35);
     padding-bottom: pxToRem(40);
+    padding-top: pxToRem(35);
 }
 
 .qg-site-footer-legal__links-list {
@@ -17,9 +17,9 @@
     flex-wrap: wrap;
     font-size: pxToRem(14);
     list-style-type: none;
+    margin-bottom: pxToRem(20);
     margin-left: pxToRem(-7);
     margin-right: pxToRem(-7);
-    margin-bottom: pxToRem(20);
     padding: 0;
 }
 
@@ -92,15 +92,15 @@
 @media screen and (min-width: $desktop){
 
     .qg-site-footer-legal {
-        padding-top: pxToRem(35);
         padding-bottom: pxToRem(40);
+        padding-top: pxToRem(35);
     }
 
     .qg-site-footer-legal__links-list {
         font-size: pxToRem(18);
+        margin-bottom: pxToRem(5);
         margin-left: pxToRem(-10);
         margin-right: pxToRem(-10);
-        margin-bottom: pxToRem(5);
     }
 
     .qg-site-footer-legal__links-list-item {

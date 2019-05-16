@@ -16,7 +16,7 @@
 
     var services_banner_module = (function() {
     
-        // Function to allow random numbers
+        // Function to generate random numbers
         function getRandomInt(max) {
             return Math.floor(Math.random() * Math.floor(max));
         }
@@ -90,6 +90,13 @@
             qg_user_location_module.event.on("location unknown", randomiseBanner);
 
         }
+
+        function cacheElements() {
+            
+            // Get caption text node
+            services_banner.dom.$caption_text = services_banner.dom.$root.find(".services-banner__caption-text");
+
+        }
         
         // Initialise module
         function init() {
@@ -104,11 +111,10 @@
 
                 subscribeToEvents()
 
+                cacheElements();
+
                 // Get banner list JSON from data attribute
                 banners_list = services_banner.dom.$root.data("banners-list");
-
-                // Get caption text node
-                services_banner.dom.$caption_text = services_banner.dom.$root.find(".services-banner__caption-text");
 
             }
             
@@ -116,6 +122,7 @@
         
         var services_banner = {};
         
+        // Variable to store banner list JSON which is stored in a data attribute on the root node
         var banners_list;
 
         // When user location module has initialised, initialise this module

@@ -228,6 +228,7 @@
 
         }
 
+        // Initialisation
         function init() {
             
             services_service_finder.dom = {};
