@@ -125,7 +125,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             return obj.types.indexOf("locality") !== -1;
           });
 
-          if (location_obj) {
+          if (locality_obj) {
             user_location.suburb = locality_obj.long_name;
           }
 

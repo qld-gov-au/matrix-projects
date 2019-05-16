@@ -99,7 +99,7 @@
                     // Get suburb 
                     var locality_obj = _.find(address_components, function(obj) { return obj.types.indexOf("locality") !== -1; });
 
-                    if (location_obj) {
+                    if (locality_obj) {
                         user_location.suburb = locality_obj.long_name;
                     }
                     
