@@ -34,6 +34,8 @@
     align-items: center;
     border-bottom: 1px solid $light-green;
     display: flex;
+    font-size: 18px;
+    line-height: 32px;
     padding: 12px 0;
 
     .dfv-quicklinks__item:last-child & {
