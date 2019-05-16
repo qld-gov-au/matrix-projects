@@ -244,14 +244,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (services_banner.dom.$root.length) {
         banners_list = services_banner.dom.$root.data("banners-list");
         services_banner.dom.$caption_text = services_banner.dom.$root.find(".services-banner__caption-text");
+        qg_user_location_module.event.on("location set", processLocation);
+        qg_user_location_module.event.on("location unknown", randomiseBanner);
       }
     }
 
     var services_banner = {};
     var banners_list;
     qg_user_location_module.event.on("user location module initialised", init);
-    qg_user_location_module.event.on("location set", processLocation);
-    qg_user_location_module.event.on("location unknown", randomiseBanner);
     return {
       init: init
     };
@@ -406,7 +406,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         qg_nearest_service_centre.dom.$location_distance_from = qg_nearest_service_centre.dom.$location_wrapper.find(".qg-site-footer-util__nearest-service-centre-detail-distance-from");
         qg_nearest_service_centre.dom.$location_address = qg_nearest_service_centre.dom.$location_wrapper.find(".qg-site-footer-util__nearest-service-centre-detail-location-address"); // Get API source data endpoint URL from data attribute
 
-        nearest_service_center_data_source_url = qg_nearest_service_centre.dom.$root.data("nearest-service-centre-source");
+        nearest_service_center_data_source_url = qg_nearest_service_centre.dom.$root.data("nearest-service-centre-source"); // On location set event, update details
+
+        qg_user_location_module.event.on("location set", updateDetails);
       }
     }
 
@@ -414,9 +416,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var nearest_service_centre_data;
     var nearest_service_center_data_source_url; // Initialise this module only when the user location module is initiliased
 
-    qg_user_location_module.event.on("user location module initialised", init); // On location set event, update details
-
-    qg_user_location_module.event.on("location set", updateDetails);
+    qg_user_location_module.event.on("user location module initialised", init);
     return {
       init: init
     };
@@ -681,6 +681,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         setupSuburbListItemLinks();
         setupModalDetectLocationButton();
         setupModalSetLocationButton();
+        qg_user_location_module.event.on("location set", updateLink);
+        qg_user_location_module.event.on("location set", closeModal);
+        qg_user_location_module.event.on("location unknown", shakeForm);
       }
     }
 
@@ -690,9 +693,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var remove_shake_class_timeout; // Initialise this module only when the user location module is initiliased
 
     qg_user_location_module.event.on("user location module initialised", init);
-    qg_user_location_module.event.on("location set", updateLink);
-    qg_user_location_module.event.on("location set", closeModal);
-    qg_user_location_module.event.on("location unknown", shakeForm);
     return {
       init: init
     };
@@ -1090,7 +1090,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         qg_weather_info_widget.dom.$temperature_wrapper = qg_weather_info_widget.dom.$root.find(".qg-weather-info-widget__temperature"); // Get wrapper which contains image
 
         qg_weather_info_widget.dom.$image_wrapper = qg_weather_info_widget.dom.$root.find(".qg-weather-info-widget__image");
-        weather_data_source = qg_weather_info_widget.dom.$root.data("weather-source");
+        weather_data_source = qg_weather_info_widget.dom.$root.data("weather-source"); // On "location set" event, update the widget
+
+        qg_user_location_module.event.on("location set", updateWidget);
       }
     }
 
@@ -1393,9 +1395,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       } // Initialise this module only when the user location module is initiliased
 
     };
-    qg_user_location_module.event.on("user location module initialised", init); // On "location set" event, update the widget
-
-    qg_user_location_module.event.on("location set", updateWidget);
+    qg_user_location_module.event.on("user location module initialised", init);
     return {
       init: init
     };

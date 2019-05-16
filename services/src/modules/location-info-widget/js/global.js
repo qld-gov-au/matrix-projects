@@ -236,6 +236,14 @@
 
                 setupModalSetLocationButton();
 
+                
+
+                qg_user_location_module.event.on("location set", updateLink);
+
+                qg_user_location_module.event.on("location set", closeModal);
+
+                qg_user_location_module.event.on("location unknown", shakeForm);
+
             }
             
         }
@@ -249,13 +257,7 @@
 
         // Initialise this module only when the user location module is initiliased
         qg_user_location_module.event.on("user location module initialised", init);
-
-        qg_user_location_module.event.on("location set", updateLink);
-
-        qg_user_location_module.event.on("location set", closeModal);
-
-        qg_user_location_module.event.on("location unknown", shakeForm);
-
+        
         return {
             init: init
         }

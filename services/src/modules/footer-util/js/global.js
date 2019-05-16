@@ -192,6 +192,9 @@
 
                 // Get API source data endpoint URL from data attribute
                 nearest_service_center_data_source_url = qg_nearest_service_centre.dom.$root.data("nearest-service-centre-source");
+
+                // On location set event, update details
+                qg_user_location_module.event.on("location set", updateDetails);
                 
             }
 
@@ -205,9 +208,6 @@
 
         // Initialise this module only when the user location module is initiliased
         qg_user_location_module.event.on("user location module initialised", init);
-
-        // On location set event, update details
-        qg_user_location_module.event.on("location set", updateDetails);
 
         return {
             init: init

@@ -122,6 +122,11 @@
                 
                 weather_data_source = qg_weather_info_widget.dom.$root.data("weather-source");
 
+                
+
+                // On "location set" event, update the widget
+                qg_user_location_module.event.on("location set", updateWidget);
+
             }
             
         }
@@ -504,9 +509,6 @@
 
         // Initialise this module only when the user location module is initiliased
         qg_user_location_module.event.on("user location module initialised", init);
-
-        // On "location set" event, update the widget
-        qg_user_location_module.event.on("location set", updateWidget);
 
         return {
             init: init

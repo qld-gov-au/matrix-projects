@@ -62,6 +62,12 @@
 
                 services_banner.dom.$caption_text = services_banner.dom.$root.find(".services-banner__caption-text");
 
+
+
+                qg_user_location_module.event.on("location set", processLocation);
+
+                qg_user_location_module.event.on("location unknown", randomiseBanner);
+
             }
             
         }
@@ -71,11 +77,7 @@
         var banners_list;
 
         qg_user_location_module.event.on("user location module initialised", init);
-
-        qg_user_location_module.event.on("location set", processLocation);
-
-        qg_user_location_module.event.on("location unknown", randomiseBanner);
-
+        
         return {
             init: init
         }
