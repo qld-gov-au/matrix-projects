@@ -557,7 +557,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }); // If inputted value exists in the suburb list
 
         if (selected_suburb_list_item.length) {
-          var selected_suburb_list_item_array = selected_suburb_list_item.split(", ");
+          var selected_suburb_list_item_array = current_value.split(", ");
           var selected_suburb = selected_suburb_list_item_array[0];
           var selected_lga = selected_suburb_list_item_array[1]; // Emit event
 
