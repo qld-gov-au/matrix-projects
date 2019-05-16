@@ -210,6 +210,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (filtered_banner) {
         updateBanner(filtered_banner.url, filtered_banner.caption);
+      } else {
+        // No banner found
+        // This means the LGA from google didnt not match any lgas in any banner
+        // Pick a random banner
+        randomiseBanner();
       }
     }
 

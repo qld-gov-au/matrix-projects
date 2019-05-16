@@ -25,6 +25,13 @@
 
             if (filtered_banner) {
                 updateBanner(filtered_banner.url, filtered_banner.caption);
+            } else {
+                
+                // No banner found
+                // This means the LGA from google didnt not match any LGAs in any banner
+                // Pick a random banner as a fallback
+                randomiseBanner();
+
             }
             
         }
