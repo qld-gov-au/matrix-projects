@@ -139,7 +139,8 @@
         outline: 0;
     }
 
-    .qg-location-info__modal--focused.qg-location-info__modal--has-result & {
+    .qg-location-info__modal--focused.qg-location-info__modal--has-result &,
+    .qg-location-info__modal--suburb-list-item-focused & {
         border-bottom-left-radius: 0;
     }
 
@@ -160,29 +161,45 @@
     top: 100%;
     z-index: 100;
 
-    .qg-location-info__modal--focused.qg-location-info__modal--has-result & {
+    .qg-location-info__modal--has-result & {
         display: block;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        overflow: hidden;
+        width: 1px;
+    }
+
+    .qg-location-info__modal--focused.qg-location-info__modal--has-result &,
+    .qg-location-info__modal--suburb-list-item-focused & {
+        clip: auto;
+        height: auto;
+        overflow: visible;
+        width: auto;
     }
 
 }
 
 .qg-location-info__modal-suburb-list-item {
-    cursor: pointer;
     font-size: pxToRem(18);
     letter-spacing: pxToRem(0.7);
-    padding: pxToRem(15) pxToRem(20);
-    
-    &:hover {
-                
-        background-color: #063652;
-        color: #fff;
-
-    }
 
     & + & {
         border-top: pxToRem(2) solid #e1e1e1;
     }
+
+}
+
+.qg-location-info__modal-suburb-list-item-link {
+
+    display: block;
+    color: #000;
+    padding: pxToRem(15) pxToRem(20);
     
+    &:hover {            
+        background-color: #063652;
+        color: #fff;
+    }
+
 }
 
 .qg-location-info__modal-btn-detect-location {

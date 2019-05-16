@@ -558,9 +558,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     function setupModalSetLocationButton() {
       qg_location_info_widget.dom.$set_location_btn.click(function (event) {
         var current_value = qg_location_info_widget.dom.$modal_input.val(); // Check if inputted value is at least one of the suburb list items
+        // Need trim here because HTML formatting of list items may include spaces
 
         var selected_suburb_list_item = qg_location_info_widget.dom.$suburb_list_items.filter(function () {
-          return $(this).text().toLowerCase() === current_value.toLowerCase();
+          return $(this).text().toLowerCase().trim() === current_value.toLowerCase().trim();
         }); // If inputted value exists in the suburb list
 
         if (selected_suburb_list_item.length) {
@@ -583,11 +584,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       qg_location_info_widget.dom.$modal.removeClass("qg-location-info__modal--has-result");
     }
 
-    function filterSuburbList(value) {
-      var lowered_case_value = value.toLowerCase();
+    function filterSuburbList(filter_value) {
       var filtered_suburbs = qg_location_info_widget.dom.$suburb_list_items.filter(function () {
-        var lowered_case_list_item_option = $(this).text().toLowerCase();
-        return lowered_case_list_item_option.indexOf(lowered_case_value) === 0;
+        // Trim is because HTML might have spaces when formatting tags nicely
+        return $(this).text().toLowerCase().trim().indexOf(filter_value.toLowerCase().trim()) === 0;
       });
 
       if (filtered_suburbs.length) {
@@ -599,12 +599,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
 
-    function setupSuburbListItems() {
+    function setupSuburbListItemLinks() {
       // Can't use click because focus event happens before click
-      qg_location_info_widget.dom.$suburb_list_items.mousedown(function (event) {
+      qg_location_info_widget.dom.$suburb_list_items_links.on("mousedown", function (event) {
         var $this = $(event.target);
-        var current_value = $this.text();
+        var current_value = $this.text().trim();
         qg_location_info_widget.dom.$modal_input.val(current_value);
+      });
+      qg_location_info_widget.dom.$suburb_list_items_links.on("click", function (event) {
+        var $this = $(event.target);
+        $this.blur();
+      });
+      qg_location_info_widget.dom.$suburb_list_items_links.on("focus", function (event) {
+        qg_location_info_widget.dom.$modal.addClass("qg-location-info__modal--suburb-list-item-focused");
+      });
+      qg_location_info_widget.dom.$suburb_list_items_links.on("blur", function (event) {
+        qg_location_info_widget.dom.$modal.removeClass("qg-location-info__modal--suburb-list-item-focused");
       });
     }
 
@@ -618,7 +628,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         if (current_value.length > 2) {
           filterSuburbList(current_value);
         } else {
-          hideSuburbList(current_value);
+          hideSuburbList();
         }
       });
       qg_location_info_widget.dom.$modal_input.on("focus", function (event) {
@@ -649,13 +659,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
         qg_location_info_widget.dom.$modal_input = qg_location_info_widget.dom.$form_wrapper.find(".qg-location-info__modal-field"); // Get suburb list items
 
-        qg_location_info_widget.dom.$suburb_list_items = qg_location_info_widget.dom.$form_wrapper.find(".qg-location-info__modal-suburb-list-item"); // Get detect location button in modal
+        qg_location_info_widget.dom.$suburb_list_items = qg_location_info_widget.dom.$form_wrapper.find(".qg-location-info__modal-suburb-list-item"); // Get suurb list item links
+
+        qg_location_info_widget.dom.$suburb_list_items_links = qg_location_info_widget.dom.$suburb_list_items.find(".qg-location-info__modal-suburb-list-item-link"); // Get detect location button in modal
 
         qg_location_info_widget.dom.$detect_location_btn = qg_location_info_widget.dom.$form_wrapper.find(".qg-location-info__modal-btn-detect-location"); // Get set location button in modal
 
         qg_location_info_widget.dom.$set_location_btn = qg_location_info_widget.dom.$modal.find(".qg-location-info__modal-btn-set-location");
         setupModalInput();
-        setupSuburbListItems();
+        setupSuburbListItemLinks();
         setupModalDetectLocationButton();
         setupModalSetLocationButton();
       }

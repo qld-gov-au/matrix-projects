@@ -1069,7 +1069,8 @@ body {
   width: 100%; }
   .qg-location-info__modal-field:focus {
     outline: 0; }
-  .qg-location-info__modal--focused.qg-location-info__modal--has-result .qg-location-info__modal-field {
+  .qg-location-info__modal--focused.qg-location-info__modal--has-result .qg-location-info__modal-field,
+  .qg-location-info__modal--suburb-list-item-focused .qg-location-info__modal-field {
     border-bottom-left-radius: 0; }
 
 .qg-location-info__modal-suburb-list {
@@ -1086,19 +1087,32 @@ body {
   right: -3.75rem;
   top: 100%;
   z-index: 100; }
-  .qg-location-info__modal--focused.qg-location-info__modal--has-result .qg-location-info__modal-suburb-list {
-    display: block; }
+  .qg-location-info__modal--has-result .qg-location-info__modal-suburb-list {
+    display: block;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    overflow: hidden;
+    width: 1px; }
+  .qg-location-info__modal--focused.qg-location-info__modal--has-result .qg-location-info__modal-suburb-list,
+  .qg-location-info__modal--suburb-list-item-focused .qg-location-info__modal-suburb-list {
+    clip: auto;
+    height: auto;
+    overflow: visible;
+    width: auto; }
 
 .qg-location-info__modal-suburb-list-item {
-  cursor: pointer;
   font-size: 1.125rem;
-  letter-spacing: 0.04375rem;
-  padding: 0.9375rem 1.25rem; }
-  .qg-location-info__modal-suburb-list-item:hover {
-    background-color: #063652;
-    color: #fff; }
+  letter-spacing: 0.04375rem; }
   .qg-location-info__modal-suburb-list-item + .qg-location-info__modal-suburb-list-item {
     border-top: 0.125rem solid #e1e1e1; }
+
+.qg-location-info__modal-suburb-list-item-link {
+  display: block;
+  color: #000;
+  padding: 0.9375rem 1.25rem; }
+  .qg-location-info__modal-suburb-list-item-link:hover {
+    background-color: #063652;
+    color: #fff; }
 
 .qg-location-info__modal-btn-detect-location {
   background-color: #063652;
