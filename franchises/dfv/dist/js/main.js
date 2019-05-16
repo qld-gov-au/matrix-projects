@@ -315,18 +315,30 @@ __webpack_require__.r(__webpack_exports__);
     var region_input = $('#' + filter_namespace + '--region');
     var suburb_input = $('#' + filter_namespace + '--suburb');
     var current_region = region_input.val();
-    var current_suburb = suburb_input.val(); // Reset other filters based on new values
+    var current_suburb = suburb_input.val(); // Look for empty / All
 
-    if (current_region !== 'All' && current_suburb !== 'All') {
-      switch (filter_id) {
-        case 'suburb':
-          region_input.val('All').trigger('change');
-          break;
+    var empty_values = ['', 'All'];
+    var region_index = empty_values.indexOf(current_region);
+    var suburb_index = empty_values.indexOf(current_suburb); // Reset other filters based on new values
 
-        case 'region':
-          suburb_input.val('All').trigger('change');
-          break;
-      }
+    switch (filter_id) {
+      case 'suburb':
+        if (suburb_index === -1) {
+          if (region_index < 1) {
+            region_input.val('All').trigger('change');
+          }
+        }
+
+        break;
+
+      case 'region':
+        if (region_index === -1) {
+          if (suburb_index < 1) {
+            suburb_input.val('All').trigger('change');
+          }
+        }
+
+        break;
     }
   };
   /*

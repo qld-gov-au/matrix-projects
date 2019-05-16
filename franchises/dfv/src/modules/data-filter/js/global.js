@@ -67,18 +67,29 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
         var current_region = region_input.val();
         var current_suburb = suburb_input.val();
 
-        // Reset other filters based on new values
-        if(current_region !== 'All' && current_suburb !== 'All') {
-            switch(filter_id) {
-                case 'suburb':
-                    region_input.val('All').trigger('change');
-                    
-                    break;
-                case 'region':
-                    suburb_input.val('All').trigger('change');
+        // Look for empty / All
+        var empty_values = ['', 'All'];
+        var region_index = empty_values.indexOf(current_region);
+        var suburb_index = empty_values.indexOf(current_suburb);
 
-                    break;
-            }
+        // Reset other filters based on new values
+        switch(filter_id) {
+            case 'suburb':
+                if(suburb_index === -1) {
+                    if(region_index < 1) {
+                        region_input.val('All').trigger('change');
+                    }
+                }
+                
+                break;
+            case 'region':
+                if(region_index === -1) {
+                    if(suburb_index < 1) {
+                        suburb_input.val('All').trigger('change');
+                    }
+                }
+
+                break;
         }
     };
 
