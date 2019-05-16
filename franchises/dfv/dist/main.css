@@ -432,6 +432,7 @@ h2:before {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  font-weight: 700;
   text-decoration: none; }
   #qg-content #qg-primary-content .qg-content-navigation__link:hover {
     text-decoration: underline; }
