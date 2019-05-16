@@ -1103,7 +1103,8 @@ body {
   padding: 0.9375rem 1.25rem; }
   .qg-location-info__modal-suburb-list-item-link:hover, .qg-location-info__modal-suburb-list-item-link:focus {
     background-color: #063652;
-    color: #fff; }
+    color: #fff;
+    text-decoration: none; }
 
 .qg-location-info__modal-btn-detect-location {
   background-color: #063652;
