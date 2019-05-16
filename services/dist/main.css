@@ -141,6 +141,9 @@ body {
 .container--inner {
   max-width: 76.25rem; }
 
+/* 
+ * Animations
+ */
 .shake {
   -webkit-animation: shake 0.7s linear;
           animation: shake 0.7s linear; }

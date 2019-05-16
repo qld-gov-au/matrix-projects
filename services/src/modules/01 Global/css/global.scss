@@ -23,6 +23,9 @@ body {
     max-width: pxToRem(1220);
 }
 
+/* 
+ * Animations
+ */
 .shake {
     animation: shake 0.7s linear;
 }

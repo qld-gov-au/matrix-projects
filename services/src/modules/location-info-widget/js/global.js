@@ -180,8 +180,7 @@
         function setupModal() {
 
             // Clear field when modal is dismissed
-            qg_location_info_widget.dom.$modal.on('hide.bs.collapse', function () {
-                console.log("TEST");
+            qg_location_info_widget.dom.$modal.on('hidden.bs.modal', function () {
                 qg_location_info_widget.dom.$modal_input.val("");
             });
 
