@@ -607,6 +607,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         qg_location_info_widget.dom.$modal_input.val(current_value);
       });
       qg_location_info_widget.dom.$suburb_list_items_links.on("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
         var $this = $(event.target);
         $this.blur();
       });

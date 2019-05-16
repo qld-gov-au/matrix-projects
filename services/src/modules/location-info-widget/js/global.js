@@ -89,7 +89,7 @@
                 
                 // Trim is because HTML might have spaces when formatting tags nicely
                 return $(this).text().toLowerCase().trim().indexOf(filter_value.toLowerCase().trim()) === 0                
-                
+
             });
             
             if (filtered_suburbs.length) {
@@ -116,6 +116,9 @@
             });
 
             qg_location_info_widget.dom.$suburb_list_items_links.on("click", function(event) {
+
+                event.preventDefault();
+                event.stopPropagation();
 
                 var $this = $(event.target);
 
