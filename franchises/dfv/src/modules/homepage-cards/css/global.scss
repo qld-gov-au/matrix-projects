@@ -49,16 +49,6 @@
         transition: all 0.3s ease;
     }
 
-    .card-prompt {
-        &:before {
-            transition: all 0.3s ease;
-        }
-
-        &:after {
-            transition: all 0.3s ease;
-        }
-    }
-
     .card-top {
         margin-bottom: pxToRem(5);
     }

@@ -13,6 +13,7 @@
     font-size: 18px;
     padding: $small-spacing;
     text-decoration: none;
+    transition: all 0.3s ease;
 
     &:hover {
         background: $dark-blue;

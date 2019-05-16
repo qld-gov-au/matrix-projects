@@ -46,6 +46,7 @@
         position: absolute;
         top: 50%;
         transform: translate(-50%, -50%) rotate(-45deg);
+        transition: all 0.3s ease;
         width: $chevron-size;
     }
 }
@@ -64,6 +65,7 @@
         position: absolute;
         right: 0;
         top: 50%;
+        transition: all 0.3s ease;
         width: 100%;
     }
 
