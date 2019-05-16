@@ -134,7 +134,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           });
 
           if (admin_area_level_two_obj) {
-            user_location.suburb = admin_area_level_two_obj.long_name;
+            user_location.lga = admin_area_level_two_obj.long_name;
           } // Store location object in session storage
 
 

@@ -106,7 +106,7 @@
                     var admin_area_level_two_obj = _.find(address_components, function(obj) { return obj.types.indexOf("administrative_area_level_2") !== -1; });
 
                     if (admin_area_level_two_obj) {
-                        user_location.suburb = admin_area_level_two_obj.long_name;
+                        user_location.lga = admin_area_level_two_obj.long_name;
                     }
                     
                     // Store location object in session storage
