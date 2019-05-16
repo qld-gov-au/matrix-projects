@@ -195,7 +195,8 @@
     color: #000;
     padding: pxToRem(15) pxToRem(20);
     
-    &:hover {            
+    &:hover,
+    &:focus {            
         background-color: #063652;
         color: #fff;
     }
