@@ -204,7 +204,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     function processLocation(location) {
       var current_location_lga = location.lga;
 
-      var filted_banner = _.find(banners_list, function (obj) {
+      var filtered_banner = _.find(banners_list, function (obj) {
         return obj.lgas.indexOf(current_location_lga) !== -1;
       });
 

@@ -21,7 +21,7 @@
 
             var current_location_lga = location.lga;
 
-            var filted_banner = _.find(banners_list, function(obj) {return  obj.lgas.indexOf(current_location_lga) !== -1 });
+            var filtered_banner = _.find(banners_list, function(obj) {return  obj.lgas.indexOf(current_location_lga) !== -1 });
 
             if (filtered_banner) {
                 updateBanner(filtered_banner.url, filtered_banner.caption);
