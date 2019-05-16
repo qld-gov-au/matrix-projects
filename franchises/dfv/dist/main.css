@@ -552,6 +552,8 @@ h2:before {
     font-size: 24px; }
   #qg-primary-content h3 {
     font-size: 18px; }
+  #qg-primary-content .qg-content-navigation__link {
+    font-size: 18px; }
   .dfv-page-introduction {
     padding-left: 25px; }
     .dfv-page-introduction p {
