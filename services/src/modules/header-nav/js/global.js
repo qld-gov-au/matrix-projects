@@ -67,6 +67,7 @@
             
         }
 
+        // Initialisation
         function init() {
             
             qg_main_nav.dom = {};

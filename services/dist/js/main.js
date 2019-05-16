@@ -504,7 +504,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // On location set event, update details
       qg_user_location_module.event.on("location set", getNearestServiceCentre); // If user's location is unknown clear details
 
-      qg_user_location_module.event.on("location unknown", clearDetails);
+      qg_user_location_module.event.on("location unknown", reset);
     }
 
     function cacheElements() {
@@ -593,7 +593,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
         $this.closest(".qg-main-nav__dropdown").parent().removeClass(focus_class);
       });
-    }
+    } // Initialisation
+
 
     function init() {
       qg_main_nav.dom = {}; // Get root element

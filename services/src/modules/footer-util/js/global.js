@@ -201,7 +201,7 @@
             qg_user_location_module.event.on("location set", getNearestServiceCentre);
 
             // If user's location is unknown clear details
-            qg_user_location_module.event.on("location unknown", clearDetails);
+            qg_user_location_module.event.on("location unknown", reset);
 
         }
 
