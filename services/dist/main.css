@@ -228,9 +228,10 @@ body {
     margin-bottom: 3.75rem;
     padding-top: 2.5rem; }
   .services-banner__caption {
-    display: block;
     margin-top: auto;
     overflow: hidden; }
+    .services-banner--banner-selected .services-banner__caption {
+      display: block; }
   .services-banner__caption-icon {
     color: #fff;
     background-color: #0b0b0b;

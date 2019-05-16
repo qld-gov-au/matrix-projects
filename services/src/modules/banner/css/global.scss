@@ -42,9 +42,14 @@
     }
 
     .services-banner__caption {
-        display: block;
+        
         margin-top: auto;
         overflow: hidden;
+
+        .services-banner--banner-selected & {
+            display: block;
+        }
+
     }
 
     .services-banner__caption-icon {

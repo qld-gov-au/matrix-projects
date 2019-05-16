@@ -197,7 +197,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
 
     function updateBanner(image_url, caption) {
-      services_banner.dom.$root.css("background-image", "url(" + image_url + ")");
+      services_banner.dom.$root.css("background-image", "url(" + image_url + ")").addClass("services-banner--banner-selected");
       services_banner.dom.$caption_text.text(caption);
     }
 
@@ -212,8 +212,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         updateBanner(filtered_banner.url, filtered_banner.caption);
       } else {
         // No banner found
-        // This means the LGA from google didnt not match any lgas in any banner
-        // Pick a random banner
+        // This means the LGA from google didnt not match any LGAs in any banner
+        // Pick a random banner as a fallback
         randomiseBanner();
       }
     }

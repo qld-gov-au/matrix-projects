@@ -11,7 +11,7 @@
         
         function updateBanner(image_url, caption) {
 
-            services_banner.dom.$root.css("background-image", "url(" + image_url + ")")
+            services_banner.dom.$root.css("background-image", "url(" + image_url + ")").addClass("services-banner--banner-selected");
 
             services_banner.dom.$caption_text.text(caption);
 
