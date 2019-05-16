@@ -82,6 +82,14 @@
 }
 
 /* Nearest Service centre */
+.qg-site-footer-util__nearest-service-centre-details {
+    display: none;
+
+    .qg-site-footer-util__nearest-service-centre--has-result & {
+        display: block;
+    }
+
+}
 
 .qg-site-footer-util__nearest-service-centre-location-selector-icon {
     font-size: pxToRem(20);

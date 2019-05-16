@@ -48,41 +48,6 @@
     align-items: center;
 }
 
-@media screen and (max-width: $small - 1px) {
-
-    .qg-util-bar__logos {
-        margin-bottom: pxToRem(30);
-        text-align: center;
-    }
-
-}
-
-@media screen and (min-width: $small) {
-
-    .qg-util-bar__inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .qg-util-bar__logos {
-        margin-left: pxToRem(60);
-    }
-
-}
-
-@media screen and (min-width: $small) and (max-width: $desktop - 1px) {
-
-    .qg-util-bar {
-
-        .mobile-nav-active & {
-            padding-bottom: pxToRem(30);
-        }
-
-    }
-    
-}
-
 @media screen and (max-width: $desktop - 1px) {
 
     .qg-util-bar {
@@ -93,6 +58,11 @@
             padding-bottom: pxToRem(30);
         }
 
+    }
+
+    .qg-util-bar__logos {
+        margin-bottom: pxToRem(30);
+        text-align: center;
     }
 
     .qg-util-bar__logo--desktop {
@@ -108,10 +78,16 @@
 @media screen and (min-width: $desktop){
     
     .qg-util-bar {
-        order: 1;
         background-image: linear-gradient(85deg, #17608a, #149086);
+        order: 1;
         padding-top: pxToRem(20);
         padding-bottom: pxToRem(20);
+    }
+
+    .qg-util-bar__inner {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
     }
 
     .qg-util-bar__mobile-nav-toggle {

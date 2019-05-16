@@ -68,17 +68,14 @@
     }
 }
 
-@media screen and (max-width: $tablet - 1px) {
-
-    .qg-search-widget {
-        width: 100%;
-    }
-
-}
+/*
+ * Up to desktop layout
+ */
 
 @media screen and (max-width: $desktop - 1px) {
 
     .qg-search-widget {
+        width: 100%;
         display: none;
 
         .mobile-nav-active & {
