@@ -358,6 +358,7 @@ __webpack_require__.r(__webpack_exports__);
       var placeholder = $(item).find('label').text();
       var select_inputs = $(item).find('select');
       select_inputs.select2({
+        'minimumResultsForSearch': Infinity,
         'placeholder': placeholder,
         'width': '100%'
       });

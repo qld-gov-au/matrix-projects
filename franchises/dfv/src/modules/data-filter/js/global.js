@@ -112,6 +112,7 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
             var select_inputs = $(item).find('select');
             
             select_inputs.select2({
+                'minimumResultsForSearch': Infinity,
                 'placeholder': placeholder,
                 'width': '100%'
             });
