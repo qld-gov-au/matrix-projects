@@ -495,6 +495,11 @@ body {
   margin-bottom: 0; }
 
 /* Nearest Service centre */
+.qg-site-footer-util__nearest-service-centre-details {
+  display: none; }
+  .qg-site-footer-util__nearest-service-centre--has-result .qg-site-footer-util__nearest-service-centre-details {
+    display: block; }
+
 .qg-site-footer-util__nearest-service-centre-location-selector-icon {
   font-size: 1.25rem; }
 
@@ -871,34 +876,14 @@ body {
       -ms-flex-align: center;
           align-items: center; }
 
-@media screen and (max-width: 575px) {
-  .qg-util-bar__logos {
-    margin-bottom: 1.875rem;
-    text-align: center; } }
-
-@media screen and (min-width: 576px) {
-  .qg-util-bar__inner {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between; }
-  .qg-util-bar__logos {
-    margin-left: 3.75rem; } }
-
-@media screen and (min-width: 576px) and (max-width: 991px) {
-  .mobile-nav-active .qg-util-bar {
-    padding-bottom: 1.875rem; } }
-
 @media screen and (max-width: 991px) {
   .mobile-nav-active .qg-util-bar {
     border-bottom: 0.0625rem solid #fff;
     margin-bottom: 1.875rem;
     padding-bottom: 1.875rem; }
+  .qg-util-bar__logos {
+    margin-bottom: 1.875rem;
+    text-align: center; }
   .qg-util-bar__logo--desktop {
     display: none; } }
 
@@ -907,12 +892,22 @@ body {
  */
 @media screen and (min-width: 992px) {
   .qg-util-bar {
+    background-image: linear-gradient(85deg, #17608a, #149086);
     -webkit-box-ordinal-group: 2;
         -ms-flex-order: 1;
             order: 1;
-    background-image: linear-gradient(85deg, #17608a, #149086);
     padding-top: 1.25rem;
     padding-bottom: 1.25rem; }
+  .qg-util-bar__inner {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between; }
   .qg-util-bar__mobile-nav-toggle {
     display: none; }
   .qg-util-bar__logos {
@@ -925,31 +920,18 @@ body {
  *----------------------
  */
 /*
- * Mobile layout
+ * Up to before desktop layout
  */
-.qg-site-footer-util__nearest-service-centre-details {
-  display: none; }
-  .qg-site-footer-util__nearest-service-centre--has-result .qg-site-footer-util__nearest-service-centre-details {
-    display: block; }
-
-@media screen and (max-width: 575px) {
-  .qg-site-header {
-    padding-bottom: 0.625rem; }
-    .mobile-nav-active .qg-site-header {
-      padding-bottom: 1.875rem; } }
-
-@media screen and (min-width: 576px) and (max-width: 991px) {
-  .qg-site-header {
-    padding-bottom: 1.875rem; } }
-
 @media screen and (max-width: 991px) {
   .qg-site-header {
     background-image: linear-gradient(65deg, #17608a, #149086);
-    padding-top: 1.875rem; }
+    padding-top: 1.875rem;
+    padding-bottom: 0.625rem; }
     .mobile-nav-active .qg-site-header {
       background-image: linear-gradient(30deg, #17608a, #149086);
       height: 100%;
       overflow: auto;
+      padding-bottom: 1.875rem;
       position: fixed;
       top: 0;
       width: 100%;
@@ -1231,13 +1213,11 @@ body {
  * Desktop layout
  */
 @media screen and (min-width: 992px) {
-  .qg-location-info-widget {
-    /* Widget located in header util bar */ }
-    .qg-util-bar__widgets .qg-location-info-widget {
-      font-size: 1.125rem;
-      border-right: 0.0625rem solid #fff;
-      padding-right: 0.625rem;
-      margin-right: 0.625rem; } }
+  .qg-util-bar__widgets .qg-location-info-widget {
+    font-size: 1.125rem;
+    border-right: 0.0625rem solid #fff;
+    padding-right: 0.625rem;
+    margin-right: 0.625rem; } }
 
 @media screen and (min-width: 992px) and (max-width: 1399px) {
   .qg-location-info-widget {
@@ -1473,12 +1453,12 @@ body {
     background-color: #fff;
     color: #17608a; }
 
-@media screen and (max-width: 767px) {
-  .qg-search-widget {
-    width: 100%; } }
-
+/*
+ * Up to desktop layout
+ */
 @media screen and (max-width: 991px) {
   .qg-search-widget {
+    width: 100%;
     display: none; }
     .mobile-nav-active .qg-search-widget {
       display: block; } }
