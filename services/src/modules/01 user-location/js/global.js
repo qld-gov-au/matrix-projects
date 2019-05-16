@@ -63,10 +63,13 @@
         }
 
         // Locate user with provided suburb and LGA
-        function locateWithArea(area) {
+        function locateWithArea(suburb,lga) {
+
+            user_location.suburb = suburb
+            user_location.lga = lga;
 
             // Create endpoint to query endpoint with coordinates
-            var parameters = "&address=" + encodeURIComponent(area) + ",qld";
+            var parameters = "&address=" + user_location.suburb  + "," + user_location.lga + ",qld";
             
             // Get user location
             geocode(parameters);
@@ -94,11 +97,18 @@
                     var address_components = results.address_components;
 
                     // Get suburb 
-                    user_location.suburb = _.find(address_components, function(obj) { return obj.types.indexOf("locality") !== -1; }).long_name;
+                    var locality_obj = _.find(address_components, function(obj) { return obj.types.indexOf("locality") !== -1; });
 
-                    // Get LGA
-                    user_location.lga = _.find(address_components, function(obj) { return obj.types.indexOf("administrative_area_level_2") !== -1; }).long_name;
+                    if (location_obj) {
+                        user_location.suburb = locality_obj.long_name;
+                    }
+                    
+                    var admin_area_level_two_obj = _.find(address_components, function(obj) { return obj.types.indexOf("administrative_area_level_2") !== -1; });
 
+                    if (admin_area_level_two_obj) {
+                        user_location.suburb = admin_area_level_two_obj.long_name;
+                    }
+                    
                     // Store location object in session storage
                     sessionStorage.setItem("user_location", JSON.stringify(user_location));
 

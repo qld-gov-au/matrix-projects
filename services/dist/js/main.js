@@ -99,9 +99,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     } // Locate user with provided suburb and LGA
 
 
-    function locateWithArea(area) {
-      // Create endpoint to query endpoint with coordinates
-      var parameters = "&address=" + encodeURIComponent(area) + ",qld"; // Get user location
+    function locateWithArea(suburb, lga) {
+      user_location.suburb = suburb;
+      user_location.lga = lga; // Create endpoint to query endpoint with coordinates
+
+      var parameters = "&address=" + user_location.suburb + "," + user_location.lga + ",qld"; // Get user location
 
       geocode(parameters);
     }
@@ -119,13 +121,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           user_location.lon = results.geometry.location.lng;
           var address_components = results.address_components; // Get suburb 
 
-          user_location.suburb = _.find(address_components, function (obj) {
+          var locality_obj = _.find(address_components, function (obj) {
             return obj.types.indexOf("locality") !== -1;
-          }).long_name; // Get LGA
+          });
 
-          user_location.lga = _.find(address_components, function (obj) {
+          if (location_obj) {
+            user_location.suburb = locality_obj.long_name;
+          }
+
+          var admin_area_level_two_obj = _.find(address_components, function (obj) {
             return obj.types.indexOf("administrative_area_level_2") !== -1;
-          }).long_name; // Store location object in session storage
+          });
+
+          if (admin_area_level_two_obj) {
+            user_location.suburb = admin_area_level_two_obj.long_name;
+          } // Store location object in session storage
+
 
           sessionStorage.setItem("user_location", JSON.stringify(user_location));
           broadcastLocation();
@@ -546,8 +557,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }); // If inputted value exists in the suburb list
 
         if (selected_suburb_list_item.length) {
-          // Emit event
-          qg_user_location_module.event.emit("area manually selected", current_value); // Dismiss the modal
+          var selected_suburb_list_item_array = selected_suburb_list_item.split(", ");
+          var selected_suburb = selected_suburb_list_item_array[0];
+          var selected_lga = selected_suburb_list_item_array[1]; // Emit event
+
+          qg_user_location_module.event.emit("area manually selected", selected_suburb, selected_lga); // Dismiss the modal
 
           closeModal();
         } else {
@@ -981,7 +995,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   var qg_weather_info_widget_module = function () {
     // Update temperature from weather data
     function updateTemperature() {
-      var current_temperature = weather_data.main.temp;
+      // Current temperature to 1 decimal place
+      var current_temperature = Number.parseFloat(weather_data.main.temp).toFixed(1);
       qg_weather_info_widget.dom.$temperature_wrapper.text(current_temperature);
     }
 

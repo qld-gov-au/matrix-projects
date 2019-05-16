@@ -21,7 +21,8 @@
         // Update temperature from weather data
         function updateTemperature() {
 
-            var current_temperature = weather_data.main.temp;
+            // Current temperature to 1 decimal place
+            var current_temperature = Number.parseFloat(weather_data.main.temp).toFixed(1);
 
             qg_weather_info_widget.dom.$temperature_wrapper.text(current_temperature);
 

@@ -55,8 +55,13 @@
                 // If inputted value exists in the suburb list
                 if (selected_suburb_list_item.length) {
                     
+                    var selected_suburb_list_item_array = selected_suburb_list_item.split(", ");
+
+                    var selected_suburb = selected_suburb_list_item_array[0];
+                    var selected_lga = selected_suburb_list_item_array[1];
+
                     // Emit event
-                    qg_user_location_module.event.emit("area manually selected", current_value);
+                    qg_user_location_module.event.emit("area manually selected", selected_suburb, selected_lga);
 
                     // Dismiss the modal
                     closeModal();
