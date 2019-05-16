@@ -57,6 +57,7 @@ h2:before {
 
 .qg-content-navigation__wrapper {
     border-left: 4px solid $qg-blue;
+    margin: $large-spacing 0 55px 0;
     padding-left: $medium-spacing;
 }
 
@@ -64,7 +65,7 @@ h2:before {
     @include sq-list-reset();
 }
 
-#qg-primary-content .qg-content-navigation__link {
+#qg-content #qg-primary-content .qg-content-navigation__link {
     align-items: center;
     display: flex;
     text-decoration: none;

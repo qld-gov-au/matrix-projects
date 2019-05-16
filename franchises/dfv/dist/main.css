@@ -417,6 +417,7 @@ h2:before {
 
 .qg-content-navigation__wrapper {
   border-left: 4px solid #00618e;
+  margin: 32px 0 55px 0;
   padding-left: 25px; }
 
 .qg-content-navigation__list {
@@ -424,7 +425,7 @@ h2:before {
   padding: 0;
   list-style: none; }
 
-#qg-primary-content .qg-content-navigation__link {
+#qg-content #qg-primary-content .qg-content-navigation__link {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -432,7 +433,7 @@ h2:before {
   display: -ms-flexbox;
   display: flex;
   text-decoration: none; }
-  #qg-primary-content .qg-content-navigation__link:hover {
+  #qg-content #qg-primary-content .qg-content-navigation__link:hover {
     text-decoration: underline; }
 
 .qg-content-navigation__item {
