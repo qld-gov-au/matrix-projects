@@ -280,7 +280,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
   qg_dfv.fn.handleSearchSubmit = function (event) {
-    var page_number = 1; // Get results
+    var page_number = 1; // Set all empty selects to default to All
+
+    $('.qg-search-filter__wrapper .filter__item select').each(function (item_index, item) {
+      $(item).val('All').trigger('change');
+    }); // Get results
 
     qg_dfv.fn.getFilteredResults(page_number);
     return false;
