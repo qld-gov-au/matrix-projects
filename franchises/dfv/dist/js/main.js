@@ -272,7 +272,7 @@ __webpack_require__.r(__webpack_exports__);
     var page_number = 1; // Reset filters to show placeholders
 
     $('.qg-search-filter__wrapper .filter__item').each(function (item_index, item) {
-      $(item).find('select').val(null).trigger('change');
+      $(item).find('select').val('All').trigger('change');
     }); // Get all results
 
     qg_dfv.fn.getFilteredResults(page_number);
