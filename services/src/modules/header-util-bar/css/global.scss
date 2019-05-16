@@ -80,6 +80,7 @@
     .qg-util-bar {
         background-image: linear-gradient(85deg, #17608a, #149086);
         order: 1;
+        overflow: hidden; /* Fix IE11 bug */
         padding-top: pxToRem(20);
         padding-bottom: pxToRem(20);
     }

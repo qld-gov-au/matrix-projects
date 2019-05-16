@@ -896,6 +896,8 @@ body {
     -webkit-box-ordinal-group: 2;
         -ms-flex-order: 1;
             order: 1;
+    overflow: hidden;
+    /* Fix IE11 bug */
     padding-top: 1.25rem;
     padding-bottom: 1.25rem; }
   .qg-util-bar__inner {
