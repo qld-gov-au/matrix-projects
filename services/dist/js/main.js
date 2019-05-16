@@ -639,6 +639,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       qg_location_info_widget.dom.$modal_input.on("blur", function (event) {
         qg_location_info_widget.dom.$modal.removeClass("qg-location-info__modal--focused");
       });
+    }
+
+    function setupModal() {
+      // Clear field when modal is dismissed
+      qg_location_info_widget.dom.$modal.on('hide.bs.collapse', function () {
+        console.log("TEST");
+        qg_location_info_widget.dom.$modal_input.val("");
+      });
     } // When location is set, set the suburb in the link
 
 
@@ -668,6 +676,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         qg_location_info_widget.dom.$detect_location_btn = qg_location_info_widget.dom.$form_wrapper.find(".qg-location-info__modal-btn-detect-location"); // Get set location button in modal
 
         qg_location_info_widget.dom.$set_location_btn = qg_location_info_widget.dom.$modal.find(".qg-location-info__modal-btn-set-location");
+        setupModal();
         setupModalInput();
         setupSuburbListItemLinks();
         setupModalDetectLocationButton();

@@ -13,6 +13,8 @@
         background-image: linear-gradient(65deg, #17608a, #149086);
         padding-top: pxToRem(30);
         padding-bottom: pxToRem(10);
+
+        
         
         .mobile-nav-active & {
             background-image: linear-gradient(30deg, #17608a, #149086);
@@ -22,7 +24,10 @@
             position: fixed;
             top: 0;
             width: 100%;
-            z-index: 999;
+
+            /* This absurdly high value is to make sure the feedback survey button is hidden */
+            z-index: 2999999999;
+            
         }
     
     }

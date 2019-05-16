@@ -18,7 +18,11 @@
     var qg_location_info_widget_module = (function() {
 
         function closeModal() {
+
             qg_location_info_widget.dom.$modal.modal('hide');
+
+            
+
         }
 
         function shakeForm() {
@@ -173,6 +177,16 @@
 
         }
 
+        function setupModal() {
+
+            // Clear field when modal is dismissed
+            qg_location_info_widget.dom.$modal.on('hide.bs.collapse', function () {
+                console.log("TEST");
+                qg_location_info_widget.dom.$modal_input.val("");
+            });
+
+        }
+
         // When location is set, set the suburb in the link
         function updateLink(location) {
             qg_location_info_widget.dom.$link.text(location.suburb);
@@ -211,6 +225,8 @@
 
                 // Get set location button in modal
                 qg_location_info_widget.dom.$set_location_btn = qg_location_info_widget.dom.$modal.find(".qg-location-info__modal-btn-set-location");
+
+                setupModal();
 
                 setupModalInput();
 
