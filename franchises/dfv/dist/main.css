@@ -1071,7 +1071,7 @@ h2:before {
   background-color: #ffd200;
   color: #0c2e4c;
   font-weight: 700;
-  padding: 8px 48px; }
+  padding: 8px 34px; }
 
 /*
  * Desktop layout
@@ -1124,7 +1124,10 @@ h2:before {
       left: 25px;
       top: -8px;
       -webkit-transform: rotate(135deg);
-              transform: rotate(135deg); } }
+              transform: rotate(135deg); }
+  .qg-quick-exit__button {
+    padding-left: 48px;
+    padding-right: 48px; } }
 
 /*
  * Mobile layout
