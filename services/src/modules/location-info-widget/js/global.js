@@ -14,9 +14,7 @@
     var qg_location_info_widget_module = (function() {
 
         function closeModal() {
-
             qg_location_info_widget.dom.$modal.modal('hide');
-
         }
 
         function shakeModalForm() {
@@ -175,6 +173,7 @@
             // Clear field when modal is dismissed
             qg_location_info_widget.dom.$modal.on('hidden.bs.modal', function () {
                 qg_location_info_widget.dom.$modal_input.val("");
+                hideSuburbList();
             });
 
         }

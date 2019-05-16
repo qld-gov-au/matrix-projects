@@ -564,7 +564,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   * --------------------------------------
   * Functionality - Focused dropdown links
   * --------------------------------------
-  * For better keyboard navigation, we want the dropdown to stay open when user focuses on a dropdown link
+  * For better keyboard navigation, the dropdown stays open when user focuses on a dropdown link
   * 
   */
 
@@ -761,6 +761,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // Clear field when modal is dismissed
       qg_location_info_widget.dom.$modal.on('hidden.bs.modal', function () {
         qg_location_info_widget.dom.$modal_input.val("");
+        hideSuburbList();
       });
     } // When location is set, set the suburb in the link
 

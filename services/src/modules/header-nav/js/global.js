@@ -18,7 +18,7 @@
      * --------------------------------------
      * Functionality - Focused dropdown links
      * --------------------------------------
-     * For better keyboard navigation, we want the dropdown to stay open when user focuses on a dropdown link
+     * For better keyboard navigation, the dropdown stays open when user focuses on a dropdown link
      * 
      */
 
