@@ -591,7 +591,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     function setupModalDetectLocationButton() {
       qg_location_info_widget.dom.$detect_location_btn.click(function (event) {
         var $this = $(event.target);
-        qg_user_location_module.locateUser();
+        qg_user_location_module.getCoordinates();
       });
     }
 
