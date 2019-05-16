@@ -131,30 +131,39 @@
 
         }
 
+        function successfulRequest(data) {
+
+            // If there are results in the features key and there is a result
+            if (data.hasOwnProperty('features') && data.features.length) {
+
+                // Get result from 1st item in array
+                nearest_service_centre_data = data.features[0].properties;
+
+                // Populate and show details
+                populateDetails();
+
+            } else {
+
+                // Clear and hide details
+                clearDetails();
+                
+            }
+
+        } 
+
+        function failedRequest(data) {
+            
+            // Clear and hide details
+            clearDetails();
+
+        }
+
         function updateDetails(location) {
 
             var request_url = nearest_service_center_data_source_url + "&origin=" + location.lat + "%3B" + location.lon;
         
             // When the nearest service centre data is retrieved from source by passing in the user's coords
-            $.getJSON( request_url, function( data ) {
-                
-                // If there are results in the features key and there is a result
-                if (data.hasOwnProperty('features') && data.features.length) {
-
-                    // Get result from 1st item in array
-                    nearest_service_centre_data = data.features[0].properties;
-
-                    // Populate and show details
-                    populateDetails();
-
-                } else {
-
-                    // Clear and hide details
-                    clearDetails();
-                    
-                }
-
-            });
+            $.getJSON( request_url, successfulRequest, failedRequest);
 
         }
 
