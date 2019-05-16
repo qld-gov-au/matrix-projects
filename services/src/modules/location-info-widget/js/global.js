@@ -208,7 +208,7 @@
 
         qg_user_location_module.event.on("location set", closeModal);
 
-        qg_user_location_module.event.on("geolocation error", shakeForm);
+        qg_user_location_module.event.on("location unknown", shakeForm);
 
         return {
             init: init

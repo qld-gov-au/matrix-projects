@@ -121,7 +121,7 @@
         function geolocationFail(error) {
 
             // Broadcast the geolocation encountered an error
-            event.emit("geolocation error");
+            event.emit("location unknown");
 
         }
 
@@ -135,7 +135,7 @@
             } else {
 
                 // Broadcast the geolocation encountered an error
-                event.emit("geolocation error");
+                event.emit("location unknown");
 
             }
 
