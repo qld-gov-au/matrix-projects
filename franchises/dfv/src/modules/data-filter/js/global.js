@@ -28,7 +28,9 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
 
         // Set all empty selects to default to All
         $('.qg-search-filter__wrapper .filter__item select').each(function(item_index, item) {
-            $(item).val('All').trigger('change');
+            if($(item).val() === '') {
+                $(item).val('All').trigger('change');
+            }            
         });
 
         // Get results
