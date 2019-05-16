@@ -64,9 +64,14 @@ h2:before {
     @include sq-list-reset();
 }
 
-.qg-content-navigation__link {
+#qg-primary-content .qg-content-navigation__link {
     align-items: center;
     display: flex;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .qg-content-navigation__item {
@@ -196,10 +201,6 @@ h2:before {
         }
 
         h3 {
-            font-size: 18px;
-        }
-
-        .qg-content-navigation__link {
             font-size: 18px;
         }
     }

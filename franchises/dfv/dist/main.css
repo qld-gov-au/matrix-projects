@@ -424,16 +424,19 @@ h2:before {
   padding: 0;
   list-style: none; }
 
-.qg-content-navigation__link {
+#qg-primary-content .qg-content-navigation__link {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  text-decoration: none; }
+  #qg-primary-content .qg-content-navigation__link:hover {
+    text-decoration: underline; }
 
 .qg-content-navigation__item {
-  margin-bottom: 25px; }
+  margin-bottom: 16px; }
 
 .qg-content-navigation__prompt {
   height: 14px;
@@ -555,8 +558,6 @@ h2:before {
   #qg-primary-content h2 {
     font-size: 24px; }
   #qg-primary-content h3 {
-    font-size: 18px; }
-  #qg-primary-content .qg-content-navigation__link {
     font-size: 18px; }
   .dfv-page-introduction {
     padding-left: 25px; }
