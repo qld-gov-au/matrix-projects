@@ -236,17 +236,17 @@ body {
     .services-banner--banner-selected .services-banner__caption {
       display: block; }
   .services-banner__caption-icon {
-    color: #fff;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     background-color: #0b0b0b;
     border-top-left-radius: 0.25rem;
-    padding: 0 0.625rem;
-    font-size: 1.25rem;
+    color: #fff;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center; }
+    font-size: 1.25rem;
+    padding: 0 0.625rem; }
   .services-banner__inner {
     display: -webkit-box;
     display: -ms-flexbox;

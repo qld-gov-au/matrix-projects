@@ -218,6 +218,9 @@
         // This REST Resource as a middle layer because we don't want the API key to be expoed on the front end
         var map_data_api = "https://www.qld.gov.au/_qgdesigns/integrations/services/rest/google-maps-api?SQ_ASSET_CONTENTS_RAW";
 
+        // Create event emitter object
+        // This is an important object which deals with location related events 
+        // Allows modules to react to these events
         var event = new EventEmitter2();
 
         // On suburb / lga manually selected from the location info widget
