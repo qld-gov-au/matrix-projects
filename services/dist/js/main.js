@@ -189,7 +189,8 @@ __webpack_require__.r(__webpack_exports__);
       var dfd = $.Deferred(); // Check if browser can use HTML5 geolocation
 
       if ("geolocation" in navigator) {
-        // Get current user's coordinates
+        console.log("Geolocating"); // Get current user's coordinates
+
         navigator.geolocation.getCurrentPosition(function (position) {
           // Set coordinates
           user_location.lat = position.coords.latitude;
@@ -684,7 +685,6 @@ __webpack_require__.r(__webpack_exports__);
 
     function setupModalDetectLocationButton() {
       qg_location_info_widget.dom.$detect_location_btn.click(function (event) {
-        var $this = $(event.target);
         qg_user_location_module.geolocate();
       });
     }

@@ -184,6 +184,8 @@
             // Check if browser can use HTML5 geolocation
             if ("geolocation" in navigator) {
 
+                console.log("Geolocating");
+
                 // Get current user's coordinates
                 navigator.geolocation.getCurrentPosition(function(position) {
             
