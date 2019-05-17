@@ -44,7 +44,7 @@
         right: pxToRem(-60);
 
          /* This absurdly high value is to make sure the feedback survey button is hidden */
-         z-index: 2999999999 !important;
+         z-index: 2500000000 !important;
 
         &.tt-scrollable {
             max-height: pxToRem(500);
@@ -188,7 +188,7 @@
     top: 100%;
 
      /* This absurdly high value is to make sure the feedback survey button is hidden */
-    z-index: 2999999999;
+    z-index: 2500000000;
 
     .services-service-finder--focused.services-service-finder--no-input &,
     .services-service-finder--no-results-menu-link-focused & {
