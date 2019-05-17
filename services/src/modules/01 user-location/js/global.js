@@ -129,6 +129,7 @@
             // Make the call
             $.when( $.getJSON(endpoint_to_call, queryMapAPISuccessful) ).done(function () {
                 
+                console.log("queryMapAPI DONE");
                 return true;
 
             });

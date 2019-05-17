@@ -150,6 +150,7 @@ __webpack_require__.r(__webpack_exports__);
       var endpoint_to_call = map_data_api + parameters; // Make the call
 
       $.when($.getJSON(endpoint_to_call, queryMapAPISuccessful)).done(function () {
+        console.log("queryMapAPI DONE");
         return true;
       });
     } // Locate user with provided suburb and LGA
