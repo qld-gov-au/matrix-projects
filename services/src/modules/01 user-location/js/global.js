@@ -231,6 +231,9 @@
                 // Get user's coordinates with HTML5 geolocation so that we can reverse geocode
                 $.when( geolocate() ).done(function() {
                     
+                    console.log("geolocate done!");
+                    console.log(user_location);
+
                     // Update user's location
                     updateLocation();
 

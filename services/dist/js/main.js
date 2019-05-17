@@ -222,7 +222,9 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         // Get user's coordinates with HTML5 geolocation so that we can reverse geocode
         $.when(geolocate()).done(function () {
-          // Update user's location
+          console.log("geolocate done!");
+          console.log(user_location); // Update user's location
+
           updateLocation();
         });
       }
