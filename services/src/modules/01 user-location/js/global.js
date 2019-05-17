@@ -64,26 +64,13 @@
             
         }
 
-        // Locate suburb and LGA with coordinates
-        function reverseGeocode() {
+        function updateLocation() {
 
-            // Create address parameter to pass to endpoint
-            var parameters = "&address=" + user_location.lat + "," + user_location.lon;
+            // Store location object in session storage
+            sessionStorage.setItem("user_location", JSON.stringify(user_location));
 
-            // Get user's current location
-            return queryMapAPI(parameters);
-            
-        }
+            event.emit("(location updated,", user_location);
 
-        // Locate user with provided suburb and LGA
-        function geocode() {
-
-            // Create address parameter to pass to endpoint
-            var parameters = "&address=" + user_location.suburb  + "," + user_location.lga + ",qld";
-            
-            // Get user's current location
-            return queryMapAPI(parameters);
-            
         }
 
         function queryMapAPISuccessful(data) {
@@ -131,15 +118,6 @@
 
         }
 
-        function updateLocation() {
-
-            // Store location object in session storage
-            sessionStorage.setItem("user_location", JSON.stringify(user_location));
-
-            event.emit("(location updated,", user_location);
-
-        }
-
         // Query Google Maps API endpoint to get current user location
         function queryMapAPI(parameters) {
 
@@ -149,6 +127,33 @@
             // Make the call
             return $.getJSON(endpoint_to_call, queryMapAPISuccessful);
 
+        }
+
+        // Locate user with provided suburb and LGA
+        function geocode() {
+
+            // Create address parameter to pass to endpoint
+            var parameters = "&address=" + user_location.suburb  + "," + user_location.lga + ",qld";
+            
+            // Get user's current location
+            return queryMapAPI(parameters);
+            
+        }
+
+        // Locate suburb and LGA with coordinates
+        function reverseGeocode() {
+
+            // Create address parameter to pass to endpoint
+            var parameters = "&address=" + user_location.lat + "," + user_location.lon;
+
+            // Get user's current location
+            return queryMapAPI(parameters);
+            
+        }
+
+        // If reverse geocoding failed
+        function getCoordinatesFailed(error) {
+            detectLocationFailed();
         }
 
         function getCoordinatesSuccessful(position) {
@@ -161,9 +166,28 @@
 
         }
 
-        // If reverse geocoding failed
-        function getCoordinatesFailed(error) {
-            detectLocationFailed();
+        // // Check if suburb and LGA arguments are not the same as current location
+        function processArea(suburb,lga) {
+            
+            if (user_location.suburb !== suburb && user_location.lga !== lga) {
+
+                // Set current suburb
+                user_location.suburb = suburb
+
+                // Set current lga
+                user_location.lga = lga;
+
+                // Only geocode if sububrb and lga is different
+                // Theres going to be some false positives such as Gold Coast City vs City of Gold Coast
+                $.when( geocode() ).done(function() {
+                    
+                    // Update user's location
+                    updateLocation();
+                    
+                });
+            
+            }
+
         }
 
         // Use HTML5 geolocation to get user's coordinates
@@ -185,30 +209,6 @@
 
         }
 
-        // // Check if suburb and LGA arguments are not the same as current location
-        function processArea(suburb,lga) {
-            
-            if (user_location.suburb !== suburb && user_location.lga !== lga) {
-
-                // Set current suburb
-                user_location.suburb = suburb
-
-                // Set current lga
-                user_location.lga = lga;
-
-                // Only geocode if sububrb and lga is different
-                // Theres going to be some false positives such as Gold Coast City vs City of Gold Coast
-                geocode();
-            
-            } else {
-
-                // Do nothing. 
-                // This is to prevent making unncessary calls to Google Maps API
-
-            }
-
-        }
-        
         // Initialise module
         function init() {
 
@@ -226,7 +226,10 @@
 
                 // Get user's coordinates with HTML5 geolocation so that we can reverse geocode
                 $.when( geolocate() ).done(function() {
-                    console.log("TEST")
+                    
+                    // Update user's location
+                    updateLocation();
+
                 });
 
             }
