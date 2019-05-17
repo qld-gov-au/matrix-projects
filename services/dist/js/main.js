@@ -713,7 +713,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       } else {
         hideSuburbList();
       }
-    }
+    } // Setup dropdown sububrb list items
+
 
     function setupSuburbListItemLinks() {
       // Can't use click because focus event happens before click
@@ -763,23 +764,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         qg_location_info_widget.dom.$modal_input.val("");
         hideSuburbList();
       });
-    } // When location is set, set the suburb in the link
+    } // When location is set by the user location module
 
 
-    function updateLink(location) {
-      qg_location_info_widget.dom.$link.text(location.suburb);
-    } // Set link back to say "Unknown"
+    function updateWidget(location) {
+      var detected_suburb = location.suburb; // Set the suburb in the link
 
+      qg_location_info_widget.dom.$link.text(detected_suburb); // If modal is open
 
-    function resetLink() {
+      if (qg_location_info_widget.dom.$modal.hasClass("show")) {
+        // Populate input with detected sububrb and focus on field
+        qg_location_info_widget.dom.$modal_input.val(detected_suburb).focus();
+      }
+    }
+
+    function resetWidget() {
+      // Set link back to say "Unknown"
       qg_location_info_widget.dom.$link.text("Unknown");
     }
 
     function subscribeToEvents() {
-      qg_user_location_module.event.on("location set", updateLink);
-      qg_user_location_module.event.on("location set", closeModal);
+      qg_user_location_module.event.on("location set", updateWidget);
       qg_user_location_module.event.on("location unknown", shakeModalForm);
-      qg_user_location_module.event.on("location unknown", resetLink);
+      qg_user_location_module.event.on("location unknown", resetWidget);
     }
 
     function cacheElements() {
