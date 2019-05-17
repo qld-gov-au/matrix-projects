@@ -139,6 +139,7 @@ __webpack_require__.r(__webpack_exports__);
           user_location.lga = admin_area_level_two_obj.long_name;
         }
 
+        console.log("Location detected");
         event.emit("location detected", user_location);
       }
     } // Query Google Maps API endpoint to get current user location

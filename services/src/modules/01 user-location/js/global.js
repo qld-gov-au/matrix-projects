@@ -112,6 +112,8 @@
 
                 }
                 
+                console.log("Location detected");
+
                 event.emit("location detected", user_location)
 
             }
