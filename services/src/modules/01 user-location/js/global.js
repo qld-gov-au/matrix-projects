@@ -112,8 +112,6 @@
 
                 }
 
-                console.log("location detected");
-                
                 event.emit("location detected", user_location)
 
             }
@@ -143,25 +141,18 @@
         }
 
         // Locate suburb and LGA with coordinates
-        function reverseGeocode(dfd) {
+        function reverseGeocode() {
 
             // Create address parameter to pass to endpoint
             var parameters = "&address=" + user_location.lat + "," + user_location.lon;
 
             // Get user's current location
-            return queryMapAPI(parameters, dfd);
+            return queryMapAPI(parameters);
             
         }
 
-        // If reverse geocoding failed
-        function getCoordinatesFailed(error) {
-            detectLocationFailed();
-        }
-
-        
-
         // // Check if suburb and LGA arguments are not the same as current location
-        function processArea(suburb,lga) {
+        function checkArea(suburb,lga) {
             
             if (user_location.suburb !== suburb && user_location.lga !== lga) {
 
@@ -187,6 +178,7 @@
         // Use HTML5 geolocation to get user's coordinates
         function geolocate() {
 
+            // Create a deferred promise
             var dfd = $.Deferred();
 
             // Check if browser can use HTML5 geolocation
@@ -199,13 +191,21 @@
                     user_location.lat = position.coords.latitude;
                     user_location.lon = position.coords.longitude;
         
+                    // When reverse geocoded finishes
                     $.when( reverseGeocode() ).done(function() {
                     
+                        // Resolve the promise
                         dfd.resolve();
     
                     });
         
-                }, getCoordinatesFailed);
+                },  function (error) {
+                    
+                    // If reverse geocoding failed
+                    dfd.fail();
+                    detectLocationFailed();
+
+                });
 
             } else {
 
@@ -237,10 +237,7 @@
                 // Get user's coordinates with HTML5 geolocation so that we can reverse geocode
                 $.when( geolocate() ).done(function() {
                     
-                    console.log("geolocate done!");
-                    console.log(user_location);
-
-                    // Update user's location
+                    // When located, Update user's location
                     updateLocation();
 
                 });
@@ -261,7 +258,7 @@
         var event = new EventEmitter2();
 
         // On suburb / lga manually selected from the location info widget
-        event.on("area manually selected", processArea);
+        event.on("area manually selected", checkArea);
 
         // Public API
         return {

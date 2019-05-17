@@ -189,17 +189,21 @@
 
         }
 
-        // When location is set by the user location module
-        function updateWidget(location) {
-
-            var detected_suburb = location.suburb;
-            var detected_lga = location.lga;
+        function updateLinkText(location) {
 
             // Set the suburb in the link
-            qg_location_info_widget.dom.$link.text(detected_suburb);
+            qg_location_info_widget.dom.$link.text(location.suburb);
+
+        }
+
+        // When location is set by the user location module
+        function updateModalInput(location) {
 
             // If modal is open
             if (qg_location_info_widget.dom.$modal.hasClass("show")) {
+
+                var detected_suburb = location.suburb;
+                var detected_lga = location.lga;
 
                 // Find how many list items show with result from Google Maps API
                 // This is because some LGA names from Arcgis (used in dropdown) is different from Google maps
@@ -238,7 +242,9 @@
 
         function subscribeToEvents() {
 
-            qg_user_location_module.event.on("(location updated,", updateWidget);
+            qg_user_location_module.event.on("(location updated,", updateLinkText);
+
+            qg_user_location_module.event.on("(location detected,", updateModalInput);
 
             qg_user_location_module.event.on("location unknown", shakeModalForm);
 

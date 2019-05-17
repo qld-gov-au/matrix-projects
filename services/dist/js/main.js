@@ -139,7 +139,6 @@ __webpack_require__.r(__webpack_exports__);
           user_location.lga = admin_area_level_two_obj.long_name;
         }
 
-        console.log("location detected");
         event.emit("location detected", user_location);
       }
     } // Query Google Maps API endpoint to get current user location
@@ -161,20 +160,15 @@ __webpack_require__.r(__webpack_exports__);
     } // Locate suburb and LGA with coordinates
 
 
-    function reverseGeocode(dfd) {
+    function reverseGeocode() {
       // Create address parameter to pass to endpoint
       var parameters = "&address=" + user_location.lat + "," + user_location.lon; // Get user's current location
 
-      return queryMapAPI(parameters, dfd);
-    } // If reverse geocoding failed
-
-
-    function getCoordinatesFailed(error) {
-      detectLocationFailed();
+      return queryMapAPI(parameters);
     } // // Check if suburb and LGA arguments are not the same as current location
 
 
-    function processArea(suburb, lga) {
+    function checkArea(suburb, lga) {
       if (user_location.suburb !== suburb && user_location.lga !== lga) {
         // Set current suburb
         user_location.suburb = suburb; // Set current lga
@@ -191,6 +185,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
     function geolocate() {
+      // Create a deferred promise
       var dfd = $.Deferred(); // Check if browser can use HTML5 geolocation
 
       if ("geolocation" in navigator) {
@@ -198,11 +193,17 @@ __webpack_require__.r(__webpack_exports__);
         navigator.geolocation.getCurrentPosition(function (position) {
           // Set coordinates
           user_location.lat = position.coords.latitude;
-          user_location.lon = position.coords.longitude;
+          user_location.lon = position.coords.longitude; // When reverse geocoded finishes
+
           $.when(reverseGeocode()).done(function () {
+            // Resolve the promise
             dfd.resolve();
           });
-        }, getCoordinatesFailed);
+        }, function (error) {
+          // If reverse geocoding failed
+          dfd.fail();
+          detectLocationFailed();
+        });
       } else {
         // Geolocation not supported in browser
         // Broadcast error occured while locating user
@@ -224,9 +225,7 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         // Get user's coordinates with HTML5 geolocation so that we can reverse geocode
         $.when(geolocate()).done(function () {
-          console.log("geolocate done!");
-          console.log(user_location); // Update user's location
-
+          // When located, Update user's location
           updateLocation();
         });
       }
@@ -241,7 +240,7 @@ __webpack_require__.r(__webpack_exports__);
 
     var event = new EventEmitter2(); // On suburb / lga manually selected from the location info widget
 
-    event.on("area manually selected", processArea); // Public API
+    event.on("area manually selected", checkArea); // Public API
 
     return {
       init: init,
@@ -789,20 +788,23 @@ __webpack_require__.r(__webpack_exports__);
         qg_location_info_widget.dom.$modal_input.val("");
         hideSuburbList();
       });
+    }
+
+    function updateLinkText(location) {
+      // Set the suburb in the link
+      qg_location_info_widget.dom.$link.text(location.suburb);
     } // When location is set by the user location module
 
 
-    function updateWidget(location) {
-      var detected_suburb = location.suburb;
-      var detected_lga = location.lga; // Set the suburb in the link
-
-      qg_location_info_widget.dom.$link.text(detected_suburb); // If modal is open
-
+    function updateModalInput(location) {
+      // If modal is open
       if (qg_location_info_widget.dom.$modal.hasClass("show")) {
-        // Find how many list items show with result from Google Maps API
+        var detected_suburb = location.suburb;
+        var detected_lga = location.lga; // Find how many list items show with result from Google Maps API
         // This is because some LGA names from Arcgis (used in dropdown) is different from Google maps
         // e.g. Gold Coast City vs City of Gold Coast
         // Check detected area against list of suburb items
+
         var detected_area = detected_suburb + ", " + detected_lga; // Get filtered suburb list items
 
         var filtered_suburb_list_items = filterSuburbListItems(detected_area); // If one result, that means Arcgis and Google Maps suburb and LGA match!
@@ -824,7 +826,8 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     function subscribeToEvents() {
-      qg_user_location_module.event.on("(location updated,", updateWidget);
+      qg_user_location_module.event.on("(location updated,", updateLinkText);
+      qg_user_location_module.event.on("(location detected,", updateModalInput);
       qg_user_location_module.event.on("location unknown", shakeModalForm);
       qg_user_location_module.event.on("location unknown", resetWidget);
     }
