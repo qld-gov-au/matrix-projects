@@ -31,9 +31,9 @@
             qg_location_info_widget.dom.$detect_location_btn.click(function(event) {
                 var $this = $(event.target);
 
-                qg_user_location_module.getCoordinates();
+                qg_user_location_module.geolocate();
 
-            });         
+            });
 
         }
 
@@ -238,7 +238,7 @@
 
         function subscribeToEvents() {
 
-            qg_user_location_module.event.on("location set", updateWidget);
+            qg_user_location_module.event.on("(location updated,", updateWidget);
 
             qg_user_location_module.event.on("location unknown", shakeModalForm);
 

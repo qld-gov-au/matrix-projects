@@ -30,16 +30,9 @@
      */
 
     window.qg_user_location_module = (function() {
-
-        // Emit event that the user's location is set
-        function broadcastUserLocation() {
-            
-            event.emit("location set", user_location);
-
-        }
         
         // Emit event fail to detect user's location
-        function failedToDetectLocation() {
+        function detectLocationFailed() {
             event.emit("location unknown");
         }
 
@@ -78,25 +71,73 @@
             var parameters = "&address=" + user_location.lat + "," + user_location.lon;
 
             // Get user's current location
-            queryMapAPI(parameters);
+            return queryMapAPI(parameters);
             
         }
 
         // Locate user with provided suburb and LGA
-        function geocode(suburb,lga) {
-
-            // Set current suburb
-            user_location.suburb = suburb
-
-            // Set current lga
-            user_location.lga = lga;
+        function geocode() {
 
             // Create address parameter to pass to endpoint
             var parameters = "&address=" + user_location.suburb  + "," + user_location.lga + ",qld";
             
             // Get user's current location
-            queryMapAPI(parameters);
+            return queryMapAPI(parameters);
             
+        }
+
+        function queryMapAPISuccessful(data) {
+
+            // If successful request of location from Google
+            if (data.hasOwnProperty("results")) {
+
+                // Get the first result item in the returned JSON
+                var results = data.results[0];
+
+                // Set latitutde
+                user_location.lat = results.geometry.location.lat;
+
+                // Set longtitude - Note that google's data is spelt lng
+                user_location.lon = results.geometry.location.lng;
+
+                // Get address component object
+                var address_components = results.address_components;
+
+                // Get locality object 
+                var locality_obj = _.find(address_components, function(obj) { return obj.types.indexOf("locality") !== -1; });
+
+                // If locality object exists
+                if (locality_obj) {
+
+                    // Set suburb
+                    user_location.suburb = locality_obj.long_name;
+
+                }
+                
+                // Get Administrative Area Level 2 Object
+                var admin_area_level_two_obj = _.find(address_components, function(obj) { return obj.types.indexOf("administrative_area_level_2") !== -1; });
+
+                // If administrative area level 2 object exists
+                if (admin_area_level_two_obj) {
+
+                    // Set LGA
+                    user_location.lga = admin_area_level_two_obj.long_name;
+
+                }
+                
+                event.emit("location detected", user_location)
+
+            }
+
+        }
+
+        function updateLocation() {
+
+            // Store location object in session storage
+            sessionStorage.setItem("user_location", JSON.stringify(user_location));
+
+            event.emit("(location updated,", user_location);
+
         }
 
         // Query Google Maps API endpoint to get current user location
@@ -106,54 +147,7 @@
             var endpoint_to_call = map_data_api + parameters;
 
             // Make the call
-            $.getJSON( endpoint_to_call, function( data ) {
-
-                // If successful request of location from Google
-                if (data.hasOwnProperty("results")) {
-
-                    // Get the first result item in the returned JSON
-                    var results = data.results[0];
-
-                    // Set latitutde
-                    user_location.lat = results.geometry.location.lat;
-
-                    // Set longtitude - Note that google's data is spelt lng
-                    user_location.lon = results.geometry.location.lng;
-
-                    // Get address component object
-                    var address_components = results.address_components;
-
-                    // Get locality object 
-                    var locality_obj = _.find(address_components, function(obj) { return obj.types.indexOf("locality") !== -1; });
-
-                    // If locality object exists
-                    if (locality_obj) {
-
-                        // Set suburb
-                        user_location.suburb = locality_obj.long_name;
-
-                    }
-                    
-                    // Get Administrative Area Level 2 Object
-                    var admin_area_level_two_obj = _.find(address_components, function(obj) { return obj.types.indexOf("administrative_area_level_2") !== -1; });
-
-                    // If administrative area level 2 object exists
-                    if (admin_area_level_two_obj) {
-
-                        // Set LGA
-                        user_location.lga = admin_area_level_two_obj.long_name;
-
-                    }
-                    
-                    // Store location object in session storage
-                    sessionStorage.setItem("user_location", JSON.stringify(user_location));
-
-                    // Emit user's current location
-                    broadcastUserLocation();
-
-                }
-
-            });
+            return $.getJSON(endpoint_to_call, queryMapAPISuccessful);
 
         }
 
@@ -163,16 +157,17 @@
             user_location.lat = position.coords.latitude;
             user_location.lon = position.coords.longitude;
 
-            reverseGeocode();
+            return reverseGeocode();
+
         }
 
         // If reverse geocoding failed
         function getCoordinatesFailed(error) {
-            failedToDetectLocation();
+            detectLocationFailed();
         }
 
         // Use HTML5 geolocation to get user's coordinates
-        function getCoordinates() {
+        function geolocate() {
 
             // Check if browser can use HTML5 geolocation
             if ("geolocation" in navigator) {
@@ -184,7 +179,31 @@
 
                 // Geolocation not supported in browser
                 // Broadcast error occured while locating user
-                failedToDetectLocation();
+                detectLocationFailed();
+
+            }
+
+        }
+
+        // // Check if suburb and LGA arguments are not the same as current location
+        function processArea(suburb,lga) {
+            
+            if (user_location.suburb !== suburb && user_location.lga !== lga) {
+
+                // Set current suburb
+                user_location.suburb = suburb
+
+                // Set current lga
+                user_location.lga = lga;
+
+                // Only geocode if sububrb and lga is different
+                // Theres going to be some false positives such as Gold Coast City vs City of Gold Coast
+                geocode();
+            
+            } else {
+
+                // Do nothing. 
+                // This is to prevent making unncessary calls to Google Maps API
 
             }
 
@@ -200,13 +219,15 @@
             // Check session storage to see if current location is stored in user's details
             if (checkSessionStorage()) {
 
-                // Broadcast user's current location
-                broadcastUserLocation();
+                // Update user's location
+                updateLocation();
 
             } else {
 
                 // Get user's coordinates with HTML5 geolocation so that we can reverse geocode
-                getCoordinates();
+                $.when( geolocate() ).done(function() {
+                    console.log("TEST")
+                });
 
             }
 
@@ -224,13 +245,13 @@
         var event = new EventEmitter2();
 
         // On suburb / lga manually selected from the location info widget
-        event.on("area manually selected", geocode);
+        event.on("area manually selected", processArea);
 
         // Public API
         return {
             init: init,
             event: event,
-            getCoordinates,getCoordinates
+            geolocate: geolocate
         }
 
     }());

@@ -86,6 +86,10 @@
 
 #qg-location-info__modal {
     padding-right: 0 !important;
+
+    /* High value to override feedback widget which has really high z index */
+    z-index: 2600000000;
+    
 }
 
 .qg-location-info__modal-dialog {

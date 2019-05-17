@@ -46,8 +46,6 @@ __webpack_require__.r(__webpack_exports__);
 /* 4 */
 /***/ (function(module, exports) {
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 (function () {
   'use strict';
   /*
@@ -78,13 +76,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
    */
 
   window.qg_user_location_module = function () {
-    // Emit event that the user's location is set
-    function broadcastUserLocation() {
-      event.emit("location set", user_location);
-    } // Emit event fail to detect user's location
-
-
-    function failedToDetectLocation() {
+    // Emit event fail to detect user's location
+    function detectLocationFailed() {
       event.emit("location unknown");
     } // Check if user's location is already stored in session storage
 
@@ -116,15 +109,54 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     } // Locate user with provided suburb and LGA
 
 
-    function geocode(suburb, lga) {
-      // Set current suburb
-      user_location.suburb = suburb; // Set current lga
-
-      user_location.lga = lga; // Create address parameter to pass to endpoint
-
+    function geocode() {
+      // Create address parameter to pass to endpoint
       var parameters = "&address=" + user_location.suburb + "," + user_location.lga + ",qld"; // Get user's current location
 
       queryMapAPI(parameters);
+    }
+
+    function queryMapAPISuccessful(data) {
+      // If successful request of location from Google
+      if (data.hasOwnProperty("results")) {
+        // Get the first result item in the returned JSON
+        var results = data.results[0]; // Set latitutde
+
+        user_location.lat = results.geometry.location.lat; // Set longtitude - Note that google's data is spelt lng
+
+        user_location.lon = results.geometry.location.lng; // Get address component object
+
+        var address_components = results.address_components; // Get locality object 
+
+        var locality_obj = _.find(address_components, function (obj) {
+          return obj.types.indexOf("locality") !== -1;
+        }); // If locality object exists
+
+
+        if (locality_obj) {
+          // Set suburb
+          user_location.suburb = locality_obj.long_name;
+        } // Get Administrative Area Level 2 Object
+
+
+        var admin_area_level_two_obj = _.find(address_components, function (obj) {
+          return obj.types.indexOf("administrative_area_level_2") !== -1;
+        }); // If administrative area level 2 object exists
+
+
+        if (admin_area_level_two_obj) {
+          // Set LGA
+          user_location.lga = admin_area_level_two_obj.long_name;
+        }
+
+        event.emit("location detected", user_location);
+      }
+    }
+
+    function updateLocation() {
+      // Store location object in session storage
+      sessionStorage.setItem("user_location", JSON.stringify(user_location));
+      event.emit("(location updated,", user_location);
     } // Query Google Maps API endpoint to get current user location
 
 
@@ -132,45 +164,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // Create full endpoint
       var endpoint_to_call = map_data_api + parameters; // Make the call
 
-      $.getJSON(endpoint_to_call, function (data) {
-        // If successful request of location from Google
-        if (data.hasOwnProperty("results")) {
-          // Get the first result item in the returned JSON
-          var results = data.results[0]; // Set latitutde
-
-          user_location.lat = results.geometry.location.lat; // Set longtitude - Note that google's data is spelt lng
-
-          user_location.lon = results.geometry.location.lng; // Get address component object
-
-          var address_components = results.address_components; // Get locality object 
-
-          var locality_obj = _.find(address_components, function (obj) {
-            return obj.types.indexOf("locality") !== -1;
-          }); // If locality object exists
-
-
-          if (locality_obj) {
-            // Set suburb
-            user_location.suburb = locality_obj.long_name;
-          } // Get Administrative Area Level 2 Object
-
-
-          var admin_area_level_two_obj = _.find(address_components, function (obj) {
-            return obj.types.indexOf("administrative_area_level_2") !== -1;
-          }); // If administrative area level 2 object exists
-
-
-          if (admin_area_level_two_obj) {
-            // Set LGA
-            user_location.lga = admin_area_level_two_obj.long_name;
-          } // Store location object in session storage
-
-
-          sessionStorage.setItem("user_location", JSON.stringify(user_location)); // Emit user's current location
-
-          broadcastUserLocation();
-        }
-      });
+      $.getJSON(endpoint_to_call, queryMapAPISuccessful);
     }
 
     function getCoordinatesSuccessful(position) {
@@ -182,11 +176,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
     function getCoordinatesFailed(error) {
-      failedToDetectLocation();
+      detectLocationFailed();
     } // Use HTML5 geolocation to get user's coordinates
 
 
-    function getCoordinates() {
+    function geolocate() {
       // Check if browser can use HTML5 geolocation
       if ("geolocation" in navigator) {
         // Get current user's coordinates
@@ -194,7 +188,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       } else {
         // Geolocation not supported in browser
         // Broadcast error occured while locating user
-        failedToDetectLocation();
+        detectLocationFailed();
+      }
+    } // // Check if suburb and LGA arguments are not the same as current location
+
+
+    function processArea(suburb, lga) {
+      if (user_location.suburb !== suburb && user_location.lga !== lga) {
+        // Set current suburb
+        user_location.suburb = suburb; // Set current lga
+
+        user_location.lga = lga; // Only geocode if sububrb and lga is different
+        // Theres going to be some false positives such as Gold Coast City vs City of Gold Coast
+
+        geocode();
+      } else {// Do nothing. 
+        // This is to prevent making unncessary calls to Google Maps API
       }
     } // Initialise module
 
@@ -205,11 +214,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       qg_user_location_module.event.emit("user location module initialised"); // Check session storage to see if current location is stored in user's details
 
       if (checkSessionStorage()) {
-        // Broadcast user's current location
-        broadcastUserLocation();
+        // Update user's location
+        updateLocation();
       } else {
         // Get user's coordinates with HTML5 geolocation so that we can reverse geocode
-        getCoordinates();
+        geolocate();
       }
     }
 
@@ -222,13 +231,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     var event = new EventEmitter2(); // On suburb / lga manually selected from the location info widget
 
-    event.on("area manually selected", geocode); // Public API
+    event.on("area manually selected", processArea); // Public API
 
-    return _defineProperty({
+    return {
       init: init,
       event: event,
-      getCoordinates: getCoordinates
-    }, "getCoordinates", getCoordinates);
+      geolocate: geolocate
+    };
   }(); // On DOM Ready
 
 
@@ -310,7 +319,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     function subscribeToEvents() {
       // When location is set, pick a banner from the JSON list
-      qg_user_location_module.event.on("location set", setBanner); // If locatoin is unknown, pick a random banner
+      qg_user_location_module.event.on("(location updated,", setBanner); // If locatoin is unknown, pick a random banner
 
       qg_user_location_module.event.on("location unknown", randomiseBanner);
     }
@@ -501,8 +510,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
 
     function subscribeToEvents() {
-      // On location set event, update details
-      qg_user_location_module.event.on("location set", getNearestServiceCentre); // If user's location is unknown clear details
+      // On (location updated, event, update details
+      qg_user_location_module.event.on("(location updated,", getNearestServiceCentre); // If user's location is unknown clear details
 
       qg_user_location_module.event.on("location unknown", reset);
     }
@@ -667,7 +676,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     function setupModalDetectLocationButton() {
       qg_location_info_widget.dom.$detect_location_btn.click(function (event) {
         var $this = $(event.target);
-        qg_user_location_module.getCoordinates();
+        qg_user_location_module.geolocate();
       });
     }
 
@@ -805,7 +814,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
 
     function subscribeToEvents() {
-      qg_user_location_module.event.on("location set", updateWidget);
+      qg_user_location_module.event.on("(location updated,", updateWidget);
       qg_user_location_module.event.on("location unknown", shakeModalForm);
       qg_user_location_module.event.on("location unknown", resetWidget);
     }
@@ -1261,8 +1270,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
 
     function subscribeToEvents() {
-      // On "location set" event, get current forecast
-      qg_user_location_module.event.on("location set", getCurrentForecast); // If fail to detect user's location
+      // On "(location updated," event, get current forecast
+      qg_user_location_module.event.on("(location updated,", getCurrentForecast); // If fail to detect user's location
 
       qg_user_location_module.event.on("location unknown", resetWidget);
     }
