@@ -860,6 +860,7 @@ body {
   position: absolute;
   left: 0;
   top: 0.1875rem;
+  padding: 0;
   width: 2.8125rem; }
   .qg-util-bar__mobile-nav-toggle:hover {
     background-color: #fff;
@@ -1118,6 +1119,7 @@ body {
   -ms-flex-negative: 0;
       flex-shrink: 0;
   font-size: 1.25rem;
+  padding: 0;
   width: 3.75rem; }
 
 .qg-location-info__modal-btn-set-location {
@@ -1462,6 +1464,7 @@ body {
   -ms-flex-negative: 0;
       flex-shrink: 0;
   font-size: 1.125rem;
+  padding: 0;
   width: 2.8125rem; }
   .qg-search-widget__btn:hover, .qg-search-widget__btn:focus {
     background-color: #fff;
@@ -1702,6 +1705,7 @@ body {
   -ms-flex-negative: 0;
       flex-shrink: 0;
   font-size: 1.375rem;
+  padding: 0;
   width: 3.75rem; }
 
 @media screen and (max-width: 991px) {
