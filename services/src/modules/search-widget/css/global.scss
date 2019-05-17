@@ -7,7 +7,7 @@
  * Mobile layout
  */
 
-.qg-search-widget__form {
+ .qg-search-widget__form {
     display: flex;
 }
 
@@ -51,7 +51,7 @@
     }
 }
 
-.qg-search-widget__btn {
+.qg-search-widget__btn-submit {
     background-color: transparent;
     border: pxToRem(2) solid #fff;
     border-left: 0;
@@ -84,6 +84,10 @@
         }
     }
 
+    .qg-search-widget__btn-toggle {
+        display: none;
+    }
+
 }
 
 /*
@@ -92,25 +96,13 @@
 
 @media screen and (min-width: $desktop) {
     
-    .qg-search-widget__field-wrapper {    
-        border: 0;
-        clip: rect(0 0 0 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
+    .qg-search-widget__form {
+        display: none;
 
-        .qg-util-bar__widgets.search-form-widget--focused &,
-        .qg-util-bar__widgets.search-form-widget--hover & {
-            clip: auto;
-            height: auto;
-            margin: 0;
-            overflow: visible;
-            position: static;
-            width: auto;
+        .search-form-widget--focused & {
+            display: flex;
         }
+
     }
 
     .qg-search-widget__field {
@@ -138,21 +130,28 @@
 
     }
 
-    .qg-search-widget__btn {
-        border: 0;
-        padding: 0;
+    .qg-search-widget__btn-submit {
+        background-color: #fff;
+        border: pxToRem(2) solid #fff;
+        border-left: 0;
+        border-radius: 0 pxToRem(4) pxToRem(4) 0;
+        color: #138e86;
         font-size: pxToRem(20);
-        width: auto;
-        
-        .qg-util-bar__widgets.search-form-widget--focused &,
-        .qg-util-bar__widgets.search-form-widget--hover & {
-            background-color: #fff;
-            color: #138e86;
-            border: pxToRem(2) solid #fff;
-            border-left: 0;
-            border-radius: 0 pxToRem(4) pxToRem(4) 0;
-            width: pxToRem(45);
+        padding: 0;
+        width: pxToRem(45);
+    }
+
+    .qg-search-widget__btn-toggle {
+        background-color: transparent;
+        border: 0;
+        color: #fff;
+        font-size: pxToRem(18);
+        padding: 0;
+
+        .search-form-widget--focused & {
+            display: none;
         }
+
     }
 
 }

@@ -20,17 +20,11 @@
 
     var qg_search_widget_module = (function() {
     
-        function form_hovered(event) {
+        function setupField() {
 
-            // Add class to parent so that not only field can show but hide other widgets in util bar as well
-            qg_search_widget_module.dom.$parent.addClass("search-form-widget--hover");
-
-        }
-
-        function form_unhovered(event) {
-
-            // Remove class to hide search field and show other widgets
-            qg_search_widget_module.dom.$parent.removeClass("search-form-widget--hover");
+            // Bind field focused event to field
+            qg_search_widget_module.dom.$field.on("focus", form_focused);
+            qg_search_widget_module.dom.$field.on("blur", form_blurred);
 
         }
 
@@ -48,6 +42,40 @@
 
         }
 
+        function cacheElements() {
+
+            // Get input search field element
+            qg_search_widget_module.dom.$field = qg_search_widget_module.dom.$root.find(".qg-search-widget__field");
+
+            // Get form element
+            qg_search_widget_module.dom.$form = qg_search_widget_module.dom.$root.find(".qg-search-widget__form");
+
+            // Get submit button element
+            qg_search_widget_module.dom.$button_submit = qg_search_widget_module.dom.$root.find(".qg-search-widget__btn-submit");
+
+            // Get toggle button element
+            qg_search_widget_module.dom.$button_toggle = qg_search_widget_module.dom.$root.find(".qg-search-widget__btn-toggle");
+
+            // Get parent element
+            qg_search_widget_module.dom.$parent = qg_search_widget_module.dom.$root.parent();
+
+        }
+
+        function btn_toggle_clicked() {
+
+            qg_search_widget_module.dom.$parent.addClass("search-form-widget--focused");
+            qg_search_widget_module.dom.$field.focus();
+
+        }
+
+        function submitForm(event) {
+            
+            event.preventDefault();
+
+            qg_search_widget_module.dom.$form.submit();
+            
+        }
+
         // Initialisation
         function init() {
             
@@ -59,22 +87,14 @@
             // If search widget exists
             if (qg_search_widget_module.dom.$root.length) {
 
-                // Get input search field element
-                qg_search_widget_module.dom.$field = qg_search_widget_module.dom.$root.find(".qg-search-widget__field");
+                cacheElements();
 
-                // Get submit button element
-                qg_search_widget_module.dom.$button = qg_search_widget_module.dom.$root.find(".qg-search-widget__btn");
+                setupField();
 
-                // Get parent element
-                qg_search_widget_module.dom.$parent = qg_search_widget_module.dom.$root.parent();
+                // Bind click event on toggle button
+                qg_search_widget_module.dom.$button_toggle.on("click", btn_toggle_clicked);
 
-                // Bind field focused event to field and button
-                qg_search_widget_module.dom.$field.add(qg_search_widget_module.dom.$button).on("focus", form_focused);
-                qg_search_widget_module.dom.$field.add(qg_search_widget_module.dom.$button).on("blur", form_blurred);
-
-                // Bind hover event over form - includes mouse enter and leave
-                qg_search_widget_module.dom.$root.hover(form_hovered, form_unhovered);
-
+                qg_search_widget_module.dom.$button_submit.on("mousedown", submitForm);
             }
             
         }
