@@ -149,10 +149,7 @@ __webpack_require__.r(__webpack_exports__);
       // Create full endpoint
       var endpoint_to_call = map_data_api + parameters; // Make the call
 
-      $.when($.getJSON(endpoint_to_call, queryMapAPISuccessful)).done(function () {
-        console.log("queryMapAPI DONE");
-        return true;
-      });
+      return $.getJSON(endpoint_to_call, queryMapAPISuccessful);
     } // Locate user with provided suburb and LGA
 
 
@@ -164,23 +161,16 @@ __webpack_require__.r(__webpack_exports__);
     } // Locate suburb and LGA with coordinates
 
 
-    function reverseGeocode() {
+    function reverseGeocode(dfd) {
       // Create address parameter to pass to endpoint
       var parameters = "&address=" + user_location.lat + "," + user_location.lon; // Get user's current location
 
-      return queryMapAPI(parameters);
+      return queryMapAPI(parameters, dfd);
     } // If reverse geocoding failed
 
 
     function getCoordinatesFailed(error) {
       detectLocationFailed();
-    }
-
-    function getCoordinatesSuccessful(position) {
-      // Set coordinates
-      user_location.lat = position.coords.latitude;
-      user_location.lon = position.coords.longitude;
-      return reverseGeocode();
     } // // Check if suburb and LGA arguments are not the same as current location
 
 
@@ -201,18 +191,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
     function geolocate() {
-      // Check if browser can use HTML5 geolocation
+      var dfd = $.Deferred(); // Check if browser can use HTML5 geolocation
+
       if ("geolocation" in navigator) {
         // Get current user's coordinates
-        // navigator.geolocation.getCurrentPosition(getCoordinatesSuccessful, getCoordinatesFailed);
-        return new Promise(function (resolve, reject) {
-          navigator.geolocation.getCurrentPosition(getCoordinatesSuccessful, getCoordinatesFailed, options);
-        });
+        navigator.geolocation.getCurrentPosition(function (position) {
+          // Set coordinates
+          user_location.lat = position.coords.latitude;
+          user_location.lon = position.coords.longitude;
+          $.when(reverseGeocode()).done(function () {
+            dfd.resolve();
+          });
+        }, getCoordinatesFailed);
       } else {
         // Geolocation not supported in browser
         // Broadcast error occured while locating user
         detectLocationFailed();
       }
+
+      return dfd.promise();
     } // Initialise module
 
 
