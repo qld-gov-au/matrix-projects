@@ -137,6 +137,7 @@
 
         }
 
+        // Setup input field of modal
         function setupModalInput() {
 
             // On input, check how many chars in input.
@@ -191,7 +192,8 @@
             if (qg_location_info_widget.dom.$modal.hasClass("show")) {
 
                 // Populate input with detected sububrb and focus on field
-                qg_location_info_widget.dom.$modal_input.val(detected_suburb).focus();
+                // Trigger input event so that sububrb list can be shown
+                qg_location_info_widget.dom.$modal_input.val(detected_suburb).focus().trigger("input");
 
             }
             

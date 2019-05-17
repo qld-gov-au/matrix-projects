@@ -735,7 +735,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       qg_location_info_widget.dom.$suburb_list_items_links.on("blur", function (event) {
         qg_location_info_widget.dom.$modal.removeClass("qg-location-info__modal--suburb-list-item-focused");
       });
-    }
+    } // Setup input field of modal
+
 
     function setupModalInput() {
       // On input, check how many chars in input.
@@ -774,7 +775,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (qg_location_info_widget.dom.$modal.hasClass("show")) {
         // Populate input with detected sububrb and focus on field
-        qg_location_info_widget.dom.$modal_input.val(detected_suburb).focus();
+        // Trigger input event so that sububrb list can be shown
+        qg_location_info_widget.dom.$modal_input.val(detected_suburb).focus().trigger("input");
       }
     }
 
