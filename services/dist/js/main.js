@@ -141,7 +141,6 @@ __webpack_require__.r(__webpack_exports__);
 
         console.log("location detected");
         event.emit("location detected", user_location);
-        return true;
       }
     } // Query Google Maps API endpoint to get current user location
 
@@ -150,7 +149,9 @@ __webpack_require__.r(__webpack_exports__);
       // Create full endpoint
       var endpoint_to_call = map_data_api + parameters; // Make the call
 
-      $.getJSON(endpoint_to_call, queryMapAPISuccessful);
+      $.when($.getJSON(endpoint_to_call, queryMapAPISuccessful)).done(function () {
+        return true;
+      });
     } // Locate user with provided suburb and LGA
 
 

@@ -116,8 +116,6 @@
                 
                 event.emit("location detected", user_location)
 
-                return true;
-
             }
 
         }
@@ -129,7 +127,11 @@
             var endpoint_to_call = map_data_api + parameters;
 
             // Make the call
-            $.getJSON(endpoint_to_call, queryMapAPISuccessful);
+            $.when( $.getJSON(endpoint_to_call, queryMapAPISuccessful) ).done(function () {
+                
+                return true;
+
+            });
 
         }
 
