@@ -111,10 +111,12 @@
                     user_location.lga = admin_area_level_two_obj.long_name;
 
                 }
-                
-                console.log("Location detected");
 
+                console.log("location detected");
+                
                 event.emit("location detected", user_location)
+
+                return true;
 
             }
 
@@ -127,7 +129,7 @@
             var endpoint_to_call = map_data_api + parameters;
 
             // Make the call
-            return $.getJSON(endpoint_to_call, queryMapAPISuccessful);
+            $.getJSON(endpoint_to_call, queryMapAPISuccessful);
 
         }
 
