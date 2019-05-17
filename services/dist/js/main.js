@@ -696,19 +696,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
 
     function hideSuburbList() {
-      qg_location_info_widget.dom.$suburb_list_items.hide();
+      qg_location_info_widget.dom.$suburb_list_items.addClass("hidden");
       qg_location_info_widget.dom.$modal.removeClass("qg-location-info__modal--has-result");
     }
 
-    function filterSuburbList(filter_value) {
-      var filtered_suburbs = qg_location_info_widget.dom.$suburb_list_items.filter(function () {
+    function filterSuburbListItems(value) {
+      var filtered_suburb_list_items = qg_location_info_widget.dom.$suburb_list_items.filter(function () {
         // Trim is because HTML might have spaces when formatting tags nicely
-        return $(this).text().toLowerCase().trim().indexOf(filter_value.toLowerCase().trim()) === 0;
+        return $(this).text().toLowerCase().trim().indexOf(value.toLowerCase().trim()) === 0;
       });
+      return filtered_suburb_list_items;
+    }
 
-      if (filtered_suburbs.length) {
-        filtered_suburbs.show();
-        qg_location_info_widget.dom.$suburb_list_items.not(filtered_suburbs).hide();
+    function filterSuburbList(filter_value) {
+      var filtered_suburb_list_items = filterSuburbListItems(filter_value);
+
+      if (filtered_suburb_list_items.length) {
+        filtered_suburb_list_items.removeClass("hidden");
+        qg_location_info_widget.dom.$suburb_list_items.not(filtered_suburb_list_items).addClass("hidden");
         qg_location_info_widget.dom.$modal.addClass("qg-location-info__modal--has-result");
       } else {
         hideSuburbList();
@@ -740,7 +745,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     function setupModalInput() {
       // On input, check how many chars in input.
-      // If more than 3, perform filtering
+      // If more than set number of characters, perform filtering of sububrb list items
       qg_location_info_widget.dom.$modal_input.on("input", function (event) {
         var $this = $(event.target);
         var current_value = $this.val();
@@ -769,14 +774,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
     function updateWidget(location) {
-      var detected_suburb = location.suburb; // Set the suburb in the link
+      var detected_suburb = location.suburb;
+      var detected_lga = location.lga; // Set the suburb in the link
 
       qg_location_info_widget.dom.$link.text(detected_suburb); // If modal is open
 
       if (qg_location_info_widget.dom.$modal.hasClass("show")) {
-        // Populate input with detected sububrb and focus on field
-        // Trigger input event so that sububrb list can be shown
-        qg_location_info_widget.dom.$modal_input.val(detected_suburb).focus().trigger("input");
+        // Find how many list items show with result from Google Maps API
+        // This is because some LGA names from Arcgis (used in dropdown) is different from Google maps
+        // e.g. Gold Coast City vs City of Gold Coast
+        // Check detected area against list of suburb items
+        var detected_area = detected_suburb + ", " + detected_lga; // Get filtered suburb list items
+
+        var filtered_suburb_list_items = filterSuburbListItems(detected_area); // If one result, that means Arcgis and Google Maps suburb and LGA match!
+
+        if (filtered_suburb_list_items.length === 1) {
+          // Populate input with detected sububrb
+          qg_location_info_widget.dom.$modal_input.val(detected_area).trigger(input);
+        } else {
+          // Populate input with detected sububrb and focus on field
+          // Trigger input event so that sububrb list can be shown
+          qg_location_info_widget.dom.$modal_input.val(detected_suburb).trigger(input).focus();
+        }
       }
     }
 
