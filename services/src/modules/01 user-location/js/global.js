@@ -204,7 +204,11 @@
             if ("geolocation" in navigator) {
 
                 // Get current user's coordinates
-                navigator.geolocation.getCurrentPosition(getCoordinatesSuccessful, getCoordinatesFailed);
+                // navigator.geolocation.getCurrentPosition(getCoordinatesSuccessful, getCoordinatesFailed);
+
+                return new Promise(function(resolve, reject){   
+                    navigator.geolocation.getCurrentPosition(getCoordinatesSuccessful, getCoordinatesFailed, options);
+                });
 
             } else {
 

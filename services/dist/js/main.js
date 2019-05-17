@@ -204,7 +204,10 @@ __webpack_require__.r(__webpack_exports__);
       // Check if browser can use HTML5 geolocation
       if ("geolocation" in navigator) {
         // Get current user's coordinates
-        navigator.geolocation.getCurrentPosition(getCoordinatesSuccessful, getCoordinatesFailed);
+        // navigator.geolocation.getCurrentPosition(getCoordinatesSuccessful, getCoordinatesFailed);
+        return new Promise(function (resolve, reject) {
+          navigator.geolocation.getCurrentPosition(getCoordinatesSuccessful, getCoordinatesFailed, options);
+        });
       } else {
         // Geolocation not supported in browser
         // Broadcast error occured while locating user
