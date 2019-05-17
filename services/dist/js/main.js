@@ -105,7 +105,7 @@ __webpack_require__.r(__webpack_exports__);
       // Create address parameter to pass to endpoint
       var parameters = "&address=" + user_location.lat + "," + user_location.lon; // Get user's current location
 
-      queryMapAPI(parameters);
+      return queryMapAPI(parameters);
     } // Locate user with provided suburb and LGA
 
 
@@ -113,7 +113,7 @@ __webpack_require__.r(__webpack_exports__);
       // Create address parameter to pass to endpoint
       var parameters = "&address=" + user_location.suburb + "," + user_location.lga + ",qld"; // Get user's current location
 
-      queryMapAPI(parameters);
+      return queryMapAPI(parameters);
     }
 
     function queryMapAPISuccessful(data) {
@@ -164,14 +164,14 @@ __webpack_require__.r(__webpack_exports__);
       // Create full endpoint
       var endpoint_to_call = map_data_api + parameters; // Make the call
 
-      $.getJSON(endpoint_to_call, queryMapAPISuccessful);
+      return $.getJSON(endpoint_to_call, queryMapAPISuccessful);
     }
 
     function getCoordinatesSuccessful(position) {
       // Set coordinates
       user_location.lat = position.coords.latitude;
       user_location.lon = position.coords.longitude;
-      reverseGeocode();
+      return reverseGeocode();
     } // If reverse geocoding failed
 
 
@@ -218,7 +218,9 @@ __webpack_require__.r(__webpack_exports__);
         updateLocation();
       } else {
         // Get user's coordinates with HTML5 geolocation so that we can reverse geocode
-        geolocate();
+        $.when(geolocate()).done(function () {
+          console.log("TEST");
+        });
       }
     }
 
