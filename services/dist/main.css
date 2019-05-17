@@ -1017,7 +1017,9 @@ body {
 
 /* Popup styling */
 #qg-location-info__modal {
-  padding-right: 0 !important; }
+  padding-right: 0 !important;
+  /* High value to override feedback widget which has really high z index */
+  z-index: 2600000000; }
 
 .qg-location-info__modal-dialog {
   max-width: 657px;
@@ -1519,6 +1521,8 @@ body {
     font-size: 1.25rem;
     padding: 0;
     width: 2.8125rem; }
+    .qg-search-widget__btn-submit:hover, .qg-search-widget__btn-submit:focus {
+      color: #138e86; }
   .qg-search-widget__btn-toggle {
     background-color: transparent;
     border: 0;

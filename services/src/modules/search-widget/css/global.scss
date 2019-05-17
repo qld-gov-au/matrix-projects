@@ -139,6 +139,11 @@
         font-size: pxToRem(20);
         padding: 0;
         width: pxToRem(45);
+
+        &:hover,
+        &:focus {
+            color: #138e86;
+        }
     }
 
     .qg-search-widget__btn-toggle {
