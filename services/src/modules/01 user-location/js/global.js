@@ -69,7 +69,7 @@
             // Store location object in session storage
             sessionStorage.setItem("user_location", JSON.stringify(user_location));
 
-            event.emit("(location updated,", user_location);
+            event.emit("(location updated", user_location);
 
         }
 

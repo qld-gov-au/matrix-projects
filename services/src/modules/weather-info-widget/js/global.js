@@ -127,8 +127,8 @@
 
         function subscribeToEvents() {
             
-            // On "(location updated," event, get current forecast
-            qg_user_location_module.event.on("(location updated,", getCurrentForecast);
+            // On "(location updated" event, get current forecast
+            qg_user_location_module.event.on("(location updated", getCurrentForecast);
 
             // If fail to detect user's location
             qg_user_location_module.event.on("location unknown", resetWidget);

@@ -197,8 +197,8 @@
 
         function subscribeToEvents() {
             
-            // On (location updated, event, update details
-            qg_user_location_module.event.on("(location updated,", getNearestServiceCentre);
+            // On (location updated event, update details
+            qg_user_location_module.event.on("(location updated", getNearestServiceCentre);
 
             // If user's location is unknown clear details
             qg_user_location_module.event.on("location unknown", reset);
