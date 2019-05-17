@@ -69,7 +69,7 @@
             // Store location object in session storage
             sessionStorage.setItem("user_location", JSON.stringify(user_location));
 
-            event.emit("(location updated", user_location);
+            event.emit("location updated", user_location);
 
         }
 
@@ -183,8 +183,6 @@
 
             // Check if browser can use HTML5 geolocation
             if ("geolocation" in navigator) {
-
-                console.log("Geolocating");
 
                 // Get current user's coordinates
                 navigator.geolocation.getCurrentPosition(function(position) {

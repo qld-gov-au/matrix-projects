@@ -84,7 +84,7 @@
         function subscribeToEvents() {
 
             // When location is set, pick a banner from the JSON list
-            qg_user_location_module.event.on("(location updated", setBanner);
+            qg_user_location_module.event.on("location updated", setBanner);
 
             // If locatoin is unknown, pick a random banner
             qg_user_location_module.event.on("location unknown", randomiseBanner);

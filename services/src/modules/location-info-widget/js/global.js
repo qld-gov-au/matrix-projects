@@ -241,9 +241,9 @@
 
         function subscribeToEvents() {
 
-            qg_user_location_module.event.on("(location updated", updateLinkText);
+            qg_user_location_module.event.on("location updated", updateLinkText);
 
-            qg_user_location_module.event.on("(location detected", updateModalInput);
+            qg_user_location_module.event.on("location detected", updateModalInput);
 
             qg_user_location_module.event.on("location unknown", shakeModalForm);
 

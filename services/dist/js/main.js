@@ -103,7 +103,7 @@ __webpack_require__.r(__webpack_exports__);
     function updateLocation() {
       // Store location object in session storage
       sessionStorage.setItem("user_location", JSON.stringify(user_location));
-      event.emit("(location updated", user_location);
+      event.emit("location updated", user_location);
     }
 
     function queryMapAPISuccessful(data) {
@@ -189,8 +189,7 @@ __webpack_require__.r(__webpack_exports__);
       var dfd = $.Deferred(); // Check if browser can use HTML5 geolocation
 
       if ("geolocation" in navigator) {
-        console.log("Geolocating"); // Get current user's coordinates
-
+        // Get current user's coordinates
         navigator.geolocation.getCurrentPosition(function (position) {
           // Set coordinates
           user_location.lat = position.coords.latitude;
@@ -329,7 +328,7 @@ __webpack_require__.r(__webpack_exports__);
 
     function subscribeToEvents() {
       // When location is set, pick a banner from the JSON list
-      qg_user_location_module.event.on("(location updated", setBanner); // If locatoin is unknown, pick a random banner
+      qg_user_location_module.event.on("location updated", setBanner); // If locatoin is unknown, pick a random banner
 
       qg_user_location_module.event.on("location unknown", randomiseBanner);
     }
@@ -520,8 +519,8 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     function subscribeToEvents() {
-      // On (location updated event, update details
-      qg_user_location_module.event.on("(location updated", getNearestServiceCentre); // If user's location is unknown clear details
+      // On location updated event, update details
+      qg_user_location_module.event.on("location updated", getNearestServiceCentre); // If user's location is unknown clear details
 
       qg_user_location_module.event.on("location unknown", reset);
     }
@@ -826,8 +825,8 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     function subscribeToEvents() {
-      qg_user_location_module.event.on("(location updated", updateLinkText);
-      qg_user_location_module.event.on("(location detected", updateModalInput);
+      qg_user_location_module.event.on("location updated", updateLinkText);
+      qg_user_location_module.event.on("location detected", updateModalInput);
       qg_user_location_module.event.on("location unknown", shakeModalForm);
       qg_user_location_module.event.on("location unknown", resetWidget);
     }
@@ -1283,8 +1282,8 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     function subscribeToEvents() {
-      // On "(location updated" event, get current forecast
-      qg_user_location_module.event.on("(location updated", getCurrentForecast); // If fail to detect user's location
+      // On "location updated" event, get current forecast
+      qg_user_location_module.event.on("location updated", getCurrentForecast); // If fail to detect user's location
 
       qg_user_location_module.event.on("location unknown", resetWidget);
     }
