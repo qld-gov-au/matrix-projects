@@ -215,13 +215,13 @@
                 if (filtered_suburb_list_items.length === 1) {
 
                      // Populate input with detected sububrb
-                    qg_location_info_widget.dom.$modal_input.val(detected_area).trigger(input);
+                    qg_location_info_widget.dom.$modal_input.val(detected_area).trigger("input");
 
                 } else {
 
                     // Populate input with detected sububrb and focus on field
                     // Trigger input event so that sububrb list can be shown
-                    qg_location_info_widget.dom.$modal_input.val(detected_suburb).trigger(input).focus();
+                    qg_location_info_widget.dom.$modal_input.val(detected_suburb).trigger("input").focus();
 
                 }
 
