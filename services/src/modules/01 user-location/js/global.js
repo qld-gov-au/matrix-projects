@@ -171,6 +171,11 @@
                     
                 });
             
+            } else {
+
+                // Just use existing values
+                updateLocation();
+
             }
 
         }

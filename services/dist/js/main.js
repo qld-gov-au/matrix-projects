@@ -180,6 +180,9 @@ __webpack_require__.r(__webpack_exports__);
           // Update user's location
           updateLocation();
         });
+      } else {
+        // Just use existing values
+        updateLocation();
       }
     } // Use HTML5 geolocation to get user's coordinates
 
