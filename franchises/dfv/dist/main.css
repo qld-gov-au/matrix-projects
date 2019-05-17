@@ -1580,6 +1580,8 @@ body:not([data-accessibility=false]):not([data-access-new-window=false]) #qg-con
     color: #0c2e4c;
     text-decoration: none; }
   #qg-content #qg-primary-content .card-phone .fa-icon__wrapper {
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
     margin-right: 10px; }
   #qg-content #qg-primary-content .card-phone .fa {
     font-size: 30px; }
