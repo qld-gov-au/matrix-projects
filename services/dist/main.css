@@ -887,6 +887,10 @@ body {
     border-bottom: 0.0625rem solid #fff;
     margin-bottom: 1.875rem;
     padding-bottom: 1.875rem; }
+  .qg-util-bar__widgets {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center; }
   .qg-util-bar__logos {
     margin-bottom: 1.875rem;
     text-align: center; }
@@ -1561,7 +1565,9 @@ body {
     border-radius: 0 0 0.5rem 0.5rem;
     background-color: #fff;
     left: 0 !important;
-    right: -3.75rem; }
+    right: -3.75rem;
+    /* This absurdly high value is to make sure the feedback survey button is hidden */
+    z-index: 2999999999; }
     .services-service-finder__form .tt-menu.tt-scrollable {
       max-height: 31.25rem;
       overflow-y: auto; }
@@ -1650,7 +1656,8 @@ body {
   left: 0;
   right: -3.75rem;
   top: 100%;
-  z-index: 100; }
+  /* This absurdly high value is to make sure the feedback survey button is hidden */
+  z-index: 2999999999; }
   .services-service-finder--focused.services-service-finder--no-input .services-service-finder__no-results-menu,
   .services-service-finder--no-results-menu-link-focused .services-service-finder__no-results-menu {
     clip: auto;
