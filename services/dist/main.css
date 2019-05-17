@@ -1567,7 +1567,7 @@ body {
     left: 0 !important;
     right: -3.75rem;
     /* This absurdly high value is to make sure the feedback survey button is hidden */
-    z-index: 2500000000 !important; }
+    z-index: 2000000100 !important; }
     .services-service-finder__form .tt-menu.tt-scrollable {
       max-height: 31.25rem;
       overflow-y: auto; }
@@ -1657,7 +1657,7 @@ body {
   right: -3.75rem;
   top: 100%;
   /* This absurdly high value is to make sure the feedback survey button is hidden */
-  z-index: 2500000000; }
+  z-index: 2000000100; }
   .services-service-finder--focused.services-service-finder--no-input .services-service-finder__no-results-menu,
   .services-service-finder--no-results-menu-link-focused .services-service-finder__no-results-menu {
     clip: auto;
