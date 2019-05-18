@@ -143,8 +143,7 @@
             });
 
         }
-
-        
+ 
         // Setup input field of modal
         function setupModalInput() {
 
