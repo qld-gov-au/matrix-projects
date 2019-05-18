@@ -103,7 +103,7 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     function updateLocation() {
-      user_location.set.lat = user_location.detected.lon;
+      user_location.set.lat = user_location.detected.lat;
       user_location.set.lon = user_location.detected.lon;
       user_location.set.suburb = user_location.detected.suburb;
       user_location.set.lga = user_location.detected.lga;
