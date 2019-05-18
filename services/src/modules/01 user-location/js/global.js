@@ -178,7 +178,9 @@
         // // Check if suburb and LGA arguments are not the same as current location
         function checkArea(suburb,lga) {
             
-            if (user_location.suburb !== suburb && user_location.lga !== lga) {
+            // If user's current location is not the same as suburb argument OR
+            // If user's current lga is not the same as lga argument
+            if (user_location.suburb !== suburb || user_location.lga !== lga) {
 
                 // Set current suburb
                 user_location.suburb = suburb
@@ -186,7 +188,7 @@
                 // Set current lga
                 user_location.lga = lga;
 
-                // Only geocode if sububrb and lga is different
+                // Only geocode if sububrb or lga is different
                 // Theres going to be some false positives such as Gold Coast City vs City of Gold Coast
                 $.when( geocode() ).always(function() {
                     
