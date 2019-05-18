@@ -210,7 +210,7 @@ __webpack_require__.r(__webpack_exports__);
         user_location.detected.suburb = suburb; // Set LGA argument as detected LGA
         // This is needed in case Google doesn't know what LGA the suburb is in e.g. Hope Value suburb
 
-        user_location.set.detected.lga = lga;
+        user_location.detected.lga = lga;
         $.when(geocode()).always(function () {
           // Update user's location
           updateLocation();
