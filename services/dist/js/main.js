@@ -114,7 +114,6 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     function emitLocationSetEvent() {
-      console.log(user_location.set);
       event.emit("location set", user_location.set);
     }
 
@@ -880,8 +879,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
     function updateModalInput(location) {
-      // If modal is open
-      if (qg_location_info_widget.dom.$modal.hasClass("show")) {
+      // If modal is open and state is QLD
+      if (location.state === "QLD" && qg_location_info_widget.dom.$modal.hasClass("show")) {
         var detected_suburb = location.suburb;
         var detected_lga = location.lga; // Find how many list items show with result from Google Maps API
         // This is because some LGA names from Arcgis (used in dropdown) is different from Google maps
@@ -900,6 +899,9 @@ __webpack_require__.r(__webpack_exports__);
           // Trigger input event so that sububrb list can be shown
           qg_location_info_widget.dom.$modal_input.val(detected_suburb).trigger("input").focus();
         }
+      } else {
+        // Shake modal form
+        shakeModalForm();
       }
     }
 

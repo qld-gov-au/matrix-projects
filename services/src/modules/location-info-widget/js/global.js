@@ -239,8 +239,8 @@
         // When location is set by the user location module
         function updateModalInput(location) {
 
-            // If modal is open
-            if (qg_location_info_widget.dom.$modal.hasClass("show")) {
+            // If modal is open and state is QLD
+            if (location.state === "QLD" && qg_location_info_widget.dom.$modal.hasClass("show")) {
 
                 var detected_suburb = location.suburb;
                 var detected_lga = location.lga;
@@ -258,7 +258,7 @@
                 // If one result, that means Arcgis and Google Maps suburb and LGA match!
                 if (filtered_suburb_list_items.length === 1) {
 
-                     // Populate input with detected sububrb
+                    // Populate input with detected sububrb
                     qg_location_info_widget.dom.$modal_input.val(detected_area).trigger("input");
 
                 } else {
@@ -269,8 +269,13 @@
 
                 }
 
+            } else {
+
+                // Shake modal form
+                shakeModalForm();
+                
             }
-            
+
         }
 
         function subscribeToEvents() {
