@@ -237,17 +237,17 @@ __webpack_require__.r(__webpack_exports__);
             dfd.resolve();
           }).fail(function () {
             // If failed to get results from Google Maps API
-            dfd.fail();
+            dfd.reject();
             detectLocationFailed();
           });
         }, function (error) {
           // If reverse geocoding failed
-          dfd.fail();
+          dfd.reject();
           detectLocationFailed();
         });
       } else {
         // If Geolocation is not supported in browser
-        dfd.fail();
+        dfd.reject();
         detectLocationFailed();
       }
 
