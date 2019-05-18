@@ -78,7 +78,7 @@ __webpack_require__.r(__webpack_exports__);
   window.qg_user_location_module = function () {
     // Emit event fail to detect user's location
     function detectLocationFailed() {
-      event.emit("location unknown");
+      event.emit("location detection failed");
     } // Check if user's location is already stored in session storage
 
 
@@ -94,6 +94,8 @@ __webpack_require__.r(__webpack_exports__);
         user_location.lon = user_location_session_storage_json.lon;
         user_location.suburb = user_location_session_storage_json.suburb;
         user_location.lga = user_location_session_storage_json.lga;
+        user_location.state = user_location_session_storage_json.state;
+        user_location.country = user_location_session_storage_json.country;
         return true;
       } else {
         return false;
@@ -116,7 +118,7 @@ __webpack_require__.r(__webpack_exports__);
 
         user_location.lon = results.geometry.location.lng; // Get address component object
 
-        var address_components = results.address_components; // Get locality object 
+        var address_components = results.address_components; // Get subrb from locality object 
 
         var locality_obj = _.find(address_components, function (obj) {
           return obj.types.indexOf("locality") !== -1;
@@ -126,20 +128,42 @@ __webpack_require__.r(__webpack_exports__);
         if (locality_obj) {
           // Set suburb
           user_location.suburb = locality_obj.long_name;
-        } // Get Administrative Area Level 2 Object
+        } // Get LGA from Administrative Area Level 2 Object
 
 
         var admin_area_level_two_obj = _.find(address_components, function (obj) {
           return obj.types.indexOf("administrative_area_level_2") !== -1;
-        }); // If administrative area level 2 object exists
+        }); // If Administrative Area Level 2 Object exists
 
 
         if (admin_area_level_two_obj) {
           // Set LGA
           user_location.lga = admin_area_level_two_obj.long_name;
+        } // Get state from Administrative Area Level 1 Object
+
+
+        var admin_area_level_one_obj = _.find(address_components, function (obj) {
+          return obj.types.indexOf("administrative_area_level_1") !== -1;
+        }); // If Administrative Area Level 1 Object exists
+
+
+        if (admin_area_level_one_obj) {
+          // Set state
+          user_location.state = admin_area_level_one_obj.short_name;
+        } // Get country from Country Object
+
+
+        var country_obj = _.find(address_components, function (obj) {
+          return obj.types.indexOf("country") !== -1;
+        }); // If Administrative Area Level 1 Object exists
+
+
+        if (country_obj) {
+          // Set state
+          user_location.country = country_obj.long_name;
         }
 
-        event.emit("location detected", user_location);
+        event.emit("location detection successful", user_location);
       }
     } // Query Google Maps API endpoint to get current user location
 
@@ -176,7 +200,7 @@ __webpack_require__.r(__webpack_exports__);
         user_location.lga = lga; // Only geocode if sububrb and lga is different
         // Theres going to be some false positives such as Gold Coast City vs City of Gold Coast
 
-        $.when(geocode()).done(function () {
+        $.when(geocode()).always(function () {
           // Update user's location
           updateLocation();
         });
@@ -201,6 +225,10 @@ __webpack_require__.r(__webpack_exports__);
           $.when(reverseGeocode()).done(function () {
             // Resolve the promise
             dfd.resolve();
+          }).fail(function () {
+            // If failed to get results from Google Maps API
+            dfd.fail();
+            detectLocationFailed();
           });
         }, function (error) {
           // If reverse geocoding failed
@@ -208,8 +236,8 @@ __webpack_require__.r(__webpack_exports__);
           detectLocationFailed();
         });
       } else {
-        // Geolocation not supported in browser
-        // Broadcast error occured while locating user
+        // If Geolocation is not supported in browser
+        dfd.fail();
         detectLocationFailed();
       }
 
@@ -227,8 +255,8 @@ __webpack_require__.r(__webpack_exports__);
         updateLocation();
       } else {
         // Get user's coordinates with HTML5 geolocation so that we can reverse geocode
-        $.when(geolocate()).done(function () {
-          // When located, Update user's location
+        $.when(geolocate()).always(function () {
+          // Update user's location
           updateLocation();
         });
       }
@@ -396,7 +424,7 @@ __webpack_require__.r(__webpack_exports__);
     // The funnelback results returns a displayUrl result but no domain
     // Need to get the funnelback domain from the source API endpoint and concatenate with display url
     function generateLinkToCentreDetail() {
-      // Get display url parameter from nearest centre data
+      // Get display url
       var display_url = nearest_service_centre_data.displayUrl; // Get funnelback domain from source url by splitting the URL into a string and getting everything before the ? char
 
       var fb_domain = nearest_service_center_data_source_url.split('?')[0];
@@ -404,44 +432,27 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     function updateCentreName() {
-      // Get centre name from data 
-      var centre_name = nearest_service_centre_data.title; // Generate link to centre detail page
+      // Get nearest centre name
+      var nearest_centre_name = nearest_service_centre_data.title;
+      var nearest_centre_link = generateLinkToCentreDetail(); // Update heading
 
-      var link = generateLinkToCentreDetail(); // Update heading
-
-      qg_nearest_service_centre.dom.$centre_name.text(centre_name); // Update link
+      qg_nearest_service_centre.dom.$centre_name.text(nearest_centre_name); // Update link
 
       qg_nearest_service_centre.dom.$centre_name.prop("href", link);
     }
 
-    function clearCentreName() {
-      // Clear heading
-      qg_nearest_service_centre.dom.$centre_name.text(""); // Change href property to be #
-
-      qg_nearest_service_centre.dom.$centre_name.prop("href", "#");
-    }
-
     function updateServicesAvailable() {
-      // If services key exists and is not empty
+      // If services key exists and is not empty, that means there are services at the nearest centre
       if (nearest_service_centre_data.metaData.hasOwnProperty('s') && nearest_service_centre_data.metaData.s.length) {
-        // Generate link to nearest service centre detail page
-        var link = generateLinkToCentreDetail(); // Update href property to be link to nearest service centre detail page
-
+        // Update href property to be link to nearest service centre detail page
         qg_nearest_service_centre.dom.$services_available_link.prop("href", link);
+        qg_nearest_service_centre.dom.$services_available_wrapper.show();
       } else {
-        // Hide services available link
-        qg_nearest_service_centre.dom.$services_available_wrapper.hide(); // Change href to #
-
-        qg_nearest_service_centre.dom.$services_available_link.prop("href", "#");
+        clearServicesAvailable();
       }
     }
 
-    function clearServicesAvailable() {
-      qg_nearest_service_centre.dom.$services_available_link.prop("href", "#");
-    }
-
     function updateLocationDistanceFrom() {
-      // Update distance from ;
       // If kmFromOrigin key exists and is not empty
       if (nearest_service_centre_data.hasOwnProperty('kmFromOrigin') && nearest_service_centre_data.kmFromOrigin.length) {
         var distance_from_origin = nearest_service_centre_data.kmFromOrigin + "km away";
@@ -465,24 +476,24 @@ __webpack_require__.r(__webpack_exports__);
     function updateLocation() {
       updateLocationDistanceFrom();
       updatelocationAddress();
+    }
+
+    function clearCentreName() {
+      // Clear heading
+      qg_nearest_service_centre.dom.$centre_name.text(""); // Change href property to be #
+
+      qg_nearest_service_centre.dom.$centre_name.prop("href", "#");
+    }
+
+    function clearServicesAvailable() {
+      qg_nearest_service_centre.dom.$services_available_wrapper.hide();
+      qg_nearest_service_centre.dom.$services_available_link.prop("href", "#");
     } // Clear location related details
 
 
     function clearLocation() {
       qg_nearest_service_centre.dom.$location_distance_from.text("");
       qg_nearest_service_centre.dom.$location_address.html("");
-    } // Update details
-
-
-    function updateDetails() {
-      // Update centre name
-      updateCentreName(); // Update services available text
-
-      updateServicesAvailable(); // Update location text
-
-      updateLocation(); // Class to show nearest service centre details
-
-      qg_nearest_service_centre.dom.$root.addClass("qg-site-footer-util__nearest-service-centre--has-result");
     } // Clear and hide details
 
 
@@ -491,41 +502,63 @@ __webpack_require__.r(__webpack_exports__);
       clearServicesAvailable();
       clearLocation();
       qg_nearest_service_centre.dom.$root.removeClass("qg-site-footer-util__nearest-service-centre--has-result");
-    } // If request to FB collection is successful
-
-
-    function successfulRequest(data) {
-      // If there are results in the features key and there is a result
-      if (data.hasOwnProperty('features') && data.features.length) {
-        // Get result from 1st item in array
-        nearest_service_centre_data = data.features[0].properties; // Populate and show details
-
-        updateDetails();
-      } else {
-        // Clear and hide details
-        reset();
-      }
-    } // If request to FB collection failed
-
-
-    function failedRequest(data) {
-      // Clear and hide details
-      reset();
     } // Update nearest service centre details
 
 
-    function getNearestServiceCentre(location) {
+    function getNearestServiceCentre(lat, lon) {
       // Create request url by adding coordinates as parameters
       var request_url = nearest_service_center_data_source_url + "&origin=" + location.lat + "%3B" + location.lon; // When the nearest service centre data is retrieved from source by passing in the user's coords
 
-      $.getJSON(request_url, successfulRequest, failedRequest);
+      return $.getJSON(request_url);
+    }
+
+    function updateDetails(lat, lon) {
+      // When successfully get a the nearest service centre from endpoint
+      $.when(getNearestServiceCentre(lat, lon)).done(function (data) {
+        // If there are results
+        if (data.hasOwnProperty('features') && data.features.length) {
+          nearest_service_centre_data = data[0].properties;
+          updateCentreName();
+          updateServicesAvailable();
+          updateLocation(nearest_service_centre_data); // Class to show nearest service centre details
+
+          qg_nearest_service_centre.dom.$root.addClass("qg-site-footer-util__nearest-service-centre--has-result");
+        } else {
+          // Clear and hide details
+          reset();
+        }
+      }).fail(function () {
+        // If response fail 
+        // Reset the widget
+        reset();
+      });
+    } // Process the location to see if its Queensland
+
+
+    function processLocation(location) {
+      // Get country from location object
+      var country = location.country; // If theres a country value
+
+      if (country) {
+        // If in Australia
+        if (country === "Australia") {
+          var state = location.state; // If in Queensland
+
+          if (state === "QLD") {
+            updateDetails(location.lat, location.lon);
+          } else {
+            reset();
+          }
+        } else {
+          reset();
+        }
+      } else {
+        reset();
+      }
     }
 
     function subscribeToEvents() {
-      // On location updated event, update details
-      qg_user_location_module.event.on("location updated", getNearestServiceCentre); // If user's location is unknown clear details
-
-      qg_user_location_module.event.on("location unknown", reset);
+      qg_user_location_module.event.on("location updated", processLocation);
     }
 
     function cacheElements() {
@@ -553,7 +586,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
 
-    var qg_nearest_service_centre = {}; // To store respoonse results from FB
+    var qg_nearest_service_centre = {}; // To store the nearest service centre data;
 
     var nearest_service_centre_data; // To store the FB endpoint which is found on the root nodes data attribute
 
@@ -775,11 +808,15 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           hideSuburbList();
         }
-      });
+      }); // On focus of input
+
       qg_location_info_widget.dom.$modal_input.on("focus", function (event) {
+        // Add class
         qg_location_info_widget.dom.$modal.addClass("qg-location-info__modal--focused");
-      });
+      }); // On blur of input
+
       qg_location_info_widget.dom.$modal_input.on("blur", function (event) {
+        // Remove class
         qg_location_info_widget.dom.$modal.removeClass("qg-location-info__modal--focused");
       });
     }
@@ -792,9 +829,31 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
 
-    function updateLinkText(location) {
-      // Set the suburb in the link
-      qg_location_info_widget.dom.$link.text(location.suburb);
+    function processLocation(location) {
+      var location_name_text; // Get country from location object
+
+      var country = location.country; // If theres a country value
+
+      if (country) {
+        // If in Australia
+        if (country === "Australia") {
+          var state = location.state; // If in Queensland
+
+          if (state === "QLD") {
+            location_name_text = location.suburb;
+          } else {
+            // Display location as state
+            location_name_text = state;
+          }
+        } else {
+          // Display location as country
+          location_name_text = country;
+        }
+      } else {
+        location_name_text = "Unknown";
+      }
+
+      qg_location_info_widget.dom.$link.text(location_name_text);
     } // When location is set by the user location module
 
 
@@ -822,16 +881,10 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
 
-    function resetWidget() {
-      // Set link back to say "Unknown"
-      qg_location_info_widget.dom.$link.text("Unknown");
-    }
-
     function subscribeToEvents() {
-      qg_user_location_module.event.on("location updated", updateLinkText);
-      qg_user_location_module.event.on("location detected", updateModalInput);
-      qg_user_location_module.event.on("location unknown", shakeModalForm);
-      qg_user_location_module.event.on("location unknown", resetWidget);
+      qg_user_location_module.event.on("location updated", processLocation);
+      qg_user_location_module.event.on("location detection successful", updateModalInput);
+      qg_user_location_module.event.on("location detection failed", shakeModalForm);
     }
 
     function cacheElements() {
@@ -1250,30 +1303,63 @@ __webpack_require__.r(__webpack_exports__);
       }); // Empty wrapper and append icon
 
       qg_weather_info_widget.dom.$image_wrapper.empty().append($icon);
-    }
-
-    function updateWidget() {
-      // Update temperature
-      updateTemperature(); // Update image icon
-
-      updateIcon(); // Class to make the widget show is added to the root node
-
-      qg_weather_info_widget.dom.$root.addClass("qg-weather-info-widget--has-result");
     } // Get current forecast from open weather api
 
 
-    function getCurrentForecast(location) {
+    function getCurrentForecast(lat, lon) {
       // Create request url to pass to Open Weather API
       var request_url = weather_data_source + "&lat=" + location.lat + "&lon=" + location.lon; // When the weather data is retrieved from open weather API by passing in the user's coords
 
-      $.getJSON(request_url, function (data) {
+      return $.getJSON(request_url);
+    }
+
+    function updateWidget(lat, lon) {
+      // When successfully get a forecast from weather API
+      $.when(getCurrentForecast(lat, lon)).done(function (data) {
         // If result is valid
         if (data.hasOwnProperty("weather")) {
-          weather_data = data;
-          updateWidget();
+          weather_data = data; // Update temperature
+
+          updateTemperature(); // Update image icon
+
+          updateIcon(); // Class to make the widget show is added to the root node
+
+          qg_weather_info_widget.dom.$root.addClass("qg-weather-info-widget--has-result");
+        } else {
+          // If weather api could not give weather forecast for current coordinates
+          // Reset the widget
+          resetWidget();
         }
+      }).fail(function () {
+        // If response fail 
+        // Reset the widget
+        resetWidget();
       });
-    }
+    } // Process the location to see if its Queensland
+
+
+    function processLocation(location) {
+      // Get country from location object
+      var country = location.country; // If theres a country value
+
+      if (country) {
+        // If in Australia
+        if (country === "Australia") {
+          var state = location.state; // If in Queensland
+
+          if (state === "QLD") {
+            updateWidget(location.lat, location.lon);
+          } else {
+            resetWidget();
+          }
+        } else {
+          resetWidget();
+        }
+      } else {
+        resetWidget();
+      }
+    } // Reset the widget by clearing text, icon and hiding the widget
+
 
     function resetWidget() {
       // Empty temperature wrapper
@@ -1286,9 +1372,7 @@ __webpack_require__.r(__webpack_exports__);
 
     function subscribeToEvents() {
       // On "location updated" event, get current forecast
-      qg_user_location_module.event.on("location updated", getCurrentForecast); // If fail to detect user's location
-
-      qg_user_location_module.event.on("location unknown", resetWidget);
+      qg_user_location_module.event.on("location updated", processLocation);
     }
 
     function cacheElements() {

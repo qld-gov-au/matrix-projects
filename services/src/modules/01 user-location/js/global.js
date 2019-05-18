@@ -33,7 +33,7 @@
         
         // Emit event fail to detect user's location
         function detectLocationFailed() {
-            event.emit("location unknown");
+            event.emit("location detection failed");
         }
 
         // Check if user's location is already stored in session storage
@@ -49,10 +49,12 @@
                 var user_location_session_storage_json = JSON.parse(user_location_session_storage);
 
                 // Set details from stored Google maps result
-                user_location.lat = user_location_session_storage_json.lat;
-                user_location.lon = user_location_session_storage_json.lon;
-                user_location.suburb = user_location_session_storage_json.suburb;
-                user_location.lga = user_location_session_storage_json.lga;
+                user_location.lat     = user_location_session_storage_json.lat;
+                user_location.lon     = user_location_session_storage_json.lon;
+                user_location.suburb  = user_location_session_storage_json.suburb;
+                user_location.lga     = user_location_session_storage_json.lga;
+                user_location.state   = user_location_session_storage_json.state;
+                user_location.country = user_location_session_storage_json.country;
 
                 return true;
 
@@ -90,7 +92,7 @@
                 // Get address component object
                 var address_components = results.address_components;
 
-                // Get locality object 
+                // Get subrb from locality object 
                 var locality_obj = _.find(address_components, function(obj) { return obj.types.indexOf("locality") !== -1; });
 
                 // If locality object exists
@@ -101,10 +103,10 @@
 
                 }
                 
-                // Get Administrative Area Level 2 Object
+                // Get LGA from Administrative Area Level 2 Object
                 var admin_area_level_two_obj = _.find(address_components, function(obj) { return obj.types.indexOf("administrative_area_level_2") !== -1; });
 
-                // If administrative area level 2 object exists
+                // If Administrative Area Level 2 Object exists
                 if (admin_area_level_two_obj) {
 
                     // Set LGA
@@ -112,7 +114,29 @@
 
                 }
 
-                event.emit("location detected", user_location)
+                // Get state from Administrative Area Level 1 Object
+                var admin_area_level_one_obj = _.find(address_components, function(obj) { return obj.types.indexOf("administrative_area_level_1") !== -1; });
+
+                // If Administrative Area Level 1 Object exists
+                if (admin_area_level_one_obj) {
+
+                    // Set state
+                    user_location.state = admin_area_level_one_obj.short_name;
+
+                }
+
+                // Get country from Country Object
+                var country_obj = _.find(address_components, function(obj) { return obj.types.indexOf("country") !== -1; });
+
+                // If Administrative Area Level 1 Object exists
+                if (country_obj) {
+
+                    // Set state
+                    user_location.country = country_obj.long_name;
+
+                }
+
+                event.emit("location detection successful", user_location)
 
             }
 
@@ -164,7 +188,7 @@
 
                 // Only geocode if sububrb and lga is different
                 // Theres going to be some false positives such as Gold Coast City vs City of Gold Coast
-                $.when( geocode() ).done(function() {
+                $.when( geocode() ).always(function() {
                     
                     // Update user's location
                     updateLocation();
@@ -202,6 +226,12 @@
                         // Resolve the promise
                         dfd.resolve();
     
+                    }).fail(function() {
+
+                        // If failed to get results from Google Maps API
+                        dfd.fail();
+                        detectLocationFailed();
+
                     });
         
                 },  function (error) {
@@ -214,8 +244,8 @@
 
             } else {
 
-                // Geolocation not supported in browser
-                // Broadcast error occured while locating user
+                // If Geolocation is not supported in browser
+                dfd.fail();
                 detectLocationFailed();
 
             }
@@ -240,9 +270,9 @@
             } else {
 
                 // Get user's coordinates with HTML5 geolocation so that we can reverse geocode
-                $.when( geolocate() ).done(function() {
+                $.when( geolocate() ).always(function() {
                     
-                    // When located, Update user's location
+                    // Update user's location
                     updateLocation();
 
                 });

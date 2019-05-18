@@ -77,41 +77,94 @@
 
         }
 
-        function updateWidget() {
-
-            // Update temperature
-            updateTemperature();
-
-            // Update image icon
-            updateIcon();
-
-            // Class to make the widget show is added to the root node
-            qg_weather_info_widget.dom.$root.addClass("qg-weather-info-widget--has-result");
-
-        }
-
         // Get current forecast from open weather api
-        function getCurrentForecast(location) {
+        function getCurrentForecast(lat, lon) {
 
             // Create request url to pass to Open Weather API
             var request_url = weather_data_source + "&lat=" + location.lat + "&lon=" + location.lon;
             
             // When the weather data is retrieved from open weather API by passing in the user's coords
-            $.getJSON( request_url, function( data ) {
-                
+            return $.getJSON( request_url );
+
+        }
+
+        function updateWidget(lat, lon) {
+
+            // When successfully get a forecast from weather API
+            $.when( getCurrentForecast(lat, lon) ).done(function( data ) {
+                    
                 // If result is valid
                 if (data.hasOwnProperty("weather")) {
 
                     weather_data = data;
 
-                    updateWidget()
+                    // Update temperature
+                    updateTemperature();
 
-                } 
+                    // Update image icon
+                    updateIcon();
+
+                    // Class to make the widget show is added to the root node
+                    qg_weather_info_widget.dom.$root.addClass("qg-weather-info-widget--has-result");
+
+                } else {
+
+                    // If weather api could not give weather forecast for current coordinates
+                    // Reset the widget
+                    resetWidget();
+
+                }
+
+            }).fail(function() {
+                
+                // If response fail 
+                // Reset the widget
+                resetWidget();
                 
             });
 
         }
 
+        // Process the location to see if its Queensland
+        function processLocation(location) {
+
+            // Get country from location object
+            var country = location.country;
+            
+            // If theres a country value
+            if (country) {
+                
+                // If in Australia
+                if (country === "Australia") {
+
+                    var state = location.state;
+
+                    // If in Queensland
+                    if (state === "QLD") {
+
+                        updateWidget(location.lat, location.lon);
+
+                    } else {
+
+                        resetWidget();
+
+                    }
+
+                } else {
+
+                    resetWidget();
+
+                }
+
+            } else {
+
+                resetWidget();
+  
+            }
+
+        }
+
+        // Reset the widget by clearing text, icon and hiding the widget
         function resetWidget() {
 
             // Empty temperature wrapper
@@ -128,10 +181,7 @@
         function subscribeToEvents() {
             
             // On "location updated" event, get current forecast
-            qg_user_location_module.event.on("location updated", getCurrentForecast);
-
-            // If fail to detect user's location
-            qg_user_location_module.event.on("location unknown", resetWidget);
+            qg_user_location_module.event.on("location updated", processLocation);
 
         }
 

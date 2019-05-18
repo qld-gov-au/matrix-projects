@@ -17,7 +17,7 @@
         // Need to get the funnelback domain from the source API endpoint and concatenate with display url
         function generateLinkToCentreDetail() {
 
-            // Get display url parameter from nearest centre data
+            // Get display url
             var display_url = nearest_service_centre_data.displayUrl;
 
             // Get funnelback domain from source url by splitting the URL into a string and getting everything before the ? char
@@ -29,60 +29,37 @@
 
         function updateCentreName() {
 
-            // Get centre name from data 
-            var centre_name = nearest_service_centre_data.title;
+            // Get nearest centre name
+            var nearest_centre_name = nearest_service_centre_data.title;
 
-            // Generate link to centre detail page
-            var link = generateLinkToCentreDetail();
+            var nearest_centre_link = generateLinkToCentreDetail();
 
             // Update heading
-            qg_nearest_service_centre.dom.$centre_name.text(centre_name);
+            qg_nearest_service_centre.dom.$centre_name.text(nearest_centre_name);
 
             // Update link
             qg_nearest_service_centre.dom.$centre_name.prop("href", link);
 
         }
 
-        function clearCentreName() {
-
-            // Clear heading
-            qg_nearest_service_centre.dom.$centre_name.text("");
-
-            // Change href property to be #
-            qg_nearest_service_centre.dom.$centre_name.prop("href", "#");
-
-        }
-
         function updateServicesAvailable() {
             
-            // If services key exists and is not empty
+            // If services key exists and is not empty, that means there are services at the nearest centre
             if (nearest_service_centre_data.metaData.hasOwnProperty('s') && nearest_service_centre_data.metaData.s.length) {
                 
-                // Generate link to nearest service centre detail page
-                var link = generateLinkToCentreDetail();
-
                 // Update href property to be link to nearest service centre detail page
                 qg_nearest_service_centre.dom.$services_available_link.prop("href", link);
+                qg_nearest_service_centre.dom.$services_available_wrapper.show();
 
             } else {
 
-                // Hide services available link
-                qg_nearest_service_centre.dom.$services_available_wrapper.hide();
-
-                // Change href to #
-                qg_nearest_service_centre.dom.$services_available_link.prop("href", "#");
+                clearServicesAvailable();
 
             }
 
         }
 
-        function clearServicesAvailable() {
-            qg_nearest_service_centre.dom.$services_available_link.prop("href", "#");
-        }
-
         function updateLocationDistanceFrom() {
-
-            // Update distance from ;
 
             // If kmFromOrigin key exists and is not empty
             if (nearest_service_centre_data.hasOwnProperty('kmFromOrigin') && nearest_service_centre_data.kmFromOrigin.length) {
@@ -119,27 +96,29 @@
             updatelocationAddress();
         }
 
+        function clearCentreName() {
+
+            // Clear heading
+            qg_nearest_service_centre.dom.$centre_name.text("");
+
+            // Change href property to be #
+            qg_nearest_service_centre.dom.$centre_name.prop("href", "#");
+
+        }
+
+        function clearServicesAvailable() {
+
+            qg_nearest_service_centre.dom.$services_available_wrapper.hide();
+
+            qg_nearest_service_centre.dom.$services_available_link.prop("href", "#");
+        }
+
+        
+
         // Clear location related details
         function clearLocation() {
             qg_nearest_service_centre.dom.$location_distance_from.text("");
             qg_nearest_service_centre.dom.$location_address.html("");
-        }
-
-        // Update details
-        function updateDetails() {
-
-            // Update centre name
-            updateCentreName();
-
-            // Update services available text
-            updateServicesAvailable();
-
-            // Update location text
-            updateLocation();
-
-            // Class to show nearest service centre details
-            qg_nearest_service_centre.dom.$root.addClass("qg-site-footer-util__nearest-service-centre--has-result");
-
         }
 
         // Clear and hide details
@@ -155,53 +134,95 @@
 
         }
 
-        // If request to FB collection is successful
-        function successfulRequest(data) {
-
-            // If there are results in the features key and there is a result
-            if (data.hasOwnProperty('features') && data.features.length) {
-
-                // Get result from 1st item in array
-                nearest_service_centre_data = data.features[0].properties;
-
-                // Populate and show details
-                updateDetails();
-
-            } else {
-
-                // Clear and hide details
-                reset();
-                
-            }
-
-        } 
-        
-        // If request to FB collection failed
-        function failedRequest(data) {
-            
-            // Clear and hide details
-            reset();
-
-        }
-
         // Update nearest service centre details
-        function getNearestServiceCentre(location) {
+        function getNearestServiceCentre(lat, lon) {
 
             // Create request url by adding coordinates as parameters
             var request_url = nearest_service_center_data_source_url + "&origin=" + location.lat + "%3B" + location.lon;
         
             // When the nearest service centre data is retrieved from source by passing in the user's coords
-            $.getJSON( request_url, successfulRequest, failedRequest);
+            return $.getJSON( request_url );
+
+        }
+
+        function updateDetails(lat, lon) {
+
+            // When successfully get a the nearest service centre from endpoint
+            $.when( getNearestServiceCentre(lat, lon) ).done(function( data ) {
+                            
+                // If there are results
+                if (data.hasOwnProperty('features') && data.features.length) {
+
+                    nearest_service_centre_data = data[0].properties;
+
+                    updateCentreName();
+                    
+                    updateServicesAvailable();
+
+                    updateLocation(nearest_service_centre_data);
+
+                    // Class to show nearest service centre details
+                    qg_nearest_service_centre.dom.$root.addClass("qg-site-footer-util__nearest-service-centre--has-result");
+
+                } else {
+
+                    // Clear and hide details
+                    reset();
+                    
+                }
+
+            }).fail(function() {
+                
+                // If response fail 
+                // Reset the widget
+                reset();
+                
+            });
+
+        }
+
+        // Process the location to see if its Queensland
+        function processLocation(location) {
+
+            // Get country from location object
+            var country = location.country;
+            
+            // If theres a country value
+            if (country) {
+                
+                // If in Australia
+                if (country === "Australia") {
+
+                    var state = location.state;
+
+                    // If in Queensland
+                    if (state === "QLD") {
+
+                        updateDetails(location.lat, location.lon);
+
+                    } else {
+
+                        reset();
+
+                    }
+
+                } else {
+
+                    reset();
+
+                }
+
+            } else {
+
+                reset();
+  
+            }
 
         }
 
         function subscribeToEvents() {
             
-            // On location updated event, update details
-            qg_user_location_module.event.on("location updated", getNearestServiceCentre);
-
-            // If user's location is unknown clear details
-            qg_user_location_module.event.on("location unknown", reset);
+            qg_user_location_module.event.on("location updated", processLocation);
 
         }
 
@@ -244,7 +265,7 @@
         
         var qg_nearest_service_centre = {};
 
-        // To store respoonse results from FB
+        // To store the nearest service centre data;
         var nearest_service_centre_data;
 
         // To store the FB endpoint which is found on the root nodes data attribute

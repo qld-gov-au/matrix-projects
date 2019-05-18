@@ -164,14 +164,18 @@
 
             });
 
+            // On focus of input
             qg_location_info_widget.dom.$modal_input.on("focus", function(event) {
-
+                
+                // Add class
                 qg_location_info_widget.dom.$modal.addClass("qg-location-info__modal--focused");
 
             });
 
+            // On blur of input
             qg_location_info_widget.dom.$modal_input.on("blur", function(event) {
 
+                // Remove class
                 qg_location_info_widget.dom.$modal.removeClass("qg-location-info__modal--focused");
 
             });
@@ -188,10 +192,48 @@
 
         }
 
-        function updateLinkText(location) {
+        function processLocation(location) {
 
-            // Set the suburb in the link
-            qg_location_info_widget.dom.$link.text(location.suburb);
+            var location_name_text;
+            
+            // Get country from location object
+            var country = location.country;
+            
+
+            // If theres a country value
+            if (country) {
+                
+                // If in Australia
+                if (country === "Australia") {
+
+                    var state = location.state;
+
+                    // If in Queensland
+                    if (state === "QLD") {
+
+                        location_name_text = location.suburb;
+
+                    } else {
+
+                        // Display location as state
+                        location_name_text = state;
+
+                    }
+
+                } else {
+
+                    // Display location as country
+                    location_name_text = country;
+
+                }
+
+            } else {
+
+                location_name_text = "Unknown";
+  
+            }
+
+            qg_location_info_widget.dom.$link.text(location_name_text);
 
         }
 
@@ -232,22 +274,13 @@
             
         }
 
-        function resetWidget() {
-
-             // Set link back to say "Unknown"
-            qg_location_info_widget.dom.$link.text("Unknown");
-
-        }
-
         function subscribeToEvents() {
 
-            qg_user_location_module.event.on("location updated", updateLinkText);
+            qg_user_location_module.event.on("location updated", processLocation);
 
-            qg_user_location_module.event.on("location detected", updateModalInput);
+            qg_user_location_module.event.on("location detection successful", updateModalInput);
 
-            qg_user_location_module.event.on("location unknown", shakeModalForm);
-
-            qg_user_location_module.event.on("location unknown", resetWidget);
+            qg_user_location_module.event.on("location detection failed", shakeModalForm);
 
         }
 
