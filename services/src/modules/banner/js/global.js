@@ -36,26 +36,37 @@
         // Set banner by looking at user's lga and banner JSON list
         function setBanner(location) {
 
-            // Get the LGA
-            var current_location_lga = location.lga;
+            if (location.lga) {
 
-            // Check if any banners in the banner JSON list contains this LGA
-            var filtered_banner = _.find(banners_list, function(obj) {return  obj.lgas.indexOf(current_location_lga) !== -1 });
+                // Get the LGA
+                var current_location_lga = location.lga;
 
-            // If theres a banner
-            if (filtered_banner) {
-                
-                // Update banner image and caption
-                updateBanner(filtered_banner.url, filtered_banner.caption);
+                // Check if any banners in the banner JSON list contains this LGA
+                var filtered_banner = _.find(banners_list, function(obj) {return  obj.lgas.indexOf(current_location_lga) !== -1 });
+
+                // If theres a banner
+                if (filtered_banner) {
+                    
+                    // Update banner image and caption
+                    updateBanner(filtered_banner.url, filtered_banner.caption);
+
+                } else {
+                    
+                    // No banner found
+                    // This means the LGA from Google didnt not match any LGAs in any banner
+                    // Pick a random banner as a fallback
+                    randomiseBanner();
+
+                }
 
             } else {
-                
-                // No banner found
-                // This means the LGA from Google didnt not match any LGAs in any banner
-                // Pick a random banner as a fallback
+
+                // No LGA Value.
+                // This can happen if user blocks geolocation when loading the page
                 randomiseBanner();
 
             }
+            
             
         }
 
