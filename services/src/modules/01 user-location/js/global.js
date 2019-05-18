@@ -78,7 +78,7 @@
         function queryMapAPISuccessful(data) {
 
             // If successful request of location from Google
-            if (data.hasOwnProperty("results")) {
+            if (data.status === "OK" && data.results.length) {
 
                 // Get the first result item in the returned JSON
                 var results = data.results[0];
