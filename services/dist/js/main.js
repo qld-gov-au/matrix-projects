@@ -484,7 +484,8 @@ __webpack_require__.r(__webpack_exports__);
       qg_nearest_service_centre.dom.$centre_name.text(""); // Change href property to be #
 
       qg_nearest_service_centre.dom.$centre_name.prop("href", "#");
-    }
+    } // Clear services available link
+
 
     function clearServicesAvailable() {
       qg_nearest_service_centre.dom.$services_available_wrapper.hide();
@@ -498,7 +499,7 @@ __webpack_require__.r(__webpack_exports__);
     } // Clear and hide details
 
 
-    function reset() {
+    function clearDetails() {
       clearCentreName();
       clearServicesAvailable();
       clearLocation();
@@ -526,12 +527,12 @@ __webpack_require__.r(__webpack_exports__);
           qg_nearest_service_centre.dom.$root.addClass("qg-site-footer-util__nearest-service-centre--has-result");
         } else {
           // Clear and hide details
-          reset();
+          clearDetails();
         }
       }).fail(function () {
         // If response fail 
-        // Reset the widget
-        reset();
+        // Clear details
+        clearDetails();
       });
     } // Process the location to see if its Queensland
 
@@ -548,13 +549,13 @@ __webpack_require__.r(__webpack_exports__);
           if (state === "QLD") {
             updateDetails(location.lat, location.lon);
           } else {
-            reset();
+            clearDetails();
           }
         } else {
-          reset();
+          clearDetails();
         }
       } else {
-        reset();
+        clearDetails();
       }
     }
 

@@ -108,14 +108,13 @@
 
         }
 
+        // Clear services available link
         function clearServicesAvailable() {
 
             qg_nearest_service_centre.dom.$services_available_wrapper.hide();
 
             qg_nearest_service_centre.dom.$services_available_link.prop("href", "#");
         }
-
-        
 
         // Clear location related details
         function clearLocation() {
@@ -124,7 +123,7 @@
         }
 
         // Clear and hide details
-        function reset() {
+        function clearDetails() {
 
             clearCentreName();
 
@@ -169,15 +168,15 @@
                 } else {
 
                     // Clear and hide details
-                    reset();
+                    clearDetails();
                     
                 }
 
             }).fail(function() {
                 
                 // If response fail 
-                // Reset the widget
-                reset();
+                // Clear details
+                clearDetails();
                 
             });
 
@@ -204,19 +203,19 @@
 
                     } else {
 
-                        reset();
+                        clearDetails();
 
                     }
 
                 } else {
 
-                    reset();
+                    clearDetails();
 
                 }
 
             } else {
 
-                reset();
+                clearDetails();
   
             }
 
