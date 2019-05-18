@@ -507,7 +507,7 @@ __webpack_require__.r(__webpack_exports__);
 
     function getNearestServiceCentre(lat, lon) {
       // Create request url by adding coordinates as parameters
-      var request_url = nearest_service_center_data_source_url + "&origin=" + location.lat + "%3B" + location.lon; // When the nearest service centre data is retrieved from source by passing in the user's coords
+      var request_url = nearest_service_center_data_source_url + "&origin=" + lat + "%3B" + lon; // When the nearest service centre data is retrieved from source by passing in the user's coords
 
       return $.getJSON(request_url);
     }
@@ -1308,7 +1308,7 @@ __webpack_require__.r(__webpack_exports__);
 
     function getCurrentForecast(lat, lon) {
       // Create request url to pass to Open Weather API
-      var request_url = weather_data_source + "&lat=" + location.lat + "&lon=" + location.lon; // When the weather data is retrieved from open weather API by passing in the user's coords
+      var request_url = weather_data_source + "&lat=" + lat + "&lon=" + lon; // When the weather data is retrieved from open weather API by passing in the user's coords
 
       return $.getJSON(request_url);
     }

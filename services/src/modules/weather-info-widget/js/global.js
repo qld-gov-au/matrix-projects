@@ -81,7 +81,7 @@
         function getCurrentForecast(lat, lon) {
 
             // Create request url to pass to Open Weather API
-            var request_url = weather_data_source + "&lat=" + location.lat + "&lon=" + location.lon;
+            var request_url = weather_data_source + "&lat=" + lat + "&lon=" + lon;
             
             // When the weather data is retrieved from open weather API by passing in the user's coords
             return $.getJSON( request_url );

@@ -138,7 +138,7 @@
         function getNearestServiceCentre(lat, lon) {
 
             // Create request url by adding coordinates as parameters
-            var request_url = nearest_service_center_data_source_url + "&origin=" + location.lat + "%3B" + location.lon;
+            var request_url = nearest_service_center_data_source_url + "&origin=" + lat + "%3B" + lon;
         
             // When the nearest service centre data is retrieved from source by passing in the user's coords
             return $.getJSON( request_url );
