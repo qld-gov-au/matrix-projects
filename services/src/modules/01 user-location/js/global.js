@@ -10,16 +10,19 @@
      * - getting user's coordinate with HTML5 geolocation and query the Google Maps API; or
      * - query the Google Maps API with suburb and LGA (Local Government Area)
      * 
-     * Once the user's location is known, an object is saved to session sorage
-     * User's location is an object with 4 properties
+     * Once the user's location is detected, it can be saved to session storage as a JSON string.
+     * User's location is an object with 6 properties
      * - lat
      * - lon
      * - suburb
      * - lga
+     * - state
+     * - country
      * 
      * EventEmitter2 (https://github.com/EventEmitter2/EventEmitter2) is used to broadcast events such as
-     * - succesfully located the user
-     * - failed to locate the user
+     * - succesfully detected the user's location
+     * - failing to detect the user's location
+     * - setting the user's location
      * 
      * Other modules such as the following are subscribed to these events and will react:
      * - banner 
@@ -36,10 +39,15 @@
             event.emit("location detection failed");
         }
 
-        // Check if user's location is already stored in session storage
+        // Emit event user's location has been set
+        function emitLocationSetEvent() {
+            event.emit("location set", user_location.set);
+        }
+
+        // Check if user's location is stored in session storage
         function checkSessionStorage() {
 
-            // Check if Google maps JSON result is stored in session storage
+            // Check session storage
             var user_location_session_storage = sessionStorage.getItem('user_location');
 
             // If exists
@@ -48,7 +56,7 @@
                 // Parse the string into a JSON object
                 var user_location_session_storage_json = JSON.parse(user_location_session_storage);
 
-                // Set details from stored Google maps result
+                // Set location details
                 user_location.set.lat     = user_location_session_storage_json.lat;
                 user_location.set.lon     = user_location_session_storage_json.lon;
                 user_location.set.suburb  = user_location_session_storage_json.suburb;
@@ -66,7 +74,8 @@
             
         }
 
-        function updateLocation() {
+        // Set Location
+        function setLocation() {
 
             user_location.set.lat = user_location.detected.lat;
             user_location.set.lon = user_location.detected.lon;
@@ -80,10 +89,7 @@
 
         }
 
-        function emitLocationSetEvent() {
-            event.emit("location set", user_location.set);
-        }
-
+        // Query the Google Maps AI has been successul
         function queryMapAPISuccessful(data) {
 
             // If successful request of location from Google
@@ -145,6 +151,7 @@
 
                 }
 
+                // Emit detection of user's location is successful
                 event.emit("location detection successful", user_location.detected)
 
             }
@@ -162,29 +169,29 @@
                 
         }
 
-        // Locate user with provided suburb and LGA
+        // Locate user with suburb and LGA
         function geocode() {
 
             // Create address parameter to pass to endpoint
             var parameters = "&address=" + user_location.detected.suburb  + "," + user_location.detected.lga + ",qld";
             
-            // Get user's current location
+            // Get user's current location from Google maps API
             return queryMapAPI(parameters);
             
         }
 
-        // Locate suburb and LGA with coordinates
+        // Locate user with coordinates
         function reverseGeocode() {
 
             // Create address parameter to pass to endpoint
             var parameters = "&address=" + user_location.detected.lat + "," + user_location.detected.lon;
 
-            // Get user's current location
+            // Get user's current location from Google maps API
             return queryMapAPI(parameters);
             
         }
 
-        // // Check if suburb and LGA arguments are not the same as current location
+        // Check if suburb and LGA arguments are not the same as current location
         function checkArea(suburb, lga) {
             
             // If user's current location is not the same as suburb argument OR
@@ -199,10 +206,11 @@
                 // This is needed in case Google doesn't know what LGA the suburb is in e.g. Hope Value suburb
                 user_location.detected.lga = lga;
                 
+                // When geolocation is finished
                 $.when( geocode() ).always(function() {
                     
-                    // Update user's location
-                    updateLocation();
+                    // Set user's location
+                    setLocation();
                     emitLocationSetEvent();
                     
                 });
@@ -284,8 +292,8 @@
                 // Get user's coordinates with HTML5 geolocation so that we can reverse geocode
                 $.when( geolocate() ).always(function() {
                     
-                    // Update user's location
-                    updateLocation();
+                    // Set user's location
+                    setLocation();
                     emitLocationSetEvent();
 
                 });

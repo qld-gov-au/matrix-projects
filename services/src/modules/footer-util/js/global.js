@@ -185,38 +185,15 @@
         // Process the location to see if its Queensland
         function processLocation(location) {
 
-            // Get country from location object
-            var country = location.country;
-            
-            // If theres a country value
-            if (country) {
-                
-                // If in Australia
-                if (country === "Australia") {
+            // If in Queensland
+            if (state === "QLD") {
 
-                    var state = location.state;
-
-                    // If in Queensland
-                    if (state === "QLD") {
-
-                        updateDetails(location.lat, location.lon);
-
-                    } else {
-
-                        clearDetails();
-
-                    }
-
-                } else {
-
-                    clearDetails();
-
-                }
+                updateDetails(location.lat, location.lon);
 
             } else {
 
                 clearDetails();
-  
+
             }
 
         }

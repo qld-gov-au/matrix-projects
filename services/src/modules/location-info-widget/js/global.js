@@ -198,7 +198,6 @@
             // Get country from location object
             var country = location.country;
             
-
             // If theres a country value
             if (country) {
                 
@@ -210,11 +209,13 @@
                     // If in Queensland
                     if (state === "QLD") {
 
+                        // Display location as QLD suburb
                         location_name_text = location.suburb;
 
                     } else {
 
                         // Display location as state
+                        // Applies to interstate e.g. NSW, VIC
                         location_name_text = state;
 
                     }
@@ -232,6 +233,7 @@
   
             }
 
+            // Update location link text
             qg_location_info_widget.dom.$link.text(location_name_text);
 
         }

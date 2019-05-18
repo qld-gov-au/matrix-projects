@@ -8,9 +8,9 @@
      * ====================
      * 
      * This is a banner which has a dynamic background image depending on the user's current location.
-     * If the user's location is succesfully detected by the user location module, the banner image related to the user's LGA is picked.
+     * When the user's location is  set by the user location module, the banner image related to the user's LGA is picked.
      * 
-     * If the user's location could not be detected by the user location module, a random image is picked instead.
+     * If the user's location LGA is not valid, a random image is picked.
      * 
      */
 
@@ -66,7 +66,6 @@
                 randomiseBanner();
 
             }
-            
             
         }
 

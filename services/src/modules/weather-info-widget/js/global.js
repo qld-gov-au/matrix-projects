@@ -6,11 +6,13 @@
      * ==========================
      * Weather Info Widget Module
      * ==========================
-     * Deals with getting and displaying the current forecast depending on the user's coordinates
+     * Deals with getting and displaying the current forecast depending on the user's coordinates.
      * 
-     * When coordinates are received, the widget makes a call to the open weather API with the coordinates
-     * The response is the current forecast in JSON
+     * When coordinates are received, the widget makes a call to the open weather API with the coordinates.
+     * The response is in JSON.
      * The widget is then updated with the current forecast of the user's location and a related weather icon is shown
+     * 
+     * Note that this widget will fetch get and display the current forecast if the user's location is Queensland.
      * 
      */
 
@@ -128,38 +130,17 @@
         // Process the location to see if its Queensland
         function processLocation(location) {
 
-            // Get country from location object
-            var country = location.country;
-            
-            // If theres a country value
-            if (country) {
-                
-                // If in Australia
-                if (country === "Australia") {
+            var state = location.state;
 
-                    var state = location.state;
+            // If in Queensland
+            if (state === "QLD") {
 
-                    // If in Queensland
-                    if (state === "QLD") {
-
-                        updateWidget(location.lat, location.lon);
-
-                    } else {
-
-                        resetWidget();
-
-                    }
-
-                } else {
-
-                    resetWidget();
-
-                }
+                updateWidget(location.lat, location.lon);
 
             } else {
 
                 resetWidget();
-  
+
             }
 
         }

@@ -56,16 +56,19 @@ __webpack_require__.r(__webpack_exports__);
    * - getting user's coordinate with HTML5 geolocation and query the Google Maps API; or
    * - query the Google Maps API with suburb and LGA (Local Government Area)
    * 
-   * Once the user's location is known, an object is saved to session sorage
-   * User's location is an object with 4 properties
+   * Once the user's location is detected, it can be saved to session storage as a JSON string.
+   * User's location is an object with 6 properties
    * - lat
    * - lon
    * - suburb
    * - lga
+   * - state
+   * - country
    * 
    * EventEmitter2 (https://github.com/EventEmitter2/EventEmitter2) is used to broadcast events such as
-   * - succesfully located the user
-   * - failed to locate the user
+   * - succesfully detected the user's location
+   * - failing to detect the user's location
+   * - setting the user's location
    * 
    * Other modules such as the following are subscribed to these events and will react:
    * - banner 
@@ -79,16 +82,21 @@ __webpack_require__.r(__webpack_exports__);
     // Emit event fail to detect user's location
     function detectLocationFailed() {
       event.emit("location detection failed");
-    } // Check if user's location is already stored in session storage
+    } // Emit event user's location has been set
+
+
+    function emitLocationSetEvent() {
+      event.emit("location set", user_location.set);
+    } // Check if user's location is stored in session storage
 
 
     function checkSessionStorage() {
-      // Check if Google maps JSON result is stored in session storage
+      // Check session storage
       var user_location_session_storage = sessionStorage.getItem('user_location'); // If exists
 
       if (user_location_session_storage !== null) {
         // Parse the string into a JSON object
-        var user_location_session_storage_json = JSON.parse(user_location_session_storage); // Set details from stored Google maps result
+        var user_location_session_storage_json = JSON.parse(user_location_session_storage); // Set location details
 
         user_location.set.lat = user_location_session_storage_json.lat;
         user_location.set.lon = user_location_session_storage_json.lon;
@@ -100,9 +108,10 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         return false;
       }
-    }
+    } // Set Location
 
-    function updateLocation() {
+
+    function setLocation() {
       user_location.set.lat = user_location.detected.lat;
       user_location.set.lon = user_location.detected.lon;
       user_location.set.suburb = user_location.detected.suburb;
@@ -111,11 +120,8 @@ __webpack_require__.r(__webpack_exports__);
       user_location.set.country = user_location.detected.country; // Store location object in session storage
 
       sessionStorage.setItem("user_location", JSON.stringify(user_location.set));
-    }
+    } // Query the Google Maps AI has been successul
 
-    function emitLocationSetEvent() {
-      event.emit("location set", user_location.set);
-    }
 
     function queryMapAPISuccessful(data) {
       // If successful request of location from Google
@@ -170,7 +176,8 @@ __webpack_require__.r(__webpack_exports__);
         if (country_obj) {
           // Set state
           user_location.detected.country = country_obj.long_name;
-        }
+        } // Emit detection of user's location is successful
+
 
         event.emit("location detection successful", user_location.detected);
       }
@@ -182,23 +189,23 @@ __webpack_require__.r(__webpack_exports__);
       var endpoint_to_call = map_data_api + parameters; // Make the call
 
       return $.getJSON(endpoint_to_call, queryMapAPISuccessful);
-    } // Locate user with provided suburb and LGA
+    } // Locate user with suburb and LGA
 
 
     function geocode() {
       // Create address parameter to pass to endpoint
-      var parameters = "&address=" + user_location.detected.suburb + "," + user_location.detected.lga + ",qld"; // Get user's current location
+      var parameters = "&address=" + user_location.detected.suburb + "," + user_location.detected.lga + ",qld"; // Get user's current location from Google maps API
 
       return queryMapAPI(parameters);
-    } // Locate suburb and LGA with coordinates
+    } // Locate user with coordinates
 
 
     function reverseGeocode() {
       // Create address parameter to pass to endpoint
-      var parameters = "&address=" + user_location.detected.lat + "," + user_location.detected.lon; // Get user's current location
+      var parameters = "&address=" + user_location.detected.lat + "," + user_location.detected.lon; // Get user's current location from Google maps API
 
       return queryMapAPI(parameters);
-    } // // Check if suburb and LGA arguments are not the same as current location
+    } // Check if suburb and LGA arguments are not the same as current location
 
 
     function checkArea(suburb, lga) {
@@ -210,10 +217,11 @@ __webpack_require__.r(__webpack_exports__);
         user_location.detected.suburb = suburb; // Set LGA argument as detected LGA
         // This is needed in case Google doesn't know what LGA the suburb is in e.g. Hope Value suburb
 
-        user_location.detected.lga = lga;
+        user_location.detected.lga = lga; // When geolocation is finished
+
         $.when(geocode()).always(function () {
-          // Update user's location
-          updateLocation();
+          // Set user's location
+          setLocation();
           emitLocationSetEvent();
         });
       }
@@ -268,8 +276,8 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         // Get user's coordinates with HTML5 geolocation so that we can reverse geocode
         $.when(geolocate()).always(function () {
-          // Update user's location
-          updateLocation();
+          // Set user's location
+          setLocation();
           emitLocationSetEvent();
         });
       }
@@ -312,9 +320,9 @@ __webpack_require__.r(__webpack_exports__);
    * ====================
    * 
    * This is a banner which has a dynamic background image depending on the user's current location.
-   * If the user's location is succesfully detected by the user location module, the banner image related to the user's LGA is picked.
+   * When the user's location is  set by the user location module, the banner image related to the user's LGA is picked.
    * 
-   * If the user's location could not be detected by the user location module, a random image is picked instead.
+   * If the user's location LGA is not valid, a random image is picked.
    * 
    */
 
@@ -557,22 +565,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
     function processLocation(location) {
-      // Get country from location object
-      var country = location.country; // If theres a country value
-
-      if (country) {
-        // If in Australia
-        if (country === "Australia") {
-          var state = location.state; // If in Queensland
-
-          if (state === "QLD") {
-            updateDetails(location.lat, location.lon);
-          } else {
-            clearDetails();
-          }
-        } else {
-          clearDetails();
-        }
+      // If in Queensland
+      if (state === "QLD") {
+        updateDetails(location.lat, location.lon);
       } else {
         clearDetails();
       }
@@ -861,9 +856,11 @@ __webpack_require__.r(__webpack_exports__);
           var state = location.state; // If in Queensland
 
           if (state === "QLD") {
+            // Display location as QLD suburb
             location_name_text = location.suburb;
           } else {
             // Display location as state
+            // Applies to interstate e.g. NSW, VIC
             location_name_text = state;
           }
         } else {
@@ -872,7 +869,8 @@ __webpack_require__.r(__webpack_exports__);
         }
       } else {
         location_name_text = "Unknown";
-      }
+      } // Update location link text
+
 
       qg_location_info_widget.dom.$link.text(location_name_text);
     } // When location is set by the user location module
@@ -1278,11 +1276,13 @@ __webpack_require__.r(__webpack_exports__);
   * ==========================
   * Weather Info Widget Module
   * ==========================
-  * Deals with getting and displaying the current forecast depending on the user's coordinates
+  * Deals with getting and displaying the current forecast depending on the user's coordinates.
   * 
-  * When coordinates are received, the widget makes a call to the open weather API with the coordinates
-  * The response is the current forecast in JSON
+  * When coordinates are received, the widget makes a call to the open weather API with the coordinates.
+  * The response is in JSON.
   * The widget is then updated with the current forecast of the user's location and a related weather icon is shown
+  * 
+  * Note that this widget will fetch get and display the current forecast if the user's location is Queensland.
   * 
   */
 
@@ -1363,22 +1363,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
     function processLocation(location) {
-      // Get country from location object
-      var country = location.country; // If theres a country value
+      var state = location.state; // If in Queensland
 
-      if (country) {
-        // If in Australia
-        if (country === "Australia") {
-          var state = location.state; // If in Queensland
-
-          if (state === "QLD") {
-            updateWidget(location.lat, location.lon);
-          } else {
-            resetWidget();
-          }
-        } else {
-          resetWidget();
-        }
+      if (state === "QLD") {
+        updateWidget(location.lat, location.lon);
       } else {
         resetWidget();
       }
