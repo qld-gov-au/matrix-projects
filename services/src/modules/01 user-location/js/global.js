@@ -49,12 +49,12 @@
                 var user_location_session_storage_json = JSON.parse(user_location_session_storage);
 
                 // Set details from stored Google maps result
-                user_location.lat     = user_location_session_storage_json.lat;
-                user_location.lon     = user_location_session_storage_json.lon;
-                user_location.suburb  = user_location_session_storage_json.suburb;
-                user_location.lga     = user_location_session_storage_json.lga;
-                user_location.state   = user_location_session_storage_json.state;
-                user_location.country = user_location_session_storage_json.country;
+                user_location.set.lat     = user_location_session_storage_json.lat;
+                user_location.set.lon     = user_location_session_storage_json.lon;
+                user_location.set.suburb  = user_location_session_storage_json.suburb;
+                user_location.set.lga     = user_location_session_storage_json.lga;
+                user_location.set.state   = user_location_session_storage_json.state;
+                user_location.set.country = user_location_session_storage_json.country;
 
                 return true;
 
@@ -68,11 +68,20 @@
 
         function updateLocation() {
 
+            user_location.set.lat = user_location.detected.lon;
+            user_location.set.lon = user_location.detected.lon;
+            user_location.set.suburb = user_location.detected.suburb;
+            user_location.set.lga = user_location.detected.lga;
+            user_location.set.state = user_location.detected.state;
+            user_location.set.country = user_location.detected.country;
+            
             // Store location object in session storage
-            sessionStorage.setItem("user_location", JSON.stringify(user_location));
+            sessionStorage.setItem("user_location", JSON.stringify(user_location.set));
 
-            event.emit("location updated", user_location);
+        }
 
+        function emitLocationSetEvent() {
+            event.emit("location set", user_location.set);
         }
 
         function queryMapAPISuccessful(data) {
@@ -84,10 +93,10 @@
                 var results = data.results[0];
 
                 // Set latitutde
-                user_location.lat = results.geometry.location.lat;
+                user_location.detected.lat = results.geometry.location.lat;
 
                 // Set longtitude - Note that google's data is spelt lng
-                user_location.lon = results.geometry.location.lng;
+                user_location.detected.lon = results.geometry.location.lng;
 
                 // Get address component object
                 var address_components = results.address_components;
@@ -99,7 +108,7 @@
                 if (locality_obj) {
 
                     // Set suburb
-                    user_location.suburb = locality_obj.long_name;
+                    user_location.detected.suburb = locality_obj.long_name;
 
                 }
                 
@@ -110,7 +119,7 @@
                 if (admin_area_level_two_obj) {
 
                     // Set LGA
-                    user_location.lga = admin_area_level_two_obj.long_name;
+                    user_location.detected.lga = admin_area_level_two_obj.long_name;
 
                 }
 
@@ -121,7 +130,7 @@
                 if (admin_area_level_one_obj) {
 
                     // Set state
-                    user_location.state = admin_area_level_one_obj.short_name;
+                    user_location.detected.state = admin_area_level_one_obj.short_name;
 
                 }
 
@@ -132,11 +141,11 @@
                 if (country_obj) {
 
                     // Set state
-                    user_location.country = country_obj.long_name;
+                    user_location.detected.country = country_obj.long_name;
 
                 }
 
-                event.emit("location detection successful", user_location)
+                event.emit("location detection successful", user_location.detected)
 
             }
 
@@ -157,7 +166,7 @@
         function geocode() {
 
             // Create address parameter to pass to endpoint
-            var parameters = "&address=" + user_location.suburb  + "," + user_location.lga + ",qld";
+            var parameters = "&address=" + user_location.detected.suburb  + "," + user_location.detected.lga + ",qld";
             
             // Get user's current location
             return queryMapAPI(parameters);
@@ -168,7 +177,7 @@
         function reverseGeocode() {
 
             // Create address parameter to pass to endpoint
-            var parameters = "&address=" + user_location.lat + "," + user_location.lon;
+            var parameters = "&address=" + user_location.detected.lat + "," + user_location.detected.lon;
 
             // Get user's current location
             return queryMapAPI(parameters);
@@ -176,24 +185,25 @@
         }
 
         // // Check if suburb and LGA arguments are not the same as current location
-        function checkArea(suburb,lga) {
+        function checkArea(suburb, lga) {
             
             // If user's current location is not the same as suburb argument OR
             // If user's current lga is not the same as lga argument
-            if (user_location.suburb !== suburb || user_location.lga !== lga) {
+            // Theres going to be some false positives such as Gold Coast City vs City of Gold Coast
+            if (user_location.set.suburb !== suburb || user_location.set.lga !== lga) {
 
-                // Set current suburb
-                user_location.suburb = suburb
+                // Set suburb agument as detected suburb
+                user_location.detected.suburb = suburb;
 
-                // Set current lga
-                user_location.lga = lga;
-
-                // Only geocode if sububrb or lga is different
-                // Theres going to be some false positives such as Gold Coast City vs City of Gold Coast
+                // Set LGA argument as detected LGA
+                // This is needed in case Google doesn't know what LGA the suburb is in e.g. Hope Value suburb
+                user_location.set.detected.lga = lga;
+                
                 $.when( geocode() ).always(function() {
                     
                     // Update user's location
                     updateLocation();
+                    emitLocationSetEvent();
                     
                 });
             
@@ -214,8 +224,8 @@
                 navigator.geolocation.getCurrentPosition(function(position) {
             
                     // Set coordinates
-                    user_location.lat = position.coords.latitude;
-                    user_location.lon = position.coords.longitude;
+                    user_location.detected.lat = position.coords.latitude;
+                    user_location.detected.lon = position.coords.longitude;
         
                     // When reverse geocoded finishes
                     $.when( reverseGeocode() ).done(function() {
@@ -254,6 +264,12 @@
         // Initialise module
         function init() {
 
+            // To store "set" location
+            user_location.set = {};
+
+            // To store "detected" location
+            user_location.detected = {};
+
             // Emit init event so that other modules dependent on user's location can be initialised first before 
             // this module starts detecting/broadcasting the user's current location
             qg_user_location_module.event.emit("user location module initialised");
@@ -261,8 +277,7 @@
             // Check session storage to see if current location is stored in user's details
             if (checkSessionStorage()) {
 
-                // Update user's location
-                updateLocation();
+                emitLocationSetEvent();
 
             } else {
 
@@ -271,6 +286,7 @@
                     
                     // Update user's location
                     updateLocation();
+                    emitLocationSetEvent();
 
                 });
 

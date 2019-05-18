@@ -275,7 +275,7 @@
 
         function subscribeToEvents() {
 
-            qg_user_location_module.event.on("location updated", processLocation);
+            qg_user_location_module.event.on("location set", processLocation);
 
             qg_user_location_module.event.on("location detection successful", updateModalInput);
 

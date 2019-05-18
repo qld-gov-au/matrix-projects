@@ -180,8 +180,8 @@
 
         function subscribeToEvents() {
             
-            // On "location updated" event, get current forecast
-            qg_user_location_module.event.on("location updated", processLocation);
+            // On "location set" event, get current forecast
+            qg_user_location_module.event.on("location set", processLocation);
 
         }
 
