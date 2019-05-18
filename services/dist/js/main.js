@@ -519,7 +519,7 @@ __webpack_require__.r(__webpack_exports__);
       $.when(getNearestServiceCentre(lat, lon)).done(function (data) {
         // If there are results
         if (data.hasOwnProperty('features') && data.features.length) {
-          nearest_service_centre_data = data[0].properties;
+          nearest_service_centre_data = data.features[0].properties;
           updateCentreName();
           updateServicesAvailable();
           updateLocation(); // Class to show nearest service centre details

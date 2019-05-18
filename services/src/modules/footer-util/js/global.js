@@ -154,7 +154,7 @@
                 // If there are results
                 if (data.hasOwnProperty('features') && data.features.length) {
 
-                    nearest_service_centre_data = data[0].properties;
+                    nearest_service_centre_data = data.features[0].properties;
 
                     updateCentreName();
                     
