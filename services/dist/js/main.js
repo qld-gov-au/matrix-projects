@@ -444,8 +444,9 @@ __webpack_require__.r(__webpack_exports__);
     function updateServicesAvailable() {
       // If services key exists and is not empty, that means there are services at the nearest centre
       if (nearest_service_centre_data.metaData.hasOwnProperty('s') && nearest_service_centre_data.metaData.s.length) {
-        // Update href property to be link to nearest service centre detail page
-        qg_nearest_service_centre.dom.$services_available_link.prop("href", link);
+        var nearest_centre_link = generateLinkToCentreDetail(); // Update href property to be link to nearest service centre detail page
+
+        qg_nearest_service_centre.dom.$services_available_link.prop("href", nearest_centre_link);
         qg_nearest_service_centre.dom.$services_available_wrapper.show();
       } else {
         clearServicesAvailable();
@@ -520,7 +521,7 @@ __webpack_require__.r(__webpack_exports__);
           nearest_service_centre_data = data[0].properties;
           updateCentreName();
           updateServicesAvailable();
-          updateLocation(nearest_service_centre_data); // Class to show nearest service centre details
+          updateLocation(); // Class to show nearest service centre details
 
           qg_nearest_service_centre.dom.$root.addClass("qg-site-footer-util__nearest-service-centre--has-result");
         } else {
