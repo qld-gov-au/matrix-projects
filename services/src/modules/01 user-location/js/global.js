@@ -81,6 +81,7 @@
         }
 
         function emitLocationSetEvent() {
+            console.log(user_location.set);
             event.emit("location set", user_location.set);
         }
 
