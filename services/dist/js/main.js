@@ -438,7 +438,7 @@ __webpack_require__.r(__webpack_exports__);
 
       qg_nearest_service_centre.dom.$centre_name.text(nearest_centre_name); // Update link
 
-      qg_nearest_service_centre.dom.$centre_name.prop("href", link);
+      qg_nearest_service_centre.dom.$centre_name.prop("href", nearest_centre_link);
     }
 
     function updateServicesAvailable() {
