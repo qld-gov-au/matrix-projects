@@ -36,7 +36,7 @@
         // Set banner by looking at user's lga and banner JSON list
         function setBanner(location) {
 
-            if (location.lga) {
+            if (location.state === "QLD") {
 
                 // Get the LGA
                 var current_location_lga = location.lga;
@@ -61,7 +61,7 @@
 
             } else {
 
-                // No LGA Value.
+                // Not a Queensland state or no LGA value
                 // This can happen if user blocks geolocation when loading the page
                 randomiseBanner();
 

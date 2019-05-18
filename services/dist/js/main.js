@@ -335,7 +335,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
     function setBanner(location) {
-      if (location.lga) {
+      if (location.state === "QLD") {
         // Get the LGA
         var current_location_lga = location.lga; // Check if any banners in the banner JSON list contains this LGA
 
@@ -354,7 +354,7 @@ __webpack_require__.r(__webpack_exports__);
           randomiseBanner();
         }
       } else {
-        // No LGA Value.
+        // Not a Queensland state or no LGA value
         // This can happen if user blocks geolocation when loading the page
         randomiseBanner();
       }
