@@ -205,7 +205,8 @@ __webpack_require__.r(__webpack_exports__);
           updateLocation();
         });
       } else {
-        // Just use existing values
+        console.log("Just updating location! No need to query google! " + suburb + " " + lga); // Just use existing values
+
         updateLocation();
       }
     } // Use HTML5 geolocation to get user's coordinates
