@@ -197,13 +197,6 @@
                     
                 });
             
-            } else {
-
-                console.log("Just updating location! No need to query google! " + suburb + " " + lga);
-
-                // Just use existing values
-                updateLocation();
-
             }
 
         }
