@@ -1165,7 +1165,7 @@ __webpack_require__.r(__webpack_exports__);
           featured: {
             name: 'Featured result',
             collection: 'qld-gov',
-            profile: 'featured_auto-completion',
+            profile: 'featured_autoc',
             template: {
               'suggestion': '<div><h6 class="services-service-finder__featured-heading">{{label.title}}</h6>{{#if label.icon}}<div class="services-service-finder__featured-icons">{{generateIconsMarkup label.icon}}</div>{{/if}}<p class="services-service-finder__featured-description">{{label.description}}</p><button type="button" class="services-service-finder__featured-btn">{{label.CTA}}</button></div>'
             },
