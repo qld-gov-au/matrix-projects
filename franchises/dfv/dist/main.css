@@ -1580,9 +1580,7 @@ body:not([data-accessibility=false]):not([data-access-new-window=false]) #qg-con
     color: #0c2e4c;
     text-decoration: none; }
   #qg-content #qg-primary-content .card-phone .fa-icon__wrapper {
-    -ms-flex-negative: 0;
-        flex-shrink: 0;
-    margin-right: 10px; }
+    margin-right: 4px; }
   #qg-content #qg-primary-content .card-phone .fa {
     font-size: 30px; }
 
@@ -1642,7 +1640,11 @@ body:not([data-accessibility=false]):not([data-access-new-window=false]) #qg-con
     margin: 14px 0;
     padding: 14px 0; }
   #qg-content #qg-primary-content .card-phone {
-    font-size: 24px; } }
+    font-size: 24px; }
+    #qg-content #qg-primary-content .card-phone .fa-icon__wrapper {
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+      margin-right: 10px; } }
 
 /*
  * Mobile layout
