@@ -130,10 +130,8 @@
         // Process the location to see if its Queensland
         function processLocation(location) {
 
-            var state = location.state;
-
             // If in Queensland
-            if (state === "QLD") {
+            if (location.state === "QLD") {
 
                 updateWidget(location.lat, location.lon);
 

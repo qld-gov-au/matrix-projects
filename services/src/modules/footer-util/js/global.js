@@ -186,7 +186,7 @@
         function processLocation(location) {
 
             // If in Queensland
-            if (state === "QLD") {
+            if (location.state === "QLD") {
 
                 updateDetails(location.lat, location.lon);
 

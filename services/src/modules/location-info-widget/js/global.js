@@ -132,13 +132,59 @@
 
             qg_location_info_widget.dom.$suburb_list_items_links.on("focus", function(event) {
 
+                var $this = $(event.target);
+
+                var focused_item_value = $this.text().trim();
+            
                 qg_location_info_widget.dom.$modal.addClass("qg-location-info__modal--suburb-list-item-focused");
+
+                qg_location_info_widget.dom.$modal_input.val(focused_item_value);
 
             });
 
             qg_location_info_widget.dom.$suburb_list_items_links.on("blur", function(event) {
 
                 qg_location_info_widget.dom.$modal.removeClass("qg-location-info__modal--suburb-list-item-focused");
+
+            });
+
+            // When user is using keyboard up and down keys to navigate through the list
+            qg_location_info_widget.dom.$suburb_list_items_links.on("keydown", function(event) {
+
+                var $this = $(event.target);
+
+                var keycode_pressed = event.which;
+                
+                if (keycode_pressed === 40) {
+                    
+                    // If press down
+                    var $next_visible_suburb_list_item = $this.parent().nextAll().not(".hidden").first();
+
+                    // If theres a next visible suburb list item
+                    if ($next_visible_suburb_list_item.length) {
+
+                        // Focus on next visible element
+                        $next_visible_suburb_list_item.find(qg_location_info_widget.dom.$suburb_list_items_links).focus();
+
+                    }
+
+                } else if (keycode_pressed === 38) {
+
+                    // If pressed up
+
+                    // If theres a prev visible suburb list item
+                    var $prev_visible_suburb_list_item = $this.parent().prevAll().not(".hidden").last();
+
+                    if ($prev_visible_suburb_list_item.length) {
+
+                        // Focus on next visible element
+                        $prev_visible_suburb_list_item.find(qg_location_info_widget.dom.$suburb_list_items_links).focus();
+
+                    }
+
+                }
+
+                
 
             });
 
@@ -176,6 +222,33 @@
 
                 // Remove class
                 qg_location_info_widget.dom.$modal.removeClass("qg-location-info__modal--focused");
+
+            });
+
+
+            // If down key is pressed
+            qg_location_info_widget.dom.$modal_input.on("keydown", function(event) {
+
+                var $this = $(event.target);
+
+                // Get keycode pressed
+                var keycode_pressed = event.which;
+                
+                // If down key
+                if (keycode_pressed === 40) {
+
+                    // Get visible suburb list items 
+                    var $first_visible_suburb_list_item = qg_location_info_widget.dom.$suburb_list_items.not(".hidden").first();
+                    
+                    // If exists, then focus on link
+                    if ($first_visible_suburb_list_item.length) {
+
+                        // Focus on link
+                        $first_visible_suburb_list_item.find(qg_location_info_widget.dom.$suburb_list_items_links).focus();
+
+                    }
+                    
+                }
 
             });
 
@@ -341,6 +414,8 @@
                 setupModalDetectLocationButton();
 
                 setupModalSetLocationButton();
+
+                hideSuburbList();
 
             }
             
