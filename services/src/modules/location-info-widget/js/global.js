@@ -151,46 +151,49 @@
             // When user is using keyboard up and down keys to navigate through the list
             qg_location_info_widget.dom.$suburb_list_items_links.on("keydown", function(event) {
 
-                // Prevent screen from scrolling
-                event.preventDefault();
-
-                event.stopPropagation();
-
                 var $this = $(event.target);
 
                 var keycode_pressed = event.which;
                 
-                if (keycode_pressed === 40) {
+                // If up or down key is pressed
+                if (keycode_pressed === 40 || 38) {
+
+                     // Prevent screen from scrolling
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+                    if (keycode_pressed === 40) {
                     
-                    // If press down
-                    var $next_visible_suburb_list_item = $this.parent().nextAll().not(".hidden").first();
-
-                    // If theres a next visible suburb list item
-                    if ($next_visible_suburb_list_item.length) {
-
-                        // Focus on next visible element
-                        $next_visible_suburb_list_item.find(qg_location_info_widget.dom.$suburb_list_items_links).focus();
-
-                    }
-
-                } else if (keycode_pressed === 38) {
-
-                    // If pressed up
-
-                    // If theres a prev visible suburb list item
-                    var $prev_visible_suburb_list_item = $this.parent().prevAll().not(".hidden").first();
-
-                    if ($prev_visible_suburb_list_item.length) {
-
-                        // Focus on next visible element
-                        $prev_visible_suburb_list_item.find(qg_location_info_widget.dom.$suburb_list_items_links).focus();
-
+                        // If press down
+                        var $next_visible_suburb_list_item = $this.parent().nextAll().not(".hidden").first();
+    
+                        // If theres a next visible suburb list item
+                        if ($next_visible_suburb_list_item.length) {
+    
+                            // Focus on next visible element
+                            $next_visible_suburb_list_item.find(qg_location_info_widget.dom.$suburb_list_items_links).focus();
+    
+                        }
+    
+                    } else if (keycode_pressed === 38) {
+    
+                        // If pressed up
+    
+                        // If theres a prev visible suburb list item
+                        var $prev_visible_suburb_list_item = $this.parent().prevAll().not(".hidden").first();
+    
+                        if ($prev_visible_suburb_list_item.length) {
+    
+                            // Focus on next visible element
+                            $prev_visible_suburb_list_item.find(qg_location_info_widget.dom.$suburb_list_items_links).focus();
+    
+                        }
+    
                     }
 
                 }
-
                 
-
             });
 
         }
@@ -239,11 +242,6 @@
             // If down key is pressed
             qg_location_info_widget.dom.$modal_input.on("keydown", function(event) {
 
-                // Prevent screen from scrolling
-                event.preventDefault();
-
-                event.stopPropagation();
-
                 var $this = $(event.target);
 
                 // Get keycode pressed
@@ -251,6 +249,11 @@
                 
                 // If down key
                 if (keycode_pressed === 40) {
+
+                    // Prevent screen from scrolling
+                    event.preventDefault();
+
+                    event.stopPropagation();
 
                     // Get visible suburb list items 
                     var $first_visible_suburb_list_item = qg_location_info_widget.dom.$suburb_list_items.not(".hidden").first();
