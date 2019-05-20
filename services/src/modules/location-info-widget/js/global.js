@@ -217,6 +217,11 @@
             // On focus of input
             qg_location_info_widget.dom.$modal_input.on("focus", function(event) {
                 
+                // Trigger fake input
+                // This is needed in the scenario that if a user is tab/keyboard focusing through the list and then blurs and then focus again
+                // It needs to filter the list
+                qg_location_info_widget.dom.$modal_input.trigger("input");
+
                 // Add class
                 qg_location_info_widget.dom.$modal.addClass("qg-location-info__modal--focused");
 
