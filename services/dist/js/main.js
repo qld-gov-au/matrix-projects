@@ -828,7 +828,7 @@ __webpack_require__.r(__webpack_exports__);
         } else if (keycode_pressed === 38) {
           // If pressed up
           // If theres a prev visible suburb list item
-          var $prev_visible_suburb_list_item = $this.parent().prevAll().not(".hidden").last();
+          var $prev_visible_suburb_list_item = $this.parent().prevAll().not(".hidden").first();
 
           if ($prev_visible_suburb_list_item.length) {
             // Focus on next visible element
