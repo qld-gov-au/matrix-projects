@@ -648,6 +648,8 @@ h2:before {
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 0.9375rem; }
+    #qg-content #qg-primary-content .dfv-cards--type-helplines .card-phone .fa-icon__wrapper {
+      margin-right: 0; }
   #qg-content #qg-primary-content .dfv-cards--type-helplines .card-text {
     color: #505050;
     margin-bottom: 0.9375rem; }
@@ -768,6 +770,8 @@ h2:before {
     font-size: 24px;
     line-height: 32px;
     margin-bottom: 25px; }
+    #qg-content #qg-primary-content .dfv-cards--type-helplines .card-phone .fa-icon__wrapper {
+      margin-right: 10px; }
   #qg-content #qg-primary-content .dfv-cards--type-helplines .card--view-mobile {
     display: none; }
   #qg-content #qg-primary-content .dfv-cards--type-helplines a.card--view-desktop {
@@ -1580,7 +1584,7 @@ body:not([data-accessibility=false]):not([data-access-new-window=false]) #qg-con
     color: #0c2e4c;
     text-decoration: none; }
   #qg-content #qg-primary-content .card-phone .fa-icon__wrapper {
-    margin-right: 4px; }
+    margin-right: 10px; }
   #qg-content #qg-primary-content .card-phone .fa {
     font-size: 30px; }
 
@@ -1640,11 +1644,7 @@ body:not([data-accessibility=false]):not([data-access-new-window=false]) #qg-con
     margin: 14px 0;
     padding: 14px 0; }
   #qg-content #qg-primary-content .card-phone {
-    font-size: 24px; }
-    #qg-content #qg-primary-content .card-phone .fa-icon__wrapper {
-      -ms-flex-negative: 0;
-          flex-shrink: 0;
-      margin-right: 10px; } }
+    font-size: 24px; } }
 
 /*
  * Mobile layout

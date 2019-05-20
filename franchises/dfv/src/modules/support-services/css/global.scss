@@ -121,7 +121,7 @@
     }
 
     .fa-icon__wrapper {
-        margin-right: 4px;
+        margin-right: 10px;
     }
 
     .fa {
@@ -232,10 +232,5 @@
 
     #qg-content #qg-primary-content .card-phone {
         font-size: 24px;
-
-        .fa-icon__wrapper {
-            flex-shrink: 0;
-            margin-right: 10px;
-        }
     }
 }
