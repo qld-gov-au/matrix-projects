@@ -151,6 +151,11 @@
             // When user is using keyboard up and down keys to navigate through the list
             qg_location_info_widget.dom.$suburb_list_items_links.on("keydown", function(event) {
 
+                // Prevent screen from scrolling
+                event.preventDefault();
+
+                event.stopPropagation();
+
                 var $this = $(event.target);
 
                 var keycode_pressed = event.which;
