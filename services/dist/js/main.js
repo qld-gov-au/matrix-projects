@@ -290,7 +290,10 @@ __webpack_require__.r(__webpack_exports__);
     // This is an important object which deals with location related events 
     // Allows modules to react to these events
 
-    var event = new EventEmitter2(); // On suburb / lga manually selected from the location info widget
+    var event = new EventEmitter2({
+      maxListeners: 20,
+      verboseMemoryLeak: true
+    }); // On suburb / lga manually selected from the location info widget
 
     event.on("area manually selected", checkArea); // Public API
 
