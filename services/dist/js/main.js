@@ -817,7 +817,7 @@ __webpack_require__.r(__webpack_exports__);
         var $this = $(event.target);
         var keycode_pressed = event.which; // If up or down key is pressed
 
-        if (keycode_pressed === 40 || 38) {
+        if (keycode_pressed === 40 || keycode_pressed === 38) {
           // Prevent screen from scrolling
           event.preventDefault();
           event.stopPropagation();

@@ -156,7 +156,7 @@
                 var keycode_pressed = event.which;
                 
                 // If up or down key is pressed
-                if (keycode_pressed === 40 || 38) {
+                if (keycode_pressed === 40 || keycode_pressed === 38) {
 
                      // Prevent screen from scrolling
                     event.preventDefault();
