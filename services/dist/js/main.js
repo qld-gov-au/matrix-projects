@@ -871,6 +871,9 @@ __webpack_require__.r(__webpack_exports__);
       }); // If down key is pressed
 
       qg_location_info_widget.dom.$modal_input.on("keydown", function (event) {
+        // Prevent screen from scrolling
+        event.preventDefault();
+        event.stopPropagation();
         var $this = $(event.target); // Get keycode pressed
 
         var keycode_pressed = event.which; // If down key
