@@ -139,10 +139,6 @@
     white-space: nowrap;
     width: 100%;
 
-    &:focus {
-        outline: 0;
-    }
-
     .qg-location-info__modal--focused.qg-location-info__modal--has-result &,
     .qg-location-info__modal--suburb-list-item-focused & {
         border-bottom-left-radius: 0;
