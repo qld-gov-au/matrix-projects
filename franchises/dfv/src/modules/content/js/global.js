@@ -34,7 +34,7 @@
 
                     // Create the navigation item
                     var list_item = '<li class="qg-content-navigation__item">';
-                    list_item += '<a href="' + heading_link + '" class="qg-content-navigation__link">';
+                    list_item += '<a href="' + heading_link + '" class="qg-content-navigation__link" data-analytics-link-group="dfv-inpagenavigation">';
                     list_item += '<span class="qg-content-navigation__prompt"></span>';
                     list_item += '<span class="qg-content-navigation__title">' + heading_title + '</span>';
                     list_item += '</a>';

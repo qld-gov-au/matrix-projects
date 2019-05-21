@@ -20,10 +20,33 @@
         color: inherit;
         height: 100%;
         text-decoration: none;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: $dark-blue;
+            border-color: $dark-blue;
+            box-shadow: none;
+            color: #fff;
+
+            .card-title {
+                color: #fff;
+            }
+
+            .card-prompt {
+                &:before {
+                    background: #fff;
+                }
+
+                &:after {
+                    border-color: #fff;
+                }
+            }
+        }
     }
 
     .card-title {
         margin-bottom: 0;
+        transition: all 0.3s ease;
     }
 
     .card-top {

@@ -93,8 +93,7 @@
 
 .qg-quick-exit__button {
     @include dfv-button-tertiary();
-    padding-left: 44px;
-    padding-right: 44px;
+    padding: 8px 34px;
 }
 
 

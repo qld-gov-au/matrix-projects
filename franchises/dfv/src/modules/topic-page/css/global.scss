@@ -6,20 +6,23 @@
     @include sq-list-reset();
 }
 
-.dfv-topics__item {
-    border-bottom: 1px solid $darkish-grey;
-}
-
 #qg-content #qg-primary-content .dfv-topics__link {
+    border-bottom: 1px solid $darkish-grey;
     color: $deep-blue;
     display: flex;
     font-size: 18px;
     padding: $small-spacing;
     text-decoration: none;
+    transition: all 0.3s ease;
 
     &:hover {
-        color: $deep-blue;
-        text-decoration: underline;
+        background: $dark-blue;
+        border-color: $light-blue;
+        color: #fff;
+
+        .dfv-topics__more:after {
+            border-color: #fff;
+        }
     }
 }
                 
@@ -40,6 +43,7 @@
 @media screen and (min-width: $desktop){
     .dfv-topics__wrapper {
         display: inline-block;
+        width: 776px;
     }
 
     #qg-content #qg-primary-content .dfv-topics__link {

@@ -7,7 +7,7 @@
     overflow: hidden;
 }
 
- #qg-primary-content .dfv-cards--type-helplines {
+#qg-content #qg-primary-content .dfv-cards--type-helplines {
     
     /* Start of Salvatorre plugin CSS */
     .column {
@@ -19,10 +19,25 @@
     }
 
     /* End of Salvatorre plugin CSS */
-     
+
     .card-container {
         margin-bottom: pxToRem(15);
-        padding: 0 pxToRem(7) 0;
+    }
+     
+    .column {
+        &:nth-child(1) {
+            .card-container {
+                padding-left: 15px;
+                padding-right: 7px;
+            }
+        }
+
+        &:nth-child(2) {
+            .card-container {
+                padding-left: 7px;
+                padding-right: 15px;
+            }
+        }
     }
 
     .card {
@@ -30,6 +45,13 @@
         border: 0;
         box-shadow: none;
         display: block;
+
+        &:hover {
+            .card-title,
+            .card-bottom__text {
+                text-decoration: underline;
+            }
+        }
     }
 
     .card-title {
@@ -38,10 +60,17 @@
     }
 
     .card-phone {
+        font-size: 14px;
+        font-weight: 700;
         margin-bottom: pxToRem(15);
+
+        .fa-icon__wrapper {
+            margin-right: 0;
+        }
     }
 
     .card-text {
+        color: $dark-grey;
         margin-bottom: pxToRem(15);
     }
 
@@ -55,6 +84,7 @@
     .card-bottom__text {
         color: $deep-blue;
         flex-grow: 1;
+        font-size: 16px;
         font-weight: 700;
     }
 
@@ -74,6 +104,12 @@
             }
         }
 
+        .card-phone {
+            .fa {
+                font-size: 26px;
+            }
+        }
+
         .card-phone__number a {
             text-decoration: none;
 
@@ -82,8 +118,13 @@
             }
         }
 
+        .card-text {
+            font-size: 12px;
+        }
+
         a.card-bottom__text {
             color: $deep-blue;
+            line-height: 18px;
             text-decoration: none;
 
             &:hover {
@@ -122,7 +163,7 @@
         margin-right: 0;
     }
 
-    #qg-primary-content .dfv-cards--type-helplines {
+    #qg-content #qg-primary-content .dfv-cards--type-helplines {
 
         &[data-columns]::before {
             content: '1 .outer';
@@ -132,14 +173,14 @@
         .outer {
             display: flex;
             flex-wrap: wrap;
-            margin-left: 0.9375rem;
-            margin-right: -0.9375rem;
+            margin-left: 5px;
+            margin-right: -20px;
         }
 
         .card-container {
-            margin-bottom: pxToRem(30);
-            min-height: pxToRem(340);
-            padding: 0 pxToRem(15) 0;
+            margin-bottom: 40px;
+            min-height: 337px;
+            padding: 0 20px 0;
         }
 
         .card {
@@ -150,15 +191,22 @@
         .card-body {
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         .card-title {
-            height: pxToRem(75);
+            height: 64px;
             margin-bottom: 0;
         }
 
         .card-phone {
-            margin-bottom: pxToRem(25);
+            font-size: 24px;
+            line-height: 32px;
+            margin-bottom: 25px;
+
+            .fa-icon__wrapper {
+                margin-right: 10px;
+            }
         }
 
         .card--view-mobile {
@@ -169,6 +217,17 @@
             display: flex;
         }
 
+        .card-bottom {
+            bottom: 15px;
+            left: 0;
+            padding: 0 $medium-spacing;
+            position: absolute;
+            width: 100%;
+        }
+
+        .card-bottom__text {
+            line-height: 32px;
+        }
 
     }
 

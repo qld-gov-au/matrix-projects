@@ -13,12 +13,23 @@
     display: none;
 }
 
+.fa-icon__wrapper {
+    width: 28px;
+}
+
 
 /*
  * Desktop layout
  */
 
 @media screen and (min-width: $desktop){
+    #qg-two-col-aside {
+        &.wide #qg-secondary-content,
+        #qg-secondary-content {
+            display: block;
+        }
+    }
+
     #qg-content #qg-secondary-content {
         .qg-aside {
             color: #000;
@@ -70,6 +81,7 @@
         .qg-aside-icon {
             display: inline-block;
             padding-right: $small-spacing;
+            width: auto;
 
             img {
                 width: 44px;

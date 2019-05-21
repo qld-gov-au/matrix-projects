@@ -15,7 +15,7 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
 
         // Reset filters to show placeholders
         $('.qg-search-filter__wrapper .filter__item').each(function(item_index, item) {
-            $(item).find('select').val(null).trigger('change');
+            $(item).find('select').val('All').trigger('change');
         });
         
         // Get all results
@@ -25,6 +25,13 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
     // Get results with filters applied
     qg_dfv.fn.handleSearchSubmit = function(event) {
         var page_number = 1;
+
+        // Set all empty selects to default to All
+        $('.qg-search-filter__wrapper .filter__item select').each(function(item_index, item) {
+            if($(item).val() === '') {
+                $(item).val('All').trigger('change');
+            }            
+        });
 
         // Get results
         qg_dfv.fn.getFilteredResults(page_number);
@@ -55,6 +62,44 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
         return false;
     };
 
+    qg_dfv.fn.checkForConditionalEvents = function(target_input) {
+        var input_id = target_input.attr('id');
+        var input_structure = input_id.split('--');
+        var filter_namespace = input_structure[0];
+        var filter_id = input_structure[1];
+
+        var region_input = $('#' + filter_namespace + '--region');
+        var suburb_input = $('#' + filter_namespace + '--suburb');
+
+        var current_region = region_input.val();
+        var current_suburb = suburb_input.val();
+
+        // Look for empty / All
+        var empty_values = ['', 'All'];
+        var region_index = empty_values.indexOf(current_region);
+        var suburb_index = empty_values.indexOf(current_suburb);
+
+        // Reset other filters based on new values
+        switch(filter_id) {
+            case 'suburb':
+                if(suburb_index === -1) {
+                    if(region_index < 1) {
+                        region_input.val('All').trigger('change');
+                    }
+                }
+                
+                break;
+            case 'region':
+                if(region_index === -1) {
+                    if(suburb_index < 1) {
+                        suburb_input.val('All').trigger('change');
+                    }
+                }
+
+                break;
+        }
+    };
+
 
     /*
         Functions
@@ -67,12 +112,18 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
             var select_inputs = $(item).find('select');
             
             select_inputs.select2({
+                'minimumResultsForSearch': Infinity,
                 'placeholder': placeholder,
                 'width': '100%'
             });
 
             select_inputs.on('select2:open', function(e) {
                 $('.select2-search input').prop('focus',false);
+            });
+
+            select_inputs.on('change', function(event) {
+                var target_input = $(event.target);
+                qg_dfv.fn.checkForConditionalEvents(target_input);
             });
         });
     };
