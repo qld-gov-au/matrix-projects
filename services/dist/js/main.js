@@ -555,24 +555,16 @@ __webpack_require__.r(__webpack_exports__);
           updateLocation(); // Class to show nearest service centre details
 
           qg_nearest_service_centre.dom.$root.addClass("qg-site-footer-util__nearest-service-centre--has-result");
-        } else {
-          // Clear and hide details
-          clearDetails();
         }
-      }).fail(function () {
-        // If response fail 
-        // Clear details
-        clearDetails();
       });
     } // Process the location to see if its Queensland
 
 
     function processLocation(location) {
-      // If in Queensland
+      clearDetails(); // If in Queensland
+
       if (location.state === "QLD") {
         updateDetails(location.lat, location.lon);
-      } else {
-        clearDetails();
       }
     }
 
@@ -1441,25 +1433,17 @@ __webpack_require__.r(__webpack_exports__);
           updateIcon(); // Class to make the widget show is added to the root node
 
           qg_weather_info_widget.dom.$root.addClass("qg-weather-info-widget--has-result");
-        } else {
-          // If weather api could not give weather forecast for current coordinates
-          // Reset the widget
-          resetWidget();
         }
-      }).fail(function () {
-        // If response fail 
-        // Reset the widget
-        resetWidget();
       });
     } // Process the location to see if its Queensland
 
 
     function processLocation(location) {
-      // If in Queensland
+      // Clear and reset widget
+      resetWidget(); // If in Queensland
+
       if (location.state === "QLD") {
         updateWidget(location.lat, location.lon);
-      } else {
-        resetWidget();
       }
     } // Reset the widget by clearing text, icon and hiding the widget
 
