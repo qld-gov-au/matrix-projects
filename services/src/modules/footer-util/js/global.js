@@ -150,7 +150,7 @@
 
             // When successfully get a the nearest service centre from endpoint
             $.when( getNearestServiceCentre(lat, lon) ).done(function( data ) {
-                            
+                
                 // If there are results
                 if (data.hasOwnProperty('features') && data.features.length) {
 
@@ -165,34 +165,21 @@
                     // Class to show nearest service centre details
                     qg_nearest_service_centre.dom.$root.addClass("qg-site-footer-util__nearest-service-centre--has-result");
 
-                } else {
-
-                    // Clear and hide details
-                    clearDetails();
-                    
                 }
 
-            }).fail(function() {
-                
-                // If response fail 
-                // Clear details
-                clearDetails();
-                
-            });
+            })
 
         }
 
         // Process the location to see if its Queensland
         function processLocation(location) {
 
+            clearDetails();
+
             // If in Queensland
             if (location.state === "QLD") {
 
                 updateDetails(location.lat, location.lon);
-
-            } else {
-
-                clearDetails();
 
             }
 

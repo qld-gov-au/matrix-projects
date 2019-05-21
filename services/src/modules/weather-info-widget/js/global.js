@@ -109,20 +109,8 @@
                     // Class to make the widget show is added to the root node
                     qg_weather_info_widget.dom.$root.addClass("qg-weather-info-widget--has-result");
 
-                } else {
-
-                    // If weather api could not give weather forecast for current coordinates
-                    // Reset the widget
-                    resetWidget();
-
                 }
 
-            }).fail(function() {
-                
-                // If response fail 
-                // Reset the widget
-                resetWidget();
-                
             });
 
         }
@@ -130,14 +118,13 @@
         // Process the location to see if its Queensland
         function processLocation(location) {
 
+            // Clear and reset widget
+            resetWidget();
+
             // If in Queensland
             if (location.state === "QLD") {
 
                 updateWidget(location.lat, location.lon);
-
-            } else {
-
-                resetWidget();
 
             }
 
