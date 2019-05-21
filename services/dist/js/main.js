@@ -1053,19 +1053,43 @@ __webpack_require__.r(__webpack_exports__);
 
   var qg_search_widget_module = function () {
     function setupField() {
-      // Bind field focused event to field
-      qg_search_widget_module.dom.$field.on("focus", form_focused);
-      qg_search_widget_module.dom.$field.on("blur", form_blurred);
+      // Bind focused event to field
+      qg_search_widget_module.dom.$field.on("focus", function (event) {
+        // Add class to parent so that not only field can show but hide other widgets in util bar as well
+        qg_search_widget_module.dom.$parent.addClass("search-form-widget--focused");
+      }); // Bind blured event to field
+
+      qg_search_widget_module.dom.$field.on("blur", function (event) {
+        // Remove class to hide search field and show other widgets
+        qg_search_widget_module.dom.$parent.removeClass("search-form-widget--focused");
+      }); // Because of how iOS handles blur (clicking on outside of the field doesn't blur a focused field)
+      // We need this to simulate a focus blur when clicking elsewhere
+
+      $(document).on("touchstart", function (event) {
+        // Get this touched element
+        var $this = $(event.target); // Check if element touched is not the input field
+
+        if (!$this.is(qg_search_widget_module.dom.$field)) {
+          qg_search_widget_module.dom.$field.blur();
+        }
+      });
     }
 
-    function form_focused(event) {
-      // Add class to parent so that not only field can show but hide other widgets in util bar as well
-      qg_search_widget_module.dom.$parent.addClass("search-form-widget--focused");
+    function setupToggleButton() {
+      // Bind click event
+      qg_search_widget_module.dom.$button_toggle.on("click", function (event) {
+        qg_search_widget_module.dom.$parent.addClass("search-form-widget--focused");
+        qg_search_widget_module.dom.$field.focus();
+      });
     }
 
-    function form_blurred(event) {
-      // Remove class to hide search field and show other widgets
-      qg_search_widget_module.dom.$parent.removeClass("search-form-widget--focused");
+    function setupSubmitButton() {
+      // Bind mousedown event 
+      // Can't use click event. Has to capture event before blur event loses focus on the submit button
+      qg_search_widget_module.dom.$button_submit.on("mousedown", function (event) {
+        event.preventDefault();
+        qg_search_widget_module.dom.$form.submit();
+      });
     }
 
     function cacheElements() {
@@ -1079,16 +1103,6 @@ __webpack_require__.r(__webpack_exports__);
       qg_search_widget_module.dom.$button_toggle = qg_search_widget_module.dom.$root.find(".qg-search-widget__btn-toggle"); // Get parent element
 
       qg_search_widget_module.dom.$parent = qg_search_widget_module.dom.$root.parent();
-    }
-
-    function btn_toggle_clicked() {
-      qg_search_widget_module.dom.$parent.addClass("search-form-widget--focused");
-      qg_search_widget_module.dom.$field.focus();
-    }
-
-    function submitForm(event) {
-      event.preventDefault();
-      qg_search_widget_module.dom.$form.submit();
     } // Initialisation
 
 
@@ -1099,10 +1113,9 @@ __webpack_require__.r(__webpack_exports__);
 
       if (qg_search_widget_module.dom.$root.length) {
         cacheElements();
-        setupField(); // Bind click event on toggle button
-
-        qg_search_widget_module.dom.$button_toggle.on("click", btn_toggle_clicked);
-        qg_search_widget_module.dom.$button_submit.on("mousedown", submitForm);
+        setupField();
+        setupToggleButton();
+        setupSubmitButton();
       }
     }
 
@@ -1259,13 +1272,13 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         services_service_finder.dom.$root.removeClass("services-service-finder--no-input");
       }
-    } // This function adds/removes a "focus" class whenever the field is focused/blurred
-    // This is to control CSS border radius of input and button
-    // Also, if user is focused / blurred from field input, check if there is input
-    // This is to make the "no results menu" hide if there is input
+    }
 
-
-    function setupFieldFocusEvent() {
+    function setupInputField() {
+      // Add/removes "focus" class whenever the field is focused/blurred
+      // This is to control CSS border radius of input and button
+      // Also, if user is focused / blurred from field input, check if there is input
+      // This is to make the "no results menu" hide if there is input
       // Focus event
       services_service_finder.dom.$field.on("focus", function (event) {
         var $this = $(event.target);
@@ -1279,16 +1292,23 @@ __webpack_require__.r(__webpack_exports__);
         var current_value = $this.val();
         checkFieldHasInput(current_value);
         services_service_finder.dom.$root.removeClass("services-service-finder--focused");
-      });
-    } // Whenever user is typing or deleting input, check if there is input
-    // This is to make the "no results menu" hide if there is input 
+      }); // Whenever user is typing or deleting input, check if there is input
+      // This is to make the "no results menu" hide if there is input 
 
-
-    function setupFieldInputEvent() {
       services_service_finder.dom.$field.on("input", function (event) {
         var $this = $(event.target);
         var current_value = $this.val();
         checkFieldHasInput(current_value);
+      }); // Because of how iOS handles blur (clicking on outside of the field doesn't blur a focused field)
+      // We need this to simulate a focus blur when clicking elsewhere
+
+      $(document).on("touchstart", function (event) {
+        // Get this touched element
+        var $this = $(event.target); // Check if element touched is not the input field
+
+        if (!$this.is(services_service_finder.dom.$field)) {
+          services_service_finder.dom.$field.blur();
+        }
       });
     } // Whenever a link in the no results menu is selected, ensure that the no results menu is visible
     // This allows better keyboard navigation
@@ -1303,6 +1323,11 @@ __webpack_require__.r(__webpack_exports__);
       services_service_finder.dom.$no_result_menu_links.on("blur", function (event) {
         services_service_finder.dom.$root.removeClass(no_result_menu_link_focused_state_class);
       });
+    }
+
+    function cacheElements() {
+      // Get field input
+      services_service_finder.dom.$field = services_service_finder.dom.$root.find(".services-service-finder__field");
     } // Initialisation
 
 
@@ -1312,12 +1337,9 @@ __webpack_require__.r(__webpack_exports__);
       services_service_finder.dom.$root = $(".services-service-finder"); // If sevice finder exists
 
       if (services_service_finder.dom.$root.length) {
-        // Get field input
-        services_service_finder.dom.$field = services_service_finder.dom.$root.find(".services-service-finder__field"); // Set up root node to have class whenever field is focused on
+        cacheElements(); // Set up the input field
 
-        setupFieldFocusEvent(); // Set up root node to have a class whenever something is being typed into the search field
-
-        setupFieldInputEvent(); // Initialise Funnelback Concerige
+        setupInputField(); // Initialise Funnelback Concerige
 
         setupFBConceirge(); // Set up no results menu links
 

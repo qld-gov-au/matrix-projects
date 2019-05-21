@@ -22,23 +22,63 @@
     
         function setupField() {
 
-            // Bind field focused event to field
-            qg_search_widget_module.dom.$field.on("focus", form_focused);
-            qg_search_widget_module.dom.$field.on("blur", form_blurred);
+            // Bind focused event to field
+            qg_search_widget_module.dom.$field.on("focus", function(event) {
+
+                // Add class to parent so that not only field can show but hide other widgets in util bar as well
+                qg_search_widget_module.dom.$parent.addClass("search-form-widget--focused");
+
+            });
+
+
+            // Bind blured event to field
+            qg_search_widget_module.dom.$field.on("blur", function(event) {
+
+                // Remove class to hide search field and show other widgets
+                qg_search_widget_module.dom.$parent.removeClass("search-form-widget--focused");
+                
+            });
+
+            // Because of how iOS handles blur (clicking on outside of the field doesn't blur a focused field)
+            // We need this to simulate a focus blur when clicking elsewhere
+            $(document).on("touchstart", function (event) {
+
+                // Get this touched element
+                var $this = $(event.target);
+
+                // Check if element touched is not the input field
+                if (!$this.is(qg_search_widget_module.dom.$field)) {
+                    
+                    qg_search_widget_module.dom.$field.blur();
+                }
+
+            });
 
         }
 
-        function form_focused(event) {
-            
-            // Add class to parent so that not only field can show but hide other widgets in util bar as well
-            qg_search_widget_module.dom.$parent.addClass("search-form-widget--focused");
+        function setupToggleButton() {
+
+            // Bind click event
+            qg_search_widget_module.dom.$button_toggle.on("click", function(event) {
+
+                qg_search_widget_module.dom.$parent.addClass("search-form-widget--focused");
+                qg_search_widget_module.dom.$field.focus();
+
+            });
 
         }
 
-        function form_blurred(event) {
-            
-            // Remove class to hide search field and show other widgets
-            qg_search_widget_module.dom.$parent.removeClass("search-form-widget--focused");
+        function setupSubmitButton() {
+
+            // Bind mousedown event 
+            // Can't use click event. Has to capture event before blur event loses focus on the submit button
+            qg_search_widget_module.dom.$button_submit.on("mousedown", function(event){
+
+                event.preventDefault();
+
+                qg_search_widget_module.dom.$form.submit();
+
+            });
 
         }
 
@@ -61,21 +101,6 @@
 
         }
 
-        function btn_toggle_clicked() {
-
-            qg_search_widget_module.dom.$parent.addClass("search-form-widget--focused");
-            qg_search_widget_module.dom.$field.focus();
-
-        }
-
-        function submitForm(event) {
-            
-            event.preventDefault();
-
-            qg_search_widget_module.dom.$form.submit();
-            
-        }
-
         // Initialisation
         function init() {
             
@@ -91,10 +116,10 @@
 
                 setupField();
 
-                // Bind click event on toggle button
-                qg_search_widget_module.dom.$button_toggle.on("click", btn_toggle_clicked);
+                setupToggleButton();
 
-                qg_search_widget_module.dom.$button_submit.on("mousedown", submitForm);
+                setupSubmitButton();
+
             }
             
         }

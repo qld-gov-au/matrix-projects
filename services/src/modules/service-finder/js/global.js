@@ -163,11 +163,13 @@
 
         }
 
-        // This function adds/removes a "focus" class whenever the field is focused/blurred
-        // This is to control CSS border radius of input and button
-        // Also, if user is focused / blurred from field input, check if there is input
-        // This is to make the "no results menu" hide if there is input
-        function setupFieldFocusEvent() {
+
+        function setupInputField() {
+
+            // Add/removes "focus" class whenever the field is focused/blurred
+            // This is to control CSS border radius of input and button
+            // Also, if user is focused / blurred from field input, check if there is input
+            // This is to make the "no results menu" hide if there is input
 
             // Focus event
             services_service_finder.dom.$field.on("focus", function (event) {
@@ -193,12 +195,8 @@
 
             });
 
-        }
-
-        // Whenever user is typing or deleting input, check if there is input
-        // This is to make the "no results menu" hide if there is input 
-        function setupFieldInputEvent() {
-
+            // Whenever user is typing or deleting input, check if there is input
+            // This is to make the "no results menu" hide if there is input 
             services_service_finder.dom.$field.on("input", function (event) {
 
                 var $this = $(event.target);
@@ -208,8 +206,23 @@
 
             });
 
-        }
+            // Because of how iOS handles blur (clicking on outside of the field doesn't blur a focused field)
+            // We need this to simulate a focus blur when clicking elsewhere
+            $(document).on("touchstart", function (event) {
 
+                // Get this touched element
+                var $this = $(event.target);
+
+                // Check if element touched is not the input field
+                if (!$this.is(services_service_finder.dom.$field)) {
+                    
+                    services_service_finder.dom.$field.blur();
+                }
+
+            });
+
+        }
+        
         // Whenever a link in the no results menu is selected, ensure that the no results menu is visible
         // This allows better keyboard navigation
         function setupNoResultsMenuLinks() {
@@ -228,6 +241,13 @@
 
         }
 
+        function cacheElements() {
+
+            // Get field input
+            services_service_finder.dom.$field = services_service_finder.dom.$root.find(".services-service-finder__field");
+
+        }
+
         // Initialisation
         function init() {
             
@@ -239,14 +259,10 @@
             // If sevice finder exists
             if (services_service_finder.dom.$root.length) {
 
-                // Get field input
-                services_service_finder.dom.$field = services_service_finder.dom.$root.find(".services-service-finder__field");
+                cacheElements();
 
-                // Set up root node to have class whenever field is focused on
-                setupFieldFocusEvent();
-
-                // Set up root node to have a class whenever something is being typed into the search field
-                setupFieldInputEvent();
+                // Set up the input field
+                setupInputField();
 
                 // Initialise Funnelback Concerige
                 setupFBConceirge();
