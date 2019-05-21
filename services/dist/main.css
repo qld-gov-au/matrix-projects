@@ -1065,8 +1065,6 @@ body {
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 100%; }
-  .qg-location-info__modal-field:focus {
-    outline: 0; }
   .qg-location-info__modal--focused.qg-location-info__modal--has-result .qg-location-info__modal-field,
   .qg-location-info__modal--suburb-list-item-focused .qg-location-info__modal-field {
     border-bottom-left-radius: 0; }
@@ -1454,8 +1452,6 @@ body {
   .qg-search-widget__field:-moz-placeholder {
     /* Firefox 18- */
     color: #fff; }
-  .qg-search-widget__field:focus {
-    outline: 0; }
 
 .qg-search-widget__btn-submit {
   background-color: transparent;
@@ -1638,8 +1634,6 @@ body {
     color: #607a89; }
   .services-service-finder__field::placeholder {
     color: #607a89; }
-  .services-service-finder__field:focus {
-    outline: 0; }
   .services-service-finder--results-shown .services-service-finder__field,
   .services-service-finder--focused.services-service-finder--no-input .services-service-finder__field,
   .services-service-finder--no-results-menu-link-focused .services-service-finder__field {
