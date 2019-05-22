@@ -62,7 +62,7 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
         return false;
     };
 
-    qg_dfv.fn.checkForConditionalEvents = function(target_input) {
+    /*qg_dfv.fn.checkForConditionalEvents = function(target_input) {
         var input_id = target_input.attr('id');
         var input_structure = input_id.split('--');
         var filter_namespace = input_structure[0];
@@ -98,7 +98,7 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
 
                 break;
         }
-    };
+    };*/
 
 
     /*
@@ -121,10 +121,10 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
                 $('.select2-search input').prop('focus',false);
             });
 
-            select_inputs.on('change', function(event) {
+            /*select_inputs.on('change', function(event) {
                 var target_input = $(event.target);
                 qg_dfv.fn.checkForConditionalEvents(target_input);
-            });
+            });*/
         });
     };
 

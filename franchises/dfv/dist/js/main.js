@@ -312,41 +312,39 @@ __webpack_require__.r(__webpack_exports__);
     qg_dfv.fn.getFilteredResults(page_number);
     return false;
   };
+  /*qg_dfv.fn.checkForConditionalEvents = function(target_input) {
+      var input_id = target_input.attr('id');
+      var input_structure = input_id.split('--');
+      var filter_namespace = input_structure[0];
+      var filter_id = input_structure[1];
+       var region_input = $('#' + filter_namespace + '--region');
+      var suburb_input = $('#' + filter_namespace + '--suburb');
+       var current_region = region_input.val();
+      var current_suburb = suburb_input.val();
+       // Look for empty / All
+      var empty_values = ['', 'All'];
+      var region_index = empty_values.indexOf(current_region);
+      var suburb_index = empty_values.indexOf(current_suburb);
+       // Reset other filters based on new values
+      switch(filter_id) {
+          case 'suburb':
+              if(suburb_index === -1) {
+                  if(region_index < 1) {
+                      region_input.val('All').trigger('change');
+                  }
+              }
+              
+              break;
+          case 'region':
+              if(region_index === -1) {
+                  if(suburb_index < 1) {
+                      suburb_input.val('All').trigger('change');
+                  }
+              }
+               break;
+      }
+  };*/
 
-  qg_dfv.fn.checkForConditionalEvents = function (target_input) {
-    var input_id = target_input.attr('id');
-    var input_structure = input_id.split('--');
-    var filter_namespace = input_structure[0];
-    var filter_id = input_structure[1];
-    var region_input = $('#' + filter_namespace + '--region');
-    var suburb_input = $('#' + filter_namespace + '--suburb');
-    var current_region = region_input.val();
-    var current_suburb = suburb_input.val(); // Look for empty / All
-
-    var empty_values = ['', 'All'];
-    var region_index = empty_values.indexOf(current_region);
-    var suburb_index = empty_values.indexOf(current_suburb); // Reset other filters based on new values
-
-    switch (filter_id) {
-      case 'suburb':
-        if (suburb_index === -1) {
-          if (region_index < 1) {
-            region_input.val('All').trigger('change');
-          }
-        }
-
-        break;
-
-      case 'region':
-        if (region_index === -1) {
-          if (suburb_index < 1) {
-            suburb_input.val('All').trigger('change');
-          }
-        }
-
-        break;
-    }
-  };
   /*
       Functions
   */
@@ -365,10 +363,10 @@ __webpack_require__.r(__webpack_exports__);
       select_inputs.on('select2:open', function (e) {
         $('.select2-search input').prop('focus', false);
       });
-      select_inputs.on('change', function (event) {
-        var target_input = $(event.target);
-        qg_dfv.fn.checkForConditionalEvents(target_input);
-      });
+      /*select_inputs.on('change', function(event) {
+          var target_input = $(event.target);
+          qg_dfv.fn.checkForConditionalEvents(target_input);
+      });*/
     });
   }; // Get results with filters applied
 
