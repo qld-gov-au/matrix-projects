@@ -479,8 +479,10 @@ __webpack_require__.r(__webpack_exports__);
       'event': 'ajaxFormResults',
       'resultCount': result_count,
       'filtersApplied': filters_applied.join(' | ')
-    };
-    console.log(analytics_data);
+    }; // Send to GA
+
+    var dataLayer = window.dataLayer || [];
+    dataLayer.push(analytics_data);
   };
   /*
       Ready

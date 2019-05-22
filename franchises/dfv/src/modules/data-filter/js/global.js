@@ -255,7 +255,9 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
             'filtersApplied': filters_applied.join(' | ')
         };
 
-        console.log(analytics_data);
+        // Send to GA
+        var dataLayer = window.dataLayer || [];
+        dataLayer.push(analytics_data);
     };
     
     
