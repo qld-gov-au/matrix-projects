@@ -443,7 +443,9 @@ __webpack_require__.r(__webpack_exports__);
       results_title += selected_values.join(', ');
     }
 
-    $('.qg-search-results__wrapper h2').text(results_title);
+    $('.qg-search-results__wrapper h2').text(results_title); // Analytics
+
+    qg_dfv.fn.sendAnalytics();
 
     if (!Object(_lib_utils__WEBPACK_IMPORTED_MODULE_0__[/* isDevelopment */ "c"])()) {
       // Invoke Salvattore for masonry layout

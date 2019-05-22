@@ -213,6 +213,9 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
 
         $('.qg-search-results__wrapper h2').text(results_title);
 
+        // Analytics
+        qg_dfv.fn.sendAnalytics();
+
         if(!isDevelopment()) {
             // Invoke Salvattore for masonry layout
             var grid = document.querySelector('.qg-search-results__list');
