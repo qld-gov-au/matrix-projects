@@ -458,6 +458,27 @@ __webpack_require__.r(__webpack_exports__);
     $('html, body').animate({
       scrollTop: scroll_to['top']
     }, 1000);
+  }; // Analytics
+
+
+  qg_dfv.fn.sendAnalytics = function () {
+    var result_count = $('.qg-search-results__wrapper').attr('data-results-count');
+    var all_filters = $('.filter__item');
+    var filters_applied = [];
+    all_filters.each(function (filter_index, filter) {
+      var label = $(filter).attr('data-filter-label');
+      label = label.charAt(0).toUpperCase() + label.slice(1) + ': '; // Add the value if it exists
+
+      label += $(filter).find('select').val();
+      filters_applied.push(label);
+    }); // Prepare report
+
+    var analytics_data = {
+      'event': 'ajaxFormResults',
+      'resultCount': result_count,
+      'filtersApplied': filters_applied.join(' | ')
+    };
+    console.log(analytics_data);
   };
   /*
       Ready
