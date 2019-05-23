@@ -47,7 +47,7 @@
                 var $this = $(event.target);
     
                 // Check if element touched is not within the root
-                if (!$this.closest(qg_search_widget_module.dom.$root).length) {
+                if (qg_search_widget_module.dom.$field.is(":focus") && !$this.closest(qg_search_widget_module.dom.$root).length) {
                     
                     qg_search_widget_module.dom.$field.blur();
 

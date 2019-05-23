@@ -1059,7 +1059,7 @@ __webpack_require__.r(__webpack_exports__);
         // Get this touched element
         var $this = $(event.target); // Check if element touched is not within the root
 
-        if (!$this.closest(qg_search_widget_module.dom.$root).length) {
+        if (qg_search_widget_module.dom.$field.is(":focus") && !$this.closest(qg_search_widget_module.dom.$root).length) {
           qg_search_widget_module.dom.$field.blur();
         }
       });
@@ -1294,9 +1294,9 @@ __webpack_require__.r(__webpack_exports__);
 
       $(document).on("touchstart", function (event) {
         // Get this touched element
-        var $this = $(event.target); // Check if element touched is not within the root
+        var $this = $(event.target); // Check if field was focused and element touched is not within the root
 
-        if (!$this.closest(services_service_finder.dom.$root).length) {
+        if (services_service_finder.dom.$field.is(":focus") && !$this.closest(services_service_finder.dom.$root).length) {
           services_service_finder.dom.$field.blur();
         }
       });
