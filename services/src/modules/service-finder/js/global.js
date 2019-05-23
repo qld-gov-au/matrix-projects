@@ -213,10 +213,11 @@
                 // Get this touched element
                 var $this = $(event.target);
 
-                // Check if element touched is not the input field
-                if (!$this.is(services_service_finder.dom.$field)) {
+                // Check if element touched is not within the root
+                if (!$this.closest(services_service_finder.dom.$root).length) {
                     
                     services_service_finder.dom.$field.blur();
+
                 }
 
             });

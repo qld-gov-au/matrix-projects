@@ -389,9 +389,7 @@ __webpack_require__.r(__webpack_exports__);
 
     function subscribeToEvents() {
       // When location is set, pick a banner from the JSON list
-      qg_user_location_module.event.on("location set", setBanner); // If locatoin is unknown, pick a random banner
-
-      qg_user_location_module.event.on("location unknown", randomiseBanner);
+      qg_user_location_module.event.on("location set", setBanner);
     }
 
     function cacheElements() {
@@ -1296,9 +1294,9 @@ __webpack_require__.r(__webpack_exports__);
 
       $(document).on("touchstart", function (event) {
         // Get this touched element
-        var $this = $(event.target); // Check if element touched is not the input field
+        var $this = $(event.target); // Check if element touched is not within the root
 
-        if (!$this.is(services_service_finder.dom.$field)) {
+        if (!$this.closest(services_service_finder.dom.$root).length) {
           services_service_finder.dom.$field.blur();
         }
       });
