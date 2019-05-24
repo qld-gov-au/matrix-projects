@@ -62,7 +62,7 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
         return false;
     };
 
-    qg_dfv.fn.checkForConditionalEvents = function(target_input) {
+    /*qg_dfv.fn.checkForConditionalEvents = function(target_input) {
         var input_id = target_input.attr('id');
         var input_structure = input_id.split('--');
         var filter_namespace = input_structure[0];
@@ -98,7 +98,7 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
 
                 break;
         }
-    };
+    };*/
 
 
     /*
@@ -121,10 +121,10 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
                 $('.select2-search input').prop('focus',false);
             });
 
-            select_inputs.on('change', function(event) {
+            /*select_inputs.on('change', function(event) {
                 var target_input = $(event.target);
                 qg_dfv.fn.checkForConditionalEvents(target_input);
-            });
+            });*/
         });
     };
 
@@ -213,6 +213,9 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
 
         $('.qg-search-results__wrapper h2').text(results_title);
 
+        // Analytics
+        qg_dfv.fn.sendAnalytics();
+
         if(!isDevelopment()) {
             // Invoke Salvattore for masonry layout
             var grid = document.querySelector('.qg-search-results__list');
@@ -227,6 +230,34 @@ import { isDevelopment, sendXHR, findLink, generateLoader } from "../../../lib/u
         $('html, body').animate({
             scrollTop: scroll_to['top']
         },  1000);
+    };
+
+    // Analytics
+    qg_dfv.fn.sendAnalytics = function() {
+        var result_count = $('.qg-search-results__wrapper').attr('data-results-count');
+        var all_filters = $('.filter__item');
+        var filters_applied = [];
+
+        all_filters.each(function(filter_index, filter){
+            var label = $(filter).attr('data-filter-label');
+            label = label.charAt(0).toUpperCase() + label.slice(1) + ': ';
+
+            // Add the value if it exists
+            label += $(filter).find('select').val();
+
+            filters_applied.push(label);
+        });
+
+        // Prepare report
+        var analytics_data = {
+            'event': 'ajaxFormResults',
+            'resultCount': result_count,
+            'filtersApplied': filters_applied.join(' | ')
+        };
+
+        // Send to GA
+        var dataLayer = window.dataLayer || [];
+        dataLayer.push(analytics_data);
     };
     
     
