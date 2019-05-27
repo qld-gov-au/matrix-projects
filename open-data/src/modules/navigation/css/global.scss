@@ -200,7 +200,7 @@
 
                         &:focus,
                         &:hover {
-                            color: $white;
+                            color: $light-blue;
                             @include sq-border-radius(3px);
                             text-decoration: none;
                         }
