@@ -360,9 +360,10 @@ __webpack_require__.r(__webpack_exports__);
         'placeholder': placeholder,
         'width': '100%'
       });
-      select_inputs.on('select2:open', function (e) {
-        $('.select2-search input').prop('focus', false);
-      });
+      /*select_inputs.on('select2:open', function(e) {
+          $('.select2-search input').prop('focus',false);
+      });*/
+
       /*select_inputs.on('change', function(event) {
           var target_input = $(event.target);
           qg_dfv.fn.checkForConditionalEvents(target_input);
