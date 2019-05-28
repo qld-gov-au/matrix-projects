@@ -10494,6 +10494,9 @@ body {
   background-color: #0C2E4C;
   z-index: 1; }
 
+#content {
+  background-color: #fff; }
+
 /*
  * Tablet layout
  */
