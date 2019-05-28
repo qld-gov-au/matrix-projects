@@ -242,20 +242,16 @@
             margin: 0;
 
             input[type="text"]{
-                border: none;
+                border: 0;
                 height: pxToRem(44);
                 font-size: pxToRem(16);
                 line-height: 22px;
                 width: pxToRem(220);
-                @include sq-border-radius(5px 0 0 5px);
                 margin: 0;
                 padding: pxToRem(10) pxToRem(45) pxToRem(10) pxToRem(15);
                 background: $white;
-                border: 1px solid $light-grey;
                 @include sq-border-radius(5px);
                 color: $black;
-
-
 
                 &::-webkit-input-placeholder {
                     color: $light-grey;
