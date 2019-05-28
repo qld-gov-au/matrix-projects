@@ -28,20 +28,13 @@ header.navbar.navbar-static-top.masthead {
     .header__data-portal {        
         width: 100%;
         margin: pxToRem(8) 0 pxToRem(10) 0;
+        text-align: left;
 
         a {
             color: $white;
+            font-size: pxToRem(18);
             text-decoration: none;
-            text-align: left;
-            font-weight: 600;
             @include font-smoothing;
-            font-size: pxToRem(14);
-            line-height: pxToRem(16);
-
-            &:hover,
-            &:focus {
-                text-decoration: underline;
-            }
         }
     }
 
@@ -76,6 +69,7 @@ header.navbar.navbar-static-top.masthead {
         > .container {
             position: relative;
         }
+        
     }
 }
 
@@ -96,7 +90,11 @@ header.navbar.navbar-static-top.masthead {
         .header__data-portal {
             margin-top: 0;
             margin-bottom: 0;
-            text-align: right;
+            
+            a {
+                font-size: pxToRem(26);
+            }
+
         }
 
     }
