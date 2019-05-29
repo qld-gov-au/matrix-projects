@@ -109,41 +109,46 @@
                                     <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
                                     <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
         
-                                    <div class="form">
+                                    <div id="contact-landing-page-form" class="form">
+
     <form action="#" method="POST">
+
         <div class="form__field">
            
                 <legend>How can we help you?</legend>
                 <div class="form__field-wrapper">
-                        <fieldset>
-                    <div class="form__field-item">
+                    
+                    <fieldset>
+                    
+                        <div class="form__field-item">
+                            <input type="radio" name="input-radio" value="1" id="form-radio-1" data-action="redirect" data-redirect-url="" required>
+                            <label for="form-radio-1">I want to request Open Data</label>
+                        </div>
                         
-                        <input type="radio" name="input-radio" value="1" id="form-radio-1" checked="checked">
-                        <label for="form-radio-1">Lorem ipsum dolor sit amet, consetetur sadipscing</label>
-                    </div>
-                    <div class="form__field-item">
-                        <input type="radio" name="input-radio" value="2" id="form-radio-2">
-                        <label for="form-radio-2">Ipsum dolor sit amet, consetetur sadipscing elitr</label>
-                    </div>
-                    <div class="form__field-item">
-                        <input type="radio" name="input-radio" value="3" id="form-radio-3">
-                        <label for="form-radio-3">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</label>
-                    </div>
-                    <div class="form__field-item">
-                        <input type="radio" name="input-radio" value="4" id="form-radio-4">
-                        <label for="form-radio-4">Vidunt ut labore et dolore magna aliquyam erat, sed diam</label>
-                    </div>
-                </fieldset>          
+                        <div class="form__field-item">
+                            <input type="radio" name="input-radio" value="2" id="form-radio-2" data-action="redirect" data-redirect-url="">
+                            <label for="form-radio-2">I have a question about Open Data or this data portal</label>
+                        </div>
+                        
+                        <div class="form__field-item">
+                            <input type="radio" name="input-radio" value="3" id="form-radio-3" data-action="alert" data-alert-target="#form-radio-3-alert">
+                            <label for="form-radio-3">I have a question that is not about Open Data or this data portal</label>
+                        </div>    
+
+                    </fieldset>          
+
                 </div>
           
         </div>
         
-        <div class="alert" role="alert">
+        <div id="form-radio-3-alert" class="alert hidden" role="alert">
     <p><i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp;&nbsp;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. <a href="#">At vero eos et accusam et justo duo dolores et ea rebum</a>.</p>
 </div>
 
         <button type="submit">Continue</button>
+    
     </form>
+
 </div>
                                 </div>
                             </article>
