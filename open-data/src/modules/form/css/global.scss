@@ -36,15 +36,15 @@
 
     input[type="text"],
     input[type="email"],
-    input[type="tel"],
-    textarea {
+    input[type="tel"] {
         @include clear-default-appearance;
         padding: 0 pxToRem(10);
         width: 100%;
+        max-width: pxToRem(450);
         display: block;
         height: pxToRem(44);
         font-size: pxToRem(16);
-        line-height: pxToRem(18);
+        line-height: 1;
         color: $black;
         @include sq-border-radius(4px);
         border: 1px solid $lightest-grey-2;
@@ -58,8 +58,13 @@
         padding: pxToRem(10);
         height: pxToRem(120);
         width: 100%;
+        max-width: pxToRem(450);
+        font-size: pxToRem(16);
+        line-height: pxToRem(18);
+        color: $black;
+        @include sq-border-radius(4px);
+        border: 1px solid $lightest-grey-2;
         margin: 0;
-        max-width: 100%;
     }
     
     input[type="radio"] {
