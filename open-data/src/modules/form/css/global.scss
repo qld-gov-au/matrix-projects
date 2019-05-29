@@ -124,7 +124,12 @@
 				height: pxToRem(15);
 				border-radius: 100%;
 				border: 1px solid $light-grey;
-			}
+            }
+            
+            &:after {
+                content: '';
+            }
+
 		}
     }
     
@@ -152,27 +157,4 @@
         }
     }
 
-}
-
-
-/*
- * Tablet layout
- */
-
-@media screen and (min-width: $tablet){
-    .form {
-
-    }
-}
-
-
-/*
- * Desktop layout
- */
-
-@media screen and (min-width: $desktop){
-    .form {
-
-        
-    }
 }

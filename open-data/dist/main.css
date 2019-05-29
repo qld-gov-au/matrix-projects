@@ -10890,6 +10890,8 @@ body {
         height: 0.9375rem;
         border-radius: 100%;
         border: 1px solid #767676; }
+      .form input[type="radio"] + label:after {
+        content: ''; }
   .form button[type="submit"],
   .form input[type="submit"] {
     -webkit-appearance: none;
@@ -10917,12 +10919,6 @@ body {
       background-color: #88d400;
       border-color: #88d400; }
 
-/*
- * Tablet layout
- */
-/*
- * Desktop layout
- */
 /*
  * Mobile layout
  */
