@@ -10833,7 +10833,6 @@ body {
     padding: 0;
     padding: 0 0.625rem;
     width: 100%;
-    max-width: 28.125rem;
     display: block;
     height: 2.75rem;
     font-size: 1rem;
@@ -10849,7 +10848,6 @@ body {
     padding: 0.625rem;
     height: 7.5rem;
     width: 100%;
-    max-width: 28.125rem;
     font-size: 1rem;
     line-height: 1.125rem;
     color: #000000;
@@ -10922,6 +10920,13 @@ body {
       outline: 0;
       background-color: #88d400;
       border-color: #88d400; }
+
+@media screen and (min-width: 1200px) {
+  .form input[type="text"],
+  .form input[type="email"],
+  .form input[type="tel"],
+  .form textarea {
+    max-width: 28.125rem; } }
 
 /*
  * Mobile layout

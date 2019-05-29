@@ -40,7 +40,6 @@
         @include clear-default-appearance;
         padding: 0 pxToRem(10);
         width: 100%;
-        max-width: pxToRem(450);
         display: block;
         height: pxToRem(44);
         font-size: pxToRem(16);
@@ -58,7 +57,6 @@
         padding: pxToRem(10);
         height: pxToRem(120);
         width: 100%;
-        max-width: pxToRem(450);
         font-size: pxToRem(16);
         line-height: pxToRem(18);
         color: $black;
@@ -159,6 +157,20 @@
             outline: 0;
             background-color: $light-lime-green;
             border-color: $light-lime-green;
+        }
+    }
+
+}
+
+
+@media screen and (min-width: $desktop){
+
+    .form {
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            max-width: pxToRem(450);
         }
     }
 
