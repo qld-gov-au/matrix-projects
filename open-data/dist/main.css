@@ -11885,8 +11885,7 @@ header.navbar.navbar-static-top.masthead {
       .tiles__sub-title a:hover, .tiles__sub-title a:focus {
         text-decoration: underline; }
   .tiles__content {
-    margin: 1rem 0 0 0;
-    padding: 0 1rem 1rem 1rem;
+    padding: 1rem;
     position: relative; }
     .tiles__content * {
       color: #000000;
