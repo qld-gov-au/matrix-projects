@@ -81,10 +81,10 @@
 }
 
 /*
- * Laptop layout
+ * Tablet layout
  */
 
-@media screen and (min-width: $laptop){
+@media screen and (min-width: $tablet){
     .list-block {
 
         margin: pxToRem(20) 0 pxToRem(30) 0;

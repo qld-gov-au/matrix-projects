@@ -188,10 +188,10 @@ h2 {
 }
 
 /*
- * Laptop layout
+ * Tablet layout
  */
 
-@media screen and (min-width: $laptop){
+@media screen and (min-width: $tablet){
     .primary {
         padding-left: pxToRem(45);
     }

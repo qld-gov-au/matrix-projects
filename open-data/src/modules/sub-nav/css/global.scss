@@ -42,9 +42,10 @@
 
 }
 
-@media screen and (max-width: $laptop - 1px) {
+@media screen and (max-width: $tablet - 1px) {
+
     .sub-nav {        
         display: none;
-
     }
+    
 }
