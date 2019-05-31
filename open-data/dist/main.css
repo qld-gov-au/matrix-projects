@@ -11140,9 +11140,6 @@ header.navbar.navbar-static-top.masthead {
   margin: 0 0 0.625rem 0; }
   .list-block__item {
     width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-flow: row wrap;
@@ -11194,9 +11191,9 @@ header.navbar.navbar-static-top.masthead {
   .list-block {
     margin: 1.25rem 0 1.875rem 0; }
     .list-block__item {
-      -webkit-box-pack: start;
-          -ms-flex-pack: start;
-              justify-content: flex-start;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
       -webkit-box-orient: horizontal;
       -webkit-box-direction: normal;
           -ms-flex-flow: row nowrap;

@@ -7,7 +7,6 @@
 
     &__item {
         width: 100%;
-        display: flex;
         flex-flow: row wrap;
         padding: pxToRem(20) 0;
         border-bottom: 1px solid $lightest-grey-2;
@@ -90,7 +89,7 @@
         margin: pxToRem(20) 0 pxToRem(30) 0;
 
         &__item {
-            justify-content: flex-start;
+            display: flex;
             flex-flow: row nowrap;
         }
 
