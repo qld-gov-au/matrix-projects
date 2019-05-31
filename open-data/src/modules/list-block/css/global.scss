@@ -80,23 +80,11 @@
 
 }
 
-
 /*
- * Tablet layout
+ * Laptop layout
  */
 
-@media screen and (min-width: $tablet){
-    .list-block {
-
-    }
-}
-
-
-/*
- * Desktop layout
- */
-
-@media screen and (min-width: $desktop){
+@media screen and (min-width: $laptop){
     .list-block {
 
         margin: pxToRem(20) 0 pxToRem(30) 0;
@@ -106,13 +94,19 @@
             flex-flow: row nowrap;
         }
 
+        &__img {
+            flex-shrink: 0;
+            margin-right: pxToRem(20);
+        }
+
+        &__content {
+            flex-grow: 1;
+        }
+
         &__title {
             margin: 0;
         }
-        
-        &__content {
-            width: 85%;
-            padding: 0 0 0 pxToRem(20);
-        }
+
     }
+
 }
