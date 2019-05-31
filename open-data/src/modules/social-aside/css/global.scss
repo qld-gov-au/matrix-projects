@@ -56,21 +56,10 @@
 
 
 /*
- * Tablet layout
+ * Laptop layout
  */
 
-@media screen and (min-width: $tablet){
-    .social-aside {
-
-    }
-}
-
-
-/*
- * Desktop layout
- */
-
-@media screen and (min-width: $desktop){
+@media screen and (min-width: $laptop){
     .social-aside {
         margin: 0;
         padding: pxToRem(30) 0;

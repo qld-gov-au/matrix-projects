@@ -3,7 +3,7 @@
  */
 
 .sub-nav {
-    display: none;
+
     padding: pxToRem(30) 0;
 
     ul {
@@ -42,25 +42,9 @@
 
 }
 
-
-/*
- * Tablet layout
- */
-
-@media screen and (min-width: $tablet){
-    .sub-nav {
-        
-    }
-}
-
-
-/*
- * Desktop layout
- */
-
-@media screen and (min-width: $desktop){
+@media screen and (max-width: $laptop - 1px) {
     .sub-nav {        
-        display: block;
+        display: none;
 
     }
 }
