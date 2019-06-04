@@ -11430,8 +11430,6 @@ header.navbar.navbar-static-top.masthead {
         .navbar-collapse nav.navigation ul li a,
         .navbar-collapse nav.navigation ul.nav li a,
         .navbar-collapse nav.navigation ul.nav.nav-pills li a {
-          -webkit-transition: color 0.4s ease;
-          transition: color 0.4s ease;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
           color: #ffffff;
@@ -11585,8 +11583,6 @@ header.navbar.navbar-static-top.masthead {
           .navbar-collapse.collapse nav.navigation ul.nav.nav-pills li a {
             padding: 0.3125rem 0.3125rem;
             width: auto;
-            -webkit-transition: background-color 0.4s ease;
-            transition: background-color 0.4s ease;
             font-size: 1rem;
             line-height: 1rem; }
             .navbar-collapse.collapse nav.navigation ul li a:hover, .navbar-collapse.collapse nav.navigation ul li a:focus, .navbar-collapse.collapse nav.navigation ul li a:active,
@@ -11664,9 +11660,7 @@ header.navbar.navbar-static-top.masthead {
           .navbar-collapse.collapse .section.site-search.simple-input button[type="submit"]:hover .fa, .navbar-collapse.collapse .section.site-search.simple-input button[type="submit"]:focus .fa {
             color: #000000; }
         .navbar-collapse.collapse .section.site-search.simple-input button[type="submit"] .fa {
-          color: #767676;
-          -webkit-transition: color 0.4s ease;
-          transition: color 0.4s ease; } }
+          color: #767676; } }
 
 /*
  * Mobile layout
@@ -11977,8 +11971,6 @@ header.account-masthead {
         color: #ffffff;
         text-decoration: none;
         line-height: 1rem;
-        -webkit-transition: background-color 0.4s ease;
-        transition: background-color 0.4s ease;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         font-weight: 600;

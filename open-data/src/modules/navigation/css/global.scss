@@ -76,7 +76,6 @@
                 }
 
                 a {
-                    @include sq-transition(color 0.4s ease);
                     @include font-smoothing;
                     color: $white;
                     text-decoration: none;
@@ -196,7 +195,6 @@
                     a {
                         padding: pxToRem(5) pxToRem(5);
                         width: auto;
-                        @include sq-transition(background-color 0.4s ease);
                         font-size: pxToRem(16);
                         line-height: pxToRem(16);
 
@@ -304,7 +302,6 @@
 
                 .fa {
                     color: $light-grey;
-                    @include sq-transition(color 0.4s ease);
                 }
             }
         }

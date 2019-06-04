@@ -25,7 +25,6 @@
                 color: $white;
                 text-decoration: none;
                 line-height: pxToRem(16);
-                @include sq-transition(background-color 0.4s ease);
                 @include font-smoothing;
                 font-weight: 600;
                 height: pxToRem(44);
