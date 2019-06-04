@@ -36,7 +36,8 @@
                 padding: 0 pxToRem(15);
 
                 &:hover,
-                &:focus {
+                &:focus,
+                &:active {
                     color: $white;
                     background-color: $light-blue;
                 }

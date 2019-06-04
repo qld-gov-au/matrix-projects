@@ -88,8 +88,9 @@
                     background-color: transparent;
                     max-width: pxToRem(730);
 
-                    &:focus,
-                    &:hover {
+                    &:hover,
+                    &:active,
+                    &:focus {
                         color: $light-blue;
                         background-color: #fff;
                         @include sq-border-radius(0);
@@ -198,8 +199,9 @@
                         font-size: pxToRem(16);
                         line-height: pxToRem(16);
 
+                        &:hover,
                         &:focus,
-                        &:hover {
+                        &:active {
                             color: $light-blue;
                             @include sq-border-radius(3px);
                             text-decoration: none;
