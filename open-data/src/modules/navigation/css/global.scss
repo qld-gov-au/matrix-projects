@@ -56,6 +56,7 @@
 
                     a {                    
                         &:focus,
+                        &:active,
                         &:hover {
                             color: $light-blue;
                             background-color: #fff;
@@ -137,7 +138,8 @@
                         padding: pxToRem(7);
 
                         &:hover,
-                        &:focus {
+                        &:focus,
+                        &:active {
                             background: none;
                             color: $black;
                             text-decoration: none;
@@ -165,15 +167,14 @@
 
                         a {
                             &:hover,
-                            &:focus {
+                            &:focus,
+                            &:active {
                                 background-color: $white;
                                 color: $light-blue;
                             }
                         }
                     }
 
-                    &:focus,
-                    &:hover,
                     &.active,
                     &.current {
                         a {
