@@ -11427,41 +11427,58 @@ header.navbar.navbar-static-top.masthead {
           margin: 0;
           background-color: transparent;
           max-width: 45.625rem; }
-          .navbar-collapse.collapse nav ul li a:focus, .navbar-collapse.collapse nav ul li a:hover,
-          .navbar-collapse.collapse nav ul.nav li a:focus,
+          .navbar-collapse.collapse nav ul li a:hover, .navbar-collapse.collapse nav ul li a:active, .navbar-collapse.collapse nav ul li a:focus,
           .navbar-collapse.collapse nav ul.nav li a:hover,
-          .navbar-collapse.collapse nav ul.nav.nav-pills li a:focus,
+          .navbar-collapse.collapse nav ul.nav li a:active,
+          .navbar-collapse.collapse nav ul.nav li a:focus,
           .navbar-collapse.collapse nav ul.nav.nav-pills li a:hover,
-          .navbar-collapse.collapse nav.navigation ul li a:focus,
+          .navbar-collapse.collapse nav ul.nav.nav-pills li a:active,
+          .navbar-collapse.collapse nav ul.nav.nav-pills li a:focus,
           .navbar-collapse.collapse nav.navigation ul li a:hover,
-          .navbar-collapse.collapse nav.navigation ul.nav li a:focus,
+          .navbar-collapse.collapse nav.navigation ul li a:active,
+          .navbar-collapse.collapse nav.navigation ul li a:focus,
           .navbar-collapse.collapse nav.navigation ul.nav li a:hover,
-          .navbar-collapse.collapse nav.navigation ul.nav.nav-pills li a:focus,
+          .navbar-collapse.collapse nav.navigation ul.nav li a:active,
+          .navbar-collapse.collapse nav.navigation ul.nav li a:focus,
           .navbar-collapse.collapse nav.navigation ul.nav.nav-pills li a:hover,
-          .navbar-collapse.collapsing nav ul li a:focus,
+          .navbar-collapse.collapse nav.navigation ul.nav.nav-pills li a:active,
+          .navbar-collapse.collapse nav.navigation ul.nav.nav-pills li a:focus,
           .navbar-collapse.collapsing nav ul li a:hover,
-          .navbar-collapse.collapsing nav ul.nav li a:focus,
+          .navbar-collapse.collapsing nav ul li a:active,
+          .navbar-collapse.collapsing nav ul li a:focus,
           .navbar-collapse.collapsing nav ul.nav li a:hover,
-          .navbar-collapse.collapsing nav ul.nav.nav-pills li a:focus,
+          .navbar-collapse.collapsing nav ul.nav li a:active,
+          .navbar-collapse.collapsing nav ul.nav li a:focus,
           .navbar-collapse.collapsing nav ul.nav.nav-pills li a:hover,
-          .navbar-collapse.collapsing nav.navigation ul li a:focus,
+          .navbar-collapse.collapsing nav ul.nav.nav-pills li a:active,
+          .navbar-collapse.collapsing nav ul.nav.nav-pills li a:focus,
           .navbar-collapse.collapsing nav.navigation ul li a:hover,
-          .navbar-collapse.collapsing nav.navigation ul.nav li a:focus,
+          .navbar-collapse.collapsing nav.navigation ul li a:active,
+          .navbar-collapse.collapsing nav.navigation ul li a:focus,
           .navbar-collapse.collapsing nav.navigation ul.nav li a:hover,
-          .navbar-collapse.collapsing nav.navigation ul.nav.nav-pills li a:focus,
+          .navbar-collapse.collapsing nav.navigation ul.nav li a:active,
+          .navbar-collapse.collapsing nav.navigation ul.nav li a:focus,
           .navbar-collapse.collapsing nav.navigation ul.nav.nav-pills li a:hover,
-          .navbar-collapse nav ul li a:focus,
+          .navbar-collapse.collapsing nav.navigation ul.nav.nav-pills li a:active,
+          .navbar-collapse.collapsing nav.navigation ul.nav.nav-pills li a:focus,
           .navbar-collapse nav ul li a:hover,
-          .navbar-collapse nav ul.nav li a:focus,
+          .navbar-collapse nav ul li a:active,
+          .navbar-collapse nav ul li a:focus,
           .navbar-collapse nav ul.nav li a:hover,
-          .navbar-collapse nav ul.nav.nav-pills li a:focus,
+          .navbar-collapse nav ul.nav li a:active,
+          .navbar-collapse nav ul.nav li a:focus,
           .navbar-collapse nav ul.nav.nav-pills li a:hover,
-          .navbar-collapse nav.navigation ul li a:focus,
+          .navbar-collapse nav ul.nav.nav-pills li a:active,
+          .navbar-collapse nav ul.nav.nav-pills li a:focus,
           .navbar-collapse nav.navigation ul li a:hover,
-          .navbar-collapse nav.navigation ul.nav li a:focus,
+          .navbar-collapse nav.navigation ul li a:active,
+          .navbar-collapse nav.navigation ul li a:focus,
           .navbar-collapse nav.navigation ul.nav li a:hover,
-          .navbar-collapse nav.navigation ul.nav.nav-pills li a:focus,
-          .navbar-collapse nav.navigation ul.nav.nav-pills li a:hover {
+          .navbar-collapse nav.navigation ul.nav li a:active,
+          .navbar-collapse nav.navigation ul.nav li a:focus,
+          .navbar-collapse nav.navigation ul.nav.nav-pills li a:hover,
+          .navbar-collapse nav.navigation ul.nav.nav-pills li a:active,
+          .navbar-collapse nav.navigation ul.nav.nav-pills li a:focus {
             color: #007EB1;
             background-color: #fff;
             border-radius: 0;
@@ -11565,11 +11582,13 @@ header.navbar.navbar-static-top.masthead {
             transition: background-color 0.4s ease;
             font-size: 1rem;
             line-height: 1rem; }
-            .navbar-collapse.collapse nav.navigation ul li a:focus, .navbar-collapse.collapse nav.navigation ul li a:hover,
-            .navbar-collapse.collapse nav.navigation ul.nav li a:focus,
+            .navbar-collapse.collapse nav.navigation ul li a:hover, .navbar-collapse.collapse nav.navigation ul li a:focus, .navbar-collapse.collapse nav.navigation ul li a:active,
             .navbar-collapse.collapse nav.navigation ul.nav li a:hover,
+            .navbar-collapse.collapse nav.navigation ul.nav li a:focus,
+            .navbar-collapse.collapse nav.navigation ul.nav li a:active,
+            .navbar-collapse.collapse nav.navigation ul.nav.nav-pills li a:hover,
             .navbar-collapse.collapse nav.navigation ul.nav.nav-pills li a:focus,
-            .navbar-collapse.collapse nav.navigation ul.nav.nav-pills li a:hover {
+            .navbar-collapse.collapse nav.navigation ul.nav.nav-pills li a:active {
               color: #007EB1;
               border-radius: 3px;
               text-decoration: none; } }
@@ -11967,7 +11986,7 @@ header.account-masthead {
         -ms-flex-line-pack: center;
             align-content: center;
         padding: 0 0.9375rem; }
-        header.account-masthead nav.account.not-authed ul.unstyled li a:hover, header.account-masthead nav.account.not-authed ul.unstyled li a:focus {
+        header.account-masthead nav.account.not-authed ul.unstyled li a:hover, header.account-masthead nav.account.not-authed ul.unstyled li a:focus, header.account-masthead nav.account.not-authed ul.unstyled li a:active {
           color: #ffffff;
           background-color: #007EB1; }
 
