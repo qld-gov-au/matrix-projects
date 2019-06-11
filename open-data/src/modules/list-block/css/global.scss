@@ -15,7 +15,7 @@
     &__img {
         width: pxToRem(100);
         height: pxToRem(100);
-        background-size: cover;
+        background-size: contain;
         background-repeat: no-repeat;
         background-position: center center;
     }
