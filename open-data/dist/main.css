@@ -11149,7 +11149,7 @@ header.navbar.navbar-static-top.masthead {
   .list-block__img {
     width: 6.25rem;
     height: 6.25rem;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center center; }
   .list-block__title {
