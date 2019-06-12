@@ -11714,6 +11714,15 @@ header.navbar.navbar-static-top.masthead {
   float: left;
   width: 100%;
   margin: 0 -0.9375rem; }
+  .social-aside .module-heading {
+    border: 0;
+    font-size: 1rem;
+    color: #000000;
+    padding: 0.9375rem 0.9375rem;
+    line-height: 1; }
+    .social-aside .module-heading .fa {
+      font-size: 1.3125rem;
+      margin-right: 0.4375rem; }
   .social-aside ul {
     margin: 0;
     padding: 0;
@@ -11722,11 +11731,11 @@ header.navbar.navbar-static-top.masthead {
       margin: 0;
       padding: 0;
       list-style: none;
-      width: 100%; }
+      width: 100%;
+      line-height: 1; }
       .social-aside ul li a {
         display: block;
         font-size: 1rem;
-        line-height: 1.125rem;
         font-weight: 500;
         color: #000000;
         text-decoration: none;
@@ -11737,21 +11746,9 @@ header.navbar.navbar-static-top.masthead {
         .social-aside ul li a:hover, .social-aside ul li a:focus {
           background-color: #E7EBED;
           font-weight: 700; }
-          .social-aside ul li a:hover .fab,
-          .social-aside ul li a:hover .fa, .social-aside ul li a:focus .fab,
-          .social-aside ul li a:focus .fa {
-            font-weight: 400; }
       .social-aside ul li .fa {
-        text-align: center;
-        margin-right: 0.3125rem;
-        width: 1.5625rem;
         font-size: 1.3125rem;
-        display: inline-block;
-        font-family: FontAwesome;
-        font-style: normal;
-        font-weight: normal;
-        line-height: 1;
-        -webkit-font-smoothing: antialiased; }
+        margin-right: 0.4375rem; }
 
 /*
  * Tablet layout
