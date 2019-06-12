@@ -11556,6 +11556,7 @@ header.navbar.navbar-static-top.masthead {
             .navbar-collapse.collapse nav.navigation ul.nav.nav-pills li:nth-child(2n) a:focus,
             .navbar-collapse.collapse nav.navigation ul.nav.nav-pills li:nth-child(2n) a:active {
               background-color: #ffffff;
+              border-radius: 3px;
               color: #007EB1; }
           .navbar-collapse.collapse nav.navigation ul li.active a, .navbar-collapse.collapse nav.navigation ul li.current a,
           .navbar-collapse.collapse nav.navigation ul.nav li.active a,

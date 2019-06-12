@@ -169,6 +169,7 @@
                             &:focus,
                             &:active {
                                 background-color: $white;
+                                @include sq-border-radius(3px);
                                 color: $light-blue;
                             }
                         }
