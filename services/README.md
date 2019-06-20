@@ -28,8 +28,8 @@ And you're wanting to include an image in:
 
 
 Use either reference:
-- Relative path: <img src="../../../files/my-awesome-file.png" alt="My awesome file" >
-- Absolute path: <img src="~src/files/my-awesome-file.png" alt="My awesome file" >
+- Relative path: ````<img src="../../../files/my-awesome-file.png" alt="My awesome file" >````
+- Absolute path: ````<img src="~src/files/my-awesome-file.png" alt="My awesome file" >````
 
 
 #### Including HTML modules
