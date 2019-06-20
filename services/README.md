@@ -41,8 +41,8 @@ And you want to include it in:
 - src/modules/header/html/index.html
 
 Use either reference:
-- Relative path: ${require('../../header-menu/html/index.html')}
-- Absolute path: ${require('src/header-menu/html/index.html')}
+- Relative path: ````${require('../../header-menu/html/index.html')}````
+- Absolute path: ````${require('src/header-menu/html/index.html')}````
 
 
 ### Working in CSS files
@@ -56,8 +56,8 @@ And you want to include it in your main CSS:
 - src/styles/global.scss
 
 Use either reference:
-- Relative path: url('./imports/fonts/my-awesome-font.woff') format('woff')
-- Absolute path: url('~src/imports/fonts/my-awesome-font.woff') format('woff')
+- Relative path: ````url('./imports/fonts/my-awesome-font.woff') format('woff')````
+- Absolute path: ````url('~src/imports/fonts/my-awesome-font.woff') format('woff')````
 
 #### Including images
 
@@ -68,8 +68,8 @@ And you're wanting to include an image in:
 - src/modules/header/css/global.scss
 
 Use either reference:
-- Relative path: background-image: url('../files/icon.png');
-- Absolute path: background-image: url('~src/files/icon.png');
+- Relative path: ````background-image: url('../files/icon.png');````
+- Absolute path: ````background-image: url('~src/files/icon.png');````
 
 
 ### Working in JS files
@@ -83,23 +83,23 @@ And you're wanting to include an image in:
 - src/modules/header/js/global.js
 
 Use either reference:
-- Relative path: const icon = require('../../../files/icon.png');
-- Absolute path: const icon = require('src/files/icon.png');
+- Relative path: ````const icon = require('../../../files/icon.png');````
+- Absolute path: ````const icon = require('src/files/icon.png');````
 
 #### Including JSON
 You may want to reference an external JSON file that does not need to be a part of the webpack build process. For instance, mock data returned from funnelback autocomplete. The /externals directory allows you to pop in files to ensure that they will be included in the /dist directory
 
 Your file lives in:
-- src/externals/data.json
+- ````src/externals/data.json````
 
 
 You can reference it by its relative path ie.
-- fetch('./externals/data.json').then(function(response){...do stuff})
+- ````fetch('./externals/data.json').then(function(response){...do stuff})````
 
 Or its absolute path ie.
-- fetch('~src/externals/data.json').then(function(response){...do stuff})
+- ````fetch('~src/externals/data.json').then(function(response){...do stuff})````
 
-File will be moved into the dist directory dist/externals/data.json
+File will be moved into the dist directory ````dist/externals/data.json````
 
 ## SVGs
 
