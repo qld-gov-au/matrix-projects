@@ -80,9 +80,6 @@ img.pull-right {
 General
 --------------------
 */
-::-moz-selection {
-  background: #b3d4fc;
-  text-shadow: none; }
 
 ::selection {
   background: #b3d4fc;
@@ -612,6 +609,9 @@ h2:before {
   #qg-primary-content {
     padding-left: 50px;
     padding-right: 0; } }
+
+#qg-search-form ul.listbox {
+  z-index: 101; }
 
 /*
  * Mobile layout

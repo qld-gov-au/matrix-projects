@@ -97,13 +97,3 @@ Modules
 */
 @import "../modules/*/css/global.scss";
 
-
-/*
---------------------
-SDQLD-2683
---------------------
-*/
-
-#qg-search-form ul.listbox {
-  z-index: 101;
-}
