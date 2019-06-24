@@ -129,6 +129,10 @@ h2 {
     color: $light-blue;
 }
 
+a {
+    text-decoration: underline;
+}
+
 .primary {
     padding: 0;
 }
@@ -153,6 +157,7 @@ h2 {
     font-size: pxToRem(15);
     line-height: pxToRem(17);
     padding: pxToRem(12) pxToRem(17);
+    text-decoration: none;
 
     &[target="_blank"]{
 

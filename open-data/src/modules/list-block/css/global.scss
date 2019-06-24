@@ -28,7 +28,6 @@
 
         a {
             color: $dark-blue;
-            text-decoration: underline;
 
             &:hover,
             &:focus {
@@ -45,11 +44,6 @@
         a {
             text-decoration: none;
             color: $medium-grey-2;
-
-            &:hover,
-            &:focus {
-                text-decoration: underline;
-            }
         }
     }
 
@@ -67,7 +61,7 @@
         margin: pxToRem(15) 0 0 0;
 
         a {
-            text-decoration: underline;
+            
             color: $medium-blue;
 
             &:hover,
