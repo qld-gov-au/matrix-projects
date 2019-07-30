@@ -154,10 +154,8 @@
 
 
         function checkFieldHasInput(current_value) {
-
             if (current_value.length === 0) {
                 services_service_finder.dom.$root.addClass("services-service-finder--no-input");
-                $('.services-service-finder__no-results-menu').attr("tabindex",0).focus();
             } else {
                 services_service_finder.dom.$root.removeClass("services-service-finder--no-input");
             }
@@ -194,16 +192,19 @@
                 }
 
             });
-
             // Whenever user is typing or deleting input, check if there is input
             // This is to make the "no results menu" hide if there is input
             services_service_finder.dom.$field.on("input", function (event) {
-
                 var $this = $(event.target);
                 var current_value = $this.val();
-
                 checkFieldHasInput(current_value);
 
+            });
+
+            $(document).click(function (event) {
+               if($(event.target).attr('class') !== 'services-service-finder__field tt-input'){
+                   services_service_finder.dom.$root.removeClass("services-service-finder--focused");
+               }
             });
 
             // Because of how iOS handles blur (clicking on outside of the field doesn't blur a focused field)
@@ -241,7 +242,7 @@
                 services_service_finder.dom.$root.addClass(no_result_menu_link_focused_state_class);
             });
 
-            services_service_finder.dom.$no_result_menu_container.on("blur click", function(event) {
+            services_service_finder.dom.$no_result_menu_container.on("click", function(event) {
                 services_service_finder.dom.$root.removeClass("services-service-finder--focused");
             });
 
