@@ -1135,7 +1135,7 @@ __webpack_require__.r(__webpack_exports__);
    * Service Finder Module
    * =====================
    * The search finder module is a form which has an input search field and a submit button.
-   * 
+   *
    * -----------------------------------------
    * Functionality - FB Autocomplete Conceirge
    * -----------------------------------------
@@ -1144,13 +1144,13 @@ __webpack_require__.r(__webpack_exports__);
    * - organic suggestions (Up to 5)
    * - featured suggestion (1)
    * The script also clones the featured result into the organic result set for mobile view
-   * 
+   *
    * -------------------------------------------
    * Functionality - No results menu links focus
    * -------------------------------------------
    * We would prefer users are able to keyboard navigate through the no-menu links
    * Thus, a class needs to be added to the parent to keep the no-menu open when tabbing through
-   * 
+   *
    */
 
   var services_service_finder_module = function () {
@@ -1259,6 +1259,7 @@ __webpack_require__.r(__webpack_exports__);
     function checkFieldHasInput(current_value) {
       if (current_value.length === 0) {
         services_service_finder.dom.$root.addClass("services-service-finder--no-input");
+        $('.services-service-finder__no-results-menu').attr("tabindex", 0).focus();
       } else {
         services_service_finder.dom.$root.removeClass("services-service-finder--no-input");
       }
@@ -1278,12 +1279,14 @@ __webpack_require__.r(__webpack_exports__);
       }); // Blur event
 
       services_service_finder.dom.$field.on("blur", function (event) {
-        var $this = $(event.target);
-        var current_value = $this.val();
-        checkFieldHasInput(current_value);
-        services_service_finder.dom.$root.removeClass("services-service-finder--focused");
+        if ($('.services-service-finder--no-input').length <= 0) {
+          var $this = $(event.target);
+          var current_value = $this.val();
+          checkFieldHasInput(current_value);
+          services_service_finder.dom.$root.removeClass("services-service-finder--focused");
+        }
       }); // Whenever user is typing or deleting input, check if there is input
-      // This is to make the "no results menu" hide if there is input 
+      // This is to make the "no results menu" hide if there is input
 
       services_service_finder.dom.$field.on("input", function (event) {
         var $this = $(event.target);
@@ -1307,8 +1310,15 @@ __webpack_require__.r(__webpack_exports__);
     function setupNoResultsMenuLinks() {
       var no_result_menu_link_focused_state_class = "services-service-finder--no-results-menu-link-focused";
       services_service_finder.dom.$no_result_menu_links = services_service_finder.dom.$root.find(".services-service-finder__no-results-menu-list-item-link");
+      services_service_finder.dom.$no_result_menu_container = services_service_finder.dom.$root.find(".services-service-finder__no-results-menu");
       services_service_finder.dom.$no_result_menu_links.on("focus", function (event) {
         services_service_finder.dom.$root.addClass(no_result_menu_link_focused_state_class);
+      });
+      services_service_finder.dom.$no_result_menu_links.on("focus", function (event) {
+        services_service_finder.dom.$root.addClass(no_result_menu_link_focused_state_class);
+      });
+      services_service_finder.dom.$no_result_menu_container.on("blur click", function (event) {
+        services_service_finder.dom.$root.removeClass("services-service-finder--focused");
       });
       services_service_finder.dom.$no_result_menu_links.on("blur", function (event) {
         services_service_finder.dom.$root.removeClass(no_result_menu_link_focused_state_class);
