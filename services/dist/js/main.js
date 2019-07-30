@@ -1259,7 +1259,6 @@ __webpack_require__.r(__webpack_exports__);
     function checkFieldHasInput(current_value) {
       if (current_value.length === 0) {
         services_service_finder.dom.$root.addClass("services-service-finder--no-input");
-        $('.services-service-finder__no-results-menu').attr("tabindex", 0).focus();
       } else {
         services_service_finder.dom.$root.removeClass("services-service-finder--no-input");
       }
@@ -1292,6 +1291,11 @@ __webpack_require__.r(__webpack_exports__);
         var $this = $(event.target);
         var current_value = $this.val();
         checkFieldHasInput(current_value);
+      });
+      $(document).click(function (event) {
+        if ($(event.target).attr('class') !== 'services-service-finder__field tt-input') {
+          services_service_finder.dom.$root.removeClass("services-service-finder--focused");
+        }
       }); // Because of how iOS handles blur (clicking on outside of the field doesn't blur a focused field)
       // We need this to simulate a focus blur when clicking elsewhere
 
@@ -1317,7 +1321,7 @@ __webpack_require__.r(__webpack_exports__);
       services_service_finder.dom.$no_result_menu_links.on("focus", function (event) {
         services_service_finder.dom.$root.addClass(no_result_menu_link_focused_state_class);
       });
-      services_service_finder.dom.$no_result_menu_container.on("blur click", function (event) {
+      services_service_finder.dom.$no_result_menu_container.on("click", function (event) {
         services_service_finder.dom.$root.removeClass("services-service-finder--focused");
       });
       services_service_finder.dom.$no_result_menu_links.on("blur", function (event) {
