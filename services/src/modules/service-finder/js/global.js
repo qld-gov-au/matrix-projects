@@ -7,7 +7,7 @@
      * Service Finder Module
      * =====================
      * The search finder module is a form which has an input search field and a submit button.
-     * 
+     *
      * -----------------------------------------
      * Functionality - FB Autocomplete Conceirge
      * -----------------------------------------
@@ -16,17 +16,17 @@
      * - organic suggestions (Up to 5)
      * - featured suggestion (1)
      * The script also clones the featured result into the organic result set for mobile view
-     * 
+     *
      * -------------------------------------------
      * Functionality - No results menu links focus
      * -------------------------------------------
      * We would prefer users are able to keyboard navigate through the no-menu links
      * Thus, a class needs to be added to the parent to keep the no-menu open when tabbing through
-     * 
+     *
      */
 
     var services_service_finder_module = (function() {
-        
+
         // Set up Funnelback Conceirge on input field
         function setupFBConceirge() {
 
@@ -82,7 +82,7 @@
                         renderInputField();
                         cloneFeaturedResult();
                     }
-                    
+
                   }
 
                 }
@@ -94,7 +94,7 @@
             services_service_finder.dom.$organic_results_wrapper = services_service_finder.dom.$tt_menu.find(".tt-dataset-organic");
             services_service_finder.dom.$featured_result_wrapper = services_service_finder.dom.$tt_menu.find(".tt-dataset-featured");
 
-            services_service_finder.dom.$field.on('input', function() { 
+            services_service_finder.dom.$field.on('input', function() {
                 renderInputField();
             });
 
@@ -117,7 +117,7 @@
 
                 // Clone featured result set. Arguments are true in order to clone click events binded to search result
                 var $featured_result_wrapper_clone = services_service_finder.dom.$featured_result_wrapper.clone(true, true);
-                
+
                 // Get number of organic results
                 var $organic_results = services_service_finder.dom.$organic_results_wrapper.find(".tt-suggestion");
 
@@ -149,7 +149,7 @@
             } else {
                 services_service_finder.dom.$root.removeClass("services-service-finder--has-featured-result");
             }
-            
+
         }
 
 
@@ -157,6 +157,7 @@
 
             if (current_value.length === 0) {
                 services_service_finder.dom.$root.addClass("services-service-finder--no-input");
+                $('.services-service-finder__no-results-menu').attr("tabindex",0).focus();
             } else {
                 services_service_finder.dom.$root.removeClass("services-service-finder--no-input");
             }
@@ -185,18 +186,17 @@
 
             // Blur event
             services_service_finder.dom.$field.on("blur", function (event) {
-
-                var $this = $(event.target);
-                var current_value = $this.val();
-
-                checkFieldHasInput(current_value);
-
-                services_service_finder.dom.$root.removeClass("services-service-finder--focused");
+                if($('.services-service-finder--no-input').length <= 0){
+                    var $this = $(event.target);
+                    var current_value = $this.val();
+                    checkFieldHasInput(current_value);
+                    services_service_finder.dom.$root.removeClass("services-service-finder--focused");
+                }
 
             });
 
             // Whenever user is typing or deleting input, check if there is input
-            // This is to make the "no results menu" hide if there is input 
+            // This is to make the "no results menu" hide if there is input
             services_service_finder.dom.$field.on("input", function (event) {
 
                 var $this = $(event.target);
@@ -219,11 +219,11 @@
                     services_service_finder.dom.$field.blur();
 
                 }
-                
+
             });
 
         }
-        
+
         // Whenever a link in the no results menu is selected, ensure that the no results menu is visible
         // This allows better keyboard navigation
         function setupNoResultsMenuLinks() {
@@ -231,9 +231,18 @@
             var no_result_menu_link_focused_state_class = "services-service-finder--no-results-menu-link-focused";
 
             services_service_finder.dom.$no_result_menu_links = services_service_finder.dom.$root.find(".services-service-finder__no-results-menu-list-item-link");
+            services_service_finder.dom.$no_result_menu_container = services_service_finder.dom.$root.find(".services-service-finder__no-results-menu");
 
             services_service_finder.dom.$no_result_menu_links.on("focus", function(event) {
                 services_service_finder.dom.$root.addClass(no_result_menu_link_focused_state_class);
+            });
+
+            services_service_finder.dom.$no_result_menu_links.on("focus", function(event) {
+                services_service_finder.dom.$root.addClass(no_result_menu_link_focused_state_class);
+            });
+
+            services_service_finder.dom.$no_result_menu_container.on("blur click", function(event) {
+                services_service_finder.dom.$root.removeClass("services-service-finder--focused");
             });
 
             services_service_finder.dom.$no_result_menu_links.on("blur", function(event) {
@@ -251,12 +260,12 @@
 
         // Initialisation
         function init() {
-            
+
             services_service_finder.dom = {};
 
             // Get root node
             services_service_finder.dom.$root = $(".services-service-finder");
-            
+
             // If sevice finder exists
             if (services_service_finder.dom.$root.length) {
 
@@ -272,18 +281,18 @@
                 setupNoResultsMenuLinks();
 
             }
-            
+
         }
-        
+
         var services_service_finder = {};
 
         return {
             init: init
         }
-    
-    
+
+
     }());
-    
+
     document.addEventListener("DOMContentLoaded", function() {
         services_service_finder_module.init();
     });

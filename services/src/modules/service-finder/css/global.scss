@@ -60,14 +60,14 @@
     .tt-dataset-organic {
 
         .tt-suggestion {
-            
+
             cursor: pointer;
             font-size: pxToRem(18);
             letter-spacing: pxToRem(0.7);
             padding: pxToRem(15) pxToRem(20);
-            
+
             &:hover {
-                
+
                 background-color: #063652;
                 color: #fff;
 
@@ -79,19 +79,19 @@
 
             & + .tt-dataset-featured {
                 border-top: pxToRem(1) solid #063652;
-                
+
                 & + .tt-suggestion {
                     border-top: pxToRem(1) solid #063652;
                 }
 
             }
 
-            
-                        
+
+
         }
 
     }
-    
+
 }
 
 .services-service-finder__featured-heading {
@@ -144,11 +144,11 @@
     &::-moz-placeholder { /* Firefox 19+ */
         color: #607a89;
     }
-    
+
     &:-ms-input-placeholder { /* IE 10+ */
         color: #607a89;
     }
-    
+
     &:-moz-placeholder { /* Firefox 18- */
         color: #607a89;
     }
@@ -171,7 +171,7 @@
 }
 
 .services-service-finder__no-results-menu {
-    
+
     @extend %screen-hide;
 
     background-color: #fff;
@@ -193,6 +193,10 @@
         margin: 0;
         overflow: visible;
         width: auto;
+    }
+
+    &:focus{
+        outline:inherit;
     }
 
 }
@@ -256,7 +260,7 @@
             & + .tt-dataset-featured {
                 display: none;
             }
-        
+
         }
 
     }
@@ -270,9 +274,9 @@
         .tt-suggestion:hover & {
             color: #fff;
         }
-        
+
     }
-    
+
     .services-service-finder__no-results-menu-block {
         & + & {
             border-top: pxToRem(1) solid #000;
@@ -309,12 +313,12 @@
     }
 
     .services-service-finder__heading {
-        
+
         color: #17628a;
         font-size: pxToRem(48);
         font-weight: 600;
         margin-bottom: pxToRem(50);
-        
+
         .services-banner & {
 
             background-color: rgba(0, 0, 0, 0.55);
@@ -323,7 +327,7 @@
             margin-bottom: pxToRem(40);
             padding: pxToRem(40) pxToRem(70) pxToRem(30) 0;
             position: relative;
-            
+
             &:before {
                 content: '';
                 position: absolute;
@@ -341,7 +345,7 @@
     .services-service-finder__form {
 
         .tt-menu {
-            
+
             box-shadow: 0 pxToRem(20) pxToRem(20) 0 rgba(0, 0, 0, 0.25);
             right: 0;
 
@@ -353,10 +357,10 @@
                 border: 0;
                 border-top: pxToRem(1) solid #063652;
             }
-            
+
         }
 
-        .tt-dataset-organic { 
+        .tt-dataset-organic {
 
             flex-grow: 1;
 
@@ -369,13 +373,13 @@
                 letter-spacing: pxToRem(1);
                 padding: pxToRem(20) pxToRem(25);
 
-                
+
                 & + .tt-dataset-featured {
-                    
+
                     & + .tt-suggestion {
                         border-top: pxToRem(2) solid #e1e1e1;
                     }
-                    
+
                 }
 
             }
@@ -389,9 +393,9 @@
             }
 
         }
-        
+
         .tt-dataset-featured {
-            
+
             .tt-suggestion {
                 padding: pxToRem(40) pxToRem(65);
                 width: pxToRem(390);
@@ -431,22 +435,22 @@
         &:focus {
             text-decoration: underline;
         }
-        
+
     }
 
     .services-service-finder__featured-icon {
-        
+
         & + & {
             margin-left: pxToRem(20);
         }
-    
+
     }
 
-    .services-service-finder__field {  
+    .services-service-finder__field {
         border-radius: pxToRem(14) 0 0 pxToRem(14);
         font-size: pxToRem(32);
         padding: pxToRem(35);
-        
+
         &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
             color: #063652;
         }
@@ -454,11 +458,11 @@
         &::-moz-placeholder { /* Firefox 19+ */
             color: #063652;
         }
-        
+
         &:-ms-input-placeholder { /* IE 10+ */
             color: #063652;
         }
-        
+
         &:-moz-placeholder { /* Firefox 18- */
             color: #063652;
         }
@@ -474,16 +478,16 @@
             &:focus {
                 background-color: #ffffff !important;
             }
-            
+
         }
-        
+
     }
 
     .services-service-finder__no-results-menu {
         background-color: #f5f5f5;
         box-shadow: 0 pxToRem(20) pxToRem(20) 0 rgba(0, 0, 0, 0.25);
         right: 0;
-        
+
         .services-banner & {
             border: 0;
             border-top: pxToRem(1) solid #063652;
@@ -501,7 +505,7 @@
     }
 
     .services-service-finder__no-results-menu-block {
-        
+
         padding: pxToRem(50) pxToRem(80);
 
         & + & {
@@ -523,7 +527,7 @@
 
     .services-service-finder__no-results-menu-list-item {
         font-size: pxToRem(26);
-        
+
         & + & {
             margin-top: pxToRem(50);
         }
@@ -539,11 +543,11 @@
         }
 
     }
-    
+
     .services-service-finder__btn {
         border-radius: 0 pxToRem(14) pxToRem(14) 0;
         font-size: pxToRem(44);
         width: pxToRem(110);
     }
-    
+
 }
