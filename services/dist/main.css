@@ -1661,6 +1661,8 @@ body {
     margin: 0;
     overflow: visible;
     width: auto; }
+  .services-service-finder__no-results-menu:focus {
+    outline: inherit; }
 
 .services-service-finder__no-results-menu-block {
   -webkit-box-flex: 1;
