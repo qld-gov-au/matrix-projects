@@ -30,13 +30,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link href="//fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<!-- Original main.min.css from CKAN -->
+<!-- Boilerplate CSS overrides this -->
+<link href="https://training.data.qld.gov.au/fanstatic/css/:version:2019-06-21T06:51:27.51/main.min.css" rel="stylesheet" type="text/css" />
     <link href="0.css" rel="stylesheet"></head>
     <body class="no-js">
         <div class="page-wrapper" id="page-wrapper">
             
-            <header class="account-masthead">
+            <div class="account-masthead">
     <div class="container">
         <nav class="account not-authed">
             <ul class="unstyled">
@@ -46,10 +50,10 @@
             </ul>
         </nav>
     </div>
-</header>
+</div>
             <header class="navbar navbar-static-top masthead">
     <div class="container">
-        <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
+        <button data-target="#main-navigation-toggle" data-toggle="collapse" class="btn btn-navbar navbar-toggle collapsed" type="button">
             <span class="fa fa-bars"></span>
             <span class="sr-only">Open/Close Mobile Menu</span>
         </button>
@@ -62,20 +66,20 @@
                 <a href="#">Open Data Portal</a>
             </div>
         </hgroup>
-        <div class="nav-collapse collapse">
+        <div class="navbar-collapse collapse" id="main-navigation-toggle">
     <nav class="section navigation">
         <ul class="nav nav-pills">
-            <li><a href="#">Data</a></li>
-            <li><a href="#">News and events</a></li>
-            <li><a href="#">Case studies</a></li>
-            <li><a href="#">Standards and guidance</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="https://www.qld.gov.au">Data</a></li>
+            <li><a href="https://www.qld.gov.au">News and events</a></li>
+            <li><a href="https://www.qld.gov.au">Case studies</a></li>
+            <li><a href="https://www.qld.gov.au">Standards and guidance</a></li>
+            <li><a href="https://www.qld.gov.au">Contact</a></li>
         </ul>
     </nav>
     <form class="section site-search simple-input" action="/dataset" method="get">
         <div class="field">
             <label for="field-sitewide-search" class="sr-only">Search Datasets</label>
-            <input id="field-sitewide-search" type="text" name="q" placeholder="Search">
+            <input id="field-sitewide-search" type="text" name="q" placeholder="Search site content">
             <button class="btn-search" type="submit">
                 <i class="fa fa-search"></i>
                 <span class="sr-only">Submit site search</span>
@@ -101,7 +105,7 @@
 </div>
 
                     <div class="row wrapper">
-                        <div class="primary span9">
+                        <div class="primary col-sm-9 col-xs-12">
                             <article class="module">
                                 <div class="module-content">
                                     <h1>News and Events</h1>
@@ -110,9 +114,7 @@
                                     <div class="list-block">
 
     <div class="list-block__item">
-        <div class="list-block__img" style="background-image: url(mysource_files/list-block-img-1.jpg);">
-            <img src="mysource_files/list-block-img-1.jpg" alt="" style="display: none;">
-        </div>
+        <div class="list-block__img" style="background-image: url(mysource_files/list-block-img-1.jpg);"></div>
 
         <div class="list-block__content">
             <div class="list-block__title">
@@ -129,9 +131,7 @@
     </div>
 
     <div class="list-block__item">
-        <div class="list-block__img" style="background-image: url(mysource_files/list-block-img-1.jpg);">
-            <img src="mysource_files/list-block-img-1.jpg" alt="" style="display: none;">
-        </div>
+        <div class="list-block__img" style="background-image: url(mysource_files/list-block-img-1.jpg);"></div>
 
         <div class="list-block__content">
             <div class="list-block__title">
@@ -148,9 +148,7 @@
     </div>
 
     <div class="list-block__item">
-        <div class="list-block__img" style="background-image: url(mysource_files/list-block-img-1.jpg);">
-            <img src="mysource_files/list-block-img-1.jpg" alt="" style="display: none;">
-        </div>
+        <div class="list-block__img" style="background-image: url(mysource_files/list-block-img-1.jpg);"></div>
 
         <div class="list-block__content">
             <div class="list-block__title">
@@ -167,9 +165,7 @@
     </div>
 
     <div class="list-block__item">
-        <div class="list-block__img" style="background-image: url(mysource_files/list-block-img-1.jpg);">
-            <img src="mysource_files/list-block-img-1.jpg" alt="" style="display: none;">
-        </div>
+        <div class="list-block__img" style="background-image: url(mysource_files/list-block-img-1.jpg);"></div>
 
         <div class="list-block__content">
             <div class="list-block__title">
@@ -186,9 +182,7 @@
     </div>
 
     <div class="list-block__item">
-        <div class="list-block__img" style="background-image: url(mysource_files/list-block-img-1.jpg);">
-            <img src="mysource_files/list-block-img-1.jpg" alt="" style="display: none;">
-        </div>
+        <div class="list-block__img" style="background-image: url(mysource_files/list-block-img-1.jpg);"></div>
 
         <div class="list-block__content">
             <div class="list-block__title">
@@ -205,9 +199,7 @@
     </div>
 
     <div class="list-block__item">
-        <div class="list-block__img" style="background-image: url(mysource_files/list-block-img-1.jpg);">
-            <img src="mysource_files/list-block-img-1.jpg" alt="" style="display: none;">
-        </div>
+        <div class="list-block__img" style="background-image: url(mysource_files/list-block-img-1.jpg);"></div>
 
         <div class="list-block__content">
             <div class="list-block__title">
@@ -243,7 +235,7 @@
                                 </div>
                             </article>
                         </div>
-                        <div class="secondary span3">
+                        <div class="secondary col-sm-3">
                             <div class="sub-nav">
     <ul>
         <li><a href="#">Data</a></li>
@@ -285,13 +277,9 @@
 
         </div>
 
-        <script>
-    var qg = qg || {};
-    qg.swe = qg.swe || {};
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-    // Used by the feedback form.
-    qg.swe.franchiseTitle = 'Franchise Title';
-</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="js/runtime.js"></script><script type="text/javascript" src="js/main.js"></script></body>
 </html>
