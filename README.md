@@ -11,3 +11,4 @@ All configuration files to work with SWE have been included in this boilerplate.
 - Merge all feature/custom/bugfix branches planned for release into release candidate branch. This must be peer reviewed by QOL team.
 - Pre Go-live merge it to master branch
 - On matrix, each project will have its own Git bridge pulling files from project's folder. This isolates releases on each projects.
+- TSS Test
