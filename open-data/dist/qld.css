@@ -116,9 +116,6 @@ body {
     background-image: none;
     margin: 0; }
 
-img {
-  max-width: 100%; }
-
 main.main {
   background: #ffffff; }
 
@@ -154,6 +151,8 @@ a {
 
 .primary {
   padding: 0; }
+  .primary img {
+    max-width: 100%; }
 
 #asides .button:visited,
 .button, .button:active,
@@ -788,6 +787,9 @@ body {
 /*
  * Mobile layout
  */
+.header-image .logo img {
+  height: 50px; }
+
 header.navbar.navbar-static-top.masthead {
   background-color: #007EB1;
   margin: 0;
