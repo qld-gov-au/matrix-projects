@@ -1,7 +1,9 @@
 /*
  * Mobile layout
  */
-
+.header-image .logo img {
+    height: 50px;
+}
 header.navbar.navbar-static-top.masthead {    
     background-color: $light-blue;
     margin: 0;
