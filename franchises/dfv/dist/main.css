@@ -1518,10 +1518,8 @@ body:not([data-accessibility=false]):not([data-access-new-window=false]) #qg-con
   padding: 12px 20px;
   text-decoration: none;
   border-color: #fff;
-  background-color: #fff;
-  color: #13578b;
-  font-weight: 700;
-  padding-left: 0; }
+  padding: 12px 40px;
+  font-weight: 700; }
 
 #qg-search-widget .select2-selection--single {
   border-color: #7753a2;
@@ -1530,8 +1528,7 @@ body:not([data-accessibility=false]):not([data-access-new-window=false]) #qg-con
     border-top-color: #000; }
 
 #qg-search-widget button[type="submit"], #qg-search-widget button[type="reset"] {
-  left: 16px;
-  position: absolute; }
+  left: 16px; }
 
 #qg-search-widget button[type="submit"] {
   bottom: -25px; }

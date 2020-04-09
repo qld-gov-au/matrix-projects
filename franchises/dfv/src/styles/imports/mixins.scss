@@ -18,10 +18,11 @@
 @mixin dfv-button-secondary() {
     @include dfv-button();
     border-color: #fff;
-    background-color: #fff;
-    color: $deep-blue;
+    //background-color: #fff;
+    //color: $deep-blue;
+    padding: 12px 40px;
     font-weight: 700;
-    padding-left: 0;
+    //padding-left: 0;
 }
 
 @mixin dfv-button-tertiary() {
