@@ -1521,7 +1521,7 @@ body:not([data-accessibility=false]):not([data-access-new-window=false]) #qg-con
   background-color: #fff;
   color: #13578b;
   font-weight: 700;
-  padding-left: 0; }
+  padding: 5px; }
 
 #qg-search-widget .select2-selection--single {
   border-color: #7753a2;
