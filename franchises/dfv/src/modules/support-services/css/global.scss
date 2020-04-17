@@ -37,6 +37,10 @@
 
     .btn-primary:hover, .btn-primary:focus {
         color: #fff !important;
+        background-color: #316c99;
+    }
+    .btn-primary:focus {
+        box-shadow: none;
     }
 
     .btn-secondary {
@@ -47,6 +51,7 @@
         color: #13578b !important;
         background: transparent !important;
         text-decoration: underline !important;
+        box-shadow: none;
     }
 
     .select2-selection--single {

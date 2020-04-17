@@ -1512,7 +1512,12 @@ body:not([data-accessibility=false]):not([data-access-new-window=false]) #qg-con
   width: calc(100% - 32px); }
 
 #qg-search-widget .btn-primary:hover, #qg-search-widget .btn-primary:focus {
-  color: #fff !important; }
+  color: #fff !important;
+  background-color: #316c99; }
+
+#qg-search-widget .btn-primary:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none; }
 
 #qg-search-widget .btn-secondary {
   border-radius: 4px;
@@ -1529,7 +1534,9 @@ body:not([data-accessibility=false]):not([data-access-new-window=false]) #qg-con
 #qg-search-widget .btn-secondary:hover, #qg-search-widget .btn-secondary:focus {
   color: #13578b !important;
   background: transparent !important;
-  text-decoration: underline !important; }
+  text-decoration: underline !important;
+  -webkit-box-shadow: none;
+          box-shadow: none; }
 
 #qg-search-widget .select2-selection--single {
   border-color: #7753a2;
