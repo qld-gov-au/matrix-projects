@@ -35,8 +35,18 @@
         width: calc(100% - 32px);
     }
 
+    .btn-primary:hover, .btn-primary:focus {
+        color: #fff !important;
+    }
+
     .btn-secondary {
         @include dfv-button-secondary();
+    }
+
+    .btn-secondary:hover, .btn-secondary:focus {
+        color: #13578b !important;
+        background: transparent !important;
+        text-decoration: underline !important;
     }
 
     .select2-selection--single {
