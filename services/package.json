@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
-    "serve": "webpack-dev-server --open --config webpack.dev.js"
+    "serve": "webpack-dev-server --open --config webpack.dev.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "keywords": [],
   "author": "",
@@ -42,6 +44,8 @@
   ],
   "dependencies": {
     "eventemitter2": "^5.0.1",
-    "webpack-merge": "^4.1.4"
-  }
+    "webpack-merge": "^4.1.4",
+    "snyk": "^1.406.0"
+  },
+  "snyk": true
 }
