@@ -42,6 +42,6 @@
   ],
   "dependencies": {
     "eventemitter2": "^5.0.1",
-    "webpack-merge": "^4.1.4"
+    "webpack-merge": "^4.2.2"
   }
 }
