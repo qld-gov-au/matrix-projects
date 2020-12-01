@@ -1,4 +1,7 @@
 .qg-accordion {
+  label:after {
+    content: "" !important;
+  }
   &.qg-dark-accordion article {
     background-color: #f5f5f5;
   }
