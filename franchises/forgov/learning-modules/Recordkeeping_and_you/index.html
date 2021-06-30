@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html ng-app="reform-build" ng-controller="Main"  viewport="window" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		
+		<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+		
+		
+		<link href="assets/css/reform.min.css" rel="stylesheet">
+		
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+		<![endif]-->
+		
+		
+		<title ng-bind-html="courseObj.course.global_settings.title | to_trusted"></title>
+		<style ng-bind-html="themeObj | to_trusted"></style>
+	</head>
+	<body id="reform-app" ng-class = "{'noscroll': modalShow}">
+		
+		<div class="app-content-loading" ng-show = "loading">
+			<img class="img-responsive" src = "assets/images/loader.gif" />
+			<div class="loadingText" ng-bind-html="loadMsg | to_trusted">Loading...0%</div>
+		</div>
+		<div id="main-wrap" ng-class = "courseObj.course.pages[originalPath].jsonData.properties.class">
+			
+			<div id="header" ng-if="courseObj.course.header"  ng-model="courseObj.course.header" blockid="global" block></div>
+			<div id="page-wrap">
+				<div class = "scope_container page" id="{{originalPath}}" ng-class="{{originalPath}}" ng-view></div>
+			</div>
+			<div id="footer" ng-if="courseObj.course.footer"  ng-model="courseObj.course.footer" blockid="global" block></div>
+			
+		</div>
+		<div id="modal" lockblock ng-show="modalShow" class="modal" ng-init = "blockid = 'global'"  role="dialog" modal></div>
+		
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		
+		<script type="text/javascript">var _app_version='v1533137046189'</script>
+		<script src="assets/js/reform.min.js"></script>
+		
+		
+	</body>
+</html>
+<script type="text/ng-template" id="templates/plain.html">
+<div ng-repeat="block in blocks" class="block_wrap">
+	
+	<div class="xeditor" ng-init = "model = blocks; idx = $index;" templateurl = "editcontrols_add_comp_fxd" editcontrols></div>
+	<div ng-model="block" blockid="{{$index}}" block></div>
+	
+	
+</div>
+</script>
+
+<script type="text/ng-template" id="templates/components/accordion.html">
+<div class="accordion " ng-class = "data.prop.class">
+	<div class="cnr_wrap">
+		<div class="cnr" ng-repeat = "item in data.prop.items" ng-class = "{'visited': item.status, 'selected': item.selected}" ng-click = "item_clicked(item)">
+			<div class="cnr_btn">
+				<p ng-bind-html = "item.title | to_trusted"></p>
+			</div>
+			<div class="reveal_cont">
+				<p ng-bind-html = "item.text | to_trusted"></p>
+			</div>
+		</div>
+	</div>
+</div></script>
+
+<script type="text/ng-template" id="templates/components/audioblock.html">
+<div class="audio-btn" viewport-leave="stopCurrentAudio(data.audioId)" viewport-enter="playAudioInView(data.audioId)" >
+	<div class="btn_wrap">
+		<!-- <img ng-click = "playAudio(data.audioId)" ng-show = "audioPlaying != true" src="assets/images/sound_mute.png">
+		<img ng-click = "pauseAudio(data.audioId)" ng-show = "audioPlaying == true" src="assets/images/sound.png"> -->
+	</div>
+</div></script>
+
+<script type="text/ng-template" id="templates/components/banner_text.html">
+<div class="picture-wrap" ng-class = "data.prop.class">
+	<img ng-if = "data.prop.imageId" ng-src="{{resource.path_route.image+data.prop.imageId}}" aria-label="{{data.prop.accessible.alt}}" alt="{{data.prop.accessible.alt}}"  tabindex="{{data.prop.accessible.tabindex}}" >
+	<div class="text_wrap">
+		<p ng-bind-html="data.prop.text | to_trusted"></p>
+	</div>
+</div>
+</script>
+
+<script type="text/ng-template" id="templates/components/banner_text1.html">
+<div class="accordion banner_text" ng-class = "data.prop.class">
+	<div class="text_wrap">
+		<img ng-src="{{resource.path_route.image+data.prop.imageId}}">
+		<p ng-bind-html="data.prop.text | to_trusted"></p>
+	</div>
+</div></script>
+
+<script type="text/ng-template" id="templates/components/block.html">
+<div class="block" ng-style="set_background(data.prop)" id="block_{{blockid}}" ng-class="data.prop.class" ng-if = "!data.hidden">
+	<div class="comp_container" ng-if = "data.components.length > 0" ng-style="set_background(data.prop.holder)" ng-class="data.prop.holder.class">
+		<div ng-repeat="comp in data.components" class="component" reformable ng-class = "comp.prop.fluid">
+			<div class = "pull-right xeditor" ng-init="model = data.components; idx = $index;"  templateurl = "editcontrols_component_fxd" editcontrols></div>
+			<div compblock ng-model="comp" type="{{comp.type}}" compid="{{$index}}" blockid="{{blockid}}" class="clearfix"   ng-class = "comp.prop.class" ng-style = "comp.css.normal">
+				<div id = "{{resource.compid+'_audio'}}" ng-if = "data.prop.audioId" audioblock type = "audioblock" ng-init = "model = data.prop; compId = compid; pageid = data.pageid"></div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<!-- <div class="comp_container" ng-if = "data.components.length == 0">
+		<div class="row">
+			<h1 class = "emptymessage xeditor">Please add a component</h1>
+		</div>
+	</div> -->
+</div></script>
+
+<script type="text/ng-template" id="templates/components/buttonblock.html">
+<div class="button" ng-click="onclick(data.prop.onclick)" >
+	<span ng-if="data.prop.text" ng-bind-html="data.prop.text | to_trusted"></span>
+	<img ng-if="data.prop.imageId" ng-src="{{resource.path_route.image+data.prop.imageId}}" alt="">
+</div></script>
+
+<script type="text/ng-template" id="templates/components/carousel.html">
+<div class = "carousel_block" ng-class="data.prop.class">
+    <ul class="owl-carousel">
+        <li ng-repeat="item in data.prop.items">
+            <div class="img_wrap">
+                <img ng-src="{{resource.path_route.image+item.imageId}}" alt="">
+            </div> 
+
+        	<div class="text_wrap">
+        		<p ng-bind-html="item.text | to_trusted"></p>
+        	</div>
+                
+        </li>
+    </ul>
+</div></script>
+
+<script type="text/ng-template" id="templates/components/cnrpopblock.html">
+<div class="cnrpopblock" ng-class = "data.prop.class">
+	<div class="left_image" ng-if = "data.prop.imageId">
+		<img class = "img-responsive" ng-src="{{resource.path_route.image+data.prop.imageId}}">
+	</div>
+	<div class="items">
+		<div class="itext m-b-20" ng-if = "data.prop.itext" ng-bind-html = "data.prop.itext | to_trusted"></div>
+		<div class="item" ng-repeat = "item in data.prop.items" ng-click = "item_clicked(item)" ng-class = "{'visited':item.status}">
+			<div class="image_wrap">
+				<img ng-src="{{resource.path_route.image+item.imageId}}">
+			</div>
+			<p ng-bind-html = "item.title | to_trusted"></p>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div></script>
+
+<script type="text/ng-template" id="templates/components/footer.html">
+</script>
+
+<script type="text/ng-template" id="templates/components/mcqblock.html">
+<div class="mcq_block" ng-class = "data.prop.class">
+	<div class="quiz_cont" ng-class = "{'disabled': activity_answered}">
+		<div class="question">
+			<div class="option_wrap" ng-class="{'checkbox_wrap':(answerCount>1)}">
+				<div class="option" ng-repeat="option in data.prop.options" ng-click="optionClicked(option)" ng-class="{'selected':(option.selected==true), 'inline-block':data.prop.inline, 'disabled': option.disabled }">
+					<img ng-if = "option.imageId" ng-src="{{resource.path_route.image+option.imageId}}">
+					<div ng-bind-html="option.text | to_trusted" class = "text" editable = "true" ng-model = "option.text"></div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<div class = "submit btn" ng-class="(enableSubmit!=true)?'disabled':''" ng-click="onSubmit()">CHECK</div>
+		</div>
+	</div>
+</div></script>
+
+<script type="text/ng-template" id="templates/components/menu.html">
+<div class="menu_wrap">
+	<div id="itext_menu" class="text_wrap ng-binding" ng-bind-html="itext | to_trusted"></div>
+	<div class="items" ng-if = "resource.animationDone">
+		<div class="item" id = "menu{{$index}}" ng-repeat="item in data.prop.items" ng-class = "{'visited':getPagesStatus(item.checkForPages), 'disabled':!getPagesStatus(item.enabledId), 'enabled':getPagesStatus(item.enabledId)}">
+			<span class="topic_number" >{{$index+1}}</span>
+			<div class="topic">
+				<div class="topic_img">
+					<img ng-show="getPagesStatus(item.enabledId)" ng-src="{{resource.path_route.image+item.imageId}}" alt="">
+					<img ng-show="!getPagesStatus(item.enabledId)" ng-src="{{resource.path_route.image+item.disabled.imageId}}" alt="">
+				</div>
+				
+				<div class="bg_topic" ng-click="resource.navTo(item.navTo)">
+					<div class="texture"></div>
+					<p ng-bind-html="item.text | to_trusted"></p>
+					<div class="overlay"></div>
+				</div>
+				<div class="progress_bar">
+					<span class="fill" ng-style="getPercent(item)"></span>
+				</div>
+			</div>
+			
+		</div>
+		
+	</div>
+	<div class="items menu_animation_item" ng-if = "!resource.animationDone">
+		<div class="item" id = "anim_menu{{$index}}" ng-repeat="item in data.prop.items">
+			<span class="topic_number" >{{$index+1}}</span>
+			<div class="topic" >
+				<div class="topic_img">
+					<img ng-src="{{resource.path_route.image+item.imageId}}" alt="">
+				</div>
+				
+				<div class="bg_topic">
+					<div class="texture"></div>
+					<p ng-bind-html="item.text | to_trusted"></p>
+					<div class="overlay"></div>
+				</div>
+				<div class="progress_bar">
+					<span class="fill" ng-style="getPercent(item)"></span>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<div class="disable_patch" ng-if = "!resource.animationDone">
+		
+	</div>
+	<div class="footer_band">
+		<div class="progress_wrap">
+			<div class="progress">
+				<span class="w50"></span>
+				<span>In progress</span>
+			</div>
+			<div class="progress">
+				<span class="w100"></span>
+				<span>Completed</span>
+			</div>
+			<div class="progress">
+				<span class="w0"></span>
+				<span>Not started</span>
+			</div>
+		</div>
+	</div>
+</div></script>
+
+<script type="text/ng-template" id="templates/components/modal.html">
+<div class="pop_wrap" ng-if="type == 'modal'" ng-class="data.class">
+	<div class="cont" ng-class="{'small_head':!data.title, 'top_head':!data.title_image}">
+		<div class="head" >
+			<div class="image_wrap" ng-if="data.title_image" ng-bind-html="data.title_image | to_trusted ">
+				
+			</div>
+			<div class="head_strip" ng-class="{'stretch':!data.title_image}" ng-if = "!data.dismiss">
+				<div class="close_btn" ng-click="cancel()">Close</div>
+			</div>
+			<div class="title" ng-if="data.title" ng-bind-html="data.title | to_trusted ">
+				
+			</div>
+		</div>
+		<div class="content_wrap" scrollblock data-height="365px">
+			<div class="content" ng-bind-html="data.text | to_trusted">
+				
+			</div>
+		</div>
+		<div class="text-center">
+			<div class="submit btn" ng-click="cancel()" ng-if = "data.dismiss" ng-bind-html = "data.dismiss.text | to_trusted">Close</div>	
+		</div>
+		
+	</div>
+	
+</div>
+<div class="resumePop" ng-if="type == 'resume'">
+	<div class="resume_hold">
+		<div class="resume_body">
+			<h2>Resume from the screen last visited?</h2>
+		</div>
+		<div class="btn_wrap">
+			<button aria-label="Yes" type="button" class="close-dialog btn btn-success"  ng-click="resumeCourse('yes')" ><h2>YES</h2></button>
+			<button  aria-label="No" type="button" class="close-dialog btn btn-primary cancel_btn" ng-click="resumeCourse('no')"><h2>NO</h2></button>
+		</div>
+	</div>
+</div>
+
+<div class="audioPop" ng-if="type == 'audiopop'">
+    <div class="audioPop_hold">
+        <div class="audioPop_body">
+        	<p><b>How to Complete the Course:</b></p>
+			<img src="assets/images/responsive.png">
+            <p>The content can be viewed on PCs, laptops, tablets and smartphones. You might notice the Next button is missing. To view all the content on your device just <b>scroll down</b>. </p>
+
+            <img src="assets/images/mouse_scroll.png">
+            <p>Follow the instructions on each screen to display the content and complete the activities. Tap or click to select an item depending on your device.</p>
+            
+            <table class="table">
+	            <tbody>
+	                <tr>
+	                	<td class="text-center">
+	                        <img style = "width: 40px;" src="assets/images/clock_icon.png">
+	                    </td>
+	                    <td><p>This module will take you approximately 15 minutes to complete.</p></td>
+	                    
+	                </tr>
+	            </tbody>
+	        </table>
+	        <p>When you come back from a break the module will automatically resume from where you left off.</p>
+        </div>
+        <div class="btn_wrap">
+            <button type="button" class="btn" ng-show = "data != 'help'" ng-click="popupshown = true; resumeCourse('no');">
+            	OK GOT IT!
+            </button>
+
+            <button type="button" class="btn" ng-show = "data == 'help'" ng-click="popupshown = true; cancel();">
+            	CLOSE
+            </button>
+            
+        </div>
+    </div>
+</div></script>
+
+<script type="text/ng-template" id="templates/components/nav_button.html">
+<div class="button" ng-click="onclick(data.prop.onclick)">
+	<img ng-src="{{resource.path_route.image+data.prop.imageId}}">
+</div></script>
+
+<script type="text/ng-template" id="templates/components/pictureblock.html">
+<div class="picture-wrap">
+	<img ng-if = "data.prop.imageId" ng-src="{{resource.path_route.image+data.prop.imageId}}" aria-label="{{data.prop.accessible.alt}}" alt="{{data.prop.accessible.alt}}"  tabindex="{{data.prop.accessible.tabindex}}" >
+</div>
+</script>
+
+<script type="text/ng-template" id="templates/components/side_topic.html">
+<div class="side_topic" ng-class="data.prop.class">
+	<ul>
+		<li ng-repeat = "topic in data.prop.topics" ng-class = "{'active': topic.active}" ng-click = "resource.navTo(topic.pageId)">
+			<p ng-bind-html = "topic.title | to_trusted"></p>
+		</li>
+	</ul>	
+</div></script>
+
+<script type="text/ng-template" id="templates/components/summary.html">
+<div class="summary_wrap">
+	<div class="icon_wrap">
+		<div class="item" ng-repeat = "item in data.prop.items" ng-click = "item_clicked(item)" ng-class = "{'visited': item.status}">
+			<img ng-src="{{resource.path_route.image+item.imageId}}" alt="">
+			<p ng-bind-html = "item.text | to_trusted"></p>
+		</div>
+	</div>
+	<div class="modal_wrap links" ng-if="current_item">
+		<div class="pop_wrap" ng-class = "current_item.pop_class">
+			<div class="head">
+				
+				<div class="head_strip stretch">
+					<div class="close_btn" ng-show = "!current_item.disableClose" ng-click = "pop_closed()">Close</div>
+				</div>
+				<div class="title">
+					{{current_item.title}}
+				</div>
+				
+			</div>
+			<div class="content_wrap">
+				<div ng-repeat="comp in current_item.components" class="component" reformable ng-class = "comp.prop.fluid">
+					<div compblock ng-model="comp" type="{{comp.type}}" compid="{{resource.compid}}{{'_' + $index}}" blockid="resource.compid" class="clearfix"   ng-class = "comp.prop.class" ng-style = "comp.css.normal">
+						<div id = "{{resource.compid+'_audio'}}" ng-if = "current_item.audioId" audioblock type = "audioblock" ng-init = "model = current_item; compId = compid; pageid = data.pageid"></div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div></script>
+
+<script type="text/ng-template" id="templates/components/summary_resource.html">
+<div class="content">
+	<a class="resource resource_1" href="https://elogin.ads.swc/sites/iConnect/Our-organisation/1504672203812" target="_blank">
+		<img src="assets/images/resource_1.png" alt="">
+		<p>EMS iConnect toolbox</p>
+	</a>
+	<a class="resource resource_2" href="https://elogin.ads.swc/sites/iConnect/Our-organisation/1504672129694" target="_blank">
+		<img src="assets/images/resource_2.png" alt="">
+		<p>QMS iConnect page</p>
+	</a>
+	<a class="resource resource_3" href="https://compass.sydneywater.com.au/Saba/Web/Main" target="_blank">
+		<img src="assets/images/resource_3.png" alt="">
+		<p>Compass related environmental training programs</p>
+	</a>
+</div>
+<div class="itext">
+	Click each link for more information.
+</div></script>
+
+<script type="text/ng-template" id="templates/components/textblock.html">
+<div class="text_wrap" ng-if="data.prop.text" ng-bind-html="data.prop.text | to_trusted"></div>
+<div class="itextblock" ng-if="data.prop.itext" ng-bind-html="data.prop.itext | to_trusted"></div></script>
+
+<script type="text/ng-template" id="templates/components/textimage.html">
+<div class="textimage" ng-class = "data.prop.class">
+	<p class = "leadin" ng-if = "data.prop.text" ng-bind-html = "data.prop.text | to_trusted"></p>
+	<div class="items">
+		<div class="item" ng-repeat = "item in data.prop.items">
+			<div class="image_wrap">
+				<img ng-src="{{resource.path_route.image+item.imageId}}">
+			</div>
+			<p ng-bind-html = "item.text | to_trusted"></p>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="right_image" ng-if = "data.prop.imageId">
+		<img class = "img-responsive" ng-src="{{resource.path_route.image+data.prop.imageId}}">
+	</div>
+</div></script>
+
+<script type="text/ng-template" id="templates/components/timeline.html">
+<div class="timeline">
+	<table>
+		<tbody>
+			<tr>
+				<td>
+					<p class = "grey_cell"><span class = "cell_big f-s-20">A public record is any <b>record</b>, <b>data</b>, <b>context</b> and <b>information</b> received or created by a public authority in the course of undertaking its activities.</span></p></td>
+				<td>
+					<ul>
+						<li class = "white_label blue_lable">Data</li>
+						<li class = "white_label pink_lable">Context</li>
+						<li class = "white_label green_lable">Information</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td class = "text-center no_before no_after">
+					<img class = "m-b-45" src="assets/images/timeline_img1.png">
+				</td>
+				<td class = "no_before no_after">
+					<p class = "grey_cell p-l-40 grey_tri m-b-45"><span class = "cell_big">It can be in various formats – it’s the content that is key.</span></td>
+				</td>
+			</tr>
+			<tr>
+				<td class = "reverse_arrow">
+					<p class = "grey_cell p-l-40"><span class = "cell_big f-s-20">It can provide evidence of various types of  activities, decisions, transactions and agency responsibilities.</span></td>
+				<td class = "reverse_arrow">
+					<ul>
+						<li class = "filled_label light_blue_lable"><img src="assets/images/t1_icon1.png"><p>Policies/Procedures</p></li>
+						<li class = "filled_label orange_lable"><img src="assets/images/t1_icon2.png"><p>Text Messages<br>or Emails</p></li>
+						<li class = "filled_label dark_pink_lable"><img src="assets/images/t1_icon3.png"><p>Data</p></li>
+					</ul>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="more_info">
+		<p><span>If you’re not sure how to make and keep a record, check with your<br>Records Manager or Records Team.</span> <br><br>Typical types of records kept by public authorities include:</p>
+		<div class="items">
+			<div class="item">
+				<img src="assets/images/t1_image1.png">
+				<p>Meeting<br>requests</p>
+			</div>
+			<div class="item">
+				<img src="assets/images/t1_image2.png">
+				<p>Drafts</p>
+			</div>
+			<div class="item">
+				<img src="assets/images/t1_image3.png">
+				<p>Discussion<br>papers</p>
+			</div>
+			<div class="item">
+				<img src="assets/images/t1_image4.png">
+				<p>Project<br>records</p>
+			</div>
+			<div class="item">
+				<img src="assets/images/t1_image5.png">
+				<p>Correspondence</p>
+			</div>
+			<div class="item">
+				<img src="assets/images/t1_image6.png">
+				<p>Invoices</p>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div></script>
+
+<script type="text/ng-template" id="templates/components/transcriptblock.html">
+<div class="transcript_cont">
+	<div class="trans_header">
+		Transcript
+		<div class="close_btn" ng-click = "data.prop.hidden = true">
+			<a>
+				X
+			</a>
+			
+		</div>
+	</div>
+	<div class="trans_body">
+		<div class="scrollblock" scrollblock data-height="223px" style="padding: 10px 5px 10px 10px;">
+			<div class="content" ng-bind-html="data.prop.text | to_trusted"></div>
+		</div>
+		
+	</div>
+</div></script>
+
+<script type="text/ng-template" id="templates/components/trickle.html">
+<div class="trickle_wrap" ng-if="data.status == 0 && !data.prop.hidden" viewport-leave="outview()" viewport-enter="inview()" ng-class = "{'p-b-40':data.status != 1}">
+    <button role="button " class="button scrolldown"  ng-click="onTrickle()">
+    	<p ng-bind-html="data.prop.text | to_trusted"></p>
+    </button>
+</div></script>
+
+<script type="text/ng-template" id="templates/components/ui_button.html">
+<div class="button" ng-click="onclick(data.prop.onclick)">
+	<img ng-src="{{resource.path_route.image+data.prop.imageId}}">
+</div></script>
+
+<script type="text/ng-template" id="templates/components/videoblock.html">
+<div class="video-wrap"  ng-class = "{'videohide': !playclicked}"  viewport-leave="outview()">
+	<video id="my-player{{resource.compid}}" class="video-js" controls preload="auto" data-setup='{}' ng-click="pauseVideo()">
+		<source ng-src="{{resource.path_route.video + data.prop.videoPath}}" type="video/mp4"></source>
+		<p class="vjs-no-js">
+			To view this video please enable JavaScript, and consider upgrading to a web browser that
+			<a href="http://videojs.com/html5-video-support/" target="_blank">
+				supports HTML5 video
+			</a>
+		</p>
+		<track kind="captions" ng-if = "data.prop.caption" ng-src="{{data.prop.caption}}" srclang="en" label="English" default></track>
+	</video>
+	<div class="start_bg" ng-click = "playVideo();" ng-hide = "playclicked">
+		<div class="play_bar">
+			<p ng-bind-html="data.prop.title | to_trusted"></p>
+		</div>
+	</div>
+</div></script>
