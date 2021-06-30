@@ -1,0 +1,568 @@
+{
+  "course": {
+    "pages": {
+      "page1": {
+        "name": "Untitled",
+        "controller": "Content",
+        "template": "plain.html",
+        "jsonData": {
+          "blocks": []
+        },
+        "editable": {
+          "url": "editables/page_settings.html"
+        }
+      }
+    },
+    "global_settings": {
+      "coursename": "Sample Course",
+      "courselogo": {
+        "imageId": "logo.jpg"
+      },
+      "category": "CAR SEATS",
+      "tool": true,
+      "debugging": true,
+      "player": {
+        "next": {
+          "next_img": "assets/images/next.png"
+        },
+        "back": {
+          "back_img": "assets/images/back.png"
+        },
+        "footer": {
+          "logo": "bottom_logo.png"
+        },
+        "themes": [{
+          "primary": "#000000",
+          "inverse": "#FFFFFF"
+        }, {
+          "primary": "#EA1E88",
+          "inverse": "#FFFFFF"
+        }, {
+          "primary": "#A8228B",
+          "inverse": "#FFFFFF"
+        }, {
+          "primary": "#03a9f3",
+          "inverse": "#FFFFFF"
+        }, {
+          "primary": "#A5CC77",
+          "inverse": "#FFFFFF"
+        }, {
+          "primary": "#2DC1D6",
+          "inverse": "#FFFFFF"
+        }, {
+          "primary": "#008656",
+          "inverse": "#FFFFFF"
+        }, {
+          "primary": "#9479B7",
+          "inverse": "#FFFFFF"
+        }]
+      },
+      "theme": {
+        "primary": "#03a9f3",
+        "inverse": "#FFFFFF"
+      },
+      "imagePath": "assets/images/",
+      "editable": {
+        "url": "editables/course_settings.html"
+      }
+    },
+    "pageedits": {
+      "title": "Page Settings",
+      "data": {
+        "name": "Add Name",
+        "controller": "Content",
+        "template": "plain.html",
+        "jsonData": {
+          "blocks": []
+        },
+        "editable": {
+          "url": "editables/page_settings.html"
+        }
+      }
+    },
+    "blockedits": {
+      "title": "Block Settings",
+      "data": {
+        "editable": {
+          "url": "editables/block_edits.html"
+        },
+        "displayName": "Block",
+        "name": "Block Name",
+        "type": "block",
+        "prop": {},
+        "components": [],
+        "css": {
+          "normal": {
+            "position": "relative",
+            "top": "0px",
+            "left": "0px"
+          }
+        }
+      }
+    },
+    "componentedits": {
+      "title": "Add Components",
+      "editable": {
+        "url": "editables/addcomponents.html"
+      },
+      "componentsList": [{
+        "name": "Banner Block",
+        "data": {
+          "editable": {
+            "url": "editables/banner_edits.html"
+          },
+          "displayName": "Banner Block",
+          "type": "bannerblock",
+          "prop": {
+            "headertext": "Title",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
+          },
+          "css": {
+            "normal": {
+              "position": "relative",
+              "top": "0px",
+              "left": "0px"
+            }
+          }
+        }
+      }, {
+        "name": "Sku Block",
+        "data": {
+          "editable": {
+            "url": "editables/sku_edits.html"
+          },
+          "type": "skublock",
+          "displayName": "Sku Block",
+          "prop": {
+            "brand": {
+              "name": "Recaro",
+              "imageId": "brand_logo.jpg"
+            },
+            "supplier": {
+              "name": "The Amazing Baby Company"
+            },
+            "link": {
+              "name": "theamazingbabycompany.com.au",
+              "url": "http://www.theamazingbabycompany.com.au/"
+            },
+            "product": {
+              "imageId": "product.jpg",
+              "sku_table": {
+                "normal": {
+                  "rows": [{
+                    "cells": [{
+                      "status": "yes",
+                      "text": "105187 (granite)"
+                    }, {
+                      "status": "no",
+                      "text": "105188 (indigo)"
+                    }]
+                  }, {
+                    "cells": [{
+                      "status": "no",
+                      "text": "105186 (onyx)"
+                    }, {
+                      "status": "no",
+                      "text": "105189 (royal)"
+                    }]
+                  }]
+                },
+                "optional": {
+                  "name": "Legend",
+                  "description": "See specifications for component details",
+                  "rows": [{
+                    "cells": [{
+                      "status": "yes",
+                      "text": "Transfer request"
+                    }, {
+                      "status": "no",
+                      "text": "Manual order"
+                    }]
+                  }]
+                }
+              }
+            },
+            "comparison": {
+              "category": {
+                "title": "Comparison Guide",
+                "sub_title": "Baby",
+                "prop": [{
+                  "name": "Age",
+                  "value": "0 to 12 months"
+                }, {
+                  "name": "Style",
+                  "value": "Capsule/infant carrier"
+                }, {
+                  "name": "Position",
+                  "value": "rearward facing"
+                }, {
+                  "name": "ISOFIX",
+                  "value": "No"
+                }]
+              }
+            }
+          },
+          "css": {
+            "normal": {
+              "position": "relative",
+              "top": "0px",
+              "left": "0px"
+            }
+          }
+        }
+      }, {
+        "name": "Accordian Block",
+        "data": {
+          "editable": {
+            "url": "editables/cnr_edits.html"
+          },
+          "displayName": "Accordian Block",
+          "type": "accordianblock",
+          "title": "TITLE",
+          "itext": "Lorem ipsum dolor sit amet.",
+          "prop": {
+            "items": [{
+              "name": "Tab 1",
+              "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br><br>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            }, {
+              "name": "Tab 2",
+              "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br><br>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            }, {
+              "name": "Tab 3",
+              "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br><br>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            }]
+          },
+          "css": {
+            "normal": {
+              "position": "relative",
+              "top": "0px",
+              "left": "0px"
+            }
+          }
+        }
+      }, {
+        "name": "Table Block",
+        "data": {
+          "editable": {
+            "url": "editables/table_edits.html"
+          },
+          "displayName": "Table Block",
+          "type": "tableblock",
+          "title": "TITLE",
+          "prop": {
+            "rows": [{
+              "cells": [{
+                "text": ""
+              }, {
+                "text": "Lorem ipsum dolor",
+                "imageId": "table_img.jpg"
+              }, {
+                "text": "Lorem ipsum dolor",
+                "imageId": "table_img.jpg"
+              }, {
+                "text": "Lorem ipsum dolor",
+                "imageId": "table_img.jpg"
+              }]
+            }, {
+              "cells": [{
+                "text": "Box 2"
+              }, {
+                "text": "101102"
+              }, {
+                "text": "101102"
+              }, {
+                "text": "101102"
+              }]
+            }, {
+              "cells": [{
+                "text": "Box 3"
+              }, {
+                "text": "101102"
+              }, {
+                "text": "101102"
+              }, {
+                "text": "101102"
+              }]
+            }, {
+              "cells": [{
+                "text": "Box 4"
+              }, {
+                "text": "101102"
+              }, {
+                "text": "101102"
+              }, {
+                "text": "101102"
+              }]
+            }]
+          },
+          "css": {
+            "normal": {
+              "padding": "0px 0px"
+            }
+          }
+        }
+      }, {
+        "name": "Feature Block",
+        "data": {
+          "editable": {
+            "url": "editables/cnr_edits.html"
+          },
+          "displayName": "Feature Block",
+          "type": "featureblock",
+          "title": "TITLE",
+          "itext": "Lorem ipsum dolor sit amet.",
+          "prop": {
+            "items": [{
+              "imageId": "keyspecs.jpg",
+              "name": "Title",
+              "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            }, {
+              "imageId": "keyspecs.jpg",
+              "name": "Title",
+              "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            }, {
+              "imageId": "keyspecs.jpg",
+              "name": "Title",
+              "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            }, {
+              "imageId": "keyspecs.jpg",
+              "name": "Title",
+              "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            }]
+          },
+          "css": {
+            "normal": {
+              "position": "relative",
+              "top": "0px",
+              "left": "0px"
+            }
+          }
+        }
+      }, {
+        "name": "Gallery Block",
+        "data": {
+          "editable": {
+            "url": "editables/cnr_edits.html"
+          },
+          "displayName": "Gallery Block",
+          "type": "galleryblock",
+          "title": "TITLE",
+          "itext": "Lorem ipsum dolor sit amet.",
+          "prop": {
+            "items": [{
+              "name": "Title",
+              "imageId": "gallery.jpg"
+            }, {
+              "name": "Title",
+              "imageId": "gallery.jpg"
+            }, {
+              "name": "Title",
+              "imageId": "gallery.jpg"
+            }, {
+              "name": "Title",
+              "imageId": "gallery.jpg"
+            }, {
+              "name": "Title",
+              "imageId": "gallery.jpg"
+            }, {
+              "name": "Title",
+              "imageId": "gallery.jpg"
+            }, {
+              "name": "Title",
+              "imageId": "gallery.jpg"
+            }, {
+              "name": "Title",
+              "imageId": "gallery.jpg"
+            }],
+            "controls": {
+              "next": {
+                "imageId": "next.png"
+              },
+              "back": {
+                "imageId": "back.png"
+              }
+            }
+          },
+          "css": {
+            "normal": {
+              "position": "relative",
+              "top": "0px",
+              "left": "0px"
+            }
+          }
+        }
+      }, {
+        "name": "Specs Block",
+        "data": {
+          "editable": {
+            "url": "editables/specs_edits.html"
+          },
+          "displayName": "Specs Block",
+          "type": "specsblock",
+          "title": "TITLE",
+          "maxLength": 11,
+          "prop": {
+            "items": [{
+              "text": "1. Lorem ipsum dolor sit amet."
+            }, {
+              "text": "2. Lorem ipsum dolor sit amet."
+            }, {
+              "text": "3. Lorem ipsum dolor sit amet."
+            }, {
+              "text": "4. Lorem ipsum dolor sit amet."
+            }, {
+              "text": "5. Lorem ipsum dolor sit amet."
+            }, {
+              "text": "6. Lorem ipsum dolor sit amet."
+            }]
+          },
+          "css": {
+            "normal": {
+              "position": "relative",
+              "top": "0px",
+              "left": "0px"
+            }
+          }
+        }
+      }, {
+        "name": "Flipcard Block",
+        "data": {
+          "editable": {
+            "url": "editables/flip_edits.html"
+          },
+          "displayName": "Flipcard Block",
+          "type": "flipcardblock",
+          "title": "TITLE",
+          "itext": "Lorem ipsum dolor sit amet.",
+          "prop": {
+            "items": [{
+              "front": {
+                "imageId": "thumb.jpg"
+              },
+              "back": {
+                "text": "Lorem ipsum dolor<br>Lorem ipsum dolor <br>Lorem ipsum dolor",
+                "description": "Lorem ipsum dolor<br>Lorem ipsum dolor <br>Lorem ipsum dolor"
+              }
+            }, {
+              "front": {
+                "imageId": "thumb.jpg"
+              },
+              "back": {
+                "text": "Lorem ipsum dolor<br>Lorem ipsum dolor<br>Lorem ipsum dolor",
+                "description": "Lorem ipsum dolor<br>Lorem ipsum dolor<br>Lorem ipsum dolor"
+              }
+            }, {
+              "front": {
+                "imageId": "thumb.jpg"
+              },
+              "back": {
+                "text": "Lorem ipsum dolor<br>Lorem ipsum dolor<br>Lorem ipsum dolor",
+                "description": "Lorem ipsum dolor<br>Lorem ipsum dolor<br>Lorem ipsum dolor"
+              }
+            }]
+          },
+          "css": {
+            "normal": {
+              "position": "relative",
+              "top": "0px",
+              "left": "0px"
+            }
+          }
+        }
+      }, {
+        "name": "Tabs Block",
+        "data": {
+          "editable": {
+            "url": "editables/cnr_edits.html"
+          },
+          "displayName": "Tabs Block",
+          "type": "tabsblock",
+          "title": "TITLE",
+          "itext": "Lorem ipsum dolor sit amet.",
+          "prop": {
+            "items": [{
+              "name": "Tab 1",
+              "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br><br>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            }, {
+              "name": "Tab 2",
+              "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br><br>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            }, {
+              "name": "Tab 3",
+              "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br><br>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            }]
+          },
+          "css": {
+            "normal": {}
+          }
+        }
+      }, {
+        "name": "Assessment Block",
+        "data": {
+          "editable": {
+            "url": "editables/assessment_edits.html"
+          },
+          "type": "assessmentblock",
+          "displayName": "Assessment Block",
+          "title": "TITLE",
+          "passPercent": 100,
+          "prop": {
+            "intro": {
+              "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <br><br>Click <b>Start</b> when you are ready."
+            },
+            "quiz": {
+              "imageId": "bulb.png",
+              "questions": [{
+                "question": "Question text...?",
+                "options": [{
+                  "text": "Option 1",
+                  "answer": false
+                }, {
+                  "text": "Option 2",
+                  "answer": true
+                }, {
+                  "text": "Option 3",
+                  "answer": false
+                }, {
+                  "text": "Option 4",
+                  "answer": false
+                }],
+                "feedback": {
+                  "correct": {
+                    "imageId": "right.png",
+                    "name": "CORRECT!",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
+                  },
+                  "incorrect": {
+                    "imageId": "wrong.png",
+                    "name": "SORRY, THAT’S NOT CORRECT",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
+                  }
+                }
+              }]
+            },
+            "result": {
+              "feedback": {
+                "pass": {
+                  "title": "Congratulations!",
+                  "text": "You have successfully completed the <b>knowledge check.</b><br>You scored {{totalScore}} out of {{totalQuiz}}."
+                },
+                "fail": {
+                  "title": "Sorry.",
+                  "text": "You haven't passed yet. You scored {{totalScore}} out of {{totalQuiz}}. <br>To pass the knowledge check, you need to get all the questions correct. <br><br>Click <b>Try Again</b> to retake the knowledge check."
+                }
+              }
+            }
+          },
+          "css": {
+            "normal": {
+              "position": "relative",
+              "top": "0px",
+              "left": "0px"
+            }
+          }
+        }
+      }]
+    }
+  }
+}
