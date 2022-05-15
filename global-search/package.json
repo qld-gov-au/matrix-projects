@@ -4,7 +4,7 @@
   "browserslist": "> 0.25%, not dead",
   "scripts": {
     "build": "parcel build src/index.js src/index.css",
-    "cypress:open": "cypress open"
+    "test:e2e": "cypress open"
   },
   "devDependencies": {
     "cypress": "^9.6.1",
