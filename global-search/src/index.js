@@ -1,4 +1,3 @@
-console.log('V1');
 // this class works with Squiz REST resource to filter search results
 class FilterComponent {
     constructor() {
