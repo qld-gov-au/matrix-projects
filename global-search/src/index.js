@@ -1,11 +1,13 @@
+console.log('V1');
 // this class works with Squiz REST resource to filter search results
 class FilterComponent {
     constructor() {
-        // %globals_ is a Squiz Matrix keyword
-        this.scopeParameter = '%globals_get_scope%';
-        this.profileParameter = '%globals_get_profile%';
-        this.labelParameter = '%globals_get_label%';
-        this.filterParameter = '%globals_get_filter%';
+        const urlParams = new URLSearchParams(window.location.search);
+        this.scopeParameter = urlParams.get('scope');
+        this.queryParameter = urlParams.get('query');
+        this.profileParameter = urlParams.get('profile');
+        this.labelParameter = urlParams.get('label');
+        this.filterParameter = urlParams.get('filter');
 
         this.setSessionStorage();
         this.filterResultsTemplate();
@@ -18,11 +20,11 @@ class FilterComponent {
      * @return {undefined}
      * */
     setSessionStorage() {
-        if(this.profileParameter !== 'qld' || this.scopeParameter){
+        if(this.profileParameter && this.profileParameter !== 'qld' || this.scopeParameter){
             sessionStorage.setItem('fcProfile', this.profileParameter);
             sessionStorage.setItem('fcScope', this.scopeParameter);
         }
-        sessionStorage.setItem('fcLabel', this.labelParameter);
+        this.labelParameter ? sessionStorage.setItem('fcLabel', this.labelParameter) : '';
     }
 
     /**
@@ -82,8 +84,8 @@ class FilterComponent {
                </div>
             `;
 
-        if(this.filterParameter || this.profileParameter !== 'qld' || this.scopeParameter){
-            $('.qg-aside').append(filterResultsTemplate);
+        if(this.filterParameter || this.profileParameter && this.profileParameter !== 'qld' || this.scopeParameter){
+            $('.qg-aside').prepend(filterResultsTemplate);
         }
     }
 
@@ -92,19 +94,17 @@ class FilterComponent {
      * @return {undefined}
      * */
     trackRadioButtonChanges() {
-        var  selectedRadioBtnFromSession = sessionStorage.getItem('selectedRadiobutton');
+        var  selectedRadioBtnFromSession = sessionStorage.getItem('rcSelectedRadiobutton');
         $('input[type=radio][name=filterBy]').on('change', function() {
             var selectedVal = $(this).val();
             switch (selectedVal) {
                 case 'qld':
-                    sessionStorage.setItem(`selectedRadiobutton`, selectedVal);
-                    break;
                 case 'custom':
-                    sessionStorage.setItem(`selectedRadiobutton`, selectedVal);
+                    sessionStorage.setItem(`rcSelectedRadiobutton`, selectedVal);
                     break;
             }
         });
-        // Check if the profile value is present then set the hidden profile input field
+        // Check selectedRadiobutton value stored in session to check a radio button
         if(selectedRadioBtnFromSession === 'qld'){
             $("input[name=filterBy][value='qld']").prop("checked",true);
         }
