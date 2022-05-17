@@ -1,0 +1,13 @@
+{
+  "name": "global-search",
+  "source": "src/app.js",
+  "browserslist": "> 0.25%, not dead",
+  "scripts": {
+    "build": "parcel build src/index.js src/index.css",
+    "test:e2e": "cypress open"
+  },
+  "devDependencies": {
+    "cypress": "^9.6.1",
+    "parcel": "latest"
+  }
+}
