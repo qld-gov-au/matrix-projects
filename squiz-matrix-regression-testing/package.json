@@ -1,0 +1,16 @@
+{
+  "name": "squiz-matrix-regression-testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "percy exec -- cypress run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@percy/cli": "^1.2.1",
+    "@percy/cypress": "^3.1.1"
+  }
+}
