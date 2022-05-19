@@ -4,9 +4,9 @@ const ROOT_URL = 'https://oss-uat.clients.squiz.net'
 
 describe('Homepage snapshot', function() {
     it('Loads the homepage', function() {
-            cy.visit(ROOT_URL);
-            cy.percySnapshot();
-     });
+        cy.visit(ROOT_URL);
+        cy.percySnapshot();
+    });
 });
 
 describe('Search page snapshot', function() {
