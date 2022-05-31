@@ -1,13 +1,18 @@
 {
   "name": "global-search",
-  "source": "src/app.js",
+  "source": "src/index.html",
   "browserslist": "> 0.25%, not dead",
   "scripts": {
-    "build": "parcel build src/index.js src/index.css",
-    "test:e2e": "cypress open"
+    "start": "parcel",
+    "test:e2e": "cypress open",
+    "clean:output": "rimraf dist"
   },
   "devDependencies": {
     "cypress": "^9.6.1",
     "parcel": "latest"
+  },
+  "dependencies": {
+    "lit-html": "^2.2.5",
+    "web-template-release": "^4.0.12"
   }
 }
