@@ -9,7 +9,8 @@
   },
   "devDependencies": {
     "cypress": "^9.6.1",
-    "parcel": "latest"
+    "parcel": "latest",
+    "push-dir": "^0.4.1"
   },
   "dependencies": {
     "lit-html": "^2.2.5",
