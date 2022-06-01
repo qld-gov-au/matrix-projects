@@ -1,17 +1,17 @@
-import type { ResultPacket, ParamMap } from '../types/funnelback-data';
+import type {ParamMap, Response} from '../types/funnelback-data';
 import {html} from 'lit-html';
+import {featuredResultsTemplate} from './featured-results';
 
 
-export function searchResultsTemplate(resultPacket: ResultPacket, paginationOnPage: number, paramMap: ParamMap) {
-    const {searchTerm} = resultPacket.contextualNavigation
-    const {currStart, currEnd, totalMatching} = resultPacket.resultsSummary
+export function searchResultsTemplate(response: Response, paginationOnPage: number, paramMap: ParamMap) {
+    const { resultPacket , curator } = response;
+    const { exhibits } = curator;
+    const { searchTerm } = resultPacket.contextualNavigation
+    const { currStart, currEnd, totalMatching } = resultPacket.resultsSummary
     const buildHref = `?query=${paramMap.query}&num_ranks=${paramMap.numRanks}&tiers=10&collection=${paramMap.collection}&profile=${paramMap.profile}&second_profile=&scope=${paramMap.scope}&label=`
+    const numberOfPages = Math.ceil(totalMatching / paginationOnPage);
 
-    let determineEndPage = function (){
-        return paramMap.activePage > paginationOnPage;
-    }
-
-    return html`<div id="qg-search-results">
+    return html`${exhibits.length > 0 ? featuredResultsTemplate(exhibits) : ''} <div id="qg-search-results">
     <h2 class="qg-search-results__summary">Search results for '${searchTerm}'</h2>
     <span class="qg-search-results__results-count">Showing results ${currStart} - ${currEnd} of ${totalMatching}</span>
         <ul class="qg-search-results__results-list">
@@ -33,16 +33,16 @@ export function searchResultsTemplate(resultPacket: ResultPacket, paginationOnPa
     <div class="pagination-container">
         <ul class="pagination">
             <li class="page-item">
-                <a class="page-link" href="${buildHref}&page=${paramMap.activePage - 1}&start_rank=${paramMap.startRank - 10}"><span aria-hidden="true">«</span> Previous</a>
+                ${paramMap.startRank > 1 ? html `<a class="page-link" href="${buildHref}&page=${paramMap.activePage - 1}&start_rank=${paramMap.startRank - 10}"><span aria-hidden="true">«</span> Previous</a>` : ''}
             </li>
        
             ${[...Array(paginationOnPage)].map((value, index) => {
-                if(determineEndPage()) {
+                let addParam = buildHref+`&page=${index + 1}&start_rank=${paramMap.numRanks * index + 1}`;
+                if(paramMap.activePage > paginationOnPage) {
                     index += paginationOnPage + 1
                 } else {
                     index += 1
                 }
-                let addParam = buildHref+`&page=${index}&start_rank=${paramMap.numRanks * index}`;
                 let determineActivePage = paramMap.activePage === index ? 'active' : '';
                 
             return html`
@@ -51,7 +51,7 @@ export function searchResultsTemplate(resultPacket: ResultPacket, paginationOnPa
             }
     )}
             <li class="page-item">
-                <a class="page-link" href="${buildHref}&page=${paramMap.activePage + 1}&start_rank=${paramMap.startRank + 10}">Next<span aria-hidden="true">&nbsp;»</span></a>
+                ${numberOfPages > paramMap.activePage ? html `<a class="page-link" href="${buildHref}&page=${paramMap.activePage + 1}&start_rank=${paramMap.startRank + 10}">Next<span aria-hidden="true">&nbsp;»</span></a>` : ''}
             </li>
         </ul>
     </div>`;

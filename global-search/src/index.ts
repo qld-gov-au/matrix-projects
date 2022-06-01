@@ -48,8 +48,9 @@ class SearchResults {
 
     processData() {
         this.fetchData().then(data => {
+            console.log(data);
             this.spinnerEl?.setAttribute('hidden', '');
-            render(searchResultsTemplate(data.response.resultPacket, this.paginationOnPage, this.parameterMap()), document.getElementById('qg-search-results__container') as HTMLBodyElement);
+            render(searchResultsTemplate(data.response, this.paginationOnPage, this.parameterMap()), document.getElementById('qg-search-results__container') as HTMLBodyElement);
         });
     }
 
@@ -58,3 +59,4 @@ class SearchResults {
 
 const searchResults = new SearchResults();
 searchResults.initialize();
+
