@@ -1,15 +1,13 @@
 import {render} from 'lit-html';
 import type { ParamMap } from './types/funnelback-data';
-import {searchResultsTemplate} from './template/search-results';
+import {mainTemplate} from './template/main';
 
 class SearchResults {
     private spinnerEl: HTMLInputElement | null;
     private readonly siteInput: HTMLInputElement | null;
-    private paginationOnPage: number;
     private urlParams;
 
     constructor() {
-        this.paginationOnPage = 10
         this.spinnerEl = document.querySelector(".qg-search-results__spinner");
         this.siteInput = document.querySelector('.qg-site-search__component .qg-search-site__input');
         this.urlParams = new URLSearchParams(window.location.search);
@@ -50,7 +48,7 @@ class SearchResults {
         this.fetchData().then(data => {
             console.log(data);
             this.spinnerEl?.setAttribute('hidden', '');
-            render(searchResultsTemplate(data.response, this.paginationOnPage, this.parameterMap()), document.getElementById('qg-search-results__container') as HTMLBodyElement);
+            render(mainTemplate(data.response, this.parameterMap()), document.getElementById('qg-search-results__container') as HTMLBodyElement);
         });
     }
 
