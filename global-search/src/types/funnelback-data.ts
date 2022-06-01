@@ -19,7 +19,7 @@ export interface ParamMap {
     label : string
     filter : string
     numRanks : number
-    startRank : string
+    startRank : number
     collection : string
     scope : string
     activePage : number

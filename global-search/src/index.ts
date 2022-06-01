@@ -5,7 +5,7 @@ import {searchResultsTemplate} from './template/search-results';
 class SearchResults {
     private spinnerEl: HTMLInputElement | null;
     private readonly siteInput: HTMLInputElement | null;
-    private readonly paginationOnPage: number;
+    private paginationOnPage: number;
     private urlParams;
 
     constructor() {
@@ -22,10 +22,10 @@ class SearchResults {
             label : this.urlParams.get('label') || '',
             filter : this.urlParams.get('filter') || '',
             numRanks : parseInt(this.urlParams.get('num_ranks') as string) || 0,
-            startRank : this.urlParams.get('start_rank') || '',
+            startRank : parseInt(this.urlParams.get('start_rank') as string) || 1,
             collection : this.urlParams.get('collection') || '',
             scope : this.urlParams.get('scope') || '',
-            activePage : parseInt(this.urlParams.get('active') as string) || 0,
+            activePage : parseInt(this.urlParams.get('page') as string) || 1,
         };
     }
 
@@ -55,7 +55,6 @@ class SearchResults {
 
 
 }
-
 
 const searchResults = new SearchResults();
 searchResults.initialize();

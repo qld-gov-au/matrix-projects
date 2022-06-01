@@ -3,9 +3,13 @@ import {html} from 'lit-html';
 
 
 export function searchResultsTemplate(resultPacket: ResultPacket, paginationOnPage: number, paramMap: ParamMap) {
-
     const {searchTerm} = resultPacket.contextualNavigation
     const {currStart, currEnd, totalMatching} = resultPacket.resultsSummary
+    const buildHref = `?query=${paramMap.query}&num_ranks=${paramMap.numRanks}&tiers=10&collection=${paramMap.collection}&profile=${paramMap.profile}&second_profile=&scope=${paramMap.scope}&label=`
+
+    let determineEndPage = function (){
+        return paramMap.activePage > paginationOnPage;
+    }
 
     return html`<div id="qg-search-results">
     <h2 class="qg-search-results__summary">Search results for '${searchTerm}'</h2>
@@ -29,17 +33,25 @@ export function searchResultsTemplate(resultPacket: ResultPacket, paginationOnPa
     <div class="pagination-container">
         <ul class="pagination">
             <li class="page-item">
-                <a class="page-link" href="?query=jobs&amp;num_ranks=10&amp;tiers=10&amp;collection=qld-gov&amp;profile=qld&amp;second_profile=&amp;scope=&amp;label=%&amp;start_rank=1"><span aria-hidden="true">«</span> Previous ${paginationOnPage}</a>
+                <a class="page-link" href="${buildHref}&page=${paramMap.activePage - 1}&start_rank=${paramMap.startRank - 10}"><span aria-hidden="true">«</span> Previous</a>
             </li>
+       
             ${[...Array(paginationOnPage)].map((value, index) => {
-            let buildHref = `?query=${paramMap.query}&num_ranks=${paramMap.numRanks}&tiers=10&collection=${paramMap.collection}&profile=${paramMap.profile}&second_profile=&scope=${paramMap.scope}&active=${index}&label=&start_rank=${paramMap.numRanks * index + 1}`;
+                if(determineEndPage()) {
+                    index += paginationOnPage + 1
+                } else {
+                    index += 1
+                }
+                let addParam = buildHref+`&page=${index}&start_rank=${paramMap.numRanks * index}`;
+                let determineActivePage = paramMap.activePage === index ? 'active' : '';
+                
             return html`
-                    <li class="page-item ${paramMap.activePage !== index ? '' : 'active'}"><a class="page-link" href=${paramMap.activePage !== index ? buildHref : ''}>${index}</a>
+                    <li class="page-item ${determineActivePage}"><a class="page-link" href=${paramMap.activePage !== index ? addParam : ''}>${index}</a>
                     </li>`
-        }
+            }
     )}
             <li class="page-item">
-                <a class="page-link" href="?query=jobs&amp;num_ranks=10&amp;tiers=10&amp;collection=qld-gov&amp;profile=qld&amp;second_profile=&amp;scope=&amp;label=&amp;start_rank=21">Next ${paginationOnPage}<span aria-hidden="true">&nbsp;»</span></a>
+                <a class="page-link" href="${buildHref}&page=${paramMap.activePage + 1}&start_rank=${paramMap.startRank + 10}">Next<span aria-hidden="true">&nbsp;»</span></a>
             </li>
         </ul>
     </div>`;
