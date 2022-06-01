@@ -1,8 +1,8 @@
 import {html} from 'lit-html';
 
 export function searchResultsTemplate(resultPacket: { contextualNavigation: any; resultsSummary: any; results: any; }) {
-    const { currStart, currEnd, totalMatching } = resultPacket.resultsSummary
-    const { searchTerm } = resultPacket.contextualNavigation
+    const { currStart, currEnd, totalMatching } = resultPacket?.resultsSummary
+    const { searchTerm } = resultPacket?.contextualNavigation
 
     return html`<div id="qg-search-results">
         <h2 class="qg-search-results__summary">Search results for '${searchTerm}'</h2>

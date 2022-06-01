@@ -6,8 +6,10 @@ class SearchResults {
     private spinnerEl: HTMLInputElement | null;
     private readonly siteInput: HTMLInputElement | null;
     private urlParams;
+    private funnelbackApiUrl: string;
 
     constructor() {
+        this.funnelbackApiUrl = 'https://find.search.qld.gov.au/s/search.json';
         this.spinnerEl = document.querySelector(".qg-search-results__spinner");
         this.siteInput = document.querySelector('.qg-site-search__component .qg-search-site__input');
         this.urlParams = new URLSearchParams(window.location.search);
@@ -40,7 +42,7 @@ class SearchResults {
     async fetchData() {
         let params = this.parameterMap();
         this.spinnerEl?.removeAttribute('hidden');
-        const response = await fetch(`https://find.search.qld.gov.au/s/search.json?query=${params.query}&num_ranks=${params.numRanks}&tiers=off&collection=${params.collection}&profile=${params.profile}&scope=${params.scope}&start_rank=${params.startRank}`);
+        const response = await fetch(`${this.funnelbackApiUrl}?query=${params.query}&num_ranks=${params.numRanks}&tiers=off&collection=${params.collection}&profile=${params.profile}&scope=${params.scope}&start_rank=${params.startRank}`);
         return await response.json()
     }
 

@@ -1,5 +1,6 @@
 import {html} from 'lit-html';
-import {ParamMap, Response} from '../types/funnelback-data';
+import {Response} from '../types/funnelback-data';
+import {ParamMap} from '../types/url-parameters';
 
 export function paginationTemplate(response: Response, paramMap: ParamMap) {
     const { resultPacket } = response;
