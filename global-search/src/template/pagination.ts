@@ -11,27 +11,30 @@ export function paginationTemplate(response: Response, paramMap: ParamMap) {
 
     return html`<div class="pagination-container">
         <ul class="pagination">
+            
             <li class="page-item">
                 ${paramMap.startRank > 1 ? html `<a class="page-link" href="${buildHref}&page=${paramMap.activePage - 1}&start_rank=${paramMap.startRank - 10}"><span aria-hidden="true">«</span> Previous</a>` : ''}
             </li>
-
+            
             ${[...Array(paginationOnPage)].map((value, index) => {
-                        let addParam = buildHref+`&page=${index + 1}&start_rank=${paramMap.numRanks * index + 1}`;
-                        if(paramMap.activePage > paginationOnPage) {
+                let addParam = buildHref+`&page=${index + 1}&start_rank=${paramMap.numRanks * index + 1}`;
+                if(paramMap.activePage > paginationOnPage) {
                             index += paginationOnPage + 1
-                        } else {
+                 } else {
                             index += 1
-                        }
-                        let determineActivePage = paramMap.activePage === index ? 'active' : '';
+                 }
+                 let determineActivePage = paramMap.activePage === index ? 'active' : '';
 
-                        return html`
+                 return html`
                     <li class="page-item ${determineActivePage}"><a class="page-link" href=${paramMap.activePage !== index ? addParam : ''}>${index}</a>
                     </li>`
                     }
             )}
+            
             <li class="page-item">
                 ${numberOfPages > paramMap.activePage ? html `<a class="page-link" href="${buildHref}&page=${paramMap.activePage + 1}&start_rank=${paramMap.startRank + 10}">Next<span aria-hidden="true">&nbsp;»</span></a>` : ''}
             </li>
+            
         </ul>
     </div>
   `

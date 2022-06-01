@@ -1,5 +1,4 @@
 import {render} from 'lit-html';
-import type { ParamMap } from './types/funnelback-data';
 import {mainTemplate} from './template/main';
 
 class SearchResults {

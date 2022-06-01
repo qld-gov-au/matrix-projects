@@ -1,5 +1,4 @@
 import {html} from 'lit-html';
-import {ParamMap, Response} from '../types/funnelback-data';
 
 export function searchResultsTemplate(resultPacket: { contextualNavigation: any; resultsSummary: any; results: any; }) {
     const { currStart, currEnd, totalMatching } = resultPacket.resultsSummary
