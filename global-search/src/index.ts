@@ -1,5 +1,6 @@
 import {render} from 'lit-html';
 import {mainTemplate} from './template/main';
+import {relatedResultsTemplate} from './template/related-search';
 
 class SearchResults {
     private spinnerEl: HTMLInputElement | null;
@@ -47,7 +48,8 @@ class SearchResults {
         this.fetchData().then(data => {
             console.log(data);
             this.spinnerEl?.setAttribute('hidden', '');
-            render(mainTemplate(data.response, this.parameterMap()), document.getElementById('qg-search-results__container') as HTMLBodyElement);
+            render(mainTemplate(data?.response, this.parameterMap()), document.getElementById('qg-search-results__container') as HTMLBodyElement);
+            render(relatedResultsTemplate(data?.response?.resultPacket?.contextualNavigation), document.getElementById('related-search__tags') as HTMLBodyElement);
         });
     }
 
