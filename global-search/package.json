@@ -10,7 +10,7 @@
   "devDependencies": {
     "cypress": "^9.6.1",
     "parcel": "latest",
-    "push-dir": "^0.4.1"
+    "posthtml-include": "^1.7.4"
   },
   "dependencies": {
     "lit-html": "^2.2.5",
