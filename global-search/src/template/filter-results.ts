@@ -8,12 +8,10 @@ export function filterResultsTemplate() {
         let capitalizeFirstLetter = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
         let applyFilter = () => {
-            var params = new URLSearchParams(location.search);
-            var $selected = $("input[type='radio'][name='filterBy']:checked");
-            var selectedProfile = $selected.data('profile');
-            var selectedScope = $selected.data('scope');
-            params.set('scope', selectedScope);
-            params.set('profile', selectedProfile);
+            const params = new URLSearchParams(location.search);
+            let selectedRadioBtn = document.querySelector('input[name="filterBy"]:checked');
+            params.set('scope', selectedRadioBtn?.getAttribute('data-scope') || '');
+            params.set('profile', selectedRadioBtn?.getAttribute('data-profile') || '');
             // @ts-ignore
             params.set('filter', true);
             window.location.search = params.toString();
