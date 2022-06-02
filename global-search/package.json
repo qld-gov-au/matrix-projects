@@ -4,6 +4,7 @@
   "browserslist": "> 0.25%, not dead",
   "scripts": {
     "start": "parcel",
+    "build" : "npm run clean:output && parcel build",
     "test:e2e": "cypress open",
     "clean:output": "rimraf dist"
   },

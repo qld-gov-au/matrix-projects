@@ -14,9 +14,8 @@ export class SearchModule {
         this.funnelbackApiUrl = 'https://find.search.qld.gov.au/s/search.json';
         this.spinnerEl = document.querySelector(".qg-search-results__spinner");
         this.siteInput = document.querySelector('.qg-site-search__component .qg-search-site__input');
-    }
 
-    initialize() {
+        // check if query porameter is set to start fetch process
         let queryParam = this.urlParameter.query;
         if(queryParam){
             this.processData();
@@ -26,15 +25,22 @@ export class SearchModule {
         }
     }
 
+    /**
+     * fetchData function fetch the results from the funnelback API and show the loading spinner
+     * @return {undefined}
+     * */
     async fetchData() {
         this.spinnerEl?.removeAttribute('hidden');
         const response = await fetch(`${this.funnelbackApiUrl}?query=${this.urlParameter.query}&num_ranks=${this.urlParameter.numRanks}&tiers=off&collection=${this.urlParameter.collection}&profile=${this.urlParameter.profile}&scope=${this.urlParameter.scope}&start_rank=${this.urlParameter.startRank}`);
         return await response.json()
     }
 
+    /**
+     * processData function process the results fetched and render templates
+     * @return {undefined}
+     * */
     processData() {
         this.fetchData().then(data => {
-            console.log(data);
             this.spinnerEl?.setAttribute('hidden', '');
             render(mainTemplate(data?.response, this.urlParameter), document.getElementById('qg-search-results__container') as HTMLBodyElement);
             render(relatedResultsTemplate(data?.response?.resultPacket?.contextualNavigation), document.getElementById('related-search__tags') as HTMLBodyElement);

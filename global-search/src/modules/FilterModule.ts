@@ -1,5 +1,5 @@
 import {render} from 'lit-html';
-import { filterResultsTemplate } from '../template/filter-results';
+import {filterResultsTemplate} from '../template/filter-results';
 import {urlParameterMap} from '../utils/urlParameter';
 import {ParamMap} from '../types/url-parameters';
 
