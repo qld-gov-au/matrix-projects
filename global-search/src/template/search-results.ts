@@ -10,11 +10,11 @@ export function searchResultsTemplate(resultPacket: { contextualNavigation: any;
         <h2 class="qg-search-results__summary">Search results for '${searchTerm}'</h2>
         <span class="qg-search-results__results-count">Showing results ${currStart} - ${currEnd} of ${formatNumber(totalMatching)}</span>
         <ul class="qg-search-results__results-list">
-            ${resultPacket.results.map((result: any) =>
-                    html`
-                <li class="qg-search-results__results-list-item"><h3><a
-                        href="https://find.search.qld.gov.au/s/redirect?collection=qld-gov&amp;url=https%3A%2F%2Fwww.qld.gov.au%2Fjobs&amp;auth=O56U7a56%2BWuOaUDwHIcDzQ&amp;profile=qld&amp;rank=1&amp;query=jobs">${customizeTitle(result.title)}</a>
-                </h3>
+            ${resultPacket.results.map((result: any) => html`
+                <li class="qg-search-results__results-list-item">
+                    <h3>
+                        <a href="https://find.search.qld.gov.au${result.clickTrackingUrl}">${customizeTitle(result.title)}</a>
+                    </h3>
                     <ul class="qg-search-results__results-list">
                         <li class="description"> ${result.metaData.C}</li>
                         <li class="meta"><span class="qg-search-results__url">${result.indexUrl}</span> - <span
