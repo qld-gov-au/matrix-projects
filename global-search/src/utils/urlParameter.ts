@@ -1,4 +1,4 @@
-export function urlParameterMap() {
+export const urlParameterMap = () => {
     const urlParams = new URLSearchParams(window.location.search);
     return {
        query : urlParams.get('query') || '',

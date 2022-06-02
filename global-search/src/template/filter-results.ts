@@ -9,7 +9,7 @@ export function filterResultsTemplate() {
 
         let applyFilter = () => {
             const params = new URLSearchParams(location.search);
-            let selectedRadioBtn = document.querySelector('input[name="filterBy"]:checked');
+            const selectedRadioBtn = document.querySelector('input[name="filterBy"]:checked');
             params.set('scope', selectedRadioBtn?.getAttribute('data-scope') || '');
             params.set('profile', selectedRadioBtn?.getAttribute('data-profile') || '');
             // @ts-ignore
