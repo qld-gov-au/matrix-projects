@@ -10,6 +10,9 @@
 #qg-primary-content .qg-search-concierge-help {
     z-index: 999;
 }
+#qg-content #qg-secondary-content .qg-aside h2 {
+    display: none;
+}
 .qg-card__clickable .content:after {
     bottom: 1.3rem;
     position: absolute;

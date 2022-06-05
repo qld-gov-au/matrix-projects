@@ -1,7 +1,7 @@
 import {html, render} from 'lit-html';
 import {mainTemplate} from './main';
 import {urlParameterMap} from '../utils/urlParameter';
-import {funnelbackApiUrl} from '../utils/constants'
+import {fetchData} from '../utils/fetchData';
 
 export function filterResultsTemplate() {
     let label: string = '';
@@ -19,15 +19,10 @@ export function filterResultsTemplate() {
             params.set('profile', selectedRadioBtn?.getAttribute('data-profile') || '');
             // @ts-ignore
             params.set('filter', true);
-            // window.location.search = params.toString();
-            const fetchData = async () => {
-                const response = await fetch(`${funnelbackApiUrl + '?'+ params.toString()}`);
-                return await response.json()
-            }
-            fetchData().then(data => {
+
+            fetchData(params.toString()).then(data => {
+                console.log('yo');
                 render(mainTemplate(data?.response, currUrlParameterMap), document.getElementById('qg-search-results__container') as HTMLBodyElement);
-                // handleActiveClass(e);
-                console.log(data);
             });
         }
         let onFilterChange = (e: any) => {

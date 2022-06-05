@@ -3,7 +3,7 @@ import {Response} from '../types/funnelback-data';
 import {ParamMap} from '../types/url-parameters';
 import {mainTemplate} from './main';
 import {urlParameterMap} from '../utils/urlParameter';
-import {funnelbackApiUrl} from '../utils/constants'
+import {fetchData} from '../utils/fetchData'
 
 export function paginationTemplate(response: Response, paramMap: ParamMap) {
     const { resultPacket } = response;
@@ -32,22 +32,19 @@ export function paginationTemplate(response: Response, paramMap: ParamMap) {
 
     let onPageClick = (e: any) => {
         e.preventDefault();
+        let extractHref = e.target.href.split('?')[1]
         document.getElementById('qg-search-results')?.scrollIntoView({
             behavior: 'smooth'
         });
         history.pushState({}, '', e.target.href)
-        const fetchData = async () => {
-            const response = await fetch(`${funnelbackApiUrl + '?'+e.target.href.split('?')[1]}`);
-            return await response.json()
-        }
-        fetchData().then(data => {
-            // handleActiveClass(e);
+
+        fetchData(extractHref).then(data => {
             render(mainTemplate(data?.response, currUrlParameterMap), document.getElementById('qg-search-results__container') as HTMLBodyElement);
         });
     }
 
     function range(start: number, end: number) {
-        return Array(end - start + 1).fill().map((_, idx) => start + idx)
+        return Array(end - start + 1).fill(start).map((_, idx) => start + idx)
     }
 
     return html`<div class="pagination-container">
