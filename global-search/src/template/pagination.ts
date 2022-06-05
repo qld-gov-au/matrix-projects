@@ -31,16 +31,17 @@ export function paginationTemplate(response: Response, paramMap: ParamMap) {
     };
 
     let onPageClick = (e: any) => {
+        console.log('updated v2', e.target.href)
         e.preventDefault();
-        let extractHref = e.target.href.split('?')[1]
         document.getElementById('qg-search-results')?.scrollIntoView({
             behavior: 'smooth'
         });
-        history.pushState({}, '', e.target.href)
-
-        fetchData(extractHref).then(data => {
-            render(mainTemplate(data?.response, currUrlParameterMap), document.getElementById('qg-search-results__container') as HTMLBodyElement);
-        });
+        if(e.target?.href){
+            history.pushState({}, '', e.target.href)
+            fetchData(e.target?.href?.split('?')[1]).then(data => {
+                render(mainTemplate(data?.response, currUrlParameterMap), document.getElementById('qg-search-results__container') as HTMLBodyElement);
+            });
+        }
     }
 
     function range(start: number, end: number) {
