@@ -9,6 +9,6 @@ export const urlParameterMap = () => {
        startRank : parseInt(urlParams.get('start_rank') as string) || 1,
        collection : urlParams.get('collection') || '',
        scope : urlParams.get('scope') || '',
-       activePage : parseInt(urlParams.get('page') as string) || 1,
-   }
+       activePage : parseInt(urlParams.get('page') as string) || 1
+    }
 }

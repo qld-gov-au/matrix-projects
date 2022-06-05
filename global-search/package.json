@@ -3,7 +3,7 @@
   "source": "src/index.html",
   "browserslist": "> 0.25%, not dead",
   "scripts": {
-    "start": "parcel",
+    "start": "parcel --no-cache",
     "build" : "npm run clean:output && parcel build",
     "test:e2e": "cypress open",
     "clean:output": "rimraf dist"

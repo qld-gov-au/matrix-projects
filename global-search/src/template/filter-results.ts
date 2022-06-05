@@ -1,20 +1,34 @@
-import {html} from 'lit-html';
+import {html, render} from 'lit-html';
+import {mainTemplate} from './main';
+import {urlParameterMap} from '../utils/urlParameter';
+import {funnelbackApiUrl} from '../utils/constants'
 
 export function filterResultsTemplate() {
-        let label: string = '';
-        let labelFromSession = sessionStorage.getItem('fcLabel');
-        let profileFromSession = sessionStorage.getItem('fcProfile');
-        let scopeFromSession = sessionStorage.getItem('fcScope');
-        let capitalizeFirstLetter = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+    let label: string = '';
+    const currUrlParameterMap = urlParameterMap();
+    let labelFromSession = sessionStorage.getItem('fcLabel');
+    let profileFromSession = sessionStorage.getItem('fcProfile');
+    let scopeFromSession = sessionStorage.getItem('fcScope');
+    let capitalizeFirstLetter = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
-        let applyFilter = () => {
+        let applyFilter = (e: { preventDefault: () => void; }) => {
+            e.preventDefault();
             const params = new URLSearchParams(location.search);
             const selectedRadioBtn = document.querySelector('input[name="filterBy"]:checked');
             params.set('scope', selectedRadioBtn?.getAttribute('data-scope') || '');
             params.set('profile', selectedRadioBtn?.getAttribute('data-profile') || '');
             // @ts-ignore
             params.set('filter', true);
-            window.location.search = params.toString();
+            // window.location.search = params.toString();
+            const fetchData = async () => {
+                const response = await fetch(`${funnelbackApiUrl + '?'+ params.toString()}`);
+                return await response.json()
+            }
+            fetchData().then(data => {
+                render(mainTemplate(data?.response, currUrlParameterMap), document.getElementById('qg-search-results__container') as HTMLBodyElement);
+                // handleActiveClass(e);
+                console.log(data);
+            });
         }
         let onFilterChange = (e: any) => {
             let selectedVal = e.target.value
