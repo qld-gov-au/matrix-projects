@@ -1,51 +1,50 @@
-import {html, render} from 'lit-html';
-import {mainTemplate} from './main';
-import {urlParameterMap} from '../utils/urlParameter';
-import {fetchData} from '../utils/fetchData';
+import { html, render } from 'lit-html'
+import { mainTemplate } from './main'
+import { urlParameterMap } from '../utils/urlParameter'
+import { fetchData } from '../utils/fetchData'
+import { paginationTemplate } from './pagination'
 
-export function filterResultsTemplate() {
-    let label: string = '';
-    const currUrlParameterMap = urlParameterMap();
-    let labelFromSession = sessionStorage.getItem('fcLabel');
-    let profileFromSession = sessionStorage.getItem('fcProfile');
-    let scopeFromSession = sessionStorage.getItem('fcScope');
-    let capitalizeFirstLetter = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+export function filterResultsTemplate () {
+  let label: string = ''
+  const currUrlParameterMap = urlParameterMap()
+  const labelFromSession = sessionStorage.getItem('fcLabel')
+  const profileFromSession = sessionStorage.getItem('fcProfile')
+  const scopeFromSession = sessionStorage.getItem('fcScope')
+  const capitalizeFirstLetter = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 
-    let applyFilter = (e: { preventDefault: () => void; }) => {
-        e.preventDefault();
-        const params = new URLSearchParams(location.search);
-        const selectedRadioBtn = document.querySelector('input[name="filterBy"]:checked');
-        params.set('scope', selectedRadioBtn?.getAttribute('data-scope') || '');
-        params.set('profile', selectedRadioBtn?.getAttribute('data-profile') || '');
-        // @ts-ignore
-        params.set('filter', true);
+  const applyFilter = (e: any) => {
+    e.preventDefault()
+    const params = new URLSearchParams(location.search)
+    const selectedRadioBtn = document.querySelector('input[name="filterBy"]:checked')
+    params.set('scope', selectedRadioBtn?.getAttribute('data-scope') || '')
+    params.set('profile', selectedRadioBtn?.getAttribute('data-profile') || '')
 
-        fetchData(params.toString()).then(data => {
-            console.log('yo');
-            render(mainTemplate(data?.response, currUrlParameterMap), document.getElementById('qg-search-results__container') as HTMLBodyElement);
-        });
+    history.pushState({}, '', `?${params.toString()}`)
+    fetchData(params.toString()).then(data => {
+      render(mainTemplate(data?.response, currUrlParameterMap), document.getElementById('qg-search-results__container') as HTMLBodyElement)
+    })
+  }
+
+  const onFilterChange = (e: any) => {
+    const selectedVal = e.target.value
+    switch (selectedVal) {
+      case 'qld':
+      case 'custom':
+        sessionStorage.setItem('rcSelectedRadiobutton', selectedVal)
+        break
     }
+  }
 
-    let onFilterChange = (e: any) => {
-        let selectedVal = e.target.value
-        switch (selectedVal) {
-            case 'qld':
-            case 'custom':
-                sessionStorage.setItem(`rcSelectedRadiobutton`, selectedVal);
-                break;
-            }
-    }
+  if (labelFromSession) {
+    label = capitalizeFirstLetter(labelFromSession)
+  } else if (scopeFromSession) {
+    // @ts-ignore
+    label = html`Results from <strong>${scopeFromSession}</strong>`
+  } else if (profileFromSession) {
+    label = capitalizeFirstLetter(profileFromSession)
+  }
 
-    if(labelFromSession){
-        label = capitalizeFirstLetter(labelFromSession);
-    } else if(scopeFromSession) {
-        // @ts-ignore
-        label = html `Results from <strong>${scopeFromSession}</strong>`;
-    } else if (profileFromSession) {
-        label = capitalizeFirstLetter(profileFromSession);
-    }
-
-    return html`<div class="qg-filter-by-results">
+  return html`<div class="qg-filter-by-results">
               <p class="qg-filter-by-results__title">Filter results by</p>
               <form class="form qg-forms-v2 qg-filter-by-results__form">
               <ol class="questions pt-2">

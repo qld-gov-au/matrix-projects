@@ -1,12 +1,12 @@
-import {html} from 'lit-html';
-import {formatNumber} from '../utils/formatNumber';
+import { html } from 'lit-html'
+import { formatNumber } from '../utils/formatNumber'
 
-export function searchResultsTemplate(resultPacket: { contextualNavigation: any; resultsSummary: any; results: any; }) {
-    const { currStart, currEnd, totalMatching } = resultPacket.resultsSummary
-    const { searchTerm } = resultPacket.contextualNavigation
-    const customizeTitle = (title: string) => title.replace('| Queensland Government' , '');
+export function searchResultsTemplate (resultPacket: { contextualNavigation: any; resultsSummary: any; results: any; }) {
+  const { currStart, currEnd, totalMatching } = resultPacket.resultsSummary
+  const { searchTerm } = resultPacket.contextualNavigation
+  const customizeTitle = (title: string) => title.replace('| Queensland Government', '')
 
-    return html`<div id="qg-search-results">
+  return html`<div id="qg-search-results">
         <h2 class="qg-search-results__summary">Search results for '${searchTerm}'</h2>
         <span class="qg-search-results__results-count">Showing results ${currStart} - ${currEnd} of ${formatNumber(totalMatching)}</span>
         <ul class="qg-search-results__results-list">

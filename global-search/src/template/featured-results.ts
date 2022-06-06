@@ -1,7 +1,7 @@
-import {html} from 'lit-html';
+import { html } from 'lit-html'
 
-export function featuredResultsTemplate(exhibits: any[]) {
-    return html`<h2 class="search-results-summary">Featured results</h2>
+export function featuredResultsTemplate (exhibits: any[]) {
+  return html`<h2 class="search-results-summary">Featured results</h2>
     ${exhibits.map((item, index) => {
                 return html`
                     <article class="qg-card qg-card__light-theme qg-card__clickable">
