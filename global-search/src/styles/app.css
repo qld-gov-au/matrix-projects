@@ -4,14 +4,14 @@
 .qg-aside {
     background-color: #fff !important;
 }
-.qg-aside h2 {
-    display: none;
-}
 .pagination-container {
     margin-top: 3rem;
 }
 #qg-primary-content .qg-search-concierge-help {
     z-index: 999;
+}
+#qg-content #qg-secondary-content .qg-aside h2 {
+    display: none;
 }
 .qg-card__clickable .content:after {
     bottom: 1.3rem;
