@@ -2,7 +2,6 @@ import { html, render } from 'lit-html'
 import { mainTemplate } from './main'
 import { urlParameterMap } from '../utils/urlParameter'
 import { fetchData } from '../utils/fetchData'
-import { paginationTemplate } from './pagination'
 
 export function filterResultsTemplate () {
   let label: string = ''
@@ -18,6 +17,7 @@ export function filterResultsTemplate () {
     const selectedRadioBtn = document.querySelector('input[name="filterBy"]:checked')
     params.set('scope', selectedRadioBtn?.getAttribute('data-scope') || '')
     params.set('profile', selectedRadioBtn?.getAttribute('data-profile') || '')
+    params.set('start_rank', '1')
 
     history.pushState({}, '', `?${params.toString()}`)
     fetchData(params.toString()).then(data => {
