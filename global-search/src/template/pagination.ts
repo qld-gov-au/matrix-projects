@@ -13,7 +13,7 @@ export function paginationTemplate (response: Response, paramMap: ParamMap) {
   const numberOfPages: number = Math.ceil(totalMatching / paginationOnPage)
   const startRankVal: number = Math.floor(parseInt(String(currUrlParameterMap.startRank / 10)) / 10)
 
-  const buildHref = `?query=${currUrlParameterMap.query}&num_ranks=${currUrlParameterMap.numRanks}&tiers=10&collection=${currUrlParameterMap.collection}&profile=${currUrlParameterMap.profile}&second_profile=&scope=${currUrlParameterMap.scope}&label=`
+  const buildHref = `?query=${currUrlParameterMap.query}&num_ranks=${currUrlParameterMap.numRanks || paginationOnPage}&tiers=10&collection=${currUrlParameterMap.collection}&profile=${currUrlParameterMap.profile}&second_profile=&scope=${currUrlParameterMap.scope}&label=`
 
   // determine pagination start value
   const paginationStartValue = function () {
@@ -58,7 +58,7 @@ export function paginationTemplate (response: Response, paramMap: ParamMap) {
                 ${currUrlParameterMap.startRank > 1 ? html`<a class="page-link"  @click="${onPageClick}" href="${buildHref}&page=${currUrlParameterMap.activePage - 1}&start_rank=${currUrlParameterMap.startRank - 10}"><span aria-hidden="true">«</span> Previous</a>` : ''}
             </li>
             ${range(paginationStartValue(), paginationEndValue()).map(i => {
-      const addParam = buildHref + `&page=${i}&start_rank=${(currUrlParameterMap.numRanks * (i - 1)) + 1}`
+      const addParam = buildHref + `&page=${i}&start_rank=${((currUrlParameterMap.numRanks || paginationOnPage) * (i - 1)) + 1}`
       const determineActivePage = currUrlParameterMap.activePage === i ? 'active' : ''
       return html`<li class="page-item ${determineActivePage}"><a class="page-link" @click="${onPageClick}"  href=${addParam}>${i}</a></li>`
     })}
