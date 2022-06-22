@@ -15,9 +15,7 @@ jobs:
           ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
       - run: cd global-search && ls && npm install && npm run build
       - run: |
-          git clone https://${{secrets.ACCESS_TOKEN}}@github.com:qld-gov-au/matrix-projects-release.git
-          cp index.js clonedFolder/ -f
-          cd clonedFolder
+          git clone https://github.com/qld-gov-au/matrix-projects-release.git
           git add .
           git commit -m "$(date)"
           git push
