@@ -8,11 +8,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-          registry-url: https://npm.pkg.github.com/
         env:
           ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+        with:
+          node-version: '16'
+          ssh-private-key: ${{ secrets.ACCESS_TOKEN }}
+          registry-url: https://npm.pkg.github.com/
       - run: cd global-search && ls && npm install && npm run build
       - run: |
           git clone https://github.com/qld-gov-au/matrix-projects-release
