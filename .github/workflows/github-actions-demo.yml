@@ -20,7 +20,7 @@ jobs:
           cp global-search/dist/* matrix-projects-release/global-search/
           cd matrix-projects-release
           mkdir -p global-search && cd global-search
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "asifamingov"
+          git config --global user.email "asif.amin@smartservice.qld.gov.au"
           git add -A && git commit -m "commit message"
           git push
