@@ -6,38 +6,15 @@ jobs:
   deploy-me:
     runs-on: ubuntu-latest
     steps:
-      - name: Clone
-        uses: actions/checkout@main
-        env:
-            ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        with:
-          repository: qld-gov-au/matrix-projects-release
-          ref: refs/heads/main
-          token: ACCESS_TOKEN
+        - name: Publish
+          uses: qld-gov-au/gha-publish-to-git@master
+          with:
+            repository: qld-gov-au/matrix-projects-release
+            git_ref: '${{ github.ref }}'
+            branch: '${{ steps.extract_branch.outputs.branch }}'
+            github_token: '${{ secrets.GH_TOKEN }}'
+            github_pat: '${{ secrets.MY_PAT }}'
+            source_folder: dist
+            tag_branch: main
+          if: success()
 
-      - name: Access cloned repository content
-        run: |
-          echo "ROOT"
-          ls -la
-          echo "CLONED REPO"
-          cd matrix-projects-release
-          ls -la
-#    steps:
-#      - uses: actions/checkout@v3
-#      - uses: actions/setup-node@v3
-#        env:
-#          ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
-#        with:
-#          node-version: '16'
-#          registry-url: https://npm.pkg.github.com/
-#      - run: cd global-search && ls && npm install && npm run build
-#      - run: |
-#          git clone https://github.com/qld-gov-au/matrix-projects-release
-#          cd matrix-projects-release && mkdir global-search && cd ..
-#          cp global-search/dist/* matrix-projects-release/global-search/
-#          cd matrix-projects-release
-#          mkdir -p global-search && cd global-search
-#          git config --global user.name "asifamingov"
-#          git config --global user.email "asif.amin@smartservice.qld.gov.au"
-#          git add -A && git commit -m "commit message"
-#          git push
