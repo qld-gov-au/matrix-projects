@@ -1,15 +1,16 @@
 
-name: deploy-me
+name: test github action
 'on':
     - push
 jobs:
     deploy-me:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v2
-            - uses: actions/setup-node@v2
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
               with:
                   node-version: '16'
+                  registry-url: https://npm.pkg.github.com/
               env:
                   ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
             - run: npm install
