@@ -1,0 +1,24 @@
+
+name: test github action
+'on':
+    - push
+jobs:
+    deploy-me:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: '16'
+                  registry-url: https://npm.pkg.github.com/
+              env:
+                  ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+            - run: npm install
+            - run: npm run build
+            - run: |
+                  git clone https://${{secrets.ACCESS_TOKEN}}@github.com:qld-gov-au/matrix-projects-release.git
+                  cp index.js clonedFolder/ -f
+                  cd clonedFolder
+                  git add .
+                  git commit -m "$(date)"
+                  git push
