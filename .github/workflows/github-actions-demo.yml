@@ -16,6 +16,7 @@ jobs:
       - run: cd global-search && ls && npm install && npm run build
       - run: |
           git clone https://github.com/qld-gov-au/matrix-projects-release.git
+          mkdir global-search && cd global-search
           git add .
           git commit -m "$(date)"
           git push
