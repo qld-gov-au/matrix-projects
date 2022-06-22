@@ -13,7 +13,7 @@ jobs:
                   registry-url: https://npm.pkg.github.com/
               env:
                   ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
-            - run: npm install
+            - run: cd global-search && npm install
             - run: npm run build
             - run: |
                   git clone https://${{secrets.ACCESS_TOKEN}}@github.com:qld-gov-au/matrix-projects-release.git
