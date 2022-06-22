@@ -11,7 +11,7 @@ jobs:
           with:
             repository: qld-gov-au/matrix-projects-release
             git_ref: '${{ github.ref }}'
-            branch: '${{ steps.extract_branch.outputs.branch }}'
+            branch: gh-pages
             github_token: '${{ secrets.GH_TOKEN }}'
             github_pat: '${{ secrets.MY_PAT }}'
             source_folder: dist
