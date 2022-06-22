@@ -13,7 +13,7 @@ jobs:
           registry-url: https://npm.pkg.github.com/
         env:
           ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
-      - run: cd global-search
+      - run: cd global-search && ls
       - run: npm install
       - run: npm run build
       - run: |
