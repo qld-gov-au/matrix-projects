@@ -15,7 +15,7 @@ jobs:
           ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
       - run: cd global-search && ls && npm install && npm run build
       - run: |
-          git clone https://github.com/qld-gov-au/matrix-projects-release.git
+          git clone git@github.com:qld-gov-au/matrix-projects-release.git
           cd matrix-projects-release && mkdir global-search && cd ..
           cp global-search/dist/* matrix-projects-release/global-search/
           cd matrix-projects-release
