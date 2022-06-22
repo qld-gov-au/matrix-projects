@@ -6,6 +6,7 @@ import { urlParameterMap } from '../utils/urlParameter'
 import { fetchData } from '../utils/fetchData'
 
 export function paginationTemplate (response: Response, paramMap: ParamMap) {
+  let timer: any
   const { resultPacket } = response
   const { totalMatching } = resultPacket.resultsSummary
   const paginationOnPage = 10
@@ -32,11 +33,12 @@ export function paginationTemplate (response: Response, paramMap: ParamMap) {
 
   const onPageClick = (e: any) => {
     e.preventDefault()
+    clearTimeout(timer)
     document.getElementById('qg-search-results')?.scrollIntoView({
       behavior: 'smooth'
     })
     if (e.target?.href) {
-      setTimeout(() => {
+      timer = setTimeout(() => {
         history.pushState({}, '', e.target.href)
         fetchData(e.target?.href?.split('?')[1]).then(data => {
           render(mainTemplate(data?.response, currUrlParameterMap), document.getElementById('qg-search-results__container') as HTMLBodyElement)
