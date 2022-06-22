@@ -7,12 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone
-        uses: actions/checkout@master
+        uses: actions/checkout@main
         env:
             ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
           repository: qld-gov-au/matrix-projects-release
-          token: ACCESS_TOKEN
+          token: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Access cloned repository content
         run: |
