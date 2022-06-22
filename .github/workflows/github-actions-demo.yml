@@ -8,18 +8,20 @@ jobs:
     steps:
       - name: Clone
         uses: actions/checkout@main
+        env:
+            ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
           repository: qld-gov-au/matrix-projects-release
           ref: refs/heads/main
-          token: ${{ secrets.MY_PAT }}
+          token: ACCESS_TOKEN
 
-      - name: Access cloned repository content
-        run: |
-          echo "ROOT"
-          ls -la
-          echo "CLONED REPO"
-          cd matrix-projects-release
-          ls -la
+#      - name: Access cloned repository content
+#        run: |
+#          echo "ROOT"
+#          ls -la
+#          echo "CLONED REPO"
+#          cd matrix-projects-release
+#          ls -la
 #    steps:
 #      - uses: actions/checkout@v3
 #      - uses: actions/setup-node@v3
