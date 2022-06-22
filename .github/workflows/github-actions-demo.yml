@@ -12,7 +12,8 @@ jobs:
             ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
           repository: qld-gov-au/matrix-projects-release
-          token: ACCESS_TOKEN
+          ref: refs/heads/main
+          token: ${{ secrets.my_pat }}
 
       - name: Access cloned repository content
         run: |
