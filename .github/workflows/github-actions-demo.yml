@@ -13,7 +13,7 @@ jobs:
             git_ref: '${{ github.ref }}'
             branch: gh-pages
             github_pat: '${{ secrets.GH_PAT }}'
-            source_folder: global-search/dist
+            source_folder: global-search
             target_folder: global-search
             tag_branch: main
           if: success()
