@@ -24,6 +24,7 @@ jobs:
             github_token: '${{ secrets.GH_TOKEN }}'
             github_pat: '${{ secrets.GH_PAT }}'
             source_folder: global-search/dist
+            target_folder: global-search
             tag_branch: main
           if: success()
 
