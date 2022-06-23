@@ -7,9 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build 🔧
-        run: | # build the files'
-        cd global-search
-        npm run build
+        run: |
+          cd global-search
+          npm run build
 
       - name: Extract branch name
         shell: bash
