@@ -1,3 +1,45 @@
+name: Push release folder
+
+on: push
+
+jobs:
+  copy-file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build 🔧
+        run: | # build the files'
+        cd global-search
+        npm run build
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - name: display branch name
+        shell: bash
+        run: echo "${{ steps.extract_branch.outputs.branch }}"
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Trust GitHub workspace
+        run:
+          git config --global --add safe.directory /github/workspace
+
+      - name: Pushes test file
+        uses: datalbry/copy_folder_to_another_repo_action@1.0.0
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.GH_PAT }}
+        with:
+          source_folder: 'global-search/dist'
+          destination_repo: ${{ secrets.TARGET_REPO }}
+          destination_folder: 'global-search'
+          destination_branch: master
+          commit_msg: 'Publish'
+
+
+
 #
 #name: test github action
 #'on':
@@ -27,39 +69,3 @@
 #            tag_branch: main
 #          if: success()
 #
-
-
-name: Push release folder
-
-on: push
-
-jobs:
-  copy-file:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Extract branch name
-        shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        id: extract_branch
-
-      - name: display branch name
-        shell: bash
-        run: echo "${{ steps.extract_branch.outputs.branch }}"
-
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Trust GitHub workspace
-        run:
-          git config --global --add safe.directory /github/workspace
-
-      - name: Pushes test file
-        uses: crykn/copy_folder_to_another_repo_action@v1.0.6
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.GH_PAT }}
-        with:
-          source_folder: 'global-search/dist'
-          destination_repo: ${{ secrets.TARGET_REPO }}
-          destination_folder: 'global-search'
-          destination_branch: master
-          commit_msg: 'A custom message for the commit'
