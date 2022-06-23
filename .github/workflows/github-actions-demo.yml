@@ -29,7 +29,7 @@
 #
 
 
-name: Push File
+name: Push release folder
 
 on: push
 
@@ -58,7 +58,6 @@ jobs:
           destination_repo: ${{ secrets.TARGET_REPO }}
           destination_folder: 'global-search'
           destination_branch_create: ${{ steps.extract_branch.outputs.branch }}
-          destination_branch: ${{ steps.extract_branch.outputs.branch }}
           user_email: 'asifaminb@gmail.com'
           user_name: 'asifamingov'
           commit_msg: 'A custom message for the commit'
