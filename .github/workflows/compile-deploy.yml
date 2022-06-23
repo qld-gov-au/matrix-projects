@@ -101,7 +101,9 @@ jobs:
         run: |
           ls -ltr
           mkdir -p ./dist
-          tar -c --exclude .git --exclude README --exclude ./dist . | tar -x -C ./dist
+          cd global-search && npm install && npm run build
+          cp -a dist/. ../dist
+#          tar -c --exclude .git --exclude README --exclude ./dist . | tar -x -C ./dist
 
       - uses: actions/upload-artifact@v2
         with:
