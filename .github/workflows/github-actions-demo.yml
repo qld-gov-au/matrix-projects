@@ -47,7 +47,7 @@ jobs:
         run: echo "${{ steps.extract_branch.outputs.branch }}"
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout#766
 
       - name: Trust GitHub workspace
         run:
