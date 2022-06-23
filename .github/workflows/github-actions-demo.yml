@@ -1,29 +1,53 @@
+#
+#name: test github action
+#'on':
+#  - push
+#jobs:
+#  deploy-me:
+#    runs-on: ubuntu-latest
+#    steps:
+#        - name: Extract branch name
+#          shell: bash
+#          run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+#          id: extract_branch
+#
+#        - name: display branch name
+#          shell: bash
+#          run: echo "${{ steps.extract_branch.outputs.branch }}"
+#
+#        - name: Publish
+#          uses: qld-gov-au/gha-publish-to-git@master
+#          with:
+#            repository: ${{ secrets.TARGET_REPO }}
+#            git_ref: '${{ github.ref }}'
+#            branch: '${{ steps.extract_branch.outputs.branch }}'
+#            github_token: '${{ secrets.GH_TOKEN }}'
+#            github_pat: '${{ secrets.GH_PAT }}'
+#            source_folder: dist
+#            tag_branch: main
+#          if: success()
+#
 
-name: test github action
-'on':
-  - push
+
+name: Push File
+
+on: push
+
 jobs:
-  deploy-me:
+  copy-file:
     runs-on: ubuntu-latest
     steps:
-        - name: Extract branch name
-          shell: bash
-          run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-          id: extract_branch
+      - name: Checkout
+        uses: actions/checkout@v2
 
-        - name: display branch name
-          shell: bash
-          run: echo "${{ steps.extract_branch.outputs.branch }}"
-
-        - name: Publish
-          uses: qld-gov-au/gha-publish-to-git@master
-          with:
-            repository: ${{ secrets.TARGET_REPO }}
-            git_ref: '${{ github.ref }}'
-            branch: '${{ steps.extract_branch.outputs.branch }}'
-            github_token: '${{ secrets.GH_TOKEN }}'
-            github_pat: '${{ secrets.GH_PAT }}'
-            source_folder: dist
-            tag_branch: main
-          if: success()
-
+      - name: Pushes test file
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source_file: 'README.md'
+          destination_repo: ${{ secrets.TARGET_REPO }}
+          destination_folder: 'global-search'
+          user_email: 'asifaminb@gmail.com'
+          user_name: 'asifamingov'
+          commit_message: 'A custom message for the commit'
