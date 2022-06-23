@@ -49,6 +49,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Trust My Directory
+        run: export GIT_CEILING_DIRECTORIES=/__w
+
       - name: Pushes test file
         uses: datalbry/copy_folder_to_another_repo_action@1.0.0
         env:
