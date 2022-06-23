@@ -45,7 +45,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.GH_PAT }}
         with:
-          source_folder: 'dist'
+          source_folder: 'global-search'
           destination_repo: ${{ secrets.TARGET_REPO }}
           destination_folder: 'global-search'
           user_email: 'asifaminb@gmail.com'
