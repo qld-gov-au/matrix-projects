@@ -48,6 +48,7 @@ jobs:
           source_folder: 'global-search'
           destination_repo: ${{ secrets.TARGET_REPO }}
           destination_folder: 'global-search'
+          destination_branch: 'main'
           user_email: 'asifaminb@gmail.com'
           user_name: 'asifamingov'
           commit_msg: 'A custom message for the commit'
