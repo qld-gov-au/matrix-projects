@@ -103,7 +103,14 @@ jobs:
           mkdir -p ./dist
           cd global-search && npm install && npm run build
           cp -a dist/. ../dist/global-search
-#          tar -c --exclude .git --exclude README --exclude ./dist . | tar -x -C ./dist
+
+
+      - name: setup Package
+        run: |
+          ls -ltr
+          mkdir -p ./dist
+          cd services && npm install && npm run build
+          cp -a dist/. ../dist/services
 
       - uses: actions/upload-artifact@v2
         with:
