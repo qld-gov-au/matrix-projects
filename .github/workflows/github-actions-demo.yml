@@ -11,13 +11,13 @@ jobs:
           with:
             repository: qld-gov-au/matrix-projects-release
             git_ref: '${{ github.ref }}'
-            branch: QOL-8542_Improve_loading_on_the_search_results_page_Global_Search
+            branch: master
             github_pat: '${{ secrets.GH_PAT }}'
-            source_folder: global-search/dist
+            source_folder: global-search
             target_folder: global-search
             tag_branch: master
             dry_run: true
-            initial_source_folder: global-search/dist
+            initial_source_folder: global-search
             initial_commit_message: test
           if: success()
 
