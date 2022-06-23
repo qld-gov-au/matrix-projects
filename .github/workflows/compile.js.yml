@@ -67,30 +67,31 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node.js - franchises/dfv
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
-          cache: 'npm'
-          always-auth: 'true'
-          registry-url: 'https://nexus.tools.services.qld.gov.au/nexus/repository/npm_all/'
-      - name: Install - franchises/dfv #run on lint step (Which is cached)
-        run: | # Install packages
-          npm install --prefer-offline --no-audit --ignore-scripts
-        working-directory: franchises/dfv
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NEXUSREADONLY2NPMTOKEN }}
-
-      # `npm rebuild` will run all those post-install scripts for us.
-      - name: rebuild and prepare - franchises/dfv
-        run: |
-          npm rebuild && npm run prepare --if-present
-        working-directory: franchises/dfv
-
-      - name: Build 🔧 franchises/dfv
-        run: | # build the files
-          npm run build
-        working-directory: franchises/dfv
+## FIX ME, i should build each flder that has a package.json (note i need pacakge-lock.json in npm/node16 version)
+#      - name: Use Node.js - franchises/dfv
+#        uses: actions/setup-node@v3
+#        with:
+#          node-version: ${{ matrix.node }}
+#          cache: 'npm'
+#          always-auth: 'true'
+#          registry-url: 'https://nexus.tools.services.qld.gov.au/nexus/repository/npm_all/'
+#      - name: Install - franchises/dfv #run on lint step (Which is cached)
+#        run: | # Install packages
+#          npm install --prefer-offline --no-audit --ignore-scripts
+#        working-directory: franchises/dfv
+#        env:
+#          NODE_AUTH_TOKEN: ${{ secrets.NEXUSREADONLY2NPMTOKEN }}
+#
+#      # `npm rebuild` will run all those post-install scripts for us.
+#      - name: rebuild and prepare - franchises/dfv
+#        run: |
+#          npm rebuild && npm run prepare --if-present
+#        working-directory: franchises/dfv
+#
+#      - name: Build 🔧 franchises/dfv
+#        run: | # build the files
+#          npm run build
+#        working-directory: franchises/dfv
 
 #      - name: Build storybook 🔧
 #        run: | # build the Storybook files
