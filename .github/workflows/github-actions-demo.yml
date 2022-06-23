@@ -45,7 +45,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.GH_PAT }}
         with:
-          source_folder: 'global-search'
+          source_folder: 'global-search/dist'
           destination_repo: ${{ secrets.TARGET_REPO }}
           destination_folder: 'global-search'
           destination_branch: 'main'
