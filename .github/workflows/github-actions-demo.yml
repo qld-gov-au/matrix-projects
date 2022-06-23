@@ -6,18 +6,24 @@ jobs:
   deploy-me:
     runs-on: ubuntu-latest
     steps:
+          - name: Extract branch name
+            shell: bash
+            run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+            id: extract_branch
+
+        -  name: display branch name
+           shell: bash
+           run: echo "${{ steps.extract_branch.outputs.branch }}"
+
         - name: Publish
           uses: qld-gov-au/gha-publish-to-git@master
           with:
-            repository: qld-gov-au/matrix-projects-release
+            repository: ${{ secrets.TARGET_REPO }}
             git_ref: '${{ github.ref }}'
-            branch: master
+            branch: '${{ steps.extract_branch.outputs.branch }}'
+            github_token: '${{ secrets.GH_TOKEN }}'
             github_pat: '${{ secrets.GH_PAT }}'
-            source_folder: global-search
-            target_folder: global-search
-            tag_branch: master
-            dry_run: true
-            initial_source_folder: global-search
-            initial_commit_message: test
+            source_folder: global-search/dist
+            tag_branch: main
           if: success()
 
