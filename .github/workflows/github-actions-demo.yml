@@ -22,7 +22,7 @@ jobs:
         working-directory: ./global-search
         run: |
           ls
-          npm run build
+          npm install &&  npm run build
 
       - name: Trust GitHub workspace
         run:
