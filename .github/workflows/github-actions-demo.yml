@@ -23,7 +23,7 @@ jobs:
             branch: '${{ steps.extract_branch.outputs.branch }}'
             github_token: '${{ secrets.GH_TOKEN }}'
             github_pat: '${{ secrets.GH_PAT }}'
-            source_folder: global-search/dist
+            source_folder: dist
             target_folder: global-search
             tag_branch: main
           if: success()
