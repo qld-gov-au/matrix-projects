@@ -51,7 +51,7 @@ jobs:
 
       - name: Trust GitHub workspace
         run:
-          git config --global --add safe.directory ${{ secrets.TARGET_REPO }}
+          git config --global --add safe.directory /github/workspace
 
       - name: Pushes test file
         uses: datalbry/copy_folder_to_another_repo_action@1.0.0
