@@ -24,12 +24,6 @@ jobs:
           ls
           npm install &&  npm run build
 
-      - name: Trust GitHub workspace
-        run:
-          git config user.name "$(git log -n 1 --pretty=format:%an)"
-          git config user.email "$(git log -n 1 --pretty=format:%ae)"
-          git config --global --add safe.directory /github/workspace
-
       - name: Pushes test file
         uses: datalbry/copy_folder_to_another_repo_action@1.0.0
         env:
@@ -38,5 +32,7 @@ jobs:
           source_folder: 'global-search/dist'
           destination_repo: ${{ secrets.TARGET_REPO }}
           destination_folder: 'global-search'
+          user_email: ${{ github.event.pull_request.user.login }}
+          user_name: ${{ github.event.pull_request.user.name }}
           destination_branch: master
           commit_msg: 'Publish'
