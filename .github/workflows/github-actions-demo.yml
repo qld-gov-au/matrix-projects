@@ -33,6 +33,6 @@ jobs:
           destination_repo: ${{ secrets.TARGET_REPO }}
           destination_folder: 'global-search'
           user_email: github-actions@github.com
-          user_name: github-actions
+          user_name: ${{ github.event.release.author.login }}
           destination_branch: master
           commit_msg: 'Publish'
