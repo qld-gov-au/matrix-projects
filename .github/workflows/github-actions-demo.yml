@@ -16,5 +16,8 @@ jobs:
             source_folder: global-search/dist
             target_folder: global-search
             tag_branch: master
+            dry_run: true
+            initial_source_folder: global-search/dist
+            initial_commit_message: "test"
           if: success()
 
