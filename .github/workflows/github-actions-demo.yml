@@ -6,12 +6,6 @@ jobs:
   copy-file:
     runs-on: ubuntu-latest
     steps:
-      - name: Build 🔧
-        run: |
-          ls
-          cd global-search
-          npm run build
-
       - name: Extract branch name
         shell: bash
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
@@ -23,6 +17,12 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Build
+        working-directory: ./global-search
+        run: |
+          ls
+          npm run build
 
       - name: Trust GitHub workspace
         run:
