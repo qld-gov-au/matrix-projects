@@ -37,6 +37,15 @@ jobs:
   copy-file:
     runs-on: ubuntu-latest
     steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - name: display branch name
+        shell: bash
+        run: echo "${{ steps.extract_branch.outputs.branch }}"
+
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -48,7 +57,7 @@ jobs:
           source_folder: 'global-search/dist'
           destination_repo: ${{ secrets.TARGET_REPO }}
           destination_folder: 'global-search'
-          destination_branch: 'main'
+          destination_branch: '${{ steps.extract_branch.outputs.branch }}'
           user_email: 'asifaminb@gmail.com'
           user_name: 'asifamingov'
           commit_msg: 'A custom message for the commit'
