@@ -276,7 +276,6 @@ button:focus {
     display: inline-block;
     font-weight: 500;
     padding: 12px 20px;
-    text-decoration: none;
     border-color: #13578b;
     background-color: #13578b;
     color: #fff;
