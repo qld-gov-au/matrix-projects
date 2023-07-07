@@ -1,0 +1,2 @@
+(self.webpackChunk_articulate_rise_frontend_learn_module_sample=self.webpackChunk_articulate_rise_frontend_learn_module_sample||[]).push([[177],{967:e=>{e.exports={sample:"tEQN3Hh3"}},248:(e,a,t)=>{"use strict";t.r(a),t.d(a,{default:()=>_});var r=t(395),l=t.n(r);const s=t.p+"6124f5e2.jpeg";var n=t(967);function _(){return l().createElement("div",{className:n.sample},l().createElement("img",{alt:"Earth",src:s}))}}}]);
+//# sourceMappingURL=642ea530.js.map
