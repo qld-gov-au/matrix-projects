@@ -618,7 +618,9 @@ h2:before {
  */
 #qg-primary-content .dfv-cards--type-helplines {
   margin: 0 -25px;
-  overflow: hidden; }
+  overflow: hidden;
+  padding: 10px;
+}
 
 #qg-content #qg-primary-content .dfv-cards--type-helplines {
   /* Start of Salvatorre plugin CSS */
