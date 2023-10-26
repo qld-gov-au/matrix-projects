@@ -104,11 +104,19 @@
     }
 }
 
-.navbar-collapse {
-    &.collapse:not(.in) {
+
+.navbar-collapse.collapse {    
+    //Collapsed state
+    &:not(.in) {
         display: none !important;
     }
+    
+    //Open state
+    &.in {
+        display: block !important;
+    }
 }
+
 
 /*
  * Tablet layout
