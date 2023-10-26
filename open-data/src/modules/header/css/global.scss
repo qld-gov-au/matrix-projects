@@ -18,6 +18,7 @@ header.navbar.navbar-static-top.masthead {
     .header-image.pull-left {
 
         padding: 0;
+        float: none !important;
 
         svg {
             width: 100%;
@@ -87,6 +88,7 @@ header.navbar.navbar-static-top.masthead {
         .header-image.pull-left {
             order: 0;
             padding-left: 0;
+            float: none !important;
         }
 
         .header__data-portal {
