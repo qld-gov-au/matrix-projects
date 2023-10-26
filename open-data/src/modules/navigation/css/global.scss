@@ -104,8 +104,10 @@
     }
 }
 
-.navbar.collapse:not(.in) {
-    display: none !important;
+.navbar-collapse {
+    &.collapse:not(.in) {
+        display: none !important;
+    }
 }
 
 /*
