@@ -22,6 +22,8 @@
         margin: 0;
     }
 
+
+
     nav,
     nav.navigation {
         padding: 0;
@@ -101,6 +103,9 @@
         }
     }
 
+    .collapse:not(.in) {
+        display: none !important;
+    }
 }
 
 
