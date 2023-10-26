@@ -102,12 +102,11 @@
             }
         }
     }
-
-    .collapse:not(.in) {
-        display: none !important;
-    }
 }
 
+.navbar.collapse:not(.in) {
+    display: none !important;
+}
 
 /*
  * Tablet layout
