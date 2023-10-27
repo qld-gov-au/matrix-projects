@@ -1,0 +1,11 @@
+.navbar-collapse.collapse {    
+    //Menu Collapsed state
+    &:not(.in) { display: none !important; }
+    
+    //Menu Open state
+    &.in { display: block !important; }
+}
+
+.header-image.pull-left {
+    float: none !important;
+}
