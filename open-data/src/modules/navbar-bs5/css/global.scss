@@ -1,11 +1,14 @@
-.navbar-collapse.collapse {    
-    //Menu Collapsed state
-    &:not(.in) { display: none !important; }
+@media screen and (max-width: $tablet){
+    .navbar-collapse.collapse {    
+        //Menu Collapsed state
+        &:not(.in) { display: none !important; }
     
-    //Menu Open state
-    &.in { display: block !important; }
+        //Menu Open state
+        &.in { display: block !important; }
+    }
 }
 
+//Remove float from header logo
 .header-image.pull-left {
     float: none !important;
 }
