@@ -22,8 +22,6 @@
         margin: 0;
     }
 
-
-
     nav,
     nav.navigation {
         padding: 0;
@@ -102,19 +100,7 @@
             }
         }
     }
-}
 
-
-.navbar-collapse.collapse {    
-    //Collapsed state
-    &:not(.in) {
-        display: none !important;
-    }
-    
-    //Open state
-    &.in {
-        display: block !important;
-    }
 }
 
 
@@ -124,107 +110,107 @@
 
 @media screen and (min-width: $tablet){
     
-    // .navbar-collapse.collapse {
-    //     margin: 0;
-    //     padding: 0;
-    //     position: absolute;
-    //     right: pxToRem(5);
-    //     bottom: 0;
+    .navbar-collapse.collapse {
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        right: pxToRem(5);
+        bottom: 0;
 
-    //     nav.navigation {
-    //         padding: 0;
-    //         background: transparent;
-    //         width: auto;
+        nav.navigation {
+            padding: 0;
+            background: transparent;
+            width: auto;
 
-    //         ul.listbox {
-    //             position: absolute;
-    //             top: pxToRem(46);
-    //             width: 100%;
-    //             @include sq-border-radius(5px);
-    //             border: none;
-    //             left: 0;
+            ul.listbox {
+                position: absolute;
+                top: pxToRem(46);
+                width: 100%;
+                @include sq-border-radius(5px);
+                border: none;
+                left: 0;
 
-    //             li {
-    //                 a {
-    //                     width: 100%;
-    //                     display: block;
-    //                     padding: pxToRem(7);
+                li {
+                    a {
+                        width: 100%;
+                        display: block;
+                        padding: pxToRem(7);
 
-    //                     &:hover,
-    //                     &:focus,
-    //                     &:active {
-    //                         background: none;
-    //                         color: $black;
-    //                         text-decoration: none;
-    //                     }
-    //                 }
-    //             }
-    //         }
+                        &:hover,
+                        &:focus,
+                        &:active {
+                            background: none;
+                            color: $black;
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
 
-    //         ul,
-    //         ul.nav,
-    //         ul.nav.nav-pills {
-    //             @include sq-list-reset;
-    //             width: auto;
-    //             float: left;
+            ul,
+            ul.nav,
+            ul.nav.nav-pills {
+                @include sq-list-reset;
+                width: auto;
+                float: left;
 
-    //             li {
-    //                 width: auto;
-    //                 @include sq-list-reset;
-    //                 padding: pxToRem(9) pxToRem(5);
+                li {
+                    width: auto;
+                    @include sq-list-reset;
+                    padding: pxToRem(9) pxToRem(5);
                     
 
-    //                 &:nth-child(2n) {
+                    &:nth-child(2n) {
                         
-    //                     background-color: transparent;
+                        background-color: transparent;
 
-    //                     a {
-    //                         &:hover,
-    //                         &:focus,
-    //                         &:active {
-    //                             background-color: $white;
-    //                             @include sq-border-radius(3px);
-    //                             color: $light-blue;
-    //                         }
-    //                     }
-    //                 }
+                        a {
+                            &:hover,
+                            &:focus,
+                            &:active {
+                                background-color: $white;
+                                @include sq-border-radius(3px);
+                                color: $light-blue;
+                            }
+                        }
+                    }
 
-    //                 &.active,
-    //                 &.current {
-    //                     a {
-    //                         background-color: $white;
-    //                         color: $light-blue;
-    //                         @include sq-border-radius(3px);
-    //                         text-decoration: none;
+                    &.active,
+                    &.current {
+                        a {
+                            background-color: $white;
+                            color: $light-blue;
+                            @include sq-border-radius(3px);
+                            text-decoration: none;
 
-    //                         &:focus,
-    //                         &:hover {
-    //                             color: $light-blue;
-    //                             @include sq-border-radius(3px);
-    //                             text-decoration: none;
-    //                         }
-    //                     }
+                            &:focus,
+                            &:hover {
+                                color: $light-blue;
+                                @include sq-border-radius(3px);
+                                text-decoration: none;
+                            }
+                        }
 
-    //                 }
+                    }
 
-    //                 a {
-    //                     padding: pxToRem(5) pxToRem(5);
-    //                     width: auto;
-    //                     font-size: pxToRem(16);
-    //                     line-height: pxToRem(16);
+                    a {
+                        padding: pxToRem(5) pxToRem(5);
+                        width: auto;
+                        font-size: pxToRem(16);
+                        line-height: pxToRem(16);
 
-    //                     &:hover,
-    //                     &:focus,
-    //                     &:active {
-    //                         color: $light-blue;
-    //                         @include sq-border-radius(3px);
-    //                         text-decoration: none;
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
+                        &:hover,
+                        &:focus,
+                        &:active {
+                            color: $light-blue;
+                            @include sq-border-radius(3px);
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 
