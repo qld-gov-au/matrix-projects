@@ -1,3 +1,7 @@
+.navbar-collapse.collapse {
+    display: block !important;
+}
+
 @media screen and (max-width: $tablet){
     .navbar-collapse.collapse {    
         //Menu Collapsed state
