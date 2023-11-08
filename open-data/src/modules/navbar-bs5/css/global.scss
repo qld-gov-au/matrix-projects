@@ -1,0 +1,20 @@
+.navbar-collapse.collapse {
+    display: flex !important;
+    height: auto !important;
+}
+
+@media screen and (max-width: $tablet){
+    .navbar-collapse.collapse {    
+        //Menu Collapsed state
+        &:not(.in) { display: none !important; }
+    
+        //Menu Open state
+        &.in { display: block !important; }
+    }
+}
+
+@media (min-width: $tablet) {
+    .navbar-toggle {
+        display: none !important;
+    }
+}
