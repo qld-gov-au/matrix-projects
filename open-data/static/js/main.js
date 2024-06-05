@@ -374,7 +374,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
       show: function show() {
         var t, n, r, i;
         if (this.transitioning || this.$element.hasClass("in")) return;
-        t = this.dimension(), n = e.camelCase(["scroll", t].join("-")), r = this.$parent && this.$parent.find("> .accordion-group > .in");
+        t = this.dimension(), n = e.camelCase(["scroll", t].join("-")), r = this.$parent && this.$parent.find("> .accordion-group > .in, > .accordion-group > .show,");
 
         if (r && r.length) {
           i = r.data("collapse");
