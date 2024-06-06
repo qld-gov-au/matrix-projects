@@ -1,9 +1,9 @@
-.navbar-collapse.collapse {    
+.navbar-collapse.collapse {
     //Menu Collapsed state
-    &:not(.in) { display: none !important; }
-    
+    &:not(.in, .show) { display: none !important; }
+
     //Menu Open state
-    &.in { display: block !important; }
+    &.in, &.show { display: block !important; }
 }
 
 .header-image.pull-left {
