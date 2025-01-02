@@ -130,17 +130,17 @@ a {
 
 .primary {
     padding: 0;
-    
+
     img {
         max-width: 100%;
     }
 }
 
-#asides .button:visited, 
-.button, .button:active, 
-.button:focus, 
-.button:hover, 
-.button:link, 
+#asides .button:visited,
+.button, .button:active,
+.button:focus,
+.button:hover,
+.button:link,
 .button:visited,
 .button {
 
@@ -196,7 +196,7 @@ a {
 
 @media screen and (min-width: $tablet){
     .primary {
-        padding-left: pxToRem(45);
+        padding-left: pxToRem(15);
     }
 }
 
