@@ -31,7 +31,7 @@ var cctAdmin: CctAdminModule = (function () {
                     let feJs = ``;
 
                     //Icon sprite
-                    feJs += `cctStore.iconSpriteAssetUrl=${store.iconSpriteAssetUrl};`;
+                    feJs += `cctStore.iconSpriteAssetUrl="${store.iconSpriteAssetUrl}";`;
                     
                     //conditional visibility
                     if (store.has.visibility && store.conditionalVisibility) {
