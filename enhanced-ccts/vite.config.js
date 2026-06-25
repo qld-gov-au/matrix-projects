@@ -113,7 +113,7 @@ export default defineConfig({
   ],
   build: {
     outDir: 'assets',
-    emptyOutDir: false, // STOP VITE FROM AUTOMATICALLY CLEARING THE ASSETS FOLDER
+    emptyOutDir: false, 
     minify: true,
     cssCodeSplit: true,
     sourcemap: true,
