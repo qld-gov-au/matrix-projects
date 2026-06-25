@@ -2,6 +2,8 @@
 
 // Declare Squiz Matrix server-side print function global signature
 declare function print(html: string): void;
+// Declare iconSpriteAssetUrl global variable (injected from BE)
+declare const iconSpriteAssetUrl: string;
 
 interface CctAdminModule {
     compile: (data: InitDataInput) => void;
@@ -31,7 +33,7 @@ var cctAdmin: CctAdminModule = (function () {
                     let feJs = ``;
 
                     //Icon sprite
-                    feJs += `cctStore.iconSpriteAssetUrl="${store.iconSpriteAssetUrl}";`; 
+                    feJs += `cctStore.iconSpriteAssetUrl="${iconSpriteAssetUrl}";`; 
                     
                     //conditional visibility
                     if (store.has.visibility && store.conditionalVisibility) {

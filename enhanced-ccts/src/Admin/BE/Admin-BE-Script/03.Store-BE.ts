@@ -45,7 +45,6 @@ interface StoreHasState {
 }
 
 interface StoreStructure extends Omit<InitDataInput, 'assetData'> {
-    iconSpriteAssetUrl: string;
     asset: AssetData;
     has: StoreHasState;
     cctId?: string;
@@ -74,7 +73,6 @@ const initStore = (data: InitDataInput): void => {
             
                 //Store data in global store
                 store = {
-                    iconSpriteAssetUrl       : `%nested_get_gb^replace_keywords:append:\\:enhanced-ccts/assets/images/cct-admin-icon.svg^as_asset:asset_url%`,
                     ...data,
                     asset,
                     has                     : {
