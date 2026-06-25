@@ -77,13 +77,13 @@ const cctAppendButtonToTop = (containerId: string | number, buttonsData: ButtonD
     buttonsData.forEach((buttonData: ButtonData) => {
         const buttonExtraClasses = "extraClasses" in buttonData ? ` ${buttonData.extraClasses}` : ``;
         const externalLinkIcon = "externalLink" in buttonData && buttonData.externalLink 
-            ? `<svg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' focusable='false' viewBox='0 0 24 24' width='16' height='16'><use href='./?a=${cctStore.iconSpriteAssetUrl}#cctExternalLink'></use></svg>` 
+            ? `<svg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' focusable='false' viewBox='0 0 24 24' width='16' height='16'><use href='${cctStore.iconSpriteAssetUrl}#cctExternalLink'></use></svg>` 
             : ``;
             
         buttonsHTML += `
         <button name="${buttonData.name}" aria-label="${buttonData.label}" data-tippy-position="top" data-tippy-tooltip="${buttonData.label}${externalLinkIcon}" type="button" class="btn-icon btn-default-transparent${buttonExtraClasses}" onclick="${buttonData.onClick}">
             <svg xmlns="http://www.w3.org/2000/svg" aria-hidden='true' focusable='false' viewBox="0 0 24 24" width="24" height="24" fill="currentColor" >
-                <use href="./?a=${cctStore.iconSpriteAssetUrl}#${buttonData.iconHash}"></use>
+                <use href="${cctStore.iconSpriteAssetUrl}#${buttonData.iconHash}"></use>
             </svg>
         </button>`;
     });
