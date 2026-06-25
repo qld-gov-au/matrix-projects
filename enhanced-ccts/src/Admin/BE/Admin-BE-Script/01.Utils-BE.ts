@@ -20,17 +20,13 @@ const objQuery = <T>(
     }
 };
 
-//Variable is String
-const isString = (value: unknown): value is string => 
-    typeof value === 'string' || value instanceof String;
-
 //Safe HTML 
 //Escape double quotes
 const escapeDoubleQuote = (string: string): string => 
     string.replace(/\"/g, '&quot;');
 
 //Encode HTML
-const escapeHtml = (str: string | null | undefined): string => {
+const escapeHtmlBe = (str: string | null | undefined): string => {
     if (!str) return '';
     const map: Record<string, string> = {
         '<': '&lt;',
@@ -40,7 +36,7 @@ const escapeHtml = (str: string | null | undefined): string => {
 };
 
 //Check of locks are acquired
-const isLocksAcquired = (wrapperHtml: string | null | undefined | false): boolean => {
+const isLocksAcquiredBE = (wrapperHtml: string | null | undefined | false): boolean => {
     if (!wrapperHtml) return false;
 
     const patterns = [

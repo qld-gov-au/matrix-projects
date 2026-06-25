@@ -103,7 +103,7 @@ const initStore = (data: InitDataInput): void => {
                 
                 //Locks (check first form element in cct)
                 const firstFieldHtml = objQuery(() => data.sections[0].fields[0].html);
-                store.has.locks = isLocksAcquired(firstFieldHtml);
+                store.has.locks = isLocksAcquiredBE(firstFieldHtml);
             
             //## 2. section level
             data.sections.forEach(function(section, index) {

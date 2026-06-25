@@ -28,7 +28,7 @@ const cctSectionHtml = (
     
     const activeHeadingStr = typeof storeActiveHeadingValue === 'string' ? storeActiveHeadingValue : '';
     const title = data.activeHeading && activeHeadingStr.trim().length 
-        ? escapeHtml(activeHeadingStr) 
+        ? escapeHtmlBe(activeHeadingStr) 
         : sectionNameNoEndNumber;
         
     //classes
