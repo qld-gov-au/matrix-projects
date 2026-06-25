@@ -71,7 +71,7 @@ const objQuery=fn=>{try{const val=fn();return val??!1}catch{return!1}},isString=
                         <a class="btn cct-admin__feedback__button" href="${`${feedback.url}/?source=${store.asset.assetid}&cct=%globals_asset_name:${store.cctId}%`}" target="_blank">
                             <span class="cct-admin__feedback__button__inner">
                                 <svg class="cct-admin__feedback__button__inner__icon" aria-hidden="true" focusable="false" aria-label="icon component feedback">
-                                    <use href="./?a=${iconSpriteAssetUrl}#cctChat"></use>
+                                    <use href="${iconSpriteAssetUrl}#cctChat"></use>
                                 </svg>
                                 <span>${feedback.btnText}</span>
                             </span>

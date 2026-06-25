@@ -17,7 +17,7 @@ const cctFeedback = (): string => {
                         <a class="btn cct-admin__feedback__button" href="${url}" target="_blank">
                             <span class="cct-admin__feedback__button__inner">
                                 <svg class="cct-admin__feedback__button__inner__icon" aria-hidden="true" focusable="false" aria-label="icon component feedback">
-                                    <use href="./?a=${iconSpriteAssetUrl}#cctChat"></use>
+                                    <use href="${iconSpriteAssetUrl}#cctChat"></use>
                                 </svg>
                                 <span>${feedback.btnText}</span>
                             </span>
