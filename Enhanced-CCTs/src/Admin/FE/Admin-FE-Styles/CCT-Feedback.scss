@@ -1,0 +1,56 @@
+    
+    .cct-admin{
+        &__feedback{
+            animation: slideComponentHeaderIn .2s ease-out; display:none;
+            width:100%;
+            height: 2.75rem;
+            position: absolute;
+            right:0;
+            z-index:0;
+            justify-content: flex-end;
+            align-items: center;
+            top: -3.125rem;
+            background-color: #ffffff;
+            
+            &:after{
+                content:'';
+                position: absolute;
+                width:100%;
+                bottom:-.375rem;
+                height:.375rem;
+            }
+            
+            &__button{
+                display:flex;
+                align-items: center;
+                border-radius: 2rem;
+                height: 2.5rem;
+                border: 0;
+                background-image: linear-gradient(90deg, var(--blue-50) 0%, var(--yellow-200) 49%, var(--red-200) 100%);
+                position: relative;
+                padding: 0.125rem;
+                
+              &__inner {
+                border-radius: 2rem;
+                height: 2.25rem;
+                display: flex;
+                align-items: center;
+                background: white;
+                padding: 0 1rem;
+                font-weight: 500;
+                
+                &__icon{
+                    width: 1.25rem;
+                    height: 1.25rem;
+                    margin-right: 0.5rem;
+                    margin-top:0.125rem;
+                }
+              }
+              
+            }
+        }
+    }
+
+    .component-wrapper:focus-within .cct-admin__feedback,.component-wrapper:hover .cct-admin__feedback, .cct-admin__feedback:hover {
+        display: flex!important;
+    }
