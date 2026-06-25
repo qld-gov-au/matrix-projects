@@ -1,0 +1,18 @@
+//#FIELD
+    
+    .cct-admin{
+        
+        //Field row
+        .sq-metadata-settings-row > td:first-child .sq-backend-field-label{
+            //Left td gap
+            padding-right: 1rem;
+        }
+        //Last field row in a MD section
+        .sq-backend-section-inner-table-wrapper tbody > .sq-backend-row.sq-metadata-settings-row:last-of-type td,
+        .sq-backend-section-inner-table-wrapper tbody > .sq-backend-row.sq-metadata-settings-row:nth-last-child(1 of :not(.hidden)) td { /*limited broswer support for Selector Level 4 syntax*/
+            border-bottom:0;
+        }
+  
+    }
+    
+    
