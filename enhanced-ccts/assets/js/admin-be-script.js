@@ -31,7 +31,7 @@ const objQuery=fn=>{try{const val=fn();return val??!1}catch{return!1}},isString=
                 </tr>
             `},cctSectionHtml=(data,sectionHeading)=>{const fields=objQuery(()=>data.fields)||[],id=data.id.toString(),sectionNameNoEndNumber=`%globals_asset_name:${id}^replace:[0-9 -]+$:^escapehtml%`,activeHeadingKey=data.activeHeading?data.activeHeading.toString():"",storeActiveHeadingValue=store.metadataHashMap&&activeHeadingKey?store.metadataHashMap[activeHeadingKey]?.value:void 0,activeHeadingStr=typeof storeActiveHeadingValue=="string"?storeActiveHeadingValue:"",title=data.activeHeading&&activeHeadingStr.trim().length?escapeHtml(activeHeadingStr):sectionNameNoEndNumber,toggleAnimationClass="toggleAnimation"in data&&data.toggleAnimation===!1?" cct-no-toggle-animation":"",extraClass=(objQuery(()=>data.extraClass)?` ${data.extraClass}`:"")+toggleAnimationClass,toggleConfig=objQuery(()=>data.toggle)===!0?{elemTag:"button type='button'",accordionTriggerExtras:` sq-backend-section-subheading--accordion-trigger${toggleAnimationClass} align-items-center justify-content-between`,accordionAreaExtras:` sq-backend-section-inner-table-wrapper--accordion-area${toggleAnimationClass} hidden`}:{elemTag:"div",accordionTriggerExtras:"",accordionAreaExtras:""},{elemTag,accordionTriggerExtras,accordionAreaExtras}=toggleConfig,sortConfig=objQuery(()=>data.sort)===!0?{wrapperElem:"td",wrapperClasses:" class='sq-sortable-dragging__row'",sortRowStart:`<tr class="sq-sortable-dragging${extraClass} cct-admin__section" data-sq-id="${id}" data-sortRef="${data.sortRef||""}">`,sortRowEnd:"</tr>",sortSectionTrigger:`<div class="js_sq-draggable-column sq-draggable-column ui-sortable-handle position-absolute " title="Drag to reorder">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" >
-                                        <use href="./?a=${iconSpriteAssetUrl}#cctDragHandle"></use>
+                                        <use href="${iconSpriteAssetUrl}#cctDragHandle"></use>
                                     </svg>
                                 </div>`}:{wrapperElem:`div data-sq-id="${id}"`,wrapperClasses:` class='cct-admin__section${extraClass}'`,sortRowStart:"",sortRowEnd:"",sortSectionTrigger:""},{wrapperElem,wrapperClasses,sortRowStart,sortRowEnd,sortSectionTrigger}=sortConfig;let fieldsHtml="";fields.forEach(field=>{const fieldHtml=cctFieldHtml(field,data.activeHeading);fieldsHtml+=fieldHtml});const openWrapperTag=`<${wrapperElem}${wrapperClasses}>`,closeWrapperTag=`</${wrapperElem.split(" ")[0]}>`,openHeadingTag=`<${elemTag} data-default-content="${sectionNameNoEndNumber}" class="sq-backend-section-subheading d-flex${accordionTriggerExtras}">`,closeHeadingTag=`</${elemTag.split(" ")[0]}>`;return`
             ${sortRowStart}
@@ -71,7 +71,7 @@ const objQuery=fn=>{try{const val=fn();return val??!1}catch{return!1}},isString=
             <button type="button" class="cct-admin__feedback__button">
                 <span class="cct-admin__feedback__button__inner">
                     <svg class="cct-admin__feedback__button__inner__icon" aria-hidden="true" focusable="false" aria-label="icon component feedback">
-                        <use href="./?a=${iconSpriteAssetUrl}#cctChat"></use>
+                        <use href="${iconSpriteAssetUrl}#cctChat"></use>
                     </svg>
                     <span>${feedbackText}</span>
                 </span>

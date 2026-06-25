@@ -59,7 +59,7 @@ const cctSectionHtml = (
         sortRowEnd          : "</tr>",
         sortSectionTrigger  : `<div class="js_sq-draggable-column sq-draggable-column ui-sortable-handle position-absolute " title="Drag to reorder">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" >
-                                        <use href="./?a=${iconSpriteAssetUrl}#cctDragHandle"></use>
+                                        <use href="${iconSpriteAssetUrl}#cctDragHandle"></use>
                                     </svg>
                                 </div>`,
     } : {
