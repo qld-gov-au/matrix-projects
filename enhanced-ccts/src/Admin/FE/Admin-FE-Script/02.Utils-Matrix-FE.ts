@@ -1,12 +1,5 @@
 //## UTILS MATRIX
 
-// Global declaration for your Matrix asset configuration object
-interface CctAssetId {
-    iconSprite: string;
-    feedbackForm: string; 
-}
-declare const cctAssetId: CctAssetId;
-
 // Interface defining the expected shape of each button object
 interface ButtonData {
     name: string;

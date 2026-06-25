@@ -66,18 +66,18 @@ const objQuery=fn=>{try{const val=fn();return val??!1}catch{return!1}},isString=
                 ${contentHtml}    
             </div>    
         </div>        
-    `},cctFeedback=()=>{const feedback=objQuery(()=>store.feedback),feedbackText=typeof feedback=="string"?feedback:"";return feedbackText.trim().length?`
-        <div class="cct-admin__feedback">
-            <button type="button" class="cct-admin__feedback__button">
-                <span class="cct-admin__feedback__button__inner">
-                    <svg class="cct-admin__feedback__button__inner__icon" aria-hidden="true" focusable="false" aria-label="icon component feedback">
-                        <use href="${iconSpriteAssetUrl}#cctChat"></use>
-                    </svg>
-                    <span>${feedbackText}</span>
-                </span>
-            </button>
-        </div>
-    `:""},cctHeader=()=>{const{cctId}=store,assetid=store.asset.assetid,guideUrl=objQuery(()=>store.guideUrl),cctIdStr=cctId?cctId.toString():"",guideUrlStr=typeof guideUrl=="string"?guideUrl:"";return`
+    `},cctFeedback=()=>{const feedback=objQuery(()=>store.feedback);let html="";return feedback&&"btnText"in feedback&&"url"in feedback&&(html=`
+                    <div class="cct-admin__feedback">
+                        <a class="btn cct-admin__feedback__button" href="${`${feedback.url}/?source=${store.asset.assetid}&cct=%globals_asset_name:${store.cctId}%`}" target="_blank">
+                            <span class="cct-admin__feedback__button__inner">
+                                <svg class="cct-admin__feedback__button__inner__icon" aria-hidden="true" focusable="false" aria-label="icon component feedback">
+                                    <use href="./?a=${iconSpriteAssetUrl}#cctChat"></use>
+                                </svg>
+                                <span>${feedback.btnText}</span>
+                            </span>
+                        </a>
+                    </div>
+                `),html},cctHeader=()=>{const{cctId}=store,assetid=store.asset.assetid,guideUrl=objQuery(()=>store.guideUrl),cctIdStr=cctId?cctId.toString():"",guideUrlStr=typeof guideUrl=="string"?guideUrl:"";return`
             <div class="sq-backend-section-subheading cct-admin__title">
 
                 <span class="cct-admin__title__component-name cct-admin__title__component-name--locks-not-acquired mt-2">

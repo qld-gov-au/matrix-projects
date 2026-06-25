@@ -52,7 +52,7 @@ interface StoreStructure extends Omit<InitDataInput, 'assetData'> {
     visibilityTriggers?: string[];
     url?: string;
     sections: SectionInput[]; 
-    feedback?: string;
+    feedback?: {};
     guideUrl?: string;
     inlineDescription?: boolean;
 }
