@@ -45,7 +45,7 @@ const cctControlSectionData = (): SectionData | false => {
         
         const assetId = store.asset.assetid;
         
-        // FIXED BUG: Added [0] index to cctControlFields to correctly grab the first matching field key
+        //section id is parent id of first field in the list
         const firstFieldKey = cctControlFields[0];
         const sectionId = `%globals_asset_parent:${store.asset.metadata[firstFieldKey].fieldid}%`;
         

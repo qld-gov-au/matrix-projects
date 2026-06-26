@@ -24,7 +24,7 @@ interface ModalProps {
 
 // Close Modal
 const cctCloseModal = function(onClose: Array<() => void> | false = false): void {
-    const $modalContainer: JQuery<HTMLElement> = $(document).find('#cctErrorModal');
+    const $modalContainer = $(document).find('#cctErrorModal');
     
     // additional onClose functions execution loop
     if (onClose && Array.isArray(onClose)) {

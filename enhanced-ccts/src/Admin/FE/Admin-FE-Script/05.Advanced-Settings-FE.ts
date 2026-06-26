@@ -58,7 +58,6 @@ $(document).on("click", ".component-header button[name='properties']", function 
             
             // change if cct value
             if (isLocksAcquiredFE()) {
-                // Cast broadly queried element to specific type so TypeScript knows attributes can shift dynamically
                 const templateInput = document.querySelector(".sidebar-panel-wrapper input[name='template']") as HTMLInputElement | null;
                 if (templateInput) {
                     const observer = new MutationObserver((): void => adjustAdminPropertyMenu(isCctTemplate()));

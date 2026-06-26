@@ -5,7 +5,7 @@
 // Adjust width of name input
 const cctUpdateNameInputWidth = (containerId: string | number): void => {
     const $cct: JQuery<HTMLElement> = $(`[data-cct-id="${containerId}"]`);
-    const $input: JQuery<HTMLInputElement> = $cct.find(".cct-admin__title__component-name__content__input");
+    const $input: JQuery<HTMLInputElement> = $cct.find(".cct-admin__title__component-name__content__input") as JQuery<HTMLInputElement>;
     const $textElem: JQuery<HTMLElement> = $cct.find(".cct-admin__title__component-name__content__display__text");
     
     // Adjust content of displayed name. 

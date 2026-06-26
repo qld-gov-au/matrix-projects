@@ -10,7 +10,7 @@
     "build": "tsc --noEmit && vite build"
   },
   "devDependencies": {
-    "@types/jquery": "^4.0.1",
+    "@types/jquery": "^3.3.29",
     "@types/node": "^26.0.0",
     "esbuild": "^0.28.1",
     "esbuild-sass-plugin": "^3.7.0",

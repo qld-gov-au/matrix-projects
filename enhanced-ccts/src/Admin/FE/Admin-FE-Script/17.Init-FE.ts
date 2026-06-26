@@ -76,7 +76,7 @@ const cctInit = (containerId: string | number, options: CctInitOption[] = []): v
     // handle preview button 
     cctHandlePreviewButton(containerId);
     
-    // run options functions using clean, type-safe matching boundaries
+    // run options functions 
     if (options.includes('retired')) cctHandleHasRetired(containerId);
     if (options.includes('visibility')) handleCctConditionalVisibility(containerId);
     if (options.includes('sort')) cctHandleSorting(containerId);

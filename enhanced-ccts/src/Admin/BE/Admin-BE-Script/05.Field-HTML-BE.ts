@@ -8,8 +8,8 @@ interface FieldHtmlData {
     extraClass?: string;
     toggleAnimation?: boolean;
     htmlSelect?: {
-        name?: string;
-        options?: SelectOption[];
+        name: string;
+        options: SelectOption[];
     };
 }
 

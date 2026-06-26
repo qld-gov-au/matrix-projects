@@ -281,7 +281,6 @@ const cctVisibilityToggle = ({
       // Animation
       const applyAnimate: boolean = elem.hasClass('cct-no-toggle-animation') ? false : animate;
       if (applyAnimate) {
-        // 🚀 FIX: Convert boolean 'false' to 'undefined' to satisfy the strict signature expectations of your animation functions
         const options = { 
           state: toShow, 
           callbackStart: callbackStart || undefined, 

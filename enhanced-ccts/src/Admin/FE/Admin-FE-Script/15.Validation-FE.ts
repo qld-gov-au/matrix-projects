@@ -212,8 +212,8 @@ $(document).on("click", ".screen-actions #sq_commit_button[type='submit'][form='
 });
 
 
-// Delete Action Interceptor Trigger
-// Excludes elements flagging for deletion from executing structural form blocking triggers
+//Delete Button Handler
+//exclude about to be deleted CCT from validation checks
 $(document).on('click', 'button[name="delete"]', function (this: HTMLElement, e: JQuery.TriggeredEvent): void {
 
     // Prevent direct execution loop routines
