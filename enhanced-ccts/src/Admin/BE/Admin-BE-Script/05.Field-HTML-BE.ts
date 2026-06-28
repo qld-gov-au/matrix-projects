@@ -28,8 +28,8 @@ const cctFieldHtml = (
     const value = metadataItem && typeof metadataItem.value === 'string' ? metadataItem.value : '';
     
     const isSoftRequired = objQuery(() => data.required) === 'soft';
-    const isHtmlSelect = objQuery(() => data.htmlSelect);
-    const isCustomHtmlSelect = isHtmlSelect && objQuery(() => data.htmlSelect!.name);
+    const htmlSelect = "htmlSelect" in data && data.htmlSelect && typeof data.htmlSelect === 'object' ? data.htmlSelect : false;
+    const isCustomHtmlSelect = htmlSelect && objQuery(() => htmlSelect.name);
     const isNoToggleAnimation = "toggleAnimation" in data && data.toggleAnimation === false;
     
     //Row classes
@@ -39,7 +39,7 @@ const cctFieldHtml = (
     ];
     
     //active heading
-    if (activeHeadingId?.toString() === id) rowClassesArray.push('activeHeading');
+    if (activeHeadingId && activeHeadingId.toString() === id) rowClassesArray.push('activeHeading');
     //retired
     if (isRetired) rowClassesArray.push('sq-metadata-settings-row--retired hidden');
     //extra class
@@ -51,8 +51,8 @@ const cctFieldHtml = (
     //Soft Required
     if (isSoftRequired) rowClassesArray.push('required-soft');
     //HTML Select
-    if (isHtmlSelect) rowClassesArray.push("cct-html-select");
-    if (isCustomHtmlSelect && data.htmlSelect?.name) rowClassesArray.push(`cct-html-select--${data.htmlSelect.name}`);
+    if (htmlSelect) rowClassesArray.push("cct-html-select");
+    if (isCustomHtmlSelect) rowClassesArray.push(`cct-html-select--${htmlSelect.name}`);
     //Toggle Animation
     if (isNoToggleAnimation) rowClassesArray.push("cct-no-toggle-animation");
     
@@ -72,7 +72,7 @@ const cctFieldHtml = (
         `;
 
     // Extract options conditionally for the builder snippet
-    const selectOptions = data.htmlSelect?.options || [];
+    const selectOptions = htmlSelect ? htmlSelect.options || [] : [];
     
     //row html
     const html  = ` 

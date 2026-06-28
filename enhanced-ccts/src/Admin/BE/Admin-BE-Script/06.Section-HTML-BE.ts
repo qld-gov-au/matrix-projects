@@ -23,7 +23,7 @@ const cctSectionHtml = (
     // Safely look up the active heading value from the store map
     const activeHeadingKey = data.activeHeading ? data.activeHeading.toString() : '';
     const storeActiveHeadingValue = store.metadataHashMap && activeHeadingKey 
-        ? store.metadataHashMap[activeHeadingKey]?.value 
+        ? store.metadataHashMap[activeHeadingKey].value 
         : undefined;
     
     const activeHeadingStr = typeof storeActiveHeadingValue === 'string' ? storeActiveHeadingValue : '';

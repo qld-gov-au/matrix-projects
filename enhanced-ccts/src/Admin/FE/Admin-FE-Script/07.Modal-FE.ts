@@ -56,7 +56,7 @@ const cctShowModal = (props: ModalProps): void => {
     const { message, buttons, title } = props;
     
     // Generate buttons HTML safely
-    let focus: string = buttons[0]?.id || '';
+    let focus: string = "id" in buttons[0] ? buttons[0].id : '';
     const buttonsHtml = buttons.map((btn: ModalButton) => {
         if ("focus" in btn && btn.focus === true) {
             focus = btn.id;
@@ -107,7 +107,7 @@ const cctShowModal = (props: ModalProps): void => {
     
         // Shift active focus context onto the targeted primary action button instance
         if (focus) {
-            $(`#${focus}`).focus();
+            $(`#${focus}`).trigger("focus");
         }
     }, 50);
 

@@ -43,7 +43,7 @@ const cctOpenSettingsMenu = (containerId: string | number): JQuery<HTMLElement> 
     return $(`[data-cct-id="${containerId}"]`)
         .closest(".component-wrapper")
         .find(".component-header button[name='properties']")
-        .click(); 
+        .trigger("click"); 
 };
 
 
@@ -52,7 +52,7 @@ const cctCloseSettingsMenu = (): void => {
     if ($(".sidebar-panel-wrapper").hasClass("is-open")) {
         const $wrapper: JQuery<HTMLElement> = $(".sidebar-panel-wrapper");
         // Close menu organically
-        $(".sidebar-panel-header button").click();
+        $(".sidebar-panel-header button").trigger("click");
 
         // avoid animation for accurate calculation of name input width
         $wrapper.addClass("hidden");
@@ -140,7 +140,7 @@ const setReactInputValue = (selector: string, value: string): void => {
         'value'
     );
     
-    const nativeInputValueSetter = propertyDescriptor?.set;
+    const nativeInputValueSetter = propertyDescriptor && "set" in propertyDescriptor ? propertyDescriptor.set : undefined;
     if (!nativeInputValueSetter) return;
 
     // 2. Call the native setter so React's internal tracker is updated

@@ -15,6 +15,6 @@ const handleActiveHeading = (liveInput: JQuery<HTMLElement>): void => {
 };
 
 // Trigger on change - Uses a clean string literal to target the class properly
-$(document).on("input", ".sq-backend-row.activeHeading .sq-form-field", function (this: HTMLElement): void {
+$(document).on("input", ".sq-backend-row.activeHeading .sq-form-field", function (this: HTMLElement,e: JQuery.TriggeredEvent): void {
     handleActiveHeading($(this));
 });

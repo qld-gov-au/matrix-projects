@@ -112,7 +112,7 @@ $(document).on("blur", ".cct-admin__title__component-name__content__input", func
 
 
 // User changes cct name in settings menu
-$(document).on("input", ".sidebar-panel-wrapper #identifier:not(.dynamic-update)", function (this: HTMLElement): void {
+$(document).on("input", ".sidebar-panel-wrapper #identifier:not(.dynamic-update)", function (this: HTMLElement, e: JQuery.TriggeredEvent): void {
     if (cctOpenPropertiesBodycopy && typeof cctOpenPropertiesBodycopy === "string") {
         const cctNameElem: JQuery<HTMLElement> = $(`[data-cct-id="${cctOpenPropertiesBodycopy}"]`);
         

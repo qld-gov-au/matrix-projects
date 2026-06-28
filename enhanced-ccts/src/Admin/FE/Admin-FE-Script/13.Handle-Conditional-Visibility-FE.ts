@@ -172,7 +172,7 @@ const handleCctConditionalVisibility = (
 
 
 // on change of select element in cct container, examine element against conditional visibility
-$(document).on("change", ".visibility-trigger select", function (this: HTMLElement): void {
+$(document).on("change", ".visibility-trigger select", function (this: HTMLElement,e: JQuery.TriggeredEvent): void {
     const cctElem = $(this).closest(`[data-cct-id]`);
     if (cctElem.length) {
         const containerId = cctElem.attr("data-cct-id");
