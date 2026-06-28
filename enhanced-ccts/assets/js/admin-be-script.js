@@ -45,7 +45,9 @@ const objQuery=fn=>{try{const val=fn();return val??!1}catch{return!1}},escapeDou
                     <div class="sq-backend-section-inner-table-wrapper p-0${accordionAreaExtras}">
                         <div class="px-4">
                             ${isCctControlSection?`
-                                Fields can be added to this section to extend the CCT Admin functionality and adjust the CCT Admin UI. Any field entered in this section must start with "cct-control." and will be hidden in the Admin UI
+                                <div class="sq-backend-note sq-text-normal pt-4 mt-0 mb-4">
+                                    Fields can be added to this section to extend the CCT Admin functionality and adjust the CCT Admin UI. Any field entered in this section must start with "cct-control." and will be hidden in the Admin UI.
+                                </div>
                             `:`
                                 %globals_asset_data_attributes:${id}^json_decode^index:description^index:value^neq::<div class="sq-backend-note sq-text-normal pt-4 mt-0 mb-4">{globals_asset_data_attributes:${id}^json_decode^index:description^index:value}</div>%  
                             `}
