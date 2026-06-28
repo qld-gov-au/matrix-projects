@@ -24,6 +24,10 @@
 
 
 
+---
+
+
+
 ## **Implementation**
 
 ### Configuration object
@@ -79,7 +83,13 @@
 }
 ```
 
-![CCT-PL](./documentation/assets/CCT-PL.svg)
+![CCT-PL](./assets/CCT-PL.svg)
+
+
+
+---
+
+
 
 ## **Technical Notes**
 
