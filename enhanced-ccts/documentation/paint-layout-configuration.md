@@ -1,3 +1,5 @@
+# **Paint Layout Configuration**
+
 ## **Features**
 
 * **Dynamic HTML Wrapping:** Automatically evaluates the injected markup layout. If the raw HTML payload consists of multiple root-level elements, the engine dynamically wraps them inside a single `<section>` tag to guarantee DOM hierarchy stability.
@@ -22,17 +24,14 @@
 * **Separation of Concerns:** Establishes a clean architecture by decoupling backend data preparation from the visual CCT presentation layer.
 * **Centralised Engine Stability:** Consolidates all Handlebars rendering pipeline operations to allow quick, platform-wide bug fixes from a single codebase context.
 
-
-
 ---
-
-
 
 ## **Implementation**
 
 ### Configuration object
 
-* Call the `CCTRender({<configuration-object>})` functionJSON Schema
+* Call the `CCTRender({<configuration-object>})` function
+  **JSON Schema**
 
 ```json
 {
@@ -85,11 +84,7 @@
 
 ![CCT-PL](./assets/CCT-PL.svg)
 
-
-
 ---
-
-
 
 ## **Technical Notes**
 
