@@ -1,8 +1,9 @@
 # Enhanced Custom Component Templates (CCTs)
 
-![Enhanced CCts](./enhanced-ccts/documentation/assets/Enhanced-CCts.gif)
+![Enhanced CCts](./enhanced-ccts/documentation/assets/Enhanced-CCTs.gif)
 
-![1782667967602](image/README/1782667967602.gif)
+![1782667967602](./enhanced-ccts/enhanced-ccts/documentation/assets/Enhanced-CCTs.gif)
+
 
 ## 📌 Overview
 
