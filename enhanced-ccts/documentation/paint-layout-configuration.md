@@ -4,20 +4,25 @@
 * **Standardised CSS Cascading:** Enforces uniform styling rules across all components by maintaining strict control over the wrapping HTML parent output. HTML class attributes are injected in a sequential order to allow developers to safely override default product layouts, while giving editor final override authority:
 
   * Order of classes:
+
     * HB-template-classes
     * qld-cct
     * qld-cct-`<template-name>`
     * CCT-Paintlayout-global-classes
     * Admin-UI-dvanced-settings-classes
-      ![Enhanced-CCT-Wrapping-Parent-Classes](./documentation/assets/Enhanced-CCT-Wrapping-Parent-Classes.svg)
+
+    ![Enhanced-CCT-Wrapping-Parent-Classes](./assets/Enhanced-CCT-Wrapping-Parent-Classes.svg)
 * **Parent Element Customisation:** Provides editors with control over the CCT parent element via the Admin UI, supporting the configuration of:
 
   * Custom Classes
   * Component IDs
   * Text Direction (`ltr` / `rtl`)
-    ![Advanced-Settings](./documentation/assets/Advanced-Settings.png)
+
+  ![Advanced-Settings](./assets/Advanced-Settings.png)
 * **Separation of Concerns:** Establishes a clean architecture by decoupling backend data preparation from the visual CCT presentation layer.
 * **Centralised Engine Stability:** Consolidates all Handlebars rendering pipeline operations to allow quick, platform-wide bug fixes from a single codebase context.
+
+
 
 ## **Implementation**
 
@@ -74,7 +79,7 @@
 }
 ```
 
-* ![CCT-PL](./documentation/assets/CCT-PL.svg)
+![CCT-PL](./documentation/assets/CCT-PL.svg)
 
 ## **Technical Notes**
 
