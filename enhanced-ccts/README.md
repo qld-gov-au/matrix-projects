@@ -2,7 +2,6 @@
 
 ![Enhanced CCts](./documentation/assets/Enhanced-CCTs.gif)
 
-
 ## 📌 Overview
 
 - **Matrix Version Agnostic:** Tested and fully compatible with Squiz Matrix versions 6.28 to 6.9.
@@ -10,11 +9,7 @@
 - **Decoupled Enhancements:** Custom Edit Layouts, and Paint Layouts can be enhanced independently.
 - **Flexible Rendering:** Supports Handlebars rendering out of the box, as well as custom-built HTML templates.
 
-
-
 ---
-
-
 
 ## 🛠️ Features
 
@@ -42,11 +37,7 @@
 * **Documentation:** High-visibility links to updated CCT documentation for quick reference.
 * **Direct Assistance:** One-click support ticket creation with pre-filled description.
 
-
-
 ---
-
-
 
 ## 📦 Installation
 
@@ -61,14 +52,18 @@ Once completed, the imported site will be functional, and all 5 sample CCT examp
 
 > 💡 **Note:** [Manual installation](./documentation/manual-installation.md) instructions are also available in the documentation if you prefer not to use the XML import method.
 
-
-
 ---
-
-
 
 ## 🚀 Integrating with Existing Site Assets
 
 1. **Nest the Design Partial:** Nest `Enhanced CCT XML/Config/Enhanced CCTs/Enhanced CCT Design Partial` into your Site asset's active design customisation.
    *(Note: This step is optional and only required if you want to enhance Paint Layout rendering).*
-2. **Build Components:** Follow the specific Custom Edit Layout and Paint Layout instructions to start building your own Enhanced CCTs.
+2. **Build Components:** Follow the specific [Custom Edit Layout](./documentation/configuration-custom-edit-layout.md) and [Paint Layout](./documentation/configuration-paint-layout.md) instructions to start building your own Enhanced CCTs.
+
+---
+
+## 📄 Documentation
+
+* [Custom Edit Layout Configuration](./documentation/configuration-custom-edit-layout.md)
+* [Paint Layout Configuration](./documentation/configuration-paint-layout.md)
+* [Manual Installation](./documentation/manual-installation.md)
