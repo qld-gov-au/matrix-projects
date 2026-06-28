@@ -69,7 +69,7 @@ $(document).on("input", ".cct-admin__title__component-name__content__input", fun
 
 
 // Finish Editing Name Input
-$(document).on("blur", ".cct-admin__title__component-name__content__input", function (this: HTMLElement): void {
+$(document).on("blur", ".cct-admin__title__component-name__content__input", function (this: HTMLElement,e: JQuery.TriggeredEvent): void {
 
     const containerId = $(this).closest("[data-cct-id]").attr("data-cct-id");
     if (containerId === undefined) return;

@@ -68,8 +68,7 @@ const _cctAnimateBlock = ({ elem, state, callbackStart, callbackEnd }: CctAnimat
             elem.css(stylesBefore);
         
             // Force the reflow inside the frame
-            const firstNode = elem[0];
-            const reflow = firstNode ? firstNode.offsetHeight : 0; 
+            const reflow = elem[0].offsetHeight; 
     
             // Start transition
             const className = state ? 'is-opening' : 'is-closing';
@@ -90,8 +89,7 @@ const _cctAnimateBlock = ({ elem, state, callbackStart, callbackEnd }: CctAnimat
             }).removeClass('is-closing hidden');
                 
             // Capture current height 
-            const firstNode = elem.get(0);
-            const actualHeight = firstNode ? firstNode.scrollHeight + 20 : 20; 
+            const actualHeight = elem.get(0).scrollHeight + 20; 
                 
             // Calculate raw value based on 75ms per 100px ratio + 100ms
             const rounded = (Math.round(actualHeight / 100) * 75) + 100;
@@ -118,8 +116,7 @@ const _cctAnimateBlock = ({ elem, state, callbackStart, callbackEnd }: CctAnimat
             const duration = 300; 
             
             // Capture current height 
-            const firstNode = elem.get(0);
-            const actualHeight = firstNode ? firstNode.scrollHeight + 20 : 20; 
+            const actualHeight = elem.get(0).scrollHeight + 20; 
             
             // DOM styles
             elem.removeClass('is-opening');

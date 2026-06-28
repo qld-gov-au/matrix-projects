@@ -47,7 +47,7 @@ const cctControlSectionData = (): SectionData | false => {
         
         //section id is parent id of first field in the list
         const firstFieldKey = cctControlFields[0];
-        const sectionId = `%globals_asset_parent:${store.asset.metadata[firstFieldKey].fieldid}%`;
+        const sectionId = `{globals_asset_parent:${store.asset.metadata[firstFieldKey].fieldid}}`;
         
         // Section data structure explicitly typed
         const sectionData: SectionData = {

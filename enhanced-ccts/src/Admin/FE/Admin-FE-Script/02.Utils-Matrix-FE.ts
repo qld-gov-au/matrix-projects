@@ -88,6 +88,7 @@ const cctAppendButtonToTop = (containerId: string | number, buttonsData: ButtonD
     
     const addButton = ($header: JQuery<HTMLElement>): void => {
         $header.before(buttonsHTML);
+        //Fix Matrix v6.26.0 bug with Tippy - Matrix renders tippy tooltip on the events: 1.load, 2.locks status change, 3.open settings menu & misses the content load event. This results in the Tippy tooltips not to be displayed when the user moves between different pages content windows in the same session. This issue is irrelvant to appending buttons in top menu. Opening and closeing the settings menu triggers Tippy & fixes this issue for all top menu triigers including settings, toggle source and delete.
         cctOpenSettingsMenu(containerId);
         cctCloseSettingsMenu();
     };
