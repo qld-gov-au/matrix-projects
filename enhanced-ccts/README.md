@@ -2,6 +2,8 @@ Custom Component Templates (CCTs),
 
 # Enhanced Custom Component Templates (CCTs)
 
+![1782667659211](image/README/1782667659211.gif)
+
 ## 📌 Overview
 
 - **Matrix Version Agnostic:** Tested and fully compatible with Squiz Matrix versions 6.28 to 6.9.
@@ -9,7 +11,7 @@ Custom Component Templates (CCTs),
 - **Decoupled Enhancements:** Custom Edit Layouts, and Paint Layouts can be enhanced independently.
 - **Flexible Rendering:** Supports Handlebars rendering out of the box, as well as custom-built HTML templates.
 
----
+
 
 ## 🛠️ Features
 
@@ -37,7 +39,7 @@ Custom Component Templates (CCTs),
 * **Documentation:** High-visibility links to updated CCT documentation for quick reference.
 * **Direct Assistance:** One-click support ticket creation with pre-filled description.
 
----
+
 
 ## 📦 Installation
 
@@ -52,7 +54,7 @@ Once completed, the imported site will be functional, and all 5 sample CCT examp
 
 > 💡 **Note:** Manual installation instructions are also available in the documentation if you prefer not to use the XML import method.
 
----
+
 
 ## 🚀 Integrating with Existing Site Assets
 
