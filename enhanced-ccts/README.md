@@ -12,6 +12,10 @@
 
 
 
+---
+
+
+
 ## 🛠️ Features
 
 ### 1. Publishing Tools
@@ -40,6 +44,10 @@
 
 
 
+---
+
+
+
 ## 📦 Installation
 
 The easiest way to install Enhanced CCTs is by using the provided XML package.
@@ -51,7 +59,11 @@ The easiest way to install Enhanced CCTs is by using the provided XML package.
 
 Once completed, the imported site will be functional, and all 5 sample CCT examples will work on the site homepage.
 
-> 💡 **Note:** Manual installation instructions are also available in the documentation if you prefer not to use the XML import method.
+> 💡 **Note:** [Manual installation](./documentation/manual-installation.md) instructions are also available in the documentation if you prefer not to use the XML import method.
+
+
+
+---
 
 
 
