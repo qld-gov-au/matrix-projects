@@ -44,11 +44,11 @@
 The easiest way to install Enhanced CCTs is by using the provided XML package.
 
 1. **Import the XML** file into your Squiz Matrix environment.
-2. **Update the QGDS Git Bridge asset** `Enhanced CCT XML/Config/Site/QGDS Git Bridge`
-3. **Update the Enhanced CCTs Git Bridge asset** `Enhanced CCT XML/Config/Enhanced CCTs/Enhanced CCTs Git Bridge`
-4. **Assign a URL** to the Site asset `Enhanced CCT XML/Site`
+2. Aquire locks of the **QGDS Git Bridge asset and click *Clone repo*** `Enhanced CCT XML/Config/Site/QGDS Git Bridge`
+3. Aquire locks of the **Enhanced CCTs Git Bridge asset and click *Clone repo*** `Enhanced CCT XML/Config/Enhanced CCTs/Enhanced CCTs Git Bridge`
+4. Aquire locks of the **Site asset and assign a URL in the URLs screen** `Enhanced CCT XML/Site`
 
-Once completed, the imported site will be functional, and all 5 sample CCT examples will work on the site homepage.
+Once completed, the imported Site will be functional, and the 5 sample CCT examples provided in the XML will work on the Site homepage.
 
 > 💡 **Note:** [Manual installation](./documentation/manual-installation.md) instructions are also available in the documentation if you prefer not to use the XML import method.
 
@@ -62,10 +62,14 @@ Once completed, the imported site will be functional, and all 5 sample CCT examp
 
 ---
 
-## 📄 Documentation
+## 📄 Resources
 
-* [Custom Edit Layout Configuration](./documentation/configuration-custom-edit-layout.md)
-  * [Chart](./documentation/assets/CCT-CELO.svg)
-* [Paint Layout Configuration](./documentation/configuration-paint-layout.md)
-  * [Chart](./documentation/assets/CCT-PL.svg)
+- **Custom Edit Layout**
+  - [Documentation](./documentation/configuration-custom-edit-layout.md)
+  - [Chart](https://raw.githubusercontent.com/qld-gov-au/matrix-projects/refs/heads/enhanced-ccts/enhanced-ccts/documentation/assets/CCT-CELO.svg)
+- **Paint Layout**
+  - [Documentation](./documentation/configuration-paint-layout.md)
+  - [Chart](https://raw.githubusercontent.com/qld-gov-au/matrix-projects/refs/heads/enhanced-ccts/enhanced-ccts/documentation/assets/CCT-PL.svg)
+
 * [Manual Installation](./documentation/manual-installation.md)
+* [Enhanced CCTs XML](./Enhanced-CCT-XML-V.1.0.1.tgz)
