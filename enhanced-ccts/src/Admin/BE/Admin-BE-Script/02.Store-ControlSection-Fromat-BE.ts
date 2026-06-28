@@ -29,14 +29,15 @@ interface ControlFieldConfig {
     html: string;
 }
 
-interface SectionData {
+interface ControlSectionData {
     id: string;
     extraClass: string;
     fields: ControlFieldConfig[];
+    cctControl: boolean;    
 }
 
 // Hidden Control Section Data
-const cctControlSectionData = (): SectionData | false => {
+const cctControlSectionData = (): ControlSectionData | false => {
     
     // All fields that start with cct-control.
     const cctControlFields = Object.keys(store.asset.metadata).filter(item => item.startsWith("cct-control."));
@@ -47,13 +48,14 @@ const cctControlSectionData = (): SectionData | false => {
         
         //section id is parent id of first field in the list
         const firstFieldKey = cctControlFields[0];
-        const sectionId = `{globals_asset_parent:${store.asset.metadata[firstFieldKey].fieldid}}`;
+        const sectionId = `%globals_asset_parent:${store.asset.metadata[firstFieldKey].fieldid}%`;
         
         // Section data structure explicitly typed
-        const sectionData: SectionData = {
+        const sectionData: ControlSectionData = {
             id              : sectionId,
             extraClass      : 'hidden',
             fields          : [],
+            cctControl      : true,
         };
         
         // Loop through fields to find id & html
