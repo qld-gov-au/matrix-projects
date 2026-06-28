@@ -2,6 +2,7 @@
 
 interface SectionHtmlData {
     id: string | number;
+    cctControl?: boolean;
     fields?: FieldHtmlData[];
     activeHeading?: string | number;
     toggleAnimation?: boolean;
@@ -18,7 +19,8 @@ const cctSectionHtml = (
     
     const fields = objQuery(() => data.fields) || [];
     const id = data.id.toString();
-    const sectionNameNoEndNumber = `%globals_asset_name:${id}^replace:[0-9 -]+$:^escapehtml%`;
+    const isCctControlSection = objQuery(() => data.cctControl);
+    const sectionNameNoEndNumber = isCctControlSection ? "CCT Control" : `%globals_asset_name:${id}^replace:[0-9 -]+$:^escapehtml%`;
     
     // Safely look up the active heading value from the store map
     const activeHeadingKey = data.activeHeading ? data.activeHeading.toString() : '';
@@ -97,7 +99,11 @@ const cctSectionHtml = (
                     ` : `` }
                     <div class="sq-backend-section-inner-table-wrapper p-0${accordionAreaExtras}">
                         <div class="px-4">
-                            %globals_asset_data_attributes:${id}^json_decode^index:description^index:value^neq::<div class="sq-backend-note sq-text-normal pt-4 mt-0 mb-4">{globals_asset_data_attributes:${id}^json_decode^index:description^index:value}</div>%
+                            ${isCctControlSection ? `
+                                Fields can be added to this section to extend the CCT Admin functionality and adjust the CCT Admin UI. Any field entered in this section must start with "cct-control." and will be hidden in the Admin UI
+                            ` : `
+                                %globals_asset_data_attributes:${id}^json_decode^index:description^index:value^neq::<div class="sq-backend-note sq-text-normal pt-4 mt-0 mb-4">{globals_asset_data_attributes:${id}^json_decode^index:description^index:value}</div>%  
+                            `}
                             <table class="sq-backend-section-table-inner">
                                 <tbody>
                                     ${ fieldsHtml }

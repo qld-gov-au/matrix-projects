@@ -33,7 +33,7 @@ interface ControlSectionData {
     id: string;
     extraClass: string;
     fields: ControlFieldConfig[];
-    cctControl: boolean;    
+    cctControl: number;    
 }
 
 // Hidden Control Section Data
@@ -55,7 +55,7 @@ const cctControlSectionData = (): ControlSectionData | false => {
             id              : sectionId,
             extraClass      : 'hidden',
             fields          : [],
-            cctControl      : true,
+            cctControl      : 1,
         };
         
         // Loop through fields to find id & html
