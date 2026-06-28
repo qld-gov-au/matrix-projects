@@ -65,5 +65,7 @@ Once completed, the imported site will be functional, and all 5 sample CCT examp
 ## 📄 Documentation
 
 * [Custom Edit Layout Configuration](./documentation/configuration-custom-edit-layout.md)
+  * [Chart](./documentation/assets/CCT-CELO.svg)
 * [Paint Layout Configuration](./documentation/configuration-paint-layout.md)
+  * [Chart](./documentation/assets/CCT-PL.svg)
 * [Manual Installation](./documentation/manual-installation.md)
