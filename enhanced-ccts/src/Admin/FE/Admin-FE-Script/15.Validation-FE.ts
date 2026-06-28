@@ -148,7 +148,7 @@ const cctProceedWithSave = (): void => {
     const $btn = saveButton();
     $btn.addClass('cct-validated');
     setTimeout((): void => { 
-        $btn.click().removeClass('cct-validated'); 
+        $btn.trigger('click').removeClass('cct-validated'); 
         cctValidateModalDestroy();
     }, 20); 
 };
