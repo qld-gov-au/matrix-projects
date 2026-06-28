@@ -31,7 +31,7 @@
 ### Configuration object
 
 * Call the `CCTRender({<configuration-object>})` function
-  **JSON Schema**
+* **JSON Schema:**
 
 ```json
 {

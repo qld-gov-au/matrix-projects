@@ -9,6 +9,8 @@
   * CCT: `name`, `description`, `color`, and `icon`
   * Section: `name` and `description`
   * Field: `name`, `description`, `asset url`, and `metadata required state`
+
+
 * **Configuration Options**
   * **Conditional Visibility:** Evaluates a trigger field value against criteria rules to programmatically toggle the visibility of specific fields or sections.
   * **Contextual Documentation:** Embeds documentation URL in the CCT.
@@ -28,8 +30,8 @@
 
 ### Configuration object
 
-* Call the `cctAdmin({<configuration-object>})` function 
-  **JSON Schema**
+* Call the `cctAdmin({<configuration-object>})` function
+* **JSON Schema:**
   ```JSON
   {
     "$schema": "http://json-schema.org",
@@ -253,26 +255,40 @@
 
 * **Use asset keywords over static IDs**
   Favour `%globals_asset_assetid:123%` over hardcoded ids like `123`. This ensures the CCT configuration survives XML exports and imports intact.
+
+
 * **Fragment WYSIWYG fields**
   Split heavy WYSIWYG sections across multiple `<script runat="server">` tags. This bypasses Rhino engine processing limits and increases overall component capacity for editors.
+
+
 * **Inline Component Descriptions**
 
   * The CCT description prints in the Custom Component list by default. Use the `inlineDescription`key to print the CCT description inside the editing wrapper.
   * Consider using the first section description to print a different, context-specific message at the begging of the component.
+
+
 * **Multiple Component Feedback**
   If multiple CCTs are released together with a unified CTA button text and feedback URL, define an array outside of the custom edit layouts. Reference this array across all targeted CCTs to simplify maintenance. For example, `%globals_asset_contents_raw:<page-hosting-test-object-assetid>%`
+
+
 * **Conditional Visibility Rules**
 
   * **Trigger:** Must be configured as a Select field.
   * **Values:** Use case-insensitive option text that is visible in the select dropdown or printed when locks are not acquired. Do not use the option value stored in the metadata. This ensures the conditional visibility rules still apply even when locks are released.
   * **Limit:** Optionally hide only a specific number of items defined in the `hide` array, instead of hiding all items. This is particularly useful for orderable sections where the frontend display order is unknown for sections.
+
+
 * **Orderable CCT Sections**
   When configuring CCTs with orderable sections, the specific control section below must be included in the CCT metadata schema. You do not need to print this section on the frontend. The Enhanced CCT scripts read this section by name to save the editor's custom sorting preferences in the component metadata.
 
   * **Section Name:** `CCT Control`
   * **Fields:** `cct-control.section_sort`
+
+
 * **Section Heading**
   Section names have their trailing delimiters and numbers stripped in the Admin UI. For example, `Panel-2`, `Panel - 2`, or `Panel2` section headings will all become `Panel`.
+
+
 * **Rich HTML Select Field Configuration Options**
 
   * Option 1: Native Select Field
