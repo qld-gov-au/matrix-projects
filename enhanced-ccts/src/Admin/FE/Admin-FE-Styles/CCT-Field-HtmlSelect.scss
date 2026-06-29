@@ -1,0 +1,68 @@
+//#HTML SELECT
+        
+    @mixin cct-select-label-style {
+      max-width: 21rem;
+        & > * {
+            line-height:1.25rem;
+        }
+        svg {
+            margin-right: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+        }
+    }
+    
+    .cct-admin{
+            
+        //#HTML SELECT
+            //locks not acquired label
+            .cct-selecthtml-label{
+                @include cct-select-label-style;
+                display:flex;
+                align-items: center;
+            }
+            .cct-html-select{
+                //Rendered label
+                .select2-selection__rendered .cct-selecthtml-label{
+                    @include cct-select-label-style;
+                    height:100%;
+                    display: inline-block; 
+                    vertical-align: middle; 
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    width: auto;
+                    margin-right:1.25rem;
+                    & > * {
+                        vertical-align:middle;
+                        display: inline-block;
+                    }
+                }
+              
+                //Outline
+                .select2-container--default{
+                    &.select2-container--focus,&.select2-container--open{
+                        .select2-selection--single{
+                            .select2-selection__rendered{
+                                border-color: var(--blue-300) !important;
+                                outline: none; 
+                                .select2-selection select2-selection--single{
+                                    outline: none;
+                                } 
+                            }
+                        }
+                    }
+                }
+              
+            }
+    }
+    
+    //HTML Select Options
+    .select2-results .select2-results__option .cct-selecthtml-label{
+        @include cct-select-label-style;
+        padding: .25rem 0;
+        display:flex;
+        align-items: center;
+    }
+        
+        

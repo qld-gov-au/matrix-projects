@@ -1,0 +1,70 @@
+//#SLIDE
+    
+    .cct-admin{
+        
+        //Section Accordion
+            .sq-backend-section-subheading--accordion-trigger{
+                 
+                 &:hover{
+                    background:#ffffff!important;
+                    transition: background-color 0.2s ease-in-out;
+                    &:after{
+                       border-top-color: var(--grey-500);
+                       border-right-color: var(--grey-500);
+                    }
+                }
+                
+                .sq-backend-section-subheading__content{
+                    max-width: calc(100% - 30px);//leave room for the arrow after the ellipsis 
+                }
+                
+                //Arrow
+                &:after{
+                    content: "";
+                    margin-left: .255em;
+                    vertical-align: .255em;
+                    display: inline-block;
+                    width: 7.5px;
+                    height: 7.5px;
+                    border-left:0;
+                    border-bottom: 0;
+                    border-top: 2px solid var(--grey-300);
+                    border-right: 2px solid var(--grey-300);
+                    transform: rotate(45deg);
+                    border-radius: 0px;
+                    position:absolute;
+                    right:17px;
+                    left:auto;
+                    top:calc(50% - 4px);
+                }
+                &:not(.cct-no-toggle-animation){
+                    &:after{
+                        transition: transform 0.3s ease;
+                    }
+                }
+                &.expanded{
+                    border-radius: 4px 4px 0 0;
+                     &:hover{
+                        transition: none;
+                        background:var(--grey-0)!important;//static color when expanded
+                     }
+                    &:after{
+                        transform: rotate(135deg);
+                        border-top-color: var(--blue-100);
+                        border-right-color: var(--blue-100);
+                    }
+                }
+            }
+            .sq-backend-section-inner-table-wrapper--accordion-area{
+                background:#ffffff!important;
+                border-bottom: 1px solid var(--grey-50);
+                border-right: 1px solid var(--grey-50);
+                border-left: 1px solid var(--grey-50);
+                border-radius: 0 0 4px 4px;
+                padding-bottom: 1px!important;
+                padding-top: 0!important;
+            }
+                
+    }
+    
+    
