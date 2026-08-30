@@ -42,7 +42,7 @@
     "last 2 versions"
   ],
   "dependencies": {
-    "eventemitter2": "^5.0.1",
+    "eventemitter2": "^6.4.9",
     "webpack-merge": "^4.2.2"
   }
 }
