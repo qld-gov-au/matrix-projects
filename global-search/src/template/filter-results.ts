@@ -2,7 +2,6 @@ import { html, render } from 'lit-html'
 import { mainTemplate } from './main'
 import { urlParameterMap } from '../utils/urlParameter'
 import { fetchData } from '../utils/fetchData'
-import { paginationTemplate } from './pagination'
 
 export function filterResultsTemplate () {
   let label: string = ''
@@ -12,19 +11,22 @@ export function filterResultsTemplate () {
   const scopeFromSession = sessionStorage.getItem('fcScope')
   const capitalizeFirstLetter = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 
+  // apply filter button click
   const applyFilter = (e: any) => {
     e.preventDefault()
     const params = new URLSearchParams(location.search)
     const selectedRadioBtn = document.querySelector('input[name="filterBy"]:checked')
     params.set('scope', selectedRadioBtn?.getAttribute('data-scope') || '')
     params.set('profile', selectedRadioBtn?.getAttribute('data-profile') || '')
-
+    params.set('page', '1')
+    params.set('start_rank', '1')
     history.pushState({}, '', `?${params.toString()}`)
     fetchData(params.toString()).then(data => {
       render(mainTemplate(data?.response, currUrlParameterMap), document.getElementById('qg-search-results__container') as HTMLBodyElement)
     })
   }
 
+  // on radio button change for filtering
   const onFilterChange = (e: any) => {
     const selectedVal = e.target.value
     switch (selectedVal) {
@@ -35,6 +37,7 @@ export function filterResultsTemplate () {
     }
   }
 
+  // building label value
   if (labelFromSession) {
     label = capitalizeFirstLetter(labelFromSession)
   } else if (scopeFromSession) {
@@ -43,6 +46,13 @@ export function filterResultsTemplate () {
   } else if (profileFromSession) {
     label = capitalizeFirstLetter(profileFromSession)
   }
+
+  // initial loading of the component
+  window.addEventListener('load', (event) => {
+    const filterButton = document.querySelector('.qg-btn__filter')
+    filterButton?.addEventListener('click', e => {})
+    filterButton?.dispatchEvent(new Event('click'))
+  })
 
   return html`<div class="qg-filter-by-results">
               <p class="qg-filter-by-results__title">Filter results by</p>
